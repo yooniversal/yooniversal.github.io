@@ -1,0 +1,99 @@
+I"<p>Progress was built and inspired by <a href="https://codyhouse.co/">Cody House’s</a> <a href="https://codyhouse.co/demo/reading-progress-indicator/index.html">Reading Progress Indicator</a>. The folks over at Cody House are pretty fantastic and are making some awesome things. They’re also super responsive to comments, so head on over there and check out what they’ve been doing.</p>
+
+<p>Progress features a quick and simple environment that is set up so users can input all the necesarry info in the config file and start blogging. Further reiterations are in progress to turn this into a Wordpress theme or make it fully editable with Cloudcannon CMS. I cannot let you resell this unless you <a href="mailto:alex@collectivelymade.com">contact me</a>.</p>
+
+<p>If you’d like give credit somewhere on your blog or tweet a shout out to
+<a href="https://twitter.com/alexanderussell">@alexanderussell</a>, that would be pretty sweet.</p>
+
+<p>If you feel like donating — <a href="https://flattr.com/profile/alexanderussell">Give it a thought.</a></p>
+
+<h2 id="features">Features:</h2>
+<ul>
+  <li>flexible, uses max-width for responsive goodness</li>
+  <li>beautiful reading progress indicator courtesy of <a href="https://codyhouse.co/">CodyHouse</a></li>
+  <li>retina images using @2x</li>
+  <li>post loop showing 5 posts per page</li>
+  <li>archive for posterity sake</li>
+</ul>
+
+<h2 id="basic-setup">Basic Setup</h2>
+
+<ol>
+  <li><a href="http://jekyllrb.com">Install Jekyll</a> if you haven’t already.</li>
+  <li>Download this bad boy.</li>
+  <li>Fork the <a href="http://github.com/alexanderussell/progress-for-jekyll/">Progress repo</a></li>
+  <li>Twerk it out so it’s just for you.</li>
+  <li>???</li>
+  <li>Profit</li>
+</ol>
+
+<h2 id="preview-the-theme"><a href="http://alexanderussell.github.io/progress-for-jekyll">Preview the Theme</a></h2>
+<p><br /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>progress-for-jekyll/
+├── data
+|    ├── navigation.yml  //an array of navigation items <span class="k">for </span>easy editing
+├── _includes
+|    ├── _footer.html  //site footer
+|    ├── _head.html  //site <span class="nb">head</span>
+|    ├── _header.html  //header <span class="k">for </span>navigation and logo/title
+|    ├── _share-post.html  //share buttons
+├── _layouts
+|    ├── default.html  //all the bare necessities
+|    ├── page.html  //page layout
+|    └── post.html  //post layout
+├── _posts
+├── css  //preprocessed styles. good idea to minify
+├── img  //images and graphics used <span class="k">in </span>css and js
+├── js
+|   ├── jquery-2.1.4.js  //jQuery <span class="k">for </span>the win.
+|   ├── main.js  //jQuery plugins and settings <span class="k">for </span>the progress indicator.
+|   └── modernizer.js  //modernize it, yo.
+├── images  //images <span class="k">for </span>posts and pages
+├── about.md  //about page
+├── archive.md  //lists all posts from latest to oldest organized by <span class="nb">date</span>
+└── index.html  //homepage. lists 5 most recent posts w/ pagination
+</code></pre></div></div>
+
+<h1 id="customization">Customization</h1>
+
+<h3 id="_configyml">_config.yml</h3>
+
+<p>Most of the variables found here are used in the .html files found in <code class="language-plaintext highlighter-rouge">_includes</code> if you need to add or remove anything. A good place to start would be to change the title, tagline, description, and url of your site. When working locally comment out <code class="language-plaintext highlighter-rouge">url</code> or else you will get a bunch of broken links because they are absolute and prefixed with <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> in the various <code class="language-plaintext highlighter-rouge">_includes</code> and <code class="language-plaintext highlighter-rouge">_layouts</code>. Just remember to uncomment <code class="language-plaintext highlighter-rouge">url</code> when building for deployment or pushing to <strong>gh-pages</strong>…</p>
+
+<h3 id="ownerauthor-information">Owner/Author Information</h3>
+
+<p>Change your name, bio, Twitter url, email, Dribbble URL, etc.</p>
+
+<h3 id="top-navigation-links">Top Navigation Links</h3>
+
+<p>Edit page/post titles and URLs to include in the site’s navigation. For external links use “external: true”.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sample top navigation links</span>
+<span class="na">links</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">About Page</span>
+    <span class="na">href</span><span class="pi">:</span> <span class="s">/about</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">Other Page</span>
+    <span class="na">href</span><span class="pi">:</span> <span class="s">/other-page</span>
+  <span class="pi">-</span> <span class="na">title</span><span class="pi">:</span> <span class="s">External Page</span>
+    <span class="na">href</span><span class="pi">:</span> <span class="s">http://alexanderussell.org</span>
+    <span class="na">external</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h2 id="other-stuff">Other Stuff</h2>
+
+<p>The rest is just your average Jekyll config settings. Nothing too crazy here…</p>
+
+<h3 id="_includes">_includes</h3>
+
+<p>For the most part you can leave these as is since the author/owner details are pulled from <code class="language-plaintext highlighter-rouge">_config.yml</code>. That said you’ll probably want to customize the copyright stuff in <code class="language-plaintext highlighter-rouge">_footer.html</code> to your liking.</p>
+
+<h3 id="adding-posts-and-pages">Adding Posts and Pages</h3>
+
+<p>There are two main content layouts: <code class="language-plaintext highlighter-rouge">post.html</code> (for posts) and <code class="language-plaintext highlighter-rouge">page.html</code> (for pages). Pages span the full-width of the content, while posts leave space for related posts and the reading progress indicator when on the longform view.</p>
+
+<h2 id="license">License</h2>
+
+<p>This is free to use, fork, do whatever you want. Please <em>do not</em> sell this design though. You don’t need to link me to it, but please contact me if you intend to market this theme. I am releasing premium versions of this design for select CMS’s.</p>
+:ET
