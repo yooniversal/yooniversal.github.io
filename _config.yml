@@ -4,21 +4,21 @@ permalink:           pretty
 # Setup
 title:               Progress
 tagline:             A responsive blog theme that illustrates reading progress. Suited for continous reading.
-url:                 http://yooniversal.github.io
-baseurl:             /yooniversal.github.io
+url:                http://yooniversal.github.io
+baseurl:          
 analytics_id:
 
 # Owner/author information
 owner:
-  name:           Alex Russell
+  name:          Yoon DongBin
   avatar:         avatar.png
-  bio:            "Designer."
-  email:          alex@collectivelymade.com
+  bio:            "Student."
+  email:          iteratively@naver.com
   twitter:        alexanderussell
-  github:         alexanderussell
-  instagram:      alexanderussell
+  github:         yooniversal
+  instagram:      everywherelse
   dribbble:       alexanderussell
-  location:       "Lincoln, NE"
+  location:       "Icheon, KR"
 
 
 # Custom vars
@@ -33,3 +33,5 @@ paginate_path: "blog/page:num"
 # Gems
 gems:
   - jekyll-paginate
+
+remote_theme : alexanderussell/progress-for-jekyll
