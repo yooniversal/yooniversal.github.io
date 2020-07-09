@@ -2,6 +2,10 @@
 # Jekyll automatically transpiles this file; access via {{site.url}}/assets/css/main.css
 ---
 
+.utterances {
+		max-width: 100% !important;
+}
+
 $background_image: '{{site.background_image}}';
 
 @import 'libs/vars';
