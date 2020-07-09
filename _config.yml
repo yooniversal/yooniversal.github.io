@@ -1,7 +1,7 @@
 # Site
 title:              Yooniversal
 bio:                'Pupil'
-description:        "Just record anything"
+description:        ""
 locale:             South KR
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://yooniversal.github.io/" # the base hostname & protocol for your site
