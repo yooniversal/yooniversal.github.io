@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Yooniversal Space
-description: 
+description:
 sitemap:
     priority: 0.7
     lastmod: 2020-07-08

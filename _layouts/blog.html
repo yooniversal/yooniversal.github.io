@@ -30,15 +30,22 @@
 
 				<!-- Main -->
 				<div id="main">
-
           <article class="post featured">
             <header class="major">
               <h2><a href="#">contents</a></h2>
               <p>Welcome here covered with mass of scribbles.
 							</p>
             </header>
-
           </article>
+
+					<div class="category-wrap">
+						<h2> category </h2>
+						<ul class="posts-list">
+							<li><small class="category-title"><a href="/category/Diary">Diary</a></small></li>
+							<li><small class="category-title"><a href="/category/PS">Problem Solving</a></small></li>
+						</ul>
+					</div>
+
 					<!-- Post -->
 					<section class="posts">
 						{% for post in site.posts %}
@@ -56,16 +63,12 @@
 							</article>
 							{% if mod3 == 0 %}
 							<article>
-								<header>
-									<h2><a href="#">Sponsored</a></h2>
-								</header>
-
+								
 							</article>
 							{% endif %}
 						{% endfor %}
 
 					</section>
-
 					</div>
 
 				<!-- Footer -->
