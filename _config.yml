@@ -4,7 +4,7 @@ bio:                'Pupil'
 description:        ""
 locale:             South KR
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://yooniversal.github.io/" # the base hostname & protocol for your site
+url: "https://yooniversal.github.io" # the base hostname & protocol for your site
 
 # Comments
 disqus_shortname:   default
