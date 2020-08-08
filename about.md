@@ -15,7 +15,7 @@ Hanyang Univ.<br>
 Computer Science & Enginerring<br><br><br><br>
 -->
 
-## About our Site
+## welcome!
 
 <span class="image left"><img src="{{ "/images/aboutmoon.jpg" | absolute_url }}" alt="" /></span>
 
@@ -23,7 +23,7 @@ Computer Science & Enginerring<br><br><br><br>
 
 I have focused on recording contents I learned to review after solving matters. Nowadays, I spend most of the time just solving problems which makes me interested from BOJ, Programmers and Codeforces. So I'm going to write solutions about PS. This Site's attributes can be changed cause of writer's patience and curiosity.
 
-### Another Site
+### Another
 
 BOJ : [https://www.acmicpc.net/user/caritas1996](https://www.acmicpc.net/user/caritas1996)<br>
 Instagram : [https://www.instagram.com/everywherelsee/](https://www.instagram.com/everywherelsee/)<br>
