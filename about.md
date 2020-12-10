@@ -26,5 +26,4 @@ I have focused on recording contents I learned to review after solving matters. 
 ### Another
 
 BOJ : [https://www.acmicpc.net/user/caritas1996](https://www.acmicpc.net/user/caritas1996)<br>
-Instagram : [https://www.instagram.com/everywherelsee/](https://www.instagram.com/everywherelsee/)<br>
 Github : [https://github.com/yooniversal](https://github.com/yooniversal)
