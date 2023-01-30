@@ -1,0 +1,24 @@
+# main links
+main:
+  - title: "Home"
+    url: "/"
+  - title: "About"
+    url: /about/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+sidebar-category:
+  - title: "Category"
+    children:
+      - title: "PS"
+        url: "PS2020/"
+        category: "PS2020"
+      - title: "Project"
+        url:  "Project/"
+        category: "Project"
+      - title: "Study"
+        url:  "Study/"
+        category: "Study"
+      - title: "Diary"
+        url: "Diary/"
+        category: "Diary"

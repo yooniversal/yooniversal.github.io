@@ -1,58 +1,41 @@
-<!DOCTYPE HTML>
+---
+---
+
+<!doctype html>
 <!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-  Jekyll integration by somiibo.com
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-<html>
-	<head>
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+  <head>
     {% include head.html %}
-		{% if page.use_math %}
-		  {% include mathjax_support.html %}
-		{% endif %}
-	</head>
-	<body class="is-loading">
+    {% include head/custom.html %}
+  </head>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% include_cached skip-links.html %}
+    {% include_cached masthead.html %}
 
-				<!-- Header -->
-				<header id="header">
-					<a href="{{ "/" | absolute_url }}" class="logo">{{site.title}}</a>
-				</header>
+    <div class="initial-content">
+      {{ content }}
+    </div>
 
-				<!-- Nav -->
-					<nav id="nav">
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
 
-            {% include nav.html %}
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html %}
+      </footer>
+    </div>
 
-					</nav>
+    {% include scripts.html %}
 
-				<!-- Main -->
-				<div id="main">
-					<!-- Post -->
-					<section class="post">
-						<h2><a href="/category/{{page.title}}">{{page.title}}</a></h2>
-						<p>{{content}}</p>
-					</section>
-
-					<!-- Footer -->
-						<footer>
-              <ul class="actions">
-								<li><a href="{{ "/blog/" | absolute_url }}" class="button">Our Blog</a></li>
-              </ul>
-						</footer>
-					</div>
-
-				<!-- Footer -->
-        <!--{% include foot.html %}-->
-
-			</div>
-
-			<!-- Scripts -->
-			{% include scripts-main.html %}
-			{% include tracking.html %}
-
-	</body>
+  </body>
 </html>
