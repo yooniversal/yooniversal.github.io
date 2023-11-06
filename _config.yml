@@ -108,7 +108,7 @@ author:
   name             : "Yooniversal"
   avatar           : "/assets/images/61930524.png"
   bio              : ""
-  location         : "Seoul, South Korea"
+  location         : #
   email            : #
   links:
     - label: "Email"
