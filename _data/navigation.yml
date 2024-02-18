@@ -22,3 +22,6 @@ sidebar-category:
       - title: "Diary"
         url: "Diary"
         category: "Diary"
+      - title: "ETC"
+        url: "ETC"
+        category: "ETC"
