@@ -294,8 +294,8 @@ defaults:
       comments: true
       share: true
       related: true
-    sidebar:
-      nav: "sidebar-category" 
+      sidebar:
+        nav: "sidebar-category" 
 
 # Serving
 port: 4033
