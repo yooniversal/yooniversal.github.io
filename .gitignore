@@ -6,6 +6,9 @@
 *.sublime-project
 *.sublime-workspace
 
+# JetBrains IDE local settings
+/.idea/
+
 # Ruby Gem
 *.gem
 .bundle
