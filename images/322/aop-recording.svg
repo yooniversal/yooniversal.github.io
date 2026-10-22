@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="490" viewBox="0 0 960 490" role="img" aria-labelledby="title desc">
+  <title id="title">어노테이션 기반 AOP로 조회 성공 기록</title>
+  <desc id="desc">서버의 조회 로직 A, B, C가 각각 외부 제휴사 API를 호출하고 응답을 받는다. 어노테이션이 있는 A와 B에만 AOP가 적용되어 HTTP status를 확인하고 성공한 조회 구간을 Redis에 기록한다. 어노테이션이 없는 C에는 AOP가 적용되지 않는다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker>
+    <marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#15803d"/></marker>
+  </defs>
+  <rect width="960" height="490" rx="16" fill="#f8fafc"/>
+  <g font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#172033">
+    <rect x="24" y="160" width="680" height="306" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="44" y="190" font-size="18" font-weight="700">서버</text>
+    <g fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5">
+      <rect x="60" y="30" width="170" height="56" rx="8"/>
+      <rect x="280" y="30" width="170" height="56" rx="8"/>
+      <rect x="500" y="30" width="170" height="56" rx="8"/>
+    </g>
+    <g text-anchor="middle" font-size="19">
+      <text x="145" y="65">제휴사 A API</text><text x="365" y="65">제휴사 B API</text><text x="585" y="65">제휴사 C API</text>
+    </g>
+    <g fill="none" stroke="#64748b" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)">
+      <path d="M145 96V210"/><path d="M365 96V210"/><path d="M585 96V210"/>
+    </g>
+    <g font-size="15" fill="#526174">
+      <text x="157" y="131">호출 / 응답</text><text x="377" y="131">호출 / 응답</text><text x="597" y="131">호출 / 응답</text>
+    </g>
+    <g stroke-width="1.5">
+      <rect x="60" y="220" width="170" height="84" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+      <rect x="280" y="220" width="170" height="84" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+      <rect x="500" y="220" width="170" height="84" rx="8" fill="#f1f5f9" stroke="#94a3b8"/>
+    </g>
+    <g text-anchor="middle">
+      <g font-size="15" fill="#1d4ed8"><text x="145" y="247">@어노테이션</text><text x="365" y="247">@어노테이션</text></g>
+      <g font-size="19"><text x="145" y="281">조회 로직 A</text><text x="365" y="281">조회 로직 B</text><text x="585" y="270">조회 로직 C</text></g>
+    </g>
+    <g fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#blue)">
+      <path d="M145 304V338H245V365"/><path d="M365 304V365"/>
+    </g>
+    <rect x="190" y="375" width="320" height="68" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="350" y="401" text-anchor="middle" font-size="20" font-weight="700" fill="#1d4ed8">AOP</text>
+    <text x="350" y="427" text-anchor="middle" font-size="17">HTTP status 확인</text>
+    <path d="M510 409H770" fill="none" stroke="#15803d" stroke-width="2" marker-end="url(#green)"/>
+    <text x="640" y="394" text-anchor="middle" font-size="16" fill="#166534">성공 시 조회 구간 기록</text>
+    <path d="M785 383V435C785 454 925 454 925 435V383" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
+    <ellipse cx="855" cy="383" rx="70" ry="14" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/>
+    <text x="855" y="430" text-anchor="middle" font-size="21" font-weight="700" fill="#166534">Redis</text>
+  </g>
+</svg>

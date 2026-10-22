@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240" role="img" aria-labelledby="title desc">
+  <title id="title">완전히 포함된 시간 슬롯만 성공 기록</title>
+  <desc id="desc">실제 조회 범위는 10:05부터 10:25까지다. 10분 슬롯 중 10:10부터 10:20까지만 완전히 포함되므로 1로 기록한다. 양쪽 슬롯은 이번 요청으로 갱신하지 않는다.</desc>
+  <rect width="960" height="240" rx="16" fill="#f8fafc"/>
+  <g transform="translate(0 -88)" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#172033">
+    <g font-size="18" text-anchor="middle">
+      <text x="240" y="128">10:00</text><text x="460" y="128">10:10</text>
+      <text x="680" y="128">10:20</text><text x="900" y="128">10:30</text>
+    </g>
+    <g stroke="#cbd5e1" stroke-dasharray="4 5"><path d="M240 142V300"/><path d="M460 142V300"/><path d="M680 142V300"/><path d="M900 142V300"/></g>
+    <text x="40" y="178" font-size="19">실제 조회</text>
+    <rect x="350" y="149" width="440" height="44" rx="7" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="570" y="178" text-anchor="middle" font-size="18" fill="#1e40af">10:05 ~ 10:25</text>
+    <text x="40" y="257" font-size="19">Bitmap 기록</text>
+    <rect x="240" y="227" width="220" height="48" rx="6" fill="#e2e8f0" stroke="#94a3b8"/>
+    <rect x="460" y="227" width="220" height="48" rx="6" fill="#dcfce7" stroke="#15803d"/>
+    <rect x="680" y="227" width="220" height="48" rx="6" fill="#e2e8f0" stroke="#94a3b8"/>
+    <g font-size="18" text-anchor="middle"><text x="350" y="258">0</text><text x="570" y="258" fill="#166534" font-weight="700">1</text><text x="790" y="258">0</text></g>
+  </g>
+</svg>
