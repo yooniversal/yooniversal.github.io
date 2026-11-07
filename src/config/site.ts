@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "이해하기 쉽게😋",
+  name: "Yooniversal",
   tagline: "Yooniversal의 개발 블로그",
   title: "이해하기 쉽게😋",
   description: "Yooniversal의 개발 기록",

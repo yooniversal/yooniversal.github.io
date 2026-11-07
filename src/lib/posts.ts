@@ -56,17 +56,6 @@ export const getCategoryList = (posts: Post[]) => {
     .filter((entry) => entry.count > 0);
 };
 
-export const getRelated = (posts: Post[], current: Post, limit = 3) =>
-  visiblePosts(posts)
-    .filter((post) => post.id !== current.id)
-    .sort((a, b) => {
-      const sameCategory =
-        Number(b.data.category === current.data.category) -
-        Number(a.data.category === current.data.category);
-      return sameCategory || byNewest(a, b);
-    })
-    .slice(0, limit);
-
 /** Previous/next in publication order, matching the article footer navigation. */
 export const getAdjacent = (posts: Post[], current: Post) => {
   const ordered = visiblePosts(posts);

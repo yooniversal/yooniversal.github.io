@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import "katex/dist/katex.min.css";
 import { getCollection, render } from "astro:content";
-import PostCard from "@/components/PostCard.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -12,7 +11,6 @@ import {
   categorySlug,
   formatDate,
   getAdjacent,
-  getRelated,
   postHref,
   postSlug,
   readingLabel,
@@ -37,7 +35,6 @@ const { post, allPosts } = Astro.props;
 const { Content, headings } = await render(post);
 const tocBaseDepth = Math.min(...headings.map(({ depth }) => depth));
 const data = post.data;
-const related = getRelated(allPosts, post);
 const { newer, older } = getAdjacent(allPosts, post);
 const articleUrl = new URL(postHref(post), siteConfig.siteUrl).toString();
 const socialImage = data.cover
@@ -155,14 +152,6 @@ const structuredData = {
       )}
     </article>
 
-    {related.length > 0 && (
-      <section class="canvas mt-[var(--space-section)]" aria-labelledby="keep-reading">
-        <h2 id="keep-reading" class="section-title">Keep reading</h2>
-        <div class="grid gap-7">
-          {related.map((item) => <PostCard post={item} variant="compact" headingLevel="h3" />)}
-        </div>
-      </section>
-    )}
   </main>
   <SiteFooter />
 
