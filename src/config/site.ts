@@ -21,3 +21,5 @@ export const siteConfig = {
 };
 
 export const navigation = [{ label: "Categories", href: "/categories/" }];
+
+export const postsPerPage = 10;

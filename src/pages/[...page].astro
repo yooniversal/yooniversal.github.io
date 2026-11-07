@@ -1,16 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
+import PostPagination from "@/components/PostPagination.astro";
 import PostCard from "@/components/PostCard.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { siteConfig } from "@/config/site";
+import { postsPerPage, siteConfig } from "@/config/site";
 import { visiblePosts, type Post } from "@/lib/posts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = visiblePosts(await getCollection("posts"));
-  return paginate(posts, { pageSize: 10 });
+  return paginate(posts, { pageSize: postsPerPage });
 }) satisfies GetStaticPaths;
 
 interface Props {
@@ -37,29 +38,7 @@ const nextUrl = withTrailingSlash(page.url.next);
           {page.data.map((post) => <PostCard post={post} />)}
         </div>
 
-        <nav class="mt-16 flex items-center justify-between gap-4 border-t border-border pt-6" aria-label="Archive pagination">
-          {
-            prevUrl ? (
-              <a href={prevUrl} class="nav-link link-nudge">
-                <span class="link-nudge__arrow link-nudge__arrow--prev">&larr;</span> Newer
-              </a>
-            ) : (
-              <span class="nav-link opacity-40">&larr; Newer</span>
-            )
-          }
-          <span class="text-xs tracking-widest text-muted-foreground uppercase">
-            Page {page.currentPage} / {page.lastPage}
-          </span>
-          {
-            nextUrl ? (
-              <a href={nextUrl} class="nav-link link-nudge">
-                Older <span class="link-nudge__arrow link-nudge__arrow--next">&rarr;</span>
-              </a>
-            ) : (
-              <span class="nav-link opacity-40">Older &rarr;</span>
-            )
-          }
-        </nav>
+        <PostPagination currentPage={page.currentPage} lastPage={page.lastPage} prevUrl={prevUrl} nextUrl={nextUrl} label="Archive pagination" />
       </div>
     </main>
     <SiteFooter />
