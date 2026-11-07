@@ -726,6 +726,12 @@
     scroll-margin-top: 5rem;
   }
 
+  .prose h1,
+  .prose h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
   .prose h2 {
     margin: 3rem 0 1rem;
     font-size: clamp(1.3rem, 2.7vw, 1.5625rem);
