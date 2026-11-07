@@ -12,7 +12,8 @@ author:
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 <br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/b20b081255417024242d40129e4fc813.js"></script><br>
 
 ### Strongly Connected Component

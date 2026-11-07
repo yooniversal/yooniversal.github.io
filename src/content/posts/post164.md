@@ -20,7 +20,8 @@ Link : [https://www.acmicpc.net/problem/16939](https://www.acmicpc.net/problem/1
 <summary>소스 코드</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d5b634180b5b673fbcc2fab2022d0131.js"></script>
 </div>
 </details>
@@ -38,7 +39,8 @@ Link : [https://www.acmicpc.net/problem/16939](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2306](https://www.acmicpc.net/problem/2306)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/388c08f95fa5c9a4d7561e482225c7fd.js"></script>
 
 DP 문제.<br>
@@ -55,7 +57,8 @@ DP 문제.<br>
 
 Link : [https://www.acmicpc.net/problem/16681](https://www.acmicpc.net/problem/16681)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c794b7e2127ffe107d89accb1a2954f5.js"></script>
 
 집과 고려대학교의 높이가 1이다. 그리고 목표 지점은 보다 높은 위치에 있어야 하므로 1보다 커야 한다. 때문에 TC 2번에서는 Impossible을 출력해야 한다. 그럼 이제 그렇지 않은 경우는 다익스트라로 풀 수 있다. 지점 u, v가 있고 거리가 w라고 하자. 또한 u, v는 목표 지점의 후보이다. 이 때 각 지점의 높이를 `h[u]`, `h[v]`라 정의하면 문제에서는 양방향 경로라고 쓰여있지만 어차피 목표 지점까지는 높이가 증가하는 방향으로만 이동해야 하므로 `h[u] > h[v]`일 땐 u->v 경로만, `h[u] < h[v]`일 땐 v->u 경로만 추가해줘야 한다.
@@ -74,7 +77,8 @@ Link : [https://www.acmicpc.net/problem/16681](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17144](https://www.acmicpc.net/problem/17144)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/dcdf856ad94cffe6ad80cc3b82d1465c.js"></script>
 
 구현 문제. 이것도 제출 수가 심상치 않아서 찾아보니 삼성 SW 기출문제였다. 그래도 다른 문제에 비해서 구현 난이도가 높지는 않은거 같다. 문제 설명이 잘 돼있어서 딱히 주의할 점도 떠오르지 않고.. 설명에 충실하게 구현하자.
@@ -89,7 +93,8 @@ Link : [https://www.acmicpc.net/problem/17144](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/14728](https://www.acmicpc.net/problem/14728)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4c4cf4b7216cdec4b9122eca07564f3f.js"></script>
 
 DP 문제. 남은 시간에 필요한 시간을 쓸 수 있냐 없냐로 나눠서 쓸 수 있다면 점수를 더해주자.
@@ -104,7 +109,8 @@ DP 문제. 남은 시간에 필요한 시간을 쓸 수 있냐 없냐로 나눠�
 
 Link : [https://www.acmicpc.net/problem/2186](https://www.acmicpc.net/problem/2186)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/01b88f6deb51a4c12acc848b554998d7.js"></script>
 
 DP 문제다. 기본적으로 길찾는 BFS 문제처럼 상하좌우로 움직일 수 있다. (K배로 움직일 수도 있다) 찾으려는 문자열의 인덱스를 인자로 두어서 찾아야 하는 알파벳을 탐색해가는 식으로 구현하면 된다. 어렵지 않은 문제.
@@ -119,7 +125,8 @@ DP 문제다. 기본적으로 길찾는 BFS 문제처럼 상하좌우로 움직�
 
 Link : [https://www.acmicpc.net/problem/14494](https://www.acmicpc.net/problem/14494)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/252608e2cafa9e34ab6482f8eaa973a0.js"></script>
 
 좌표 값이 변하는 3가지 케이스에 대해 재귀롤 돌리되 DP로 풀기.
@@ -134,7 +141,8 @@ Link : [https://www.acmicpc.net/problem/14494](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2668](https://www.acmicpc.net/problem/2668)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/331fa067a077c9ca1d90c66b79631151.js"></script>
 
 사이클이 생기는 수열들의 집합을 찾아야 한다. N의 상한이 충분히 작아서 사이클임을 알기 위해 DFS를 돌려줬고 사이클이라면 돌아오면서 `ans[]`에 표시하도록 했다.
@@ -153,7 +161,8 @@ Link : [https://www.acmicpc.net/problem/5373](https://www.acmicpc.net/problem/53
 <summary>소스 코드</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/393c29865e5be81f14b489f1a6bc7293.js"></script>
 </div>
 </details>
@@ -178,7 +187,8 @@ Link : [https://www.acmicpc.net/problem/5373](https://www.acmicpc.net/problem/53
 
 Link : [https://www.acmicpc.net/problem/2307](https://www.acmicpc.net/problem/2307)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4b6fd49a4fec616426d424f030a2549b.js"></script>
 
 아무 길을 막지 않은 상태에서 다익스트라를 돌려 최단 거리를 구한 후 기준으로 잡는다. 1~N까지의 최단 경로를 `route[]`에 담고 경로를 1개씩 막아서 다익스트라를 돌려본다. 만약 완전히 막아서 N으로 도달하지 못할 경우 -1을 출력하고 그렇지 않은 경우 `(기준 - 최단 거리)`의 최댓값을 구하면 된다.
@@ -193,7 +203,8 @@ Link : [https://www.acmicpc.net/problem/2307](https://www.acmicpc.net/problem/23
 
 Link : [https://www.acmicpc.net/problem/14863](https://www.acmicpc.net/problem/14863)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ab6bf796e61b1c32ab95d17eedc60c02.js"></script>
 
 DP 문제. 도시 a에서 b로 가는 방법은 도보, 자전거 단 2개 뿐이다. 케이스도 2개뿐이므로 모든 경우를 돌려주면 된다.
@@ -208,7 +219,8 @@ DP 문제. 도시 a에서 b로 가는 방법은 도보, 자전거 단 2개 뿐�
 
 Link : [https://www.acmicpc.net/problem/16918](https://www.acmicpc.net/problem/16918)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4821fbd918e3b53bc912ddedf5b65b0f.js"></script>
 
 가로, 세로, 시간 범위가 크지 않으므로 구현에만 신경쓰면 된다. 폭탄이 터지는 시간이 0이 됐다고 곧바로 터뜨리면 옆에있는 **터져야 하는 폭탄**이 터지지 못하는 경우가 발생한다. 때문에 영향을 받는 좌표를 전체를 탐색하며 담아둔 후 마지막에 터뜨리도록 처리했다. 이부분만 유의하면 될 것 같다.
@@ -223,7 +235,8 @@ Link : [https://www.acmicpc.net/problem/16918](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/14430](https://www.acmicpc.net/problem/14430)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bc7c92fa5edabd2896c9b3e2f86b989c.js"></script>
 
 DP 문제. 아래, 오른쪽으로 탐색하면서 최댓값을 갱신해주면 된다.
@@ -238,7 +251,8 @@ DP 문제. 아래, 오른쪽으로 탐색하면서 최댓값을 갱신해주면 
 
 Link : [https://www.acmicpc.net/problem/2641](https://www.acmicpc.net/problem/2641)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1135f6c94c017e67e44c1d027c192a57.js"></script>
 
 구현 문젠데 처음에 어떻게 풀어야 할지 감이 바로 오질 않았다. 여러 시행착오 끝에 (0,0) 기준으로 입력받은 방향대로 좌표를 이동하면서 담은 뒤 가장 왼쪽 아래(코드에서는 정렬했을 때 가장 앞에 오는 값)에 있는 좌표를 다시 기준 잡아 (0,0)으로 평행이동할 때 이동하는 만큼 모든 좌표도 똑같이 평행이동 시켜줬다. 그렇게 했을 때 표본 모양수열과 좌표가 모두 같다면 답을 갱신해주도록 했다.
@@ -253,7 +267,8 @@ Link : [https://www.acmicpc.net/problem/2641](https://www.acmicpc.net/problem/26
 
 Link : [https://www.acmicpc.net/problem/17396](https://www.acmicpc.net/problem/17396)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/894cba2913210610eccb507f75ee1e82.js"></script>
 
 마지막을 제외한 분기점 중 상대방 시야에 보이는 곳은 경로로 추가하지 않으면 된다. 다익스트라로 풀어주면 된다. 오버플로우에 주의.
@@ -268,7 +283,8 @@ Link : [https://www.acmicpc.net/problem/17396](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16985](https://www.acmicpc.net/problem/16985)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ac75fdcfc40f078804621d2a5e2d2082.js"></script>
 
 미로에서 탈출구를 찾는 BFS 문제를 풀어봤다면 이 문제도 역시 같은 방식으로 풀 수 있다. 다만 3차원이다. 방식은 달라지지 않지만 구현이 조금 까다롭다. 층을 임의로 설정할 수도 있고, 출발점 또한 4가지를 선택할 수 있다. 또한 각 면을 회전시킬 수 있다는 점도 까다롭게 하는 요소중 하나다.
@@ -285,7 +301,8 @@ Link : [https://www.acmicpc.net/problem/16985](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17175](https://www.acmicpc.net/problem/17175)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/768a796de204f14bcb4bb1cc752e9aff.js"></script>
 
 문제 설명에 주어진 코드대로 돌렸을 때 함수가 호출되는 횟수를 구해야 한다. 당연히 DP로 풀어야 하는데 본인이 호출되는 횟수까지 세므로 기존 피보나치에서 1을 더하도록 하자. 기저 사례도 다르니 주의.
@@ -300,7 +317,8 @@ Link : [https://www.acmicpc.net/problem/17175](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2637](https://www.acmicpc.net/problem/2637)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/af8718c97c7b66f2facc49e7406f5c4a.js"></script>
 
 `f(a, b)` : a번 제품을 만드는데 필요한 재료 b의 갯수<br>
@@ -316,7 +334,8 @@ Link : [https://www.acmicpc.net/problem/2637](https://www.acmicpc.net/problem/26
 
 Link : [https://www.acmicpc.net/problem/14431](https://www.acmicpc.net/problem/14431)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/310c3daa45f23b8382e6f7193d9cb00a.js"></script>
 
 마을을 2개 잡고 거리가 소수면 양방향으로 간선을 담아준 후 다익스트라를 돌리면 된다. 소수는 에라토스테네스의 체로 처리하자.
@@ -331,7 +350,8 @@ Link : [https://www.acmicpc.net/problem/14431](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16986](https://www.acmicpc.net/problem/16986)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5bda4dddf470e7bc225fda420ade24e5.js"></script>
 
 구현 문제다. 문제 설명을 좀 꼼꼼히 읽어야 할 필요가 있다. 처음에 설명을 대충 읽고 사진만 보고 아! 이긴 사람이 왼쪽으로 오는구나! 했는데 TC부터 틀렸다. 설명에 있는 규칙 2을 잘 읽어보면, **비겼을 때 경기 진행 순서 뒤인 사람이 이긴 것으로 간주**한다고 언급 돼있다. 따라서 지우, 경희, 민호를 1, 2, 3이라 부르면 지우 vs (경희 or 민호)일 때 A[i][j]가 0 또는 1이면 무조건 지우가 지게 된다. (즉, 이전 승패 정보와는 관련없이 값의 크기(순서)에 따라 달라진다는 점이다) 또한 지우가 k번 이겨야하긴 하지만 다른 친구들이 k번을 먼저 이기면 곤란하다. 때문에 이 경우도 커팅해줘야 한다.
@@ -348,7 +368,8 @@ Link : [https://www.acmicpc.net/problem/16986](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/5721](https://www.acmicpc.net/problem/5721)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/46984de66ca8404c368729423c9a4716.js"></script>
 
 DP 문제. 조금 특이한 점은 세로, 가로의 상한이 별도로 주어지지 않았다는 점이다. 이 부분때문에 처음에 벡터 resize를 통해서 풀어보려 했는데 이게 메모리 할당이랑 직접적으로 연관된게 아닌건지 아니면 내가 모르는 부분이 또 있는건진 모르겠지만 런타임 에러가 떠서 캐시를 2차원 배열이 아닌 1차원 배열로 설정했다. 가령, m=3, n=5이고 특정 좌표가 (1, 4)라면 $1\times 5+4 = 9$로 나타낼 수 있다. (0-based index) 행과 열을 직접적으로 써야할 경우 위 값을 n의 몫, 나머지로 다시 분해해서 사용하면 된다.
@@ -367,7 +388,8 @@ DP 문제. 조금 특이한 점은 세로, 가로의 상한이 별도로 주어�
 
 Link : [https://www.acmicpc.net/problem/16987](https://www.acmicpc.net/problem/16987)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c1cf3cb5e8bf32bc4dd87a8bfa81c8a8.js"></script>
 
 설명을 슥 읽고 뚝딱뚝딱 짠 후에 TC를 돌려봤는데 답이 쉽게 나오질 않았다. 문제를 잘못 읽었나 몇 번을 검토해보다 잘 모르겠어서 나같은 사람이 있나 검색을 해봤는데 나같은 사람은 거의 없는 것 같고(..) 다만 설명에 대해서 쉽게 풀어쓴 글이 있어서 참고하고 AC를 받을 수 있었다.
@@ -384,7 +406,8 @@ Link : [https://www.acmicpc.net/problem/16987](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2655](https://www.acmicpc.net/problem/2655)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0e7954e16bb17ecde5cc4dd354533893.js"></script>
 
 DP 문제.<br>
@@ -401,7 +424,8 @@ DP 문제.<br>
 
 Link : [https://www.acmicpc.net/problem/12101](https://www.acmicpc.net/problem/12101)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/36af2efe27aa4c1237a7a275f02bfd48.js"></script>
 
 n이 적으므로 브루트 포스로 답을 찾아주자.
@@ -416,7 +440,8 @@ n이 적으므로 브루트 포스로 답을 찾아주자.
 
 Link : [https://www.acmicpc.net/problem/17610](https://www.acmicpc.net/problem/17610)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/146e47d555da1cde9da93b0f5ddbe536.js"></script>
 
 브루트 포스로 풀 수 있다. 매번 호출될 때마다 이용하지 않은 인덱스를 통해 현재 값에서 더하거나 빼는 연산을 해주려 했는데 이 방식으로는 TLE를 피할 수 없었다. (이미 나온 값을 `visited`에 추가하는건 WA를 받는다. 반례는 [1, 2, 3]) 어차피 특정 인덱스를 사용할 차례가 왔을 때 **사용하거나 사용하지 않거나** 딱 2가지이기 때문에 사용하는 경우는 더하거나 빼는 연산을, 사용하지 않는 경우는 현재 값에 영향을 주지 않도록 처리해주고 다음 인덱스로 넘어가는 방식으로 짜주면 시간 문제없이 충분히 통과할 수 있다. 즉, 함수가 호출될 때마다 [0, n)을 모두 돌면서 처리해줄 필요가 없다는 말.
@@ -433,7 +458,8 @@ Link : [https://www.acmicpc.net/problem/17610](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16988](https://www.acmicpc.net/problem/16988)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e370951b1ecc7079ac129d4c5405ca9e.js"></script>
 
 DFS로 상대의 돌의 집합을 먼저 묶어준 뒤(`makeArea()`) 2개의 빈 칸을 찾아가면서 돌을 놓았다고 가정한 후 각 집합이 둘러쌓였을 경우(`blank=0`) 답을 갱신하도록 해줬다. 2개를 놓을 수 있는 모든 경우의 수를 뒤져봤기 때문에 결론적으로는 브루트 포스로 풀었다. 아이디어도 금방 짜고 구현도 틀을 잡기까지는 얼마 안걸렸지만 몇몇 TC에 걸려서 제출하기까지 시간이 좀 걸렸다. 걸렸던 TC가 없었다면 꽤나 애먹었을 것 같다.
@@ -448,7 +474,8 @@ DFS로 상대의 돌의 집합을 먼저 묶어준 뒤(`makeArea()`) 2개의 빈
 
 Link : [https://www.acmicpc.net/problem/12849](https://www.acmicpc.net/problem/12849)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/061d89e90fdef4c16e6dff0c25ebf060.js"></script>
 
 정보대를 1번이라 했을 때, 건물 수가 적으므로 인접 행렬(`adj[][]`)로 나타내준 뒤 D분 뒤에 1번에 도달하는 경우를 DP로 세주면 된다.

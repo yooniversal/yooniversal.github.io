@@ -13,7 +13,8 @@ author:
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 <br>
 
-## solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f2726884b34addd97e260a715b7b2051.js"></script>
 <br>
 

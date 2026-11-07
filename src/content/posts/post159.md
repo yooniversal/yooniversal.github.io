@@ -16,7 +16,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/1720](https://www.acmicpc.net/problem/1720)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/54fadf52e156088eaede665c9788c1ee.js"></script>
 
 2xN 타일을 채우는 점화식은 $$f(n) = f(n-1) + f(n-2)\times 2$$다. 여기서 중복이 되는 경우를 1개씩 없애야 답이 되는데 중복보다는 중복이 되지 않는 케이스를 찾는게 더 쉽다. 중복이 되는 경우를 a, 그렇지 않은 경우를 b라 하면 $$f(n)=a+a+b$$가 되고 이 문제의 답은 $$a+b$$가 된다. 즉, $$a=(f(n)-b)/2$$이므로 답을 정리하면 $$(f(n)+b)/2$$가 된다.
@@ -34,7 +35,8 @@ n이 홀수면 중복이 발생하지 않는 경우(b, 대칭)는 가운데에 2
 
 Link : [https://www.acmicpc.net/problem/1126](https://www.acmicpc.net/problem/1126)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0180876bc5f5e407cb6304de80e61871.js"></script>
 
 `dp[i][j]` : i-1번까지 탐색, 두 탑의 높이차가 j일 때 큰 탑의 높이<br>
@@ -50,7 +52,8 @@ Link : [https://www.acmicpc.net/problem/1126](https://www.acmicpc.net/problem/11
 
 Link : [https://www.acmicpc.net/problem/17218](https://www.acmicpc.net/problem/17218)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4126a8196d452b7df80462d521e9cc35.js"></script>
 
 문자열을 각각 `s1`, `s2`라 하면 **Longest Common Subsequence**를 구하는 점화식은 다음과 같다.
@@ -78,7 +81,8 @@ $$
 
 Link : [https://www.acmicpc.net/problem/16236](https://www.acmicpc.net/problem/16236)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/21bcdb07e2e9ab8fc5eaf59636245e12.js"></script>
 
 고려해야 할 조건이 조금 많은 BFS다. qna에 고통의 흔적이 보이는 문제다. 현재 크기보다 작은 물고기만 먹을 수 있고 **같으면 먹을 수는 없지만 이동할 수는 있다**. 먹을 수 있는 물고기를 발견했다고 해서 **바로 이걸 먹으러 가는게 아니다**. 현재 위치에서 먹을 수 있는 물고기들의 후보 중 가장 위쪽이면서 가장 왼쪽에 있는 물고기를 먹어야 한다. 그 물고기를 반환하도록 매 위치에서 BFS를 돌려줬다. 먹은 양, 현재 사이즈, 위치, 움직인 횟수 모두 반영 혹은 초기화를 해줘야한다!
@@ -96,7 +100,8 @@ Link : [https://www.acmicpc.net/problem/16236](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2211](https://www.acmicpc.net/problem/2211)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/03a992a5d5a3eada9193941227950463.js"></script>
 
 1번 조건에서 서로 다른 두 컴퓨터간에 통신이 가능해야 한다고 했는데, 어떤 컴퓨터든 연결이 돼야 함을 말한다. 그래프 중 트리의 경우 간선이 n-1개지만 모든 노드끼리 연결이 돼있음을 알 수 있다. 즉, 간선은 n-1개가 돼야 한다. 이 때 쓰여야 하는 간선은 1번이 슈퍼 컴퓨터이기 때문에 1번에서 다익스트라를 돌려 찾아야 한다. dist가 갱신될 때마다 각 노드가 어느 노드로부터 도달했는지를 route에 기록하고 마지막에 출력하면 된다.
@@ -111,7 +116,8 @@ Link : [https://www.acmicpc.net/problem/2211](https://www.acmicpc.net/problem/22
 
 Link : [https://www.acmicpc.net/problem/16500](https://www.acmicpc.net/problem/16500)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/36adf7866b0ecfc345547757303db0e2.js"></script>
 
 현재 인덱스에서 모든 문자열을 돌려보며 가능한 케이스를 돌려가면 된다. DP 문제이므로 메모이제이션을 안한다면 TLE를 받는다.
@@ -126,7 +132,8 @@ Link : [https://www.acmicpc.net/problem/16500](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/11057](https://www.acmicpc.net/problem/11057)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f090e1294520f4bec91343df2f2deffc.js"></script>
 
 현재 인덱스를 `cur`, 이전 숫자를 `prev`로 정해놓고 DP로 처리하면 된다.
@@ -141,7 +148,8 @@ Link : [https://www.acmicpc.net/problem/11057](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2248](https://www.acmicpc.net/problem/2248)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/38593e77284cf32a659d82d944e2aab1.js"></script>
 
 솔직히 DP 문제인지 감도 안왔다. [kks227님의 글](https://m.blog.naver.com/kks227/220793134705)을 참고했다.
@@ -170,7 +178,8 @@ $$
 
 Link : [https://www.acmicpc.net/problem/13700](https://www.acmicpc.net/problem/13700)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4dbfcc07d981cfd62bad24a56a8530c8.js"></script>
 
 지문을 요약하면 특정 지점을 피해가면서 목표 지점에 도달할 수 있는 최소 횟수를 구해야 한다. 최소 횟수를 구해야 하니 BFS를 이용했다. 구현이 크게 어렵지 않은 문제.
@@ -185,7 +194,8 @@ Link : [https://www.acmicpc.net/problem/13700](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2643](https://www.acmicpc.net/problem/2643)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/33570c5e4bb285210d84fb8f1ae6f36b.js"></script>
 
 색종이를 올려 놓으면서 쌓는데 바로 밑에 있는 색종이가 위에 있는 색종이보다 넓거나 같아야 한다. 브루트 포스로도 답을 찾을 순 있겠지만(TLE) 메모이제이션으로 빠르게 처리할 수 있기 때문에 DP로 풀 수 있다.
@@ -203,7 +213,8 @@ Link : [https://www.acmicpc.net/problem/2643](https://www.acmicpc.net/problem/26
 
 Link : [https://www.acmicpc.net/problem/17408](https://www.acmicpc.net/problem/17408)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0a093392d9903a33d401be8420d8af64.js"></script>
 
 노드마다 구간별 최댓값, 2번째로 큰 값을 가질 수 있도록 세그먼트 트리를 만들어주자.
@@ -218,7 +229,8 @@ Link : [https://www.acmicpc.net/problem/17408](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/13925](https://www.acmicpc.net/problem/13925)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cf3cc0158ce2158c90d8b50cf9a66245.js"></script>
 
 **Lazy Propagation** 문젠데, 쿼리가 꽤 많다. 특히 2, 3번 쿼리가 까다롭다. 2, 3번 쿼리는 따로 처리해줄 필요없이 업데이트 쿼리 하나에서 한 번에 처리할 수 있는데 아이디어가 필요하다. [kks227님의 글](https://m.blog.naver.com/kks227/220824350353)을 참고해서 풀 수 있었는데 구현하는 것도 좀 신경을 써야한다. 일반적인 Lazy에서 쓰는 구간에 더하는 연산은 배열이름이 `Lazy`, 더하는 값을 `val`이라 하면 `Lazy[node]`에 `val`을 더하고 리프 노드가 아니라면 자식에 `val`을 물려주고 `Lazy[node]`를 0으로 초기화해준다.
@@ -239,7 +251,8 @@ Link : [https://www.acmicpc.net/problem/13925](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/14495](https://www.acmicpc.net/problem/14495)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/53f7dbf78e2cea88dc66342fb8a3582d.js"></script>
 
 아주 간단한 DP 문제. 피보나치 푸는 것처럼 처리.
@@ -254,7 +267,8 @@ Link : [https://www.acmicpc.net/problem/14495](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2157](https://www.acmicpc.net/problem/2157)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a3b24d1caa2c52bcf13e3de9047fd192.js"></script>
 
 DP 문제.<br>
@@ -270,7 +284,8 @@ DP 문제.<br>
 
 Link : [https://www.acmicpc.net/problem/9413](https://www.acmicpc.net/problem/9413)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/519a371520bb154a8c582a684f1b2773.js"></script>
 
 **MCMF**로 풀었다. 정점을 분리해주고 각 간선의 비용을 1로 설정해주자. 그룹 2개가 이동해야 하니 소스에서 시작점으로의 용량을 2로 설정하자! 최대 비용을 구해야하니 비용은 음수로 설정해줘야 함에 주의.
@@ -285,7 +300,8 @@ Link : [https://www.acmicpc.net/problem/9413](https://www.acmicpc.net/problem/94
 
 Link : [https://www.acmicpc.net/problem/16460](https://www.acmicpc.net/problem/16460)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/57895e503c1c9872c0721c103e0edf36.js"></script>
 
 내용이 길지만.. 조건에 맞는지만 그때그때 체크해서 맞으면 담고 정렬해서 출력하면 된다.
@@ -300,7 +316,8 @@ Link : [https://www.acmicpc.net/problem/16460](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16461](https://www.acmicpc.net/problem/16461)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0e96833647de0c3064281ed265e9eed0.js"></script>
 
 단순 구현 문제.
@@ -315,7 +332,8 @@ Link : [https://www.acmicpc.net/problem/16461](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16463](https://www.acmicpc.net/problem/16463)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c305b93493d34e60c0050d823bdbb0e1.js"></script>
 
 2019년부터 최대 100000년까지만 조사하면 되므로 첫번째 금요일인 2019년 1월 4일부터 7일씩 더해가며 13일 때마다 답을 갱신해주면 된다. 윤년 체크만 잘 해주면 된다. 단순 구현 문제.
@@ -330,7 +348,8 @@ Link : [https://www.acmicpc.net/problem/16463](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1949](https://www.acmicpc.net/problem/1949)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0aed44ecfaf36c1955543389be37bf7f.js"></script>
 
 트리이므로 루트 노드를 아무거나 잡고 시작한다. (위 코드에서는 1을 루트로 설정) 그리고 인접한 노드를 돌아주면서 해당 마을이 우수 마을일 때만 인구수를 더하고, 그렇지 않으면 더하지 않는다. 물론 DP로 풀어줘야 TLE를 받지 않는다.
@@ -351,7 +370,8 @@ Link : [https://www.acmicpc.net/problem/1949](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/16464](https://www.acmicpc.net/problem/16464)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bd963dae0ff47633abc7d3963650f388.js"></script>
 
 홀수는 무조건 가능, 짝수는 2의 n승꼴로 만들어지는 수만 안되고 나머지는 다 가능하다. 처음엔 일일이 써보다가 힘들어서 직접 짜서 돌려보며 규칙을 찾았다(..)
@@ -366,7 +386,8 @@ Link : [https://www.acmicpc.net/problem/16464](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16469](https://www.acmicpc.net/problem/16469)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d4e1c3ba9a0ae8c7b00a47eb7eece03f.js"></script>
 
 악당 3명에 대해 BFS를 각각의 맵에 돌리면서 특정 위치에 도달하는 최단 거리를 기록한다. 모든 좌표에 대해 악당 3명이 도달한 땅이면 각각의 최단 거리 중 최댓값을 취한다. 위의 값중 최솟값이 곧 세 악당이 모일 때 걸린 시간의 최솟값이 되며 해당되는 땅의 갯수를 세주면 되겠다.
@@ -381,7 +402,8 @@ Link : [https://www.acmicpc.net/problem/16469](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16470](https://www.acmicpc.net/problem/16470)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d4e1c3ba9a0ae8c7b00a47eb7eece03f.js"></script>
 
 맵 활용하기! 문제 설명 아래에 힌트를 참고하면 굳이 지문을 읽을 필요 없음.
@@ -396,7 +418,8 @@ Link : [https://www.acmicpc.net/problem/16470](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16472](https://www.acmicpc.net/problem/16472)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9a2768bd96a669299962ff3210cce7e7.js"></script>
 
 처음에 DP 문제인줄 알고 열심히 고민해보다가 답이 안나와서 알고리즘 분류를 봤는데 **투 포인터**였다(..) 현재 담은 알파벳 중 알파벳 종류를 반환하는 함수 `can()`을 활용했다. 시간복잡도가 $$O(N\times len)$$이므로 충분히 통과할 수 있겠다 싶어서 제출하니 AC를 받았다!
@@ -411,7 +434,8 @@ Link : [https://www.acmicpc.net/problem/16472](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16473](https://www.acmicpc.net/problem/16473)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/24a0891b36eebeefe1b5c4ebd036c9a9.js"></script>
 
 DP 문제다. 팰린드롬의 중간 위치가 주어졌을 때 팰린드롬이 되기 위해 값을 없애는 횟수의 최솟값을 구해야 한다. 없애는 횟수의 최솟값? 이걸 바로 구해보려고 했는데 몇 가지 간단한 반례를 못뚫어서 뒤집어서 생각해봤다. 없애는걸 세지말고 중간값을 기준으로 **가장 긴 팰린드롬의 길이**를 구하고 전체 길이(n)에서 빼버리면 되지 않을까? 이렇게 생각하니 훨씬 간단하게 풀 수 있었다!
@@ -432,7 +456,8 @@ DP 문제다. 팰린드롬의 중간 위치가 주어졌을 때 팰린드롬이 
 
 Link : [https://www.acmicpc.net/problem/16475](https://www.acmicpc.net/problem/16475)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/afd394269daa35edc02797c1a839d80c.js"></script>
 
 함정 지역을 얼마나 지났는지(*cnt*)를 포함해서 큐에 넣어야 한다. 간선이 역방향으로 바뀔 수 있는 간선인지에 대한 정보도 담아주어야 한다. 또한 `2p`번 스위치를 누를 때마다 0으로 초기화를 시켜주어야 하며 일반적으로 최단 거리를 구할 때 `dist[to]`를 사용했다면 이 문제에선 정점을 여러번 거칠 수 있으므로(TC 참고) `cnt` 정보도 포함한 `dist[to][cnt]`를 활용하도록 하자.

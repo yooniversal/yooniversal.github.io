@@ -12,7 +12,8 @@ author:
 
 ~~승원이는 좋겠다. 선물이 공항이라니~~
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/61af25b3f83d99111b011af3b29172d3.js"></script>
 <br>
 

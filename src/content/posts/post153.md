@@ -17,7 +17,8 @@ author:
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/64064](https://programmers.co.kr/learn/courses/30/lessons/64064)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5f8f262e64037d19878f43ed09fb0384.js"></script>
 
 불량 사용자 명단에 있는 문자열에 해당되는 아이디들을 중복되지 않게 해서 경우의 수를 구하는 문제다. 다행히도 문자열 최대 길이, 문자열의 최대 갯수가 굉장히 작다. 문제 설명 중에 다음 부분을 꼭 체크하자.
@@ -36,7 +37,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/64064](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12936](https://programmers.co.kr/learn/courses/30/lessons/12936)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/765501840b9e3b2e9acab0d46e251e6e.js"></script>
 
 어떤 효율적인 풀이가 있는지는 모르겠으나.. 떠오르는게 없어서 구현했다. `n`이 주어졌을 때 1~n가지 숫자를 가지고 `k`번째 순열을 출력하는 문제다. 직전 위치의 인덱스(자릿수니까 +1)를 `k`로 나눠서 들어가는 숫자를 찾아내는 식으로 짰다.
@@ -51,7 +53,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12936](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12938](https://programmers.co.kr/learn/courses/30/lessons/12938)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bba24f99170462fd04454bfc2e4c113b.js"></script>
 
 설마 통과되겠어 하면서 짰더니 됐다. 분류는 그리디인거 같은데.. 그리디를 잘 안풀어봐서 맞는 분류인지 모르겠다. 좀 황당하다.
@@ -66,7 +69,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12938](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12946](https://programmers.co.kr/learn/courses/30/lessons/12946)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/13bfe42f0e9aaae863ddf8f5ee198773.js"></script>
 
 재귀를 처음 배운 시절에 멘붕에 휩싸이게 했던 대표적인 예제 하노이 탑이다. 하노이 탑을 재귀로 구현할 수 있다면 풀이는 굉장히 간단하다. 이동하려는 방향만 그 때 그 때 push해주면 된다.
@@ -81,7 +85,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12946](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/64062](https://programmers.co.kr/learn/courses/30/lessons/64062)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/651a0e4aaf24db2967ad749517c869bc.js"></script>
 
 인접한 디딤돌 `k`개 중 최댓값들이 있을 때 이 값 중 최솟값을 찾는 문제다. 간단하게 2중 for문으로 구현하면 $$O(n^2)$$에 쓸 수 있지만 TLE를 받는다. 디딤돌의 높이가 더 작아서 메모리가 허용된다면 배열을 이용해서 체크할 수 있었을 텐데 아쉽게도 200,000,000까지 커질 수 있어서 map을 활용했다.
@@ -96,7 +101,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/64062](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12952](https://programmers.co.kr/learn/courses/30/lessons/12952)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/87b926731ab513c22c8bb3ce396206e5.js"></script>
 
 재귀 대표 문제 N-Queen이다. 퀸은 가로, 세로, 대각선으로 공격이 가능하므로 이 범위를 피하면서 놓아야 한다. 첫 행부터 시작해 끝 행으로 도달했을 때 답을 카운트하도록 했다. 행을 1씩 증가시키면서 재귀를 돌리니까 열에 대해서 놓을 수 있는지 없는지 체크해주면 된다. 대각선을 체크하는게 좀 까다로운데, 수식을 이용해서 보다 간단하게 체크할 수 있으나 범위도 적고 굳이 그럴 필요가 있을까 싶어 전체 맵을 배열로 놓고 이동 불가 영역을 체크하도록 했다.
@@ -111,7 +117,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12952](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/67258](https://programmers.co.kr/learn/courses/30/lessons/67258)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0b03dbf7ea3f58b5ddd406a57e25f44f.js"></script>
 
 보석들을 연달아 취하는데 모든 종류를 챙길 수 있는 최소 갯수가 되는 구간을 구해야 한다. 일단 보석 이름이 string으로 주어졌으니 map을 이용해 각 종류에 대해서 숫자를 부여한다. 동시에 각 인덱스에 맞는 종류 번호를 `ng`에 담아준다. 또한 종류가 몇 가지인지도 `kinds`에 적어둔다.
@@ -130,7 +137,8 @@ while문 안(`cnt == kinds`)에서 loop를 돌 때마다 벡터 `v`에 시작, �
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12978](https://programmers.co.kr/learn/courses/30/lessons/12978)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bd0070553fbb7a0ea735a4915ad90fa4.js"></script>
 
 N 범위가 작으므로 **플로이드 와샬** 알고리즘을 써서 각 마을로 가는 최단 거리를 모두 계산해준다. 이후 1번 마을에서 모든 마을(1번 마을 포함)로 가는 거리가 `K`보다 작으면 모두 갱신해주면 된다.
@@ -145,7 +153,8 @@ N 범위가 작으므로 **플로이드 와샬** 알고리즘을 써서 각 마�
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/67259](https://programmers.co.kr/learn/courses/30/lessons/67259)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/aa0ccd2433654e2aae367eddb79b8f6e.js"></script>
 
 BFS로 풀면 된다! 구조체에 현재 좌표, 이전 이동 방향, 현재 비용을 담고 별도로 각 위치별 비용을 표시하기 위해 배열 `d`를 만들어 놓는다. 현재 비용이 다음으로 이동할 위치`(nx, ny)`의 비용보다 작거나 같을 경우 이동할 수 있도록 한다.
@@ -160,7 +169,8 @@ BFS로 풀면 된다! 구조체에 현재 좌표, 이전 이동 방향, 현재 �
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12979](https://programmers.co.kr/learn/courses/30/lessons/12979)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6f31fbd767618c09463f15463e03451d.js"></script>
 
 기지국이 설치되면 전파 가능한 구간의 길이는 $$2w+1$$이 된다. 이미 4G가 설치된 기지국은 5G로 바뀌므로 각각의 영향 범위를 제외한 나머지 구간을 가지고 새로 설치할 기지국의 갯수를 최소한으로 하기 위해 겹치지 않게 설치해야 한다. 때문에 이미 설치된 기지국(`stations[i]`)을 5G 기지국으로 바꾼 후 영향을 받지 않는 각각의 구간을 가져와 $$2w+1$$로 나눠서 더해주면 된다. 나누어 떨어지지 않으면 +1을 해준다.
@@ -175,7 +185,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12979](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12987](https://programmers.co.kr/learn/courses/30/lessons/12987)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0ba28768fdd612ebd385d17409bd8f03.js"></script>
 
 각 배열을 정렬한 후 이분 탐색으로 각 숫자가 몇 개까지 이길 수 있는지 **이분탐색**으로 구해준다. 1부터 체크해 나가는데 체크된 인덱스의 경우 넘어가도록 `chk[]`를 이용해준다.

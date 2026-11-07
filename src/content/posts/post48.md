@@ -11,7 +11,8 @@ author:
 문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42839](https://programmers.co.kr/learn/courses/30/lessons/42839)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/a940fb7fc60f042ec5cd3d742bca2da9.js"></script>
 <br>
 

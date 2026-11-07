@@ -11,7 +11,8 @@ author:
 문제 바로가기 : [https://www.acmicpc.net/problem/1976](https://www.acmicpc.net/problem/1976)<br>
 같은 유형 문제 : [https://www.acmicpc.net/problem/1717](https://www.acmicpc.net/problem/1717)<br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/3f705f89b335ab0ce8bb1429b24c09bb.js"></script>
 
 <br>

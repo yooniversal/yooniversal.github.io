@@ -14,7 +14,8 @@ author:
 
 계속 문제를 풀어보면 또 다른 점이 나오겠지만, Level 1만 풀면서 느낀건 input 때문에 신경을 써야 할 필요가 없다는 점? 혹시 프로그래머스에서 풀어본 적이 없거나 풀어보려는데 코드가 조금 이상하다고 느끼면 이 점 감안해서 봐주셨으면 좋겠다!
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/f17f2e29fe4f7ba0c51d0eff87ffb493.js"></script>
 <br>
 

@@ -12,7 +12,8 @@ author:
 유사 문제 : [https://www.acmicpc.net/problem/11585](https://www.acmicpc.net/problem/11585)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/7ea5040fd463c61ef3e4b1be6f60a0d2.js"></script>
 <br>
 

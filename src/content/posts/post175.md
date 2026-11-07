@@ -16,7 +16,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/1783](https://www.acmicpc.net/problem/1783)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/198c916ff26ea7bc72cb21c64f9ce141.js"></script>
 
 그리디 문제. 세로 길이에 따른 케이스 분류를 잘해줘야 한다. (물론 가로도 마찬가지긴 하다) n이 2일 때 조금 고생을 했지만 문제 난이도는 실버5일 정도로 어렵진 않다!
@@ -31,7 +32,8 @@ Link : [https://www.acmicpc.net/problem/1783](https://www.acmicpc.net/problem/17
 
 Link : [https://www.acmicpc.net/problem/12919](https://www.acmicpc.net/problem/12919)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/767ad2b1f799852141cfcdd148461caa.js"></script>
 
 브루트포스 문제. S -> T가 아닌 T -> S로 접근하자.
@@ -46,7 +48,8 @@ Link : [https://www.acmicpc.net/problem/12919](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/11728](https://www.acmicpc.net/problem/11728)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e28daaaf54dc7303211e4a04b7d6b191.js"></script>
 
 투 포인터 문제. 각 배열 정렬 후 인덱스를 나눠 작은 값부터 하나씩 뽑아 출력한다.
@@ -61,7 +64,8 @@ Link : [https://www.acmicpc.net/problem/11728](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/10825](https://www.acmicpc.net/problem/10825)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0a870674b62b4ac46ea37fca0ebb479b.js"></script>
 
 정렬 문제. 오버라이딩 기본 유형.
@@ -76,7 +80,8 @@ Link : [https://www.acmicpc.net/problem/10825](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17143](https://www.acmicpc.net/problem/17143)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/3440b997ed75f7ba7dc649222b787609.js"></script>
 
 (상어를 물고기로 잘못읽어서 변수가 `fish`로 돼있습니다)
@@ -97,7 +102,8 @@ Link : [https://www.acmicpc.net/problem/17143](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17140](https://www.acmicpc.net/problem/17140)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9d2e5d19dee4291a163eebd5629ca63c.js"></script>
 
 구현 문제. 적힌 설명대로 구현하면 되나 대부분 구현 문제가 그렇듯이 실수할 여지가 많으니 주의하기.
@@ -112,7 +118,8 @@ Link : [https://www.acmicpc.net/problem/17140](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17142](https://www.acmicpc.net/problem/17142)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b5f702b589aa2911a52f349f3d64b0a7.js"></script>
 
 브루트포스 문제. 지금까지 푼 연구소 시리즈답게 브루트포스로 풀 수 있다. 다만 시간이 좀 빡빡하다. 맵 내에 **빈 칸이 모두 바이러스가 되는 경우** 답을 갱신하도록 해야한다. 이미 바이러스이지만 처음에 선택받지 않은 바이러스를 살아있는 갯수(`alive`)에 카운팅되지 않도록 주의. 어떤 바이러스가 선택되는지에 대해 DFS로 처리했는데(`select_virus()`) 이전값을 나타내는 인자(`prev`)가 시간복잡도를 낮추는데 도움을 줄 수 있으니 체크하자. (만약 바이러스가 상한인 10개가 존재하고 m개를 골라야한다고 가정할 때 고르는 경우가 ${}_n \mathrm{ C }_r$이 돼야지 $10^m$이 되면 안된다. 자잘한 팁이지만 이 부분을 적절하게 처리 못해서 TLE를 받았다.)
@@ -129,7 +136,8 @@ Link : [https://www.acmicpc.net/problem/17142](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17779](https://www.acmicpc.net/problem/17779)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2f39bcf2f5c50e0c18e10572249da5b0.js"></script>
 
 구현 문제.
@@ -144,7 +152,8 @@ Link : [https://www.acmicpc.net/problem/17779](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17837](https://www.acmicpc.net/problem/17837)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6db3af546a4b3f9ebb6aab23c8be2b15.js"></script>
 
 구현 문제. 파란 벽을 만나고 방향을 바꿨을 때 케이스를 따져줘야 함에 주의. 흰색, 빨간색이면 위에 있는 말들도 같이 움직여야함. (순서는 색에 따라 맞춰서) 단, 방향은 기준이 되는 말만 바뀌고 나머지는 유지.
@@ -159,7 +168,8 @@ Link : [https://www.acmicpc.net/problem/17837](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17822](https://www.acmicpc.net/problem/17822)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d6af3683847684ccae3f5c5e9102db25.js"></script>
 
 구현 문제. 설명된 내용을 착실하게 구현하면 된다. 평균을 낼 때 그 값이 몫이 아님에 주의하자. (sum/cnt를 double로 처리해야 함)
@@ -174,7 +184,8 @@ Link : [https://www.acmicpc.net/problem/17822](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17825](https://www.acmicpc.net/problem/17825)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9d4524bafa7b981af000017dbe996632.js"></script>
 
 DFS 문제. 중복되는 케이스를 없애줘야 TLE도 면하고 답도 구할 수 있을줄 알았는데, 그게 아니었다. `visited`로 걸러주지 않아도 시간 내에 들어오면서 충분히 답을 낼 수 있었다😂 시간복잡도를 고려하지 않고 (재귀 문제는 습관적으로 안해서 할 수 있을진 모르겠지만) 달려들어서 당연히 `visited`를 써줘야겠다고 생각한게 삽질의 원인이었다. 심지어 써주면 틀린다. 어느 걸러지는 케이스가 유의미하기 때문에 그렇다는건데.. 정확히 어느 부분이 문젠진 감이 안온다. 보다 구체적인 케이스를 위해서 인자를 추가해야 하는지, 그렇다면 무슨 인자를 추가해야할지도 모르겠다. 수련이 부족하다😩
@@ -189,7 +200,8 @@ DFS 문제. 중복되는 케이스를 없애줘야 TLE도 면하고 답도 구�
 
 Link : [https://www.acmicpc.net/problem/20061](https://www.acmicpc.net/problem/20061)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f597da18dc5a4ced46299fad70ba2e81.js"></script>
 
 구현 문제. 쌩 구현 문제라서 딱히 설명할건 없지만.. 어쩌다보니 코드가 굉장히 길어졌다. 줄이는건 줄이는건데 실전처럼 조급한 상황에서 줄일 자신은 없을 것 같고 실수 여부가 중요할 것 같다. 첫 제출때 WA를 받았는데 범위 체크를 잘못한게 원인이었다. 이거 찾는데만 45분.. 구현은 구현 나름대로 재밌지만 반례찾는게 고역인듯 하다. 실수하지 말자!
@@ -204,7 +216,8 @@ Link : [https://www.acmicpc.net/problem/20061](https://www.acmicpc.net/problem/2
 
 Link : [https://www.acmicpc.net/problem/19236](https://www.acmicpc.net/problem/19236)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e4357264f5394674b882987c3fe05195.js"></script>
 
 구현 문제. 물고기와 상어가 각각 이동하는 조건이 다름에 주의.
@@ -219,7 +232,8 @@ Link : [https://www.acmicpc.net/problem/19236](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/19237](https://www.acmicpc.net/problem/19237)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/fab6dcbc7b25375d82b31374a31121f4.js"></script>
 
 구현 문제. 설명하는 조건들을 적절히 구현해주면 된다. 꼭 주의해야할 요인은 딱히 없었떤 것 같다.
@@ -234,7 +248,8 @@ Link : [https://www.acmicpc.net/problem/19237](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/19238](https://www.acmicpc.net/problem/19238)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2d54c154d3a3ca47b0ee4714f80edaf9.js"></script>
 
 구현 문제. 요구 조건 적절히 구현하기. 딱히 주의할 점은 없다. 연습하기 좋은 문제.
@@ -249,7 +264,8 @@ Link : [https://www.acmicpc.net/problem/19238](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/20055](https://www.acmicpc.net/problem/20055)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1a3a8d06b92fb08fae8c884f6afeac4a.js"></script>
 
 구현 문제. 구현이 어렵진 않다. 문제 설명이 더 어렵다. [hongju님의 글](https://hongjuzzang.github.io/solution/code_b20055/)에서 설명만 참고했다. 문제 설명 읽어보고 테스트 케이스 아웃풋이 이해가 안가면 위 링크로 가보는걸 강추.

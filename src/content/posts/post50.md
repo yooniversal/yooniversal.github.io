@@ -12,7 +12,9 @@ author:
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 
 트라이 알고리즘 설명은 [여기](https://jason9319.tistory.com/129)에서 참고했습니다. 감사합니다.
-## Solution
+
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/1542f95c24f04b0b86abac0b4305600e.js"></script>
 <br>
 

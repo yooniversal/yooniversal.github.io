@@ -17,7 +17,8 @@ author:
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12904](https://programmers.co.kr/learn/courses/30/lessons/12904)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7a8182e425c04e6071b5e4995502da15.js"></script>
 
 어떻게 풀어볼까 고민하다가 문자열 최대 길이가 생각보다 길지 않아서 간단하게 풀었다. 범위가 좀만 커졌어도 TLE 받기 쉬울 것 같은데 나중엔 범위가 긴 문제로 한 번 풀어봐야겠다.
@@ -32,7 +33,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12904](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/60063](https://programmers.co.kr/learn/courses/30/lessons/60063)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/969c5cf67d05b767ceba8d8963e04987.js"></script>
 
 BFS 문제다. 범위 밖으로 나가지 않도록 그리고 벽과 부딪히지 않도록 설정해주는게 전부다. 이게 전부지만 직접 짜보려 하면 좀 귀찮다. 회전하는 경우 코드를 줄여 쓸 생각이 떠오르지 않았다. 로봇이 가로로 있을 때, 세로로 있을 때 각각의 경우를 또한 체크해줘야 한다. 구현이 좀 빡센 BFS라고 생각한다.
@@ -47,7 +49,8 @@ BFS 문제다. 범위 밖으로 나가지 않도록 그리고 벽과 부딪히�
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12907](https://programmers.co.kr/learn/courses/30/lessons/12907)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b501c8fc8044a78aa7ae46b7869e8ebc.js"></script>
 
 DP 유형이다. 재귀를 통해 메모이제이션을 처음에 이용했는데 효율성 테스트에서 시간 초과를 받았다. 왜 메모리 초과말고 시간 초과를 받았는지 잘 모르겠지만.. 결론적으로 이 문제는 1차원 배열만으로 해결이 가능하다. 화폐 단위들을 정렬해준 후 진행해야 한다. [BOJ 2293: 동전 1](https://www.acmicpc.net/problem/2293)과 같은 문제.
@@ -62,7 +65,8 @@ DP 유형이다. 재귀를 통해 메모이제이션을 처음에 이용했는�
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/1836](https://programmers.co.kr/learn/courses/30/lessons/1836)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/35c7df3f5ffe3e1bb4bbaeff4e5a6e8b.js"></script>
 
 이게 브루트 포스로 해결이 될까 생각을 해보다가 조금 간단하게 풀 수 있는 방법이 생각났다. 결론적으로는 브루트 포스로도 풀 수 있지만 내가 푼 방법은 다음과 같다. 구현이 어렵진 않았다. 다만 break문 1개를 잘못써서 내내 고생했다..
@@ -81,7 +85,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/1836](https://program
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12914](https://programmers.co.kr/learn/courses/30/lessons/12914)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9c04c34ca5c4983c8a3495b7cd4b6838.js"></script>
 
 단순 DP 유형. 오버플로우에 주의하기!
@@ -101,7 +106,8 @@ $$
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/49994](https://programmers.co.kr/learn/courses/30/lessons/49994)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cdaa4032d8365920672abcd1a86fd2af.js"></script>
 
 걸었던 길 중 중복되지 않는 길의 길이를 구해야 한다. 크게 어렵지는 않지만 특정 길을 앞뒤로 갔을 때 2번 카운트되지 않도록 하는게 포인트.

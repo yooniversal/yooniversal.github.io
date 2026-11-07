@@ -16,7 +16,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/16953](https://www.acmicpc.net/problem/16953)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0cc594a8d87a9fc4034b46bac6f9c802.js"></script>
 
 브루트포스 기본 문제.
@@ -31,7 +32,8 @@ Link : [https://www.acmicpc.net/problem/16953](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16951](https://www.acmicpc.net/problem/16951)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/dac9fe7cd34ff05025fbcaaf3a1cbb9e.js"></script>
 
 이게 왜 브루트 포스지? 라는 생각이 처음에 들었는데, 잘 보면 브루트 포스로 풀 수 있다. 처음에 왜 저런 의문이 들었는가 생각해 봤다. 그냥 첫 항에서 K씩 더해가면 되는거 아닌가 싶었는데 첫 항이 무슨 값인지 모르니까 이 값에 대해서 모든 경우의 수를 돌려줘야 하는거였다. 그래봤자 상한이 1000이므로 1부터 1000까지 다 돌려주면 된다.
@@ -46,7 +48,8 @@ Link : [https://www.acmicpc.net/problem/16951](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16968](https://www.acmicpc.net/problem/16968)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b1bb7beb04fcb6c802f0495bd6f76904.js"></script>
 
 브루트 포스에 속해있는 문제라서 브루트 포스로 풀어보려고 했는데 굳이 그럴 필요가 없어보여서 경우의 수를 계산해서 풀었다. 매우 간단하다. 문자는 26가지, 숫자는 10가지가 기본인데 연속됐으면 각각 25가지, 9가지가 추가될 수 있다. 길이가 4까지 이므로 재귀로 처리하는 것도 방법이다.
@@ -61,7 +64,8 @@ Link : [https://www.acmicpc.net/problem/16968](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17085](https://www.acmicpc.net/problem/17085)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cf4cd50d3d19388143b66f42fec20727.js"></script>
 
 브루트 포스로 풀었다. 십자가가 놓인 자리를 chk에 표시하고 십자가를 뺄 때는 일일이 기록했던 위치를 다시 꺼내며 false로 바꾸다보니 어떻게 구현은 가능했지만 만약 맵의 범위가 조금 더 넓었거나 십자가의 갯수가 2개가 아니고 더 많아진다면 어림도 없이 메모리 초과를 받고 다른 방법을 모색했을 것 같다. 다만 이런 경우라면 충분히 재귀로 해결이 가능하다. 이것저것 조건에 맞춰서 예외 처리를 해주다보니 코드가 다소 복잡해보이지만 로직은 간단하다.
@@ -78,7 +82,8 @@ Link : [https://www.acmicpc.net/problem/17085](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17088](https://www.acmicpc.net/problem/17088)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ab304dee24764eff17e05c394f3bdbfa.js"></script>
 
 브루트 포스 문제인줄 알고 무턱대로 덤볐는데 N이 $10^5$까지 커질 수 있는걸 보고 뭔가 심상치 않았다. 커팅을 엄청 열심히 해야하나? 가능한가? 이런저런 생각을 하면서 설명을 읽었는데 각 원소마다 케이스가 3개다. $3^{10^5}$인데 이게 정말로 가능한건가? 싶었는데 카테고리를 보니 DP로 풀 수 있었다.
@@ -97,7 +102,8 @@ Link : [https://www.acmicpc.net/problem/17088](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17135](https://www.acmicpc.net/problem/17135)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4da670ca665186b30d58c5025d4c2288.js"></script>
 
 구현 문제. 궁수가 어느 위치에 있을지 모르므로 **next_permutation**으로 모든 경우의 수를 돌려줬고 궁수가 쏘는 범위를 탐색하는덴 BFS를 썼다. 또 시간 단축을 위해 가지치기를 좀 해줘야 한다. 조건에 맞춰서 구현을 해야하는데, 궁수들이 같은 턴에 쐈을 때 가지치기를 해주는게 좀 까다로웠다. 같은 턴에 궁수 1이 처치한 적이 궁수 2가 가장 먼저 만나면서 가장 왼쪽에 있는 적이라면 역시 같은 적을 처치해야 하는데 bool 타입만으로는 같은 턴(`round`)인지 체크해줄 수 없어서 **killed[x][y]에 round를 표시**해주기로 했다.
@@ -118,7 +124,8 @@ Link : [https://www.acmicpc.net/problem/17135](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17136](https://www.acmicpc.net/problem/17136)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b99f395ed4375ec57ef9bfeae0f4308f.js"></script>
 
 구현 문제. 설명을 잘 읽어야 한다. **색종이는 종류별로 5개가 존재한다**. 이 점을 잘 이용해서 커팅하면 시간 제한에 걸리지 않고 AC를 받을 수 있다.
@@ -137,7 +144,8 @@ Link : [https://www.acmicpc.net/problem/17136](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1074](https://www.acmicpc.net/problem/1074)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a412269a3dfa86f6a4aee8c8bd6f7b5f.js"></script>
 
 3달 전에 도전했다가 틀렸던 분할 정복 문제. 드디어 풀었다! 여태까지 풀어왔던 문제들에 비하면 난이도가 낮다고 생각하지만(..) 어차피 내가 못푸는건 못푸는거라 😥 오랜만에 틀린 문제중에 이 문제는 풀어봐야겠다 싶어서 설명을 읽었는데 대충 어떻게 해야할지 감이 왔다. 개인적으로 약한 분할 정복 파트지만, 어쨌거나 분할 정복도 재귀로 처리하는 거니깐 이라는 마음가짐으로 도전하니까 방법을 떠올리는데 그렇게 어렵지 않았다.
@@ -156,7 +164,8 @@ Link : [https://www.acmicpc.net/problem/1074](https://www.acmicpc.net/problem/10
 
 Link : [https://www.acmicpc.net/problem/16948](https://www.acmicpc.net/problem/16948)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b6321212d8d5a0571b0e83216992dedd.js"></script>
 
 BFS 기본 문제.
@@ -171,7 +180,8 @@ BFS 기본 문제.
 
 Link : [https://www.acmicpc.net/problem/16920](https://www.acmicpc.net/problem/16920)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/39b1a50a6577d3941c08656ddfed4186.js"></script>
 
 BFS 유형인데 조금 특이하다. 각 영역별로 큐를 관리하면서 돌리는 방식으로 구현해야 TLE를 피할 수 있었는데 자세한 내용은 [여기](https://www.acmicpc.net/board/view/35413)를 참고하자.
@@ -186,7 +196,8 @@ BFS 유형인데 조금 특이하다. 각 영역별로 큐를 관리하면서 �
 
 Link : [https://www.acmicpc.net/problem/16932](https://www.acmicpc.net/problem/16932)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/909d9f9bfbe2e70d765e0f44f49155cb.js"></script>
 
 BFS 문제. 1이 인접한 것들을 묶음으로 묶어서 넘버링을 해주고 각 묶음의 크기 또한 체크해주자. 이후 0인 블럭들에 대해서 BFS를 돌려주는데, (해당 블럭과 인접한 묶음들의 크기 합)+1의 최댓값을 출력하면 된다.
@@ -201,7 +212,8 @@ BFS 문제. 1이 인접한 것들을 묶음으로 묶어서 넘버링을 해주�
 
 Link : [https://www.acmicpc.net/problem/16947](https://www.acmicpc.net/problem/16947)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9676c6105a1f93e96b71fdf2a5b8e465.js"></script>
 
 DFS + BFS 문제. 사이클을 찾는데 DFS를 이용하고 사이클까지의 거리(답)를 구하는덴 BFS를 이용한다.
@@ -216,7 +228,8 @@ DFS + BFS 문제. 사이클을 찾는데 DFS를 이용하고 사이클까지의 
 
 Link : [https://www.acmicpc.net/problem/16973](https://www.acmicpc.net/problem/16973)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0f756f1a7b78395bca4364baf0b77313.js"></script>
 
 BFS 문제. 직사각형을 통째로 원하는 위치까지 벽에 부딪히지 않고 움직여야 한다. 직사각형 면적 모두를 체크할 필요는 없어보여서 테두리만 조건에 위배되는지 체크해줬다.
@@ -231,7 +244,8 @@ BFS 문제. 직사각형을 통째로 원하는 위치까지 벽에 부딪히지
 
 Link : [https://www.acmicpc.net/problem/4803](https://www.acmicpc.net/problem/4803)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/20e484139255eeefd04e89595268bec6.js"></script>
 
 **Union-Find** 문제. 입력받는 값들을 서로 같은 집합으로 묶어주는걸로 시작한다. 그럼 각 집합이 트리인지 여부를 체크헤야 하는데, 집합에 속해있는 임의의 정점에서 출발했다고 했을 때 탐색해온 점 중 중복되는 경우가 발생하면 이는 트리가 아니다. 즉, 사이클이 발생하면 안된다. 근데 나같은 경우 입력받는 정점 u, v에 대해서 서로 오갈 수 있도록 엣지를 설정해줬기 때문에 임의의 정점에서 출발했을 때 다시 출발점으로 돌아온다는 보장이 없다. 이 점이 집합 내의 사이클에 속한다는 보장이 없기 때문이다. [반례 참고](https://www.acmicpc.net/board/view/57236)
@@ -250,7 +264,8 @@ Link : [https://www.acmicpc.net/problem/4803](https://www.acmicpc.net/problem/48
 
 Link : [https://www.acmicpc.net/problem/3108](https://www.acmicpc.net/problem/3108)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5a18139fe394212b4e2ce28027dc6315.js"></script>
 
 **Union-Find** 문제. 다섯가지 명령이 있다고 해서 머리가 조금 아플 뻔했는데 입력을 보고 안심했다. 연필을 올린 횟수를 출력하면 되는데 처음에 연필이 내려져 있다는 점을 주의해야한다. `(x, y)`좌표가 각각 하한이 -500에서 시작하므로 0부터 시작하도록 각각 500을 더해주고 시작한다고 하면 원점에서 500을 더한 (500, 500)에서 직사각형이 지나간다고 했을 때 이 경우는 카운트하지 말아야 한다. 이 부분만 주의한다면 크게 어려운 점은 없다. 연결돼 있는 사각형들의 집합의 갯수를 찾으면 된다.

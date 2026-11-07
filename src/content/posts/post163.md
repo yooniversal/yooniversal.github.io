@@ -17,7 +17,8 @@ author:
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12902](https://programmers.co.kr/learn/courses/30/lessons/12902)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ebbce395b9987916a21e96f065d1c06b.js"></script>
 
 [참고 링크](https://algorithmist.com/wiki/UVa_10918_-_Tri_Tiling)
@@ -32,7 +33,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12902](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/42897](https://programmers.co.kr/learn/courses/30/lessons/42897)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8a7786a556a40fabed23a5bd4181da8e.js"></script>
 
 이웃한 집들을 선택할 수 없는 상황에서 최댓값을 취할 수 있도록 집을 선택해야 한다. 처음에 시작했는지 여부가 마지막 집을 선택할 수 있는지 여부를 나타낸다. 때문에 이를 인자로 나타내줘야 한다.<br>
@@ -50,7 +52,8 @@ $dp[i] = max(dp[i-2]+money[i], dp[i-1])$
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/1831](https://programmers.co.kr/learn/courses/30/lessons/1831)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9c456e8dadda0e23ab5319ba813a75db.js"></script>
 
 곱하기 뒤에는 더하기 2개가 나와야 한다. 하지만 꼭 곱하기와 붙어있을 필요는 없다. n의 범위가 굉장히 크기 때문에 일일이 구현해서 탐색하기에는 너무 케이스가 많다. 배열로 선언해서 처리하기에도 메모리, 시간 문제가 있으므로 수식으로 해결해줘야 한다. 1부터 시작하지 않고 끝에서부터 시작하도록 하며, 더하기(plus)가 2개 이상이고 3으로 나누어 떨어지면 나눠준다. 그렇지 않은 경우는 현재 값을 1씩 빼면서 더하기를 1씩 증가시키면서 재귀를 돌려준다.
@@ -67,7 +70,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/1831](https://program
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/60060](https://programmers.co.kr/learn/courses/30/lessons/60060)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8545ffc3609f213d3a7294aad0629add.js"></script>
 
 범위가 너무 커서 설마설마 했는데.. **트라이 알고리즘**으로 풀어야 한다. 솔직히 한 번 경험해보자는 목적으로 공부했었던 알고리즘인데 코테 문제로 버젓이 나올지 몰랐다. 직접 구현할 자신이 없어서 예전에 백준에서 썼던 코드를 조금 긁어서 썼다. ㅠㅠ 신박하면서도 난이도가 높다는 생각이 들었었는데 코테 영역에 들어오다니..
@@ -94,7 +98,8 @@ words[i]의 길이는 최대 1만이므로 root를 1만개 만들어 놓고 이 
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12929](https://programmers.co.kr/learn/courses/30/lessons/12929)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/21bd962e7604371bbf36a55d6c3e1839.js"></script>
 
 DP로 풀 수 있다. Level 4에 실려있는데 비해서 굉장히 쉬운 편. a를 괄호의 갯수, b를 총합(열린 괄호는 +1, 닫힌 괄호는 -1)이라 하면 점화식은 다음과 같다.<br>
@@ -110,7 +115,8 @@ $f(a, b) = f(a-1, b-1) + f(a-1, b+1)$
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/1844](https://programmers.co.kr/learn/courses/30/lessons/1844)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/92980518a3e0fc0dc0c6d97e7931bf81.js"></script>
 
 BFS 기본 유형. 개인적인 생각이지만 Level 4에 있을 문제는 아닌듯 하다.
@@ -125,7 +131,8 @@ BFS 기본 유형. 개인적인 생각이지만 Level 4에 있을 문제는 아�
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12923](https://programmers.co.kr/learn/courses/30/lessons/12923)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4e507e45ae7098b3a4f376fb65527876.js"></script>
 
 [begin, end]에 있는 값을 `idx`라 했을 때 `idx`로 나누어지는 (`idx`를 제외한) 가장 큰 약수를 구해야 한다. 처음엔 범위도 그렇고 이분 탐색으로 구해볼까 했는데 나누어 떨어지는 조건 말고는 떠오르지 않아서 이리저리 건드려보다가 이분 탐색으로 푸는건 포기했다. (애초에 풀 수 있는 방법인지 의문이다)
@@ -142,7 +149,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12923](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/64063](https://programmers.co.kr/learn/courses/30/lessons/64063)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a1dc4a0c8dbca56efb077989c376d831.js"></script>
 
 **Union-Find**로 풀 수 있다. 처음엔 k가 $10^{12}$까지 커질 수 있다고 하길래 이분 탐색으로 처리하려고 시도해보다 실패했다.. Union-Find는 그래프 문제나 알고리즘에서 Union-Find가 쓰이는 경우(MST 등)말고는 써본 적이 없었는데 이런 경우에서도 쓰일 수 있다는 점이 인상적이었다! 그래프 문제에서만 주로 써봤기 때문에 가장 먼저 언급된 숫자 N이 있으면 N보다 큰 숫자들 중 N과 한 집합으로 묶어야 할 때 N번을 기준으로 묶었었는데 이 문제는 반대로 해줘야 한다.
@@ -200,7 +208,8 @@ else{
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12942](https://programmers.co.kr/learn/courses/30/lessons/12942)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a4b30bc9406fbc76fc683ba450204702.js"></script>
 
 백준에서 비슷한 문제를 풀었던 기억이 있어서 바로 DP로 접근했다. 구간의 왼쪽을 $l$, 오른쪽을 $r$, 중간에 나누는 지점을 $m(\in [l, r))$로 설정했다. $f(l, r)$를 **구간 $[l, r]$에서 행렬 곱셈의 최솟값**이라 하면 점화식은 다음과 같이 설정할 수 있다.<br>
@@ -216,7 +225,8 @@ $f(l, r) = max(f(l, m)+f(m+1, r)+matrix_sizes[l][0]\times matrix_sizes[m][1]\tim
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12971](https://programmers.co.kr/learn/courses/30/lessons/12971)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/81d6c3b8c46489cb51411f5b9486ab98.js"></script>
 
 프로그래머스 lv4에 있는 [도둑질](https://programmers.co.kr/learn/courses/30/lessons/42897)과 풀이가 같다. 다만 도둑질은 N>=3 이고 이 문제는 N>=1임에 주의.
@@ -231,7 +241,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/12971](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12983](https://programmers.co.kr/learn/courses/30/lessons/12983)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ae9182ccc9b5f9a9f411a2de3d9024a2.js"></script>
 
 간단한 DP 문제.<br>
@@ -248,7 +259,8 @@ $if(match): dp[i+str_len] = dp[i]+1$
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12984](https://programmers.co.kr/learn/courses/30/lessons/12984)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bb6958c43dfd3a43a559e06d13eb023e.js"></script>
 
 브루트 포스로 처음에 풀었는데 TLE를 받았다. 백준에서 브루트 포스로 풀 수 있는 비슷한 문제는 [여기](https://www.acmicpc.net/problem/18111)에 있다. 시간을 어떻게 줄일 수 있을까 고민을 하다가 잘 모르겠어서 검색을 해봤는데 이분 탐색으로 푸는 풀이가 있었다. 일단 답이 나올 수 있는 하한과 상한은 `land`에 있는 최솟값(`lf`)과 최댓값(`hf`)이 된다. 그렇다면 [lf, hf]에서 이분 탐색으로 답을 구해줘야 한다는건 알겠는데, 기준이 없어서 좀 당황스러웠다. 어떻게 기준을 잡아야 할지 보니 현재 층을 `cur`, 현재 층으로 편집할 때 드는 비용을 `f(cur)`이라 하면 `f(cur)`과` f(cur+1)`의 대소 비교를 통해 어느 쪽이 더 많이 들 것인지 정해졌다면 바운더리를 좁혀갈 수 있다.
@@ -271,7 +283,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/42894](https://progra
 <summary>소스 코드</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/fe11778f6c5d7f4d7a0a88107c656850.js"></script>
 </div>
 </details>
@@ -300,7 +313,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/42894](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/17685](https://programmers.co.kr/learn/courses/30/lessons/17685)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c69dd087129739c4a686e01c412a5dd4.js"></script>
 
 **Trie 알고리즘**으로 풀었다. 지역 변수로 문자열이 끝나는 위치임을 의미하는 `finish` 외에 단어가 끝난 흔적이 있는지를 의미하는 `WORDFIN`, 현재 경로에서 등록된 단어의 갯수를 의미하는 `SIZE`를 추가했다. 기저 사례로는 `finish`가 true일 때 또는 `SIZE`가 1일 때 단어가 1개임을 의미하므로 값을 바로 리턴하도록 했고 이외의 경우는 연결된 경로를 탐색(DFS)하도록 했다.

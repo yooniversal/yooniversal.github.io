@@ -15,7 +15,8 @@ author:
 상사-부하 간에 관계를 정리하기 위해 pre-order로 순회했으며 [degurii님의 글](https://degurii.tistory.com/43)을 참고했습니다. 감사합니다.
 <br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/895ee5b650b749d82119c44e195f042b.js"></script>
 <br/>
 

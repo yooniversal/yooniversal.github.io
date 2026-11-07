@@ -17,7 +17,8 @@ author:
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/17678](https://programmers.co.kr/learn/courses/30/lessons/17678)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5b061d7dd2ae191626320cee12a04caf.js"></script>
 
 구현 문제다. 버스 운행 시작 시각이 09:00이므로 `n`, `t`을 가지고 각 버스가 언제 출발하는지 알 수 있다. 사람들이 줄을 서기 시작하는 시각(`timetable`)이 버스 A의 출발 시각보다 같거나 작을 경우 버스에 탑승할 수 있다. 그러므로 n번째 버스에 들어갈 수 있는 사람들(`person`)을 `wait[n]`에 넣어준다. 버스가 수용 가능한 최댓값은 `m`이므로 `wait[n]`의 크기가 `m`보다 크면 들어가지 못한 사람을 `wait[n+1]`에 담아준다. 마지막 버스에 도착했을 때 `wait[final]`의 크기가 `m`보다 작으면 버스의 도착 시간을, 그렇지 않으면 `wait[final]`에 시간 순으로 `m`번째에 있는 사람보다 1분만큼 뺀 시간을 반환하도록 한다.
@@ -32,7 +33,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/17678](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/49191](https://programmers.co.kr/learn/courses/30/lessons/49191)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8798a3014f652242b057df48c6cb3418.js"></script>
 
 **플로이드 와샬**로 풀 수 있다. A가 B를 이긴다고 할 때 A에서 B로가는 간선의 가중치를 1로 설정해준 후 플로이드 와샬로 돌려 모든 점으로의 최소 거리를 구해준다. 이후엔 이웃으로부터 도달 가능한지 또는 이웃으로 도달 가능한지 여부를 따져주면 된다.
@@ -47,7 +49,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/49191](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/42892](https://programmers.co.kr/learn/courses/30/lessons/42892)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4a8f82eca82d9bafee43a3d257726913.js"></script>
 
 좌표로 주어지는 모든 노드들을 이진 트리로 연결한 후 전위/후위 순회를 해주는 문제다. 전위/후위 순회는 구현이 굉장히 간단한 편에 속한다. 나같은 경우 이진 트리를 만들어주는데 애먹었다.. 좌표만 주어지는데 이걸 부모와 매칭하는 좋은 방법이 뭐가 있는지 떠오르지 않아서 고생했다. 하마터면 투 포인터로 풀어서 쌩고생 할뻔했다. (사실 투 포인터로 풀기 시작했으면 포기했을거 같다) 결론적으로는 `connect()`라는 함수를 통해 연결했는데, 루트를 시작으로 레벨을 타고 내려가는 방식이다. 좌, 우가 자리가 비었으면서 x좌표 대소 비교가 적절하다면 자식으로 넣어주고, 해당되지 않으면 자식으로 내려간다.
@@ -64,7 +67,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/42892](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/42893](https://programmers.co.kr/learn/courses/30/lessons/42893)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9377cf6d595302f712f8b791b813201f.js"></script>
 
 프로그래머스에서 구현 문제를 꽤 풀어봤지만 이런 문제는 처음 풀어봤다. 일단 input부터 장난아니다. html을 input으로 넣을 생각을 하다니 임의로 TC를 만들어볼 엄두가 나지 않았다. 문자열을 탐색해서 적절한 조건을 걸어 필요한 값을 읽어와야 한다. 다른건 다 필요없고 탐색이 관건이다. 파이썬이나 자바로 푼 사람들은 메소드로 꽤 편리하게 푸는거 같던데 나는 찾아봐도 잘 모르겠어서 직접 탐색했다. 그래서인지 코드가 좀 더럽다.. 많이 더럽다.
@@ -83,7 +87,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/42893](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/60061](https://programmers.co.kr/learn/courses/30/lessons/60061)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/caea2c74c40e870dcb11a922838e979c.js"></script>
 
 구현 문젠데 케이스를 생각하기가 까다롭다. 생각한 것보다 되게 오래걸렸다. 설치 가능 조건을 파악하는건 어렵지 않다. 질문에 적힌 1, 2번 규칙에만 충실하게 구현하면 된다. 다만 삭제 가능 조건에 해당되는 케이스를 하나하나 생각하는게 어렵다. 처음엔 구체적인 케이스가 많지 않을거라 생각해 직접 if문으로 적어줬는데 계속 WA를 받았다. 대부분 구현 문제의 장점은 범위가 크지 않아서 약간의 비효율을 감수하는 방법을 택해도 된다는 점이 떠올라서 **먼저 삭제 가능한지 확인하려는 대상을 비활성화한 후** 현재 위치를 포함해 상하좌우, 대각선 총 9칸을 탐색하면서 **해당 칸에 기둥이나 보가 존재할 경우 설치 가능 여부를 체크하도록** 했다.

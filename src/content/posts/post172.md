@@ -16,7 +16,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/16926](https://www.acmicpc.net/problem/16926)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6a5dd1aac30196459bdcbad33c86d903.js"></script>
 
 구현 문제. 둘러싸고 있는 사각형들의 갯수는 $min(n,m)/2$이다. 이를 이용해서 각 사각형들에 속하는 원소들을 `Squ[t]`에 담아주자. 여기서 `t`는 사각형의 번호이다. (1부터 시작) 각 사각형의 원소의 갯수는 $2n+2m-4-8(t-1)$이 된다. `r`번째부터 좌촉 상단에 담아주면 되는데 r이 원소의 갯수보다 많다면 원소의 갯수만큼 모듈러를 걸어주자. 이후 `ret[x][y]`에 담아준 후 출력하면 된다.
@@ -31,7 +32,8 @@ Link : [https://www.acmicpc.net/problem/16926](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16935](https://www.acmicpc.net/problem/16935)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/908c2aef5feba2e357631621bbdedc97.js"></script>
 
 구현 문제. 문제에 주어진 쿼리대로 각각 구현을 해서 처리해주면 되는데 최적화가 필요없어서 난이도가 낮게 등록된 것 같다. 반복문을 적절히 이용해주면 된다는 면에서 크게 어렵진 않지만 한 곳에서 꼬이면 시간 잡아먹기 딱 좋은 문제.
@@ -46,7 +48,8 @@ Link : [https://www.acmicpc.net/problem/16935](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16917](https://www.acmicpc.net/problem/16917)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f6d5cbdaa014bee87e25552e9c9d2a3b.js"></script>
 
 구현 문제. 각각 **최소** X, Y개임에 주의.
@@ -61,7 +64,8 @@ Link : [https://www.acmicpc.net/problem/16917](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16936](https://www.acmicpc.net/problem/16936)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c4457710d0c2e3c0bb453148afb1739e.js"></script>
 
 브루트포스로 풀 수 있다. 어떤 숫자 x가 있을 때 이를 제외한 값들 중에 x/3, x*2가 있다면 인접 행렬로 인덱스를 담아주고 시작한다. 물론 x/3는 조건에 써있는대로 x가 3으로 나누어 떨어질 때여야 한다. 그리고 각 인덱스에 대해서 재귀를 돌리며 모든 인덱스를 다 돌았을 경우 출력하면 된다.
@@ -76,7 +80,8 @@ Link : [https://www.acmicpc.net/problem/16936](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16924](https://www.acmicpc.net/problem/16924)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5899d21373cce32b87d819eb6708f227.js"></script>
 
 구현 문제.
@@ -91,7 +96,8 @@ Link : [https://www.acmicpc.net/problem/16924](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16931](https://www.acmicpc.net/problem/16931)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d0d02e8e01d7088e9789d95b76fe4be8.js"></script>
 
 구현 문제. 현재 위치`(x, y)`에서 인접한 위치`(nx, ny)`에 대해 높이가 더 크다면 그 차만큼 답을 갱신해주자. 블럭은 각 위치에 항상 존재하므로 위, 아래를 바라볼 때 보이는 면은 항상 가로세로를 곱한 값이다. 따라서 최종적으로 가로세로 곱의 2배를 더해주면 된다.
@@ -106,7 +112,8 @@ Link : [https://www.acmicpc.net/problem/16931](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16956](https://www.acmicpc.net/problem/16956)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f900c7784c54dc7afb900bb5b4343d0b.js"></script>
 
 늑대를 다 가두거나 양을 다 가두자. 인접한 위치에 상대가 존재한다면 0을 출력.
@@ -121,7 +128,8 @@ Link : [https://www.acmicpc.net/problem/16956](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16967](https://www.acmicpc.net/problem/16967)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/acea23a235726acf27ddb1273dc93a89.js"></script>
 
 구현 문제.
@@ -136,7 +144,8 @@ Link : [https://www.acmicpc.net/problem/16967](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16929](https://www.acmicpc.net/problem/16929)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1a997ea8dfedd66a1a895e3e0a0e6c46.js"></script>
 
 범위가 작아서 DFS로 풀 수 있다. 문제에 정의된 사이클의 조건을 만족할 때 답을 출력하도록 하고 그렇지 않을경우 재귀를 돌려주면 된다.
@@ -151,7 +160,8 @@ Link : [https://www.acmicpc.net/problem/16929](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16964](https://www.acmicpc.net/problem/16964)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cd43a3fb9aad289768675f00db8c22d3.js"></script>
 
 문제 제목에 적혀있듯이 DFS로 풀 수 있다. [최악의 경우](https://www.acmicpc.net/board/view/51950)에는 $O(n^2)$이 통과할 수 없으므로 인접한 값들을 모두 정렬해준 뒤 이분 탐색으로 찾는 방법을 택했다. 카테고리를 보니 다른 방법으로도 풀 수 있는 것 같아 보인다.
@@ -166,7 +176,8 @@ Link : [https://www.acmicpc.net/problem/16964](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16957](https://www.acmicpc.net/problem/16957)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a93f6362f3679b32b459ca6983a81b5f.js"></script>
 
 인접한 위치 중 현재 값보다 작은 값들 중 가장 작은 값의 위치로 이동하는데 인접한 값들이 모두 현재 값보다 큰 위치를 발견할 때까지 이동하게 된다. 위와 다른 현재 위치에서 한 번 기록된 경로를 밟게 된다면 촤종 위치로 바로 이동할 수 있도록 DP를 이용해서 처리하면 된다.
@@ -184,7 +195,8 @@ Link : [https://www.acmicpc.net/problem/16957](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16971](https://www.acmicpc.net/problem/16971)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/be41302b984fe917d073ed0a612909ff.js"></script>
 
 이걸 구현 문제로 봐야할지 브루트포스 문제로 봐야할지 모르겠다. 서로 섞은 문제라고 해야하나? 서로 섞는다고 딱히 큰 의미가 있는건 아니다. 생각한 것보다 시간이 정말 오래걸렸다. 풀 아이디어는 떠오르는데 계산 미스때문에 TC를 넘는데도 한참이 걸렸고 중간에 뇌절한게 컸다. 🤕 어떻게 하면 좀 깔끔하게 풀 수 있을까 고민고민하다가 스스로 함정을 팠다.
@@ -234,7 +246,8 @@ Link : [https://www.acmicpc.net/problem/16971](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16974](https://www.acmicpc.net/problem/16974)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/50971c15eebd3cf2a378de84930d5b54.js"></script>
 
 DP로 풀었는데.. 더 쉬운 풀이가 있는 것 같다. DP로 푸는 것도 그렇게 어렵진 않긴 하다. 나같은 경우 레벨이 n이라고 할 때 `f(n)`은 레벨-n 버거에 들어가는 총 갯수를, `g(n)`은 레벨-n 버거에 들어가는 총 패티 갯수를 반환하도록 DP로 처리했다. 그리고 `solve()`에서 남은 갯수에 따라 패티 갯수를 반환할 수 있도록 케이스별로 처리해줬다. 남은 갯수가 딱 떨어진다면 더 이상 재귀 호출을 하지 않고 패티 갯수를 반환하도록 했고 그렇지 않은 경우 잔여량에 대해 버거 레벨을 하나 낮춘 뒤 재귀(`solve(remain-cur, size-1)`)를 돌려줬다.
@@ -252,7 +265,8 @@ DP로 풀었는데.. 더 쉬운 풀이가 있는 것 같다. DP로 푸는 것도
 
 Link : [https://www.acmicpc.net/problem/9093](https://www.acmicpc.net/problem/9093)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/dc8029464566ce00f053388b7ba46b9f.js"></script>
 
 string 내장 함수인 **reverse**를 이용하면 쉽게 뒤집을 수 있다. getline()으로 입력받을 시 cin.ignore()를 해줘야 함에 주의. (위에 있는 cin >> n 때문)
@@ -267,7 +281,8 @@ string 내장 함수인 **reverse**를 이용하면 쉽게 뒤집을 수 있다.
 
 Link : [https://www.acmicpc.net/problem/17413](https://www.acmicpc.net/problem/17413)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/249e5227342d5b306be5295036cc1f0e.js"></script>
 
 단순 구현 문제. 위 문제인 [BOJ 9093: 단어 뒤집기](https://www.acmicpc.net/problem/9093)에서 조건이 추가된 버전이다. 태그에 주의해서 조건문을 적절하게 걸어주면 된다.
@@ -282,7 +297,8 @@ Link : [https://www.acmicpc.net/problem/17413](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/10799](https://www.acmicpc.net/problem/10799)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f43a46f13da36188087bb1b85b08163e.js"></script>
 
 구현 문제. 스택으로 푸는 기본 문제로 생각되는데 스택을 안써도 될 것 같아서 그냥 풀었다. 몇 달 전에 프로그래머스에서 풀었던 기억이 나서 코드를 가져와 제출해봤는데 TLE를 받았다! 😨 대강 보니까 $O(n^2)$로 짜서 통과를 못한걸로 보였다. 프로그래머스는 데이터가 약했던 모양인지 통과를 했었는데.. 때문에 어떻게 문제를 천천히 읽어보니 $O(n)$으로 짤 수 있는 방법이 금방 보여서 금방 구현하고 AC를 받을 수 있었다!
@@ -297,7 +313,8 @@ Link : [https://www.acmicpc.net/problem/10799](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17298](https://www.acmicpc.net/problem/17298)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/af05b35aaa410f01acec0ee418ee9c81.js"></script>
 
 스택 문제. 굳이 스택을 쓰지 않고 배열로 처리해도 상관없다. 사실 그게 더 편한 것 같다.
@@ -328,7 +345,8 @@ Link : [https://www.acmicpc.net/problem/17298](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17299](https://www.acmicpc.net/problem/17299)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/50ad9f55bdde503c85738d63af21996d.js"></script>
 
 위에서 푼 [BOJ 17298: 오큰수](https://www.acmicpc.net/problem/17298)에서 기준이 바뀐 문제다. 대소 비교에서 **횟수** 비교로 바뀌었으니 등장한 횟수를 전처리 해놓고 조건문을 변경해주면 된다.
@@ -343,7 +361,8 @@ Link : [https://www.acmicpc.net/problem/17299](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1935](https://www.acmicpc.net/problem/1935)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8e97495cbf5035d8b8a21bba509ce92d.js"></script>
 
 스택 활용 문제.
@@ -358,7 +377,8 @@ Link : [https://www.acmicpc.net/problem/1935](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/1918](https://www.acmicpc.net/problem/1918)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4bacd184e6eb82365f599ddd1c7709b1.js"></script>
 
 스택 활용 문제. 간단하게 푼 사람들도 많이 보였는데 나같은 경우 스택의 특성을 주로 활용했다기 보단 재귀 호출로 푼 느낌이 강하다. 딱히 다른 좋은 방법이 떠오르질 않았다.
@@ -379,7 +399,8 @@ Link : [https://www.acmicpc.net/problem/1918](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/11655](https://www.acmicpc.net/problem/11655)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1a9d0493717ff469b34f6d367b3ac7de.js"></script>
 
 쉬운 구현 문제. 아스키 코드가 알파벳 범위를 넘어가면 다시 알파벳 범위로 돌아오도록 처리하면 끝.
@@ -394,7 +415,8 @@ Link : [https://www.acmicpc.net/problem/11655](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/10824](https://www.acmicpc.net/problem/10824)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/34158aed3fff69832c188db2385ee9a0.js"></script>
 
 쉬운 구현 문제. 처음에 stoi로 처리했는데 int 범위를 넘는 경우때문에 런타임 에러를 받았다. stoi는 int형으로 반환하더라. 그냥 따로 구현해서 처리해줬다.
@@ -409,7 +431,8 @@ Link : [https://www.acmicpc.net/problem/10824](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17087](https://www.acmicpc.net/problem/17087)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/238a25e4faaf740f36e2cd57531555c2.js"></script>
 
 수학 문제. **유클리드 호제법**을 통해 모든 값에 대해 최대공약수를 구하면 된다.
@@ -424,7 +447,8 @@ Link : [https://www.acmicpc.net/problem/17087](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2089](https://www.acmicpc.net/problem/2089)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/50522f7242d8c67ff5da45cb7eea3152.js"></script>
 
 2진수를 구하는 것처럼 처리하면 되는데 다만 나누어야 할 값이 -2이다. **나머지가 0또는 1이 되도록 해야 한다는 점**에 주의해야 한다.
@@ -439,7 +463,8 @@ Link : [https://www.acmicpc.net/problem/2089](https://www.acmicpc.net/problem/20
 
 Link : [https://www.acmicpc.net/problem/11005](https://www.acmicpc.net/problem/11005)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4f06170174d2d556e3927998cdf443c2.js"></script>
 
 쉬운 구현 문제. N진수로 표현하기.
@@ -454,7 +479,8 @@ Link : [https://www.acmicpc.net/problem/11005](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2745](https://www.acmicpc.net/problem/2745)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ae68b215ab5b96d0abfd230413484124.js"></script>
 
 쉬운 구현 문제. N진수로 표현된 수를 10진수로 표시하면 된다.
@@ -469,7 +495,8 @@ Link : [https://www.acmicpc.net/problem/2745](https://www.acmicpc.net/problem/27
 
 Link : [https://www.acmicpc.net/problem/2503](https://www.acmicpc.net/problem/2503)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5dfe2b83a492d96308bb10c005445b44.js"></script>
 
 브루트포스 문제. 문제에 제시된 기준에 따라 모든 케이스들을 통과하는 **3자릿수면서 서로 다른 숫자로 이루어진 수**에 대해 조사해야 하므로 111부터 999까지 모두 돌려보면 된다. 조건에 주의.

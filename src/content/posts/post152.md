@@ -20,7 +20,8 @@ author:
 Link : [https://www.acmicpc.net/problem/1107](https://www.acmicpc.net/problem/1107)<br>
 <img src="https://lh3.googleusercontent.com/d/1z4oDd4Eb7lw75nRe0sgo8dVGvu4PWhtB" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d5585466623c999b2b92af39e049509b.js"></script>
 
 예외처리를 좀 해줘야 했다. 더 깔끔하게 푸는 풀이가 있을진 모르겠지만.. 여러 TC를 참고한 덕분에 AC를 받는데는 수월했다. 체크해야 하는 경우의 수는 크게 3가지다.
@@ -39,7 +40,8 @@ Link : [https://www.acmicpc.net/problem/1107](https://www.acmicpc.net/problem/11
 Link : [https://www.acmicpc.net/problem/6064](https://www.acmicpc.net/problem/6064)<br>
 <img src="https://lh3.googleusercontent.com/d/12zIaGvHM2bpF2NJ8mTqSsCTlCkEinu0n" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/38a01a535d216cd09b8d1b260351cfa6.js"></script>
 
 M이 x로 나누어 떨어질 때 또는 N이 y로 나누어 떨어질 때를 주의해야 한다. 기본값을 x로 시작해서 M을 계속 더해가면 나머지는 x로 유지가 된다. 이 때 N으로 나눈 나머지가 y일 때 값을 출력하면 된다. 물론 M != x, N != y일 때 해당된다. 그렇지 않을 경우 예외 처리를 해줘야 한다.
@@ -55,7 +57,8 @@ M이 x로 나누어 떨어질 때 또는 N이 y로 나누어 떨어질 때를 �
 Link : [https://www.acmicpc.net/problem/1748](https://www.acmicpc.net/problem/1748)<br>
 <img src="https://lh3.googleusercontent.com/d/1gwKJMNotK73eaEt0SSk_gNVZqBpfRHgt" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/71b3502de9e27d7865e4c55d13a2ea5d.js"></script>
 
 단순 수학 문제.
@@ -71,7 +74,8 @@ Link : [https://www.acmicpc.net/problem/1748](https://www.acmicpc.net/problem/17
 Link : [https://www.acmicpc.net/problem/2529](https://www.acmicpc.net/problem/2529)<br>
 <img src="https://lh3.googleusercontent.com/d/1Vx--8qrghScOqk6ITkMjSt1tXRV41_Bi" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/3e8385ce5887fe37460efbba3969b09f.js"></script>
 
 주어진 부등호에 따라 구현을 해야한다. 재귀를 통해 간결하게 풀 수 있다.
@@ -87,7 +91,8 @@ Link : [https://www.acmicpc.net/problem/2529](https://www.acmicpc.net/problem/25
 Link : [https://www.acmicpc.net/problem/1339](https://www.acmicpc.net/problem/1339)<br>
 <img src="https://lh3.googleusercontent.com/d/1yLb2ubBhy20RrqvNOU3N1hgC45GkfqE4" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1a8740dec9fa44934d03763b7d5474d2.js"></script>
 
 입력받은 문자열에서 알파벳들을 모아 0~9 숫자를 매핑시킨다. 이 숫자의 모든 순열을 구해서 최댓값일 때를 취하면 된다. 알파벳 종류가 10개일 때를 로컬에서 돌렸을 때 생각보다 출력이 늦게 나와서 시간초과를 받을 줄 알았는데 제출하니까 600ms 내로 통과가 됐다..
@@ -103,7 +108,8 @@ Link : [https://www.acmicpc.net/problem/1339](https://www.acmicpc.net/problem/13
 Link : [https://www.acmicpc.net/problem/14889](https://www.acmicpc.net/problem/14889)<br>
 <img src="https://lh3.googleusercontent.com/d/1xzH_li-RW9UY1HDvwU89DCwjj4SWhUP7" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1d75bf5f0da43e3c2a098c4f7f30d8c4.js"></script>
 
 N이 작아서 모든 조합을 돌려도 충분히 통과가 된다. 각 팀의 멤버 수는 N/2이므로 N길이에 0과 1을 넣은 후 **next_permutation**으로 돌려줘서 멤버를 정한다. 정해진 멤버에 대해 능력치를 모조리 더해 비교해주면 된다.
@@ -119,7 +125,8 @@ N이 작아서 모든 조합을 돌려도 충분히 통과가 된다. 각 팀의
 Link : [https://www.acmicpc.net/problem/2580](https://www.acmicpc.net/problem/2580)<br>
 <img src="https://lh3.googleusercontent.com/d/1MM3R0yD7uTY73VbMbH6VMl5Ut8YUquna" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/750d89ce68e241d514c92e2efaa883e6.js"></script>
 
 행, 열, 블럭에 대해서 1~9 숫자를 갖고 있는지를 체크하는 변수를 만들어두고<br>
@@ -136,7 +143,8 @@ Link : [https://www.acmicpc.net/problem/2580](https://www.acmicpc.net/problem/25
 Link : [https://www.acmicpc.net/problem/1062](https://www.acmicpc.net/problem/1062)<br>
 <img src="https://lh3.googleusercontent.com/d/1jU5bysGjNx5BniXsclI7qT28wqrlfvlj" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4d927ca806db9ef6163a41c0bd75698e.js"></script>
 
 단어의 앞뒤는 각각 `anta`, `tica`가 무조건 붙어있다. 이 부분을 제외한 모든 단어를 체크하기만 하면 되는줄 알았는데 그렇게하면 너무나도 쉽게 TLE를 받는다(?) 찾아보니 `anta`, `tica`에 있는 철자 a, n, t, i, c도 외우는 대상에 들어가게 된다고 한다. 따라서 모든 단어 앞뒤에 등장하는 철자 5개를 우선으로 외워야 한다. k가 5보다 작으면 학습 가능한 단어가 없는 셈이다. 예외 처리를 해줘야 한다.
@@ -159,7 +167,8 @@ Link : [https://www.acmicpc.net/problem/13460](https://www.acmicpc.net/problem/1
 <summary>Solution</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b09258b8bfa5f044b9df64f5b017af31.js"></script>
 </div>
 </details>
@@ -177,7 +186,8 @@ Link : [https://www.acmicpc.net/problem/13460](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/12100](https://www.acmicpc.net/problem/12100)<br>
 <img src="https://lh3.googleusercontent.com/d/14FVZh_pwdYnf3SgsZ7SOoBFnpc1qQ2ex" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d5475a276a714f1581409eb55f093082.js"></script>
 
 구현이 빡센 문제다. 생각보다 반례가 툭툭 튀어나와서 깡이 필요하다. 방향에 따라 조금씩 다른 수행을 하도록 되어있어서 코드가 많이 복잡해졌는데 더 줄일 좋은 방법이 떠오르질 않아서 거의 복붙을 해버렸다..
@@ -195,7 +205,8 @@ Link : [https://www.acmicpc.net/problem/12100](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/1806](https://www.acmicpc.net/problem/1806)<br>
 <img src="https://lh3.googleusercontent.com/d/1Xq1razd1-d5RW-9-yCtN2qXZiJIP2dg9" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0ed398d031112a1b610b26fcfac26ade.js"></script>
 
 제목 그대로 부분합(투 포인터)을 이용해서 쉽게 해결했다. 모든 원소가 자연수이기 때문에 부분합은 반드시 오름차순으로 정렬된 상태가 된다. 정렬된 상태이므로 `lower_bound()`를 통해 이분 탐색으로 조건을 만족하는 최소 인덱스를 찾아주자.
@@ -213,7 +224,8 @@ Link : [https://www.acmicpc.net/problem/1806](https://www.acmicpc.net/problem/18
 Link : [https://www.acmicpc.net/problem/1644](https://www.acmicpc.net/problem/1644)<br>
 <img src="https://lh3.googleusercontent.com/d/1nRNQg2Ckp51My4N_1Qb7d_TC0hvJVIS6" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/90a97387d1c4ee9885777a0fb4fae73d.js"></script>
 
 소수는 **에라토스테네스의 체**를 이용해서 미리 구해주면 된다. 이후에는 투 포인터로 해결해주자.
@@ -229,7 +241,8 @@ Link : [https://www.acmicpc.net/problem/1644](https://www.acmicpc.net/problem/16
 Link : [https://www.acmicpc.net/problem/2143](https://www.acmicpc.net/problem/2143)<br>
 <img src="https://lh3.googleusercontent.com/d/16DXA2oZtiCkyakT6Z6yGq5vr3QXzxs9V" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/dc28a97232edbc4303e61529f30247b9.js"></script>
 
 각 배열의 원소 갯수 최댓값이 1000이므로 각 배열의 모든 부분합을 구해준 후 정렬한다. 부분합을 담은 각 배열을 A, B라고 하면, `A[i]+B[j]=t`가 되는 모든 케이스를 구하면 된다. 이분 탐색으로 구하도록 하자.
@@ -245,7 +258,8 @@ Link : [https://www.acmicpc.net/problem/2143](https://www.acmicpc.net/problem/21
 Link : [https://www.acmicpc.net/problem/7453](https://www.acmicpc.net/problem/7453)<br>
 <img src="https://lh3.googleusercontent.com/d/1dI7mfLJ_3OCV0fOEHLG4-1FncjeYrqSB" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/eb2a3922cc9c551c41029b40dfda0a9e.js"></script>
 
 a, b, c, d에 담긴 수들을 (a, b), (c, d)로 묶어서 생각하자. 이렇게 묶인 것들 끼리 생길 수 있는 모든 합을 구해 배열 v1, v2에 담은 후 **이분 탐색**으로 답을 구하면 된다.
@@ -265,7 +279,8 @@ a, b, c, d에 담긴 수들을 (a, b), (c, d)로 묶어서 생각하자. 이렇�
 Link : [https://www.acmicpc.net/problem/2251](https://www.acmicpc.net/problem/2251)<br>
 <img src="https://lh3.googleusercontent.com/d/1APlyPUvfgxxeCsdZ0_x2EvuggT4pr_IQ" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7825796a45852fff5c8af67dcc706a8c.js"></script>
 
 처음 물통의 용량이 각각 A, B, C라 하면 물이 C만큼만 주어진 상태로 시작한다. 첫 번째 물통에 물이 없을 때 답을 갱신해주면 된다. 경우의 수가 생각보다 많지만 변수때문에 헷갈릴 여지가 있으므로 주의하자.
@@ -282,7 +297,8 @@ Link : [https://www.acmicpc.net/problem/2251](https://www.acmicpc.net/problem/22
 Link : [https://www.acmicpc.net/problem/12851](https://www.acmicpc.net/problem/12851)<br>
 <img src="https://lh3.googleusercontent.com/d/1Xx_3aHoTA_RdJgCNBZtZLR1igEp-uIhM" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1fdc1bffd1b917f5ab4a08bc6e2786d1.js"></script>
 
 모든 이동 방법에 따른 카운트가 1씩 증가하므로 BFS로 탐색해주면 된다. 최단 시간만 구한다면 쉬워지지만 최단 시간으로 들어오는 방법의 수를 출력하는 문제여서 조금 까다롭다. 계속 고민하다가 [이곳](https://rebas.kr/750)에서 도움을 받았다. 확실히 코드가 간결해졌다!
@@ -299,7 +315,8 @@ Link : [https://www.acmicpc.net/problem/12851](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/9376](https://www.acmicpc.net/problem/9376)<br>
 <img src="https://lh3.googleusercontent.com/d/1r3IGNkDHmZOfYAr3ot1xuhiC-j1JgG3d" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c9e4bd74a185fd64cd8969d31ac8f71a.js"></script>
 
 [REBAS님의 글](https://rebas.kr/770)에 너무 자세히 설명돼있다.
@@ -316,7 +333,8 @@ Link : [https://www.acmicpc.net/problem/9376](https://www.acmicpc.net/problem/93
 Link : [https://www.acmicpc.net/problem/9328](https://www.acmicpc.net/problem/9328)<br>
 <img src="https://lh3.googleusercontent.com/d/1_Bx9FQOPgujVLXbRreOPCNoHpND3l6pa" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ebee2e904e48c5e74ff5b5e0039b68c3.js"></script>
 
 밖에서 안으로 들어와야 하므로 테두리를 '.'로 감씨고 시작한다. BFS를 1번만 돌려서는 답을 구할 수 없다. BFS를 돌릴 때마다 열쇠를 얻을 수 있는 케이스가 있을 수도 있어서 그렇다. 열쇠 종류는 최대 26가지(알파벳 개수)이므로 BFS를 27번 돌렸다.
@@ -329,7 +347,8 @@ Link : [https://www.acmicpc.net/problem/9328](https://www.acmicpc.net/problem/93
 
 Link : [https://www.acmicpc.net/problem/1194](https://www.acmicpc.net/problem/1194)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/74a2fbcd710395478fc19d18a851318c.js"></script>
 
 Q&A를 읽다가 찾은 유사 문제다. 열쇠를 구해야 문을 열 수 있다는 컨셉이 같다. 조금 다른 점은 열쇠 종류가 a~f까지 줄어들었다는 점과 도착지까지의 최단 거리를 구해야 한다. 일단 위에서 풀었던 '열쇠' 문제와는 비슷해보이지만 사뭇 다르다. TC를 조금만 분석해봤다면 느꼈겠지만 열쇠가 있는 지점을 거치는 순간 또 다른 `visited`를 이용해야 한다.
@@ -352,7 +371,8 @@ Q&A를 읽다가 찾은 유사 문제다. 열쇠를 구해야 문을 열 수 있
 Link : [https://www.acmicpc.net/problem/4991](https://www.acmicpc.net/problem/4991)<br>
 <img src="https://lh3.googleusercontent.com/d/1mcEcug95ktaSgXdw68eWjPvcDp1Asq8o" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5116d4797c5723903dfa0038480a6129.js"></script>
 
 누가봐도 BFS로 풀어야 할거 같은데 먼지가 최대 10개까지 있으면서 같은 칸을 밟을 수 있다는게 좀 걸린다.<br>
@@ -370,7 +390,8 @@ Link : [https://www.acmicpc.net/problem/4991](https://www.acmicpc.net/problem/49
 Link : [https://www.acmicpc.net/problem/6087](https://www.acmicpc.net/problem/6087)<br>
 <img src="https://lh3.googleusercontent.com/d/1suUMfl8Rklvj0g6giRjdHvVkHY7_raZx" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c9829a1f3d3e3b610039c2aa6bb0fd78.js"></script>
 
 반대 방향을 제외한 모든 방향으로 이동할 수 있으며, 90도 회전해서 이동할 경우 1씩 카운트해줘야 한다. 처음엔 배열 dist만으로 해결해보려 했는데 반례가 있는지 통과가 되지 않았다.. ㅠㅠ 구조체에 별도로 카운팅할 수 있는 변수를 만들어서 돌려줬더니 통과할 수 있었다. 일반적인 BFS와 크게 다르진 않다.
@@ -387,7 +408,8 @@ Link : [https://www.acmicpc.net/problem/6087](https://www.acmicpc.net/problem/60
 Link : [https://www.acmicpc.net/problem/8111](https://www.acmicpc.net/problem/8111)<br>
 <img src="https://lh3.googleusercontent.com/d/1wBa1K7WqMh_0ZZroyc9WOjyARwB3wHpV" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cea48528d7776942b6bba393589f2738.js"></script>
 
 모든 숫자가 0과 1로 이루어지면서 입력으로 들어오는 n의 배수가 되는 값을 찾아야 한다. 뒤에 0 또는 1을 계속 붙여가며 조건에 맞는 값을 찾으면 바로 반환하면 되므로 BFS로 탐색해야 한다. 처음엔 string으로 큰 수를 관리하면서 풀어보려고 했다. 큰 수는 아니지만 가령 1101이 있다고 하고 input으로 N을 입력받았다고 하자. 그럼 1101은 다음과 같이 쓸 수 있다.
@@ -411,7 +433,8 @@ $$
 Link : [https://www.acmicpc.net/problem/15558](https://www.acmicpc.net/problem/15558)<br>
 <img src="https://lh3.googleusercontent.com/d/19sfcCNqKa-2BomZOqB4dWfsPgiT55PWw" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b648a71f68eba43a74c32e9db594c4ec.js"></script>
 
 조건에 맞춰서 가능한 경우의 수를 만들어서 돌리면 된다. 가능한 케이스가 발생하면 바로 1을 리턴할 수 있도록 BFS로 돌려준다.
@@ -432,7 +455,8 @@ Link : [https://www.acmicpc.net/problem/15558](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/11048](https://www.acmicpc.net/problem/11048)<br>
 <img src="https://lh3.googleusercontent.com/d/1bVp2F3OPxtcbmrcu-CYZoX1_3S2dWTBE" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ac3d3c8f4a38d02130cbaa008b61fe16.js"></script>
 
 이동하는 방향에 맞춰서 점화식을 세우면 된다.
@@ -453,7 +477,8 @@ $$
 Link : [https://www.acmicpc.net/problem/1890](https://www.acmicpc.net/problem/1890)<br>
 <img src="https://lh3.googleusercontent.com/d/1cUcKfS9fKm4MfoW1lr2-Dt9rMBSi7vMP" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ce8e5287db06ff12db120b01a681c69f.js"></script>
 
 입력받는 정보를 `board`에 담고 x가 행, y가 열이라 하면 점화식은 다음과 같다.
@@ -475,7 +500,8 @@ $$
 Link : [https://www.acmicpc.net/problem/15989](https://www.acmicpc.net/problem/15989)<br>
 <img src="https://lh3.googleusercontent.com/d/1iDKDhaPUIS-qzHrryhVJdWexW_T5DuyG" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1a004d918db92eb4d7b08a17ac117879.js"></script>
 
 같은 숫자들로 더해지고 순서만 다른 케이스를 제거해야 한다. 인자 1개만으로는 처리하기 어렵고, 1개를 더 추가해야 한다.<br>
@@ -492,7 +518,8 @@ Link : [https://www.acmicpc.net/problem/15989](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/2294](https://www.acmicpc.net/problem/2294)<br>
 <img src="https://lh3.googleusercontent.com/d/1-YPHVqzj2TE1YbnOddi-pdDip1VVsOnC" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9bb23bf3085f45d3fb818d55e88e9a79.js"></script>
 
 [BOJ 2293: 동전 1](https://www.acmicpc.net/problem/2293)에서 조금만 달라진 문제다. 때문에 점화식은 동일하지만 불가능한 경우도 출력해야 한다. 주어진 단위로 나누어 떨어지지 않을 때 INF를 반환하도록 하면 불가능한 경우에 대해 처리할 수 있다.
@@ -508,7 +535,8 @@ Link : [https://www.acmicpc.net/problem/2294](https://www.acmicpc.net/problem/22
 Link : [https://www.acmicpc.net/problem/5557](https://www.acmicpc.net/problem/5557)<br>
 <img src="https://lh3.googleusercontent.com/d/1MnY2sdSmAwNf5eIv5U_mjthlpJwu241-" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7230e79a2638d44ce79ec588b8fadc26.js"></script>
 
 인덱스, 중간값, 연산자 총 3개를 인자로 받아서 DP로 처리했다. 각각 `cur`, `mr`, `oper`이라 하고 `oper`이 0일 때 +, 1일 때 -라하면 점화식은 다음과 같다. `a`는 input을 담은 배열이다.
@@ -531,7 +559,8 @@ $$0<=mr<=20$$을 만족하지 않으면 0을 반환해야 한다.<br>
 Link : [https://www.acmicpc.net/problem/5557](https://www.acmicpc.net/problem/10422)<br>
 <img src="https://lh3.googleusercontent.com/d/1vK1tT2fnt1CiN911vhEk67Nfxn0U2Jk_" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/23541749ca534e9253745d7fcd94889e.js"></script>
 
 괄호 '('가 등장하면 +1, ')'가 등장하면 -1을 한다고 하자. 그럼 `sum`이 0보다 작아질 경우 '올바른 괄호 문자열'이 되지 않는다. 최종적으로 길이가 `L(input)`과 같아졌을 때 `sum`이 0이면 1을, 아니면 0을 반환하도록 잘 설정해주자.

@@ -19,7 +19,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/1818](https://www.acmicpc.net/problem/1818)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2206bad6ce5a39eb524f5e25349c86a7.js"></script>
 
 N의 범위가 20만까지 커질 수 있으므로 LIS를 $O(NlogN)$만에 구해야 한다. 전체 길이 N에 LIS의 길이를 빼주면 된다.
@@ -36,7 +37,8 @@ N의 범위가 20만까지 커질 수 있으므로 LIS를 $O(NlogN)$만에 구�
 
 Link : [https://www.acmicpc.net/problem/13302](https://www.acmicpc.net/problem/13302)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/82a3f125d2dd9d2a52f715643022f759.js"></script>
 
 문제가 상당히 길지만 변수가 많지 않아서 크게 어렵지 않은 DP 유형이다. 리조트에 가지 않는 날인지 아닌지 그리고 쿠폰이 3개 이상인지 유의해서 케이스를 처리해주자.
@@ -51,7 +53,8 @@ Link : [https://www.acmicpc.net/problem/13302](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/9576](https://www.acmicpc.net/problem/9576)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8210f337c5d321baf65e41d8ee41ef27.js"></script>
 
 이분 매칭 알고리즘 기본 유형이다. 잘 했다고 생각했는데 계속 틀린다면 사람의 수를 m이 아닌 n으로 착각한건 아닌지 확인해보자..
@@ -66,7 +69,8 @@ Link : [https://www.acmicpc.net/problem/9576](https://www.acmicpc.net/problem/95
 
 Link : [https://www.acmicpc.net/problem/2367](https://www.acmicpc.net/problem/2367)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5c7aff35bcd1a1748e6554bc7c17700c.js"></script>
 
 에드모든 카프 알고리즘으로 풀 수 있다. start -> 사람 -> 음식 -> end 로 연결한 후 start -> 사람으로는 용량을 k로, 사람 -> 음식은 용량을 1로, 음식 -> end는 용량을 input의 2번째 줄로 설정하자. 그럼 각 사람당 선택할 수 있는 음식의 가짓수는 k개가 되고 사람당 한 종류의 음식에는 1개만 선택하게 된다. 또한 선택되는 음식의 갯수는 입력받은 값으로 상한선이 제한된다.
@@ -83,7 +87,8 @@ Link : [https://www.acmicpc.net/problem/2367](https://www.acmicpc.net/problem/23
 
 Link : [https://www.acmicpc.net/problem/11405](https://www.acmicpc.net/problem/11405)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/434b003af435956b9ab13adb58271414.js"></script>
 
 **최소 비용 최대 유량(Minimum Cost Maximum Flow)** 유형에 속하는 문제. 줄여서 **MCMF**라고 부르는데 저런 글자만 봤었지 사실 무슨 내용인지는 처음 알게됐다. 덕분에 공부하는 와중에 **SPFA**도 알게됐고 서로 코드상 차이가 별로 없어서 금방 익힐 수 있었다!
@@ -102,7 +107,8 @@ Link : [https://www.acmicpc.net/problem/11405](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2228](https://www.acmicpc.net/problem/2228)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d24284153b4db816a29b7c37bee384b2.js"></script>
 
 DP 문제. 길이 n의 수열이 있을 때 인접하지 않은 구간 M개로 나눠 구간 내 원소 합의 최댓값을 구해야 한다. 설명을 처음 읽었을 때 솔직히 이게 무슨 소린가 했다. 겹쳐있지 않아야 한다는건 알겠는데 인접하지 않아야 한다니.. 말 그대로 구간 [a, b], [c, d]가 있으면 $|b-c| \neq 1$이면 된다. 최소 1칸 이상 떨어져야 한다. 현재 인덱스를 `cur`, 현재 구간 번호를 `turn`(1부터 시작)이라 두고 구간이 끝난 상태 여부를 `on`으로 설정했다. 점화식은 다음과 같다.<br>
@@ -120,7 +126,8 @@ $else: f(cur, turn, on) = max(f(cur-1, turn-1, 1), f(cur-1, turn, 0))$<br>
 
 Link : [https://www.acmicpc.net/problem/10277](https://www.acmicpc.net/problem/10277)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7e3e178b7107385761d56cffccd77691.js"></script>
 
 **Lazy Propagtion**으로 풀 수 있다. 코어 개수의 상한이 무려 4587520이다! 메모리가 굉장히 빡빡하다. 세그먼트 트리 문제는 항상 구현하기 힘들어서 클래스로 만들어두고 두고두고 복사해서 써먹는데 메모리 초과를 받는 경우가 많지 않아서 오버플로우를 피하고자 long long으로 설정해뒀던게 원인이 됐다. ㅠㅠ int로 바꾸고 나서 다행히도 AC를 받을 수 있었다!
@@ -139,7 +146,8 @@ Link : [https://www.acmicpc.net/problem/10277](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/13544](https://www.acmicpc.net/problem/13544)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/49a81aa3d25199031998987f700b058d.js"></script>
 
 **머지 소트 트리(Merge Sort Tree)** 유형이다. 이 문제를 풀면서 처음 알게된 알고리즘인데 세그먼트 트리를 베이스로 만들어져서 금방 익힐 수 있었다! 이런 종류의 문제에만 적용할 수 있는 알고리즘인진 모르겠어서 더 찾아서 풀어봐야겠다. 여기서는 이전 쿼리와 현재 쿼리를 XOR한 값으로 계속 출력해줘야 한다! [BOJ 13537: 수열과 쿼리 1](https://www.acmicpc.net/problem/13537)는 XOR하지 않고 바로 출력하면 된다.
@@ -153,7 +161,8 @@ Link : [https://www.acmicpc.net/problem/13544](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16395](https://www.acmicpc.net/problem/16395)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c4b18615c3ab71085cd2075833f65dfb.js"></script>
 
 쉬운 DP 문제다. 조합의 성질을 이용해주면 된다. 행과 열이 0부터 시작함에 주의.
@@ -168,7 +177,8 @@ Link : [https://www.acmicpc.net/problem/16395](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1620](https://www.acmicpc.net/problem/1620)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7911a1c442197196e090073140504612.js"></script>
 
 맵을 활용하자!
@@ -183,7 +193,8 @@ Link : [https://www.acmicpc.net/problem/1620](https://www.acmicpc.net/problem/16
 
 Link : [https://www.acmicpc.net/problem/5525](https://www.acmicpc.net/problem/5525)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/920ba13459393101387adab14705badd.js"></script>
 
 $P_n$은 $P_1$ n개로, $P_2$ n-1개, ..., $P_n$ 1개로 이루어져 있다. 이 점을 이용해 문자열을 끝까지 훑어가면서 각 $P_n$을 구해 입력받은 N으로 $O(1)$만에 처리할 수 있다.
@@ -198,7 +209,8 @@ $P_n$은 $P_1$ n개로, $P_2$ n-1개, ..., $P_n$ 1개로 이루어져 있다. �
 
 Link : [https://www.acmicpc.net/problem/3080](https://www.acmicpc.net/problem/3080)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/719833688e275bffa97b78a157d078d7.js"></script>
 
 **트라이 알고리즘**으로 풀었는데, 처음에 input으로 받는 모든 문자열을 때려 넣었다가 메모리 초과를 받았다. 도대체 어떻게 처리해야하나 고민을 하다가 잘 모르겠어서 찾아봤는데 2가지 방법으로 처리할 수 있었다.
@@ -221,7 +233,8 @@ Link : [https://www.acmicpc.net/problem/3080](https://www.acmicpc.net/problem/30
 
 Link : [https://www.acmicpc.net/problem/5446](https://www.acmicpc.net/problem/5446)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/079f964e59b19b016dc634fc08ce3ad9.js"></script>
 
 와일드카드로 다 지울 수 있는지 없는지에 중점을 둬서 케이스를 분류해야 한다. 문자열 뒤에 와일드카드를 붙이면 **해당 문자열을 포함하고** 접미사가 달린 문자열 또한 지우게 된다. 제거하면 안되는 문자열들을 마구 넣어 각각의 위치에서 `root->ban`을 true로 만들어주면 와일드카드를 쓸 수 있는지 여부를 체크할 수 있다! 또, 단어가 끝나는 위치면 표시(`root->wordfin = true`)를 해줘야 일부 케이스에서 답을 갱신할 수 있다.
@@ -266,7 +279,8 @@ Link : [https://www.acmicpc.net/problem/1168](https://www.acmicpc.net/problem/11
 
 Link : [https://www.acmicpc.net/problem/1238](https://www.acmicpc.net/problem/1238)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/0014a9d7e996a15757cd7411b74275ba.js"></script>
 
 '각 점에서 X까지 최단 거리 + X에서 각 점까지의 최단 거리'의 최댓값이 답이다. 최단 거리는 **다익스트라**로 구하면 된다.
@@ -281,7 +295,8 @@ Link : [https://www.acmicpc.net/problem/1238](https://www.acmicpc.net/problem/12
 
 Link : [https://www.acmicpc.net/problem/1563](https://www.acmicpc.net/problem/1563)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cee4816883d3375f6b10cc983d8dca79.js"></script>
 
 DP 문제다. 주어진 조건에 맞춰서 개근상을 받지 못하는 경우 바로 리턴하도록 하자. `late`, `absent`가 들어가는 인자도 모두 `day`와 같이 1001로 잡아버리면 메모리가 엄청나게 커져버린다! 각각 2, 3만 돼도 바로 리턴할테니 그 이상의 값이 필요 없으므로 `cache[1001][3][4]`로 잡아주면 되겠다.
@@ -296,7 +311,8 @@ DP 문제다. 주어진 조건에 맞춰서 개근상을 받지 못하는 경우
 
 Link : [https://www.acmicpc.net/problem/1535](https://www.acmicpc.net/problem/1535)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8f86b326d29920b42db915717b471af8.js"></script>
 
 쉬운 DP 문제. 현재 사람을 선택한다면 체력을 깎고 기쁨을 얻으면 되고, 선택하지 않는다면 넘어가는 2가지 케이스만 존재한다. 현재 사람의 번호를 `person`, 현재 체력을 `HP`, 현재 사람을 선택했을 때 깎이는 체력을 `lostHP[person]` 그리고 얻는 기쁨을 `getHappiness[person]`로 설정했다.
@@ -311,7 +327,8 @@ Link : [https://www.acmicpc.net/problem/1535](https://www.acmicpc.net/problem/15
 
 Link : [https://www.acmicpc.net/problem/11286](https://www.acmicpc.net/problem/11286)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/af6749ce0bdef3e19ac9093abdafc78c.js"></script>
 
 **우선순위 큐** 응용 문제. 연산자 오버로딩으로 처리하기!
@@ -326,7 +343,8 @@ Link : [https://www.acmicpc.net/problem/11286](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1916](https://www.acmicpc.net/problem/1916)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4bce88dc3fd83209cca6a3ad04c11782.js"></script>
 
 **다익스트라** 기본 문제.
@@ -341,7 +359,8 @@ Link : [https://www.acmicpc.net/problem/1916](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/4485](https://www.acmicpc.net/problem/4485)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6cabbb3f1d8a4042e575c9c0469dde61.js"></script>
 
 각 점에서 상하좌우에 있는 노드들과 연결하고 시작점에서 **다익스트라**를 돌린뒤 끝점까지의 최단거리를 구하면 된다.
@@ -356,7 +375,8 @@ Link : [https://www.acmicpc.net/problem/4485](https://www.acmicpc.net/problem/44
 
 Link : [https://www.acmicpc.net/problem/7578](https://www.acmicpc.net/problem/7578)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e863a9799f49f6458017ffb435f2521d.js"></script>
 
 B열에 기계와 매칭되는 A열 기계의 인덱스를 나열했다고 하자. 현재 위치를 $i$라 하자. 그럼 $i$번째보다 앞에있는 수들 중 보다 큰 값의 갯수를 합친게 답이 된다. 매칭시킨 후 세그먼트 트리에 값을 업데이트하면서 답을 갱신해줬다.
@@ -371,7 +391,8 @@ B열에 기계와 매칭되는 A열 기계의 인덱스를 나열했다고 하�
 
 Link : [https://www.acmicpc.net/problem/15899](https://www.acmicpc.net/problem/15899)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/3690e0271690a1b4c19fee2e42db0816.js"></script>
 
 **머지 소트 트리 + DFS**로 풀었다. 처음에 엣지의 정보가 입력으로 들어오는데 이걸 갖고 트리는 만들 수 있겠는데 구간은 어떻게 잡을까 싶어서 계속 고민해봐도 모르겠어 가지고 kks227님의 풀이를 참고했다! 전위 순회를 하면서 번호를 새로 부여하면 출력시 루트를 기준으로 뒤에는 서브트리의 정보가 순서대로 나오게 된다. 왼쪽/오른쪽 자식이 픽스된게 아니어서 어떻게 전위 순회를 돌아야하나 하다가 DFS로 돌려버렸다. 입력받은 노드의 번호를 i라 하면 새로 부여한 번호는 `match[i]`, 구간의 끝 번호는 `bound[match[i]]`로 설정했다.
@@ -388,7 +409,8 @@ Link : [https://www.acmicpc.net/problem/15899](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/7469](https://www.acmicpc.net/problem/7469)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2640000dac183eea46506420b6b7ed83.js"></script>
 
 **머지 소트 트리 + 이분 탐색**으로 풀었다. 쿼리가 주어진 구간 $[l, r]$에서 **정렬한 상태**에서 값을 찾으니 머지 소트 트리가 적합하다고 볼 수 있겠다. 그 구간 안에서 K번째 값을 찾아야 하는데 특정 값의 앞 혹은 뒤에 있는 원소의 갯수를 탐색하는 머지 소트 트리 특성을 이용해 이분 탐색으로 답을 찾아주면 된다.
@@ -405,7 +427,8 @@ Link : [https://www.acmicpc.net/problem/7469](https://www.acmicpc.net/problem/74
 
 Link : [https://www.acmicpc.net/problem/3640](https://www.acmicpc.net/problem/3640)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b40364c200cbb475ec15d70a37f75fc2.js"></script>
 
 **MCMF**로 풀 수 있다. 시작 지점과 목적지가 픽스된 상태이고 비용이 가장 적은 길로 이동하도록 해야한다. MCMF를 돌리기 이전에, 설명에 있는 힌트(TC 그래프)를 참고하면 한 노드에서 엣지가 2개가 생길 수 있다. 이렇게 되면 MCMF를 위해 반대 방향에 비용을 빼주는 부분이 이후 입력되는 값에 의해 수정될 수 있다. 때문에 정점을 분리해서 진행해야 한다. 나는 엣지가 본인을 향하면 `IN`, 다른 곳을 향하면 `OUT`을 설정했다.
@@ -422,7 +445,8 @@ Link : [https://www.acmicpc.net/problem/3640](https://www.acmicpc.net/problem/36
 
 Link : [https://www.acmicpc.net/problem/1300](https://www.acmicpc.net/problem/1300)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/fa5ae531598fd23ae8413fa31bc02b2f.js"></script>
 
 위에서 [BOJ 7469: K번째 수](https://www.acmicpc.net/problem/7469)를 풀고 나니 생각나서 풀어봤다. 이분 탐색으로 푼다는건 알겠는데 도통 어떻게 해야하는지를 모르겠어서 서너번 시도하다 포기했었던 문제였는데 위에 문제는 푸는데 이건 왜 못풀었지 싶어서 해보니까 금방 풀렸다! ㅎㅎ
@@ -441,7 +465,8 @@ N이 $10^5$까지 커지므로 1차원 배열에 나열해놓고 정렬하는건
 
 Link : [https://www.acmicpc.net/problem/2662](https://www.acmicpc.net/problem/2662)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4fa0d86cd0508fc7371366dbf5f0e450.js"></script>
 
 DP 유형. 얻는 이익의 최댓값을 구하기 위해서 DP를 짜는게 메인이기는 하지만 개인적으로 최댓값을 찾는건 쉬웠다. 다만 각 기업이 투자한 액수를 파악하는 방식이 뭘지에 대해 계속 고민해본 것 같다. 생각보다 오래걸렸다!..
@@ -458,7 +483,8 @@ DP를 돌리면서 최댓값을 갱신할 때 현재 금액을 M, 팀 번호를 
 
 Link : [https://www.acmicpc.net/problem/4883](https://www.acmicpc.net/problem/4883)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/901329611971ca60de5cd76043852a34.js"></script>
 
 DP 유형. 점화식은 문제 설명에 있는 그림대로 구현하면 되는데 기저 사례를 마지막 행일 때로 설정해서 애먹었다. 열이 어디냐에 따라서 반환해야 하는 값이 달라짐에 유의.
@@ -473,7 +499,8 @@ DP 유형. 점화식은 문제 설명에 있는 그림대로 구현하면 되는
 
 Link : [https://www.acmicpc.net/problem/1275](https://www.acmicpc.net/problem/1275)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a3f000b6436515345e8d715ee7eb04b6.js"></script>
 
 **세그먼트 트리**로 풀 수 있다. 문제 설명 중 다음 부분을 조심하자.
@@ -489,7 +516,8 @@ Link : [https://www.acmicpc.net/problem/1275](https://www.acmicpc.net/problem/12
 
 Link : [https://www.acmicpc.net/problem/3653](https://www.acmicpc.net/problem/3653)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a12975413eac431afb136adc318f3960.js"></script>
 
 영화 번호가 모두 [1, n]에 속한다는 점, 쿼리가 최대 10만번까지 들어올 수 있다는 점을 이용해 영화 번호를 x라 했을 때 처음에 10만+x 인덱스에 저장하도록 한다. (세그먼트 트리에 업데이트) 그리고 `idx[x]`를 **x번 영화가 실제로 있는 인덱스**라고 하자. 매 쿼리에서 x번 영화를 뽑으면 그 위에 있는 값은 [1, idx[x]-1]에서 구간합이 된다. 세그트리로 구해주면 된다. 이후 x번 영화를 뽑아 맨 위로 올려놓으므로 현재 위치의 값을 0으로, 그리고 가장 맨 위를 가리키는 cnt번에 업데이트한다.
@@ -505,7 +533,8 @@ Link : [https://www.acmicpc.net/problem/3653](https://www.acmicpc.net/problem/36
 
 Link : [https://www.acmicpc.net/problem/2517](https://www.acmicpc.net/problem/2517)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/be280a749c2b5fa4f7f82f7340718168.js"></script>
 
 매번 들어오는 값을 x라 할 때 x 이상인 값의 갯수를 출력해줘야 한다. x가 $10^9$까지 커질 수 있기 때문에 인덱스에 곧바로 업데이트 해주는건 메모리상 불가능 하므로 x의 값을 압축해서 세그먼트 트리를 이용하면 된다. 압축하는 방법은 다른 방법이 있는지 모르겠으나 나같은 경우 구조체와 정렬을 이용했다.
@@ -520,7 +549,8 @@ Link : [https://www.acmicpc.net/problem/2517](https://www.acmicpc.net/problem/25
 
 Link : [https://www.acmicpc.net/problem/5676](https://www.acmicpc.net/problem/5676)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7fd8a67e4ee2633d1686936d39d3d59f.js"></script>
 
 [BOJ 11505: 구간 곱 구하기](https://www.acmicpc.net/problem/11505)와 같은 유형 문제. 세그먼트 트리로 풀 수 있다.
@@ -535,7 +565,8 @@ Link : [https://www.acmicpc.net/problem/5676](https://www.acmicpc.net/problem/56
 
 Link : [https://www.acmicpc.net/problem/2268](https://www.acmicpc.net/problem/2268)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b26834a0e7a61faadae856d8fe529cdb.js"></script>
 
 합 세그먼트 트리의 기본 유형이다. i>j일 때 i, j를 스왑해야 함에 주의.
@@ -550,7 +581,8 @@ Link : [https://www.acmicpc.net/problem/2268](https://www.acmicpc.net/problem/22
 
 Link : [https://www.acmicpc.net/problem/9426](https://www.acmicpc.net/problem/9426)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9023e7289b471d03ff3da9fcbcfda3ab.js"></script>
 
 연속된 K개를 원소로 가지는 모든 구간에 대한 중앙값을 모두 더해 출력해야 한다. 결과값은 int로는 오버플로우가 날 수 있으니 **long long**으로 처리해야 한다. 세그먼트 트리를 이용해 처리했고, 세그먼트 트리에 들어간 값이 K개가 될 때마다 중앙값을 취한 후 가장 마지막에 업데이트된 값을 빼주는 식으로 업데이트 하면 된다.
@@ -565,7 +597,8 @@ Link : [https://www.acmicpc.net/problem/9426](https://www.acmicpc.net/problem/94
 
 Link : [https://www.acmicpc.net/problem/14438](https://www.acmicpc.net/problem/14438)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4324cc2780a173db0f15f0dafdb0ceb8.js"></script>
 
 구간 최솟값을 구하는 **세그먼트 트리** 기본 유형.
@@ -580,7 +613,8 @@ Link : [https://www.acmicpc.net/problem/14438](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/12837](https://www.acmicpc.net/problem/12837)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/821db0b1a4e93711752fa72b4631790a.js"></script>
 
 구간 합 **세그먼트 트리** 기본 유형. 값을 바꾸는 것이 아닌 **추가**해야 함에 유의.
@@ -595,7 +629,8 @@ Link : [https://www.acmicpc.net/problem/12837](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2342](https://www.acmicpc.net/problem/2342)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1b7f9064834d2bc29124299a366d2084.js"></script>
 
 케이스 분류가 좀 필요한 DP 문제다. 위치가 0(문제 설명 참조)일 때 다음 위치로 이동하면서 필요한 2의 힘으로 눌러야 하고 그렇지 않은 경우 다음 위치가 인접하다면 3, 반대라면 4의 힘으로 눌러야 한다.
@@ -612,7 +647,8 @@ Link : [https://www.acmicpc.net/problem/2342](https://www.acmicpc.net/problem/23
 
 Link : [https://www.acmicpc.net/problem/9463](https://www.acmicpc.net/problem/9463)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/57c96b6f62243149ac27ad3c1b625019.js"></script>
 
 **세그먼트 트리**로 풀었다! [BOJ 7578: 공장](https://www.acmicpc.net/problem/7578)과 같은 문제.
@@ -627,7 +663,8 @@ Link : [https://www.acmicpc.net/problem/9463](https://www.acmicpc.net/problem/94
 
 Link : [https://www.acmicpc.net/problem/1321](https://www.acmicpc.net/problem/1321)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/97139cc7510b440e1bdacd20cb0ede72.js"></script>
 
 [BOJ 2243: 사탕 상자](https://www.acmicpc.net/problem/2243)와 같은 문제.

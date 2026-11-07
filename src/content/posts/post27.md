@@ -9,7 +9,9 @@ author:
   role: 개발
 ---
 문제 바로가기 : [https://www.acmicpc.net/problem/2887](https://www.acmicpc.net/problem/2887)<br>
-## Solution
+
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/4eccb80ff89ddb8e020590c3c9fe765f.js"></script>
 <br>
 

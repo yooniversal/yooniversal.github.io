@@ -10,7 +10,9 @@ author:
 ---
 문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/60058](https://programmers.co.kr/learn/courses/30/lessons/60058)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
-## Solution
+
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/d1493b61d39eefff4cc8e8e25be3d3cb.js"></script>
 <br>
 

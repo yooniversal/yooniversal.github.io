@@ -14,7 +14,8 @@ author:
 <summary>A. Digit Game</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/36594b704a782d2577333f1fb1888ff1.js"></script>
 
 인덱스가 짝수인 자리, 홀수인 자리를 각각 Raze, Breach가 맡고 있다. 마지막에 남은 숫자가 홀수이면 Raze가, 짝수면 Breach가 승리한다. 시작은 Raze부터 하며 선택한 숫자를 없애면 된다.
@@ -28,7 +29,8 @@ Raze는 본인이 승리하려면 본인이 선택할 수 있는 것에서 짝�
 <summary>B. Stairs</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c3e127310cf0a5237d34e66712eb627f.js"></script>
 
 disjoint squares 때문에 조금 애먹었는데.. 이렇게 저렇게 수정해보니 운좋게 답이 나왔다. TC에서 `x`의 최댓값이 $10^19$인데 답이 30이라는걸 보고 조금 힌트를 얻은 것 같다. 계단의 가로 길이가 1, 3일 때는 되는데 2일 때는 왜 안되는지 생각해보자.
@@ -40,7 +42,8 @@ disjoint squares 때문에 조금 애먹었는데.. 이렇게 저렇게 수정�
 <summary>C. Killjoy</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6452b2097449a999c30fe22228a98726.js"></script>
 
 이미 감염된 계정은 `rate`가 바껴도 여전히 감염된 상태로 유지된다는게 포인트다. 답은 0, 1, 2중 1개만 나올 수 있다.
@@ -56,7 +59,8 @@ disjoint squares 때문에 조금 애먹었는데.. 이렇게 저렇게 수정�
 <summary>D2. Sage's Birthday (hard version)</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9c4b6097a3038887b2eac45b9e1c0ae4.js"></script>
 
 정렬해주고 절반으로 쪼개서 큰걸 짝수 자리에, 작은걸 홀수 자리에 놓는다. 그 다음 인접한 값보다 작은 인덱스를 세면 끝난다.

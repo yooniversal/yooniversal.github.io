@@ -20,7 +20,8 @@ author:
 Link : [https://www.acmicpc.net/problem/14499](https://www.acmicpc.net/problem/14499)<br>
 <img src="https://lh3.googleusercontent.com/d/1oOx92IS7jGxbVUM2o3fPFH5jpmsF5n0D" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f0788d59bc2cc75c7f8cb5c08fd521ac.js"></script>
 
 처음에 문제 설명이 이해가 안가서 좀 애먹었는데 만약 TC에서 출력이 왜 그렇게 나오는지 알았다면 푸는데까지는 그렇게 어렵지 않다. 주사위가 동서남북으로 굴러갈 때 각 값이 어디로 이동해야 하는지만 안다면 적당히 구현해주면 된다.
@@ -36,7 +37,8 @@ Link : [https://www.acmicpc.net/problem/14499](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/14891](https://www.acmicpc.net/problem/14891)<br>
 <img src="https://lh3.googleusercontent.com/d/1AA0WT1sMydxkKYn1kFYhP4tgthnXcCjA" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/280c6bf720a784ba5bc61589e7dabc18.js"></script>
 
 문제 설명을 따라서 그대로 구현만 하면 된다. 별도로 설명할게 없다. 다만 TC 출력을 처음에 계속 틀려서 뭐가 문젠지 계속 찾아봤는데 적어보자면 처음에 회전할 톱니바퀴의 번호와 방향을 각각 `n_0`, `dir`이라고 했을 때 `n_0`, `dir`이 먼저 회전되고 이웃한 톱니바퀴는 회전된 `n_0` 톱니바퀴의 N, S극을 기준으로 회전하는줄 알았다. 그래서 당연히 큐에다 넣고 돌렸는데 계속 엉뚱한 답이 나왔었다..
@@ -54,7 +56,8 @@ Link : [https://www.acmicpc.net/problem/14891](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/15662](https://www.acmicpc.net/problem/15662)<br>
 <img src="https://lh3.googleusercontent.com/d/1ys6rhT8tMZkXG_Ymjss5WySu_7idebbD" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/06b0947dbd9a90079f86fb948e33e275.js"></script>
 
 위에서 풀었던 [BOJ 14891: 톱니바퀴](https://www.acmicpc.net/problem/14891)에서 톱니바퀴 갯수와 출력 내용만 다르다. 적절히 수정해주면 된다.
@@ -70,7 +73,8 @@ Link : [https://www.acmicpc.net/problem/15662](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/14503](https://www.acmicpc.net/problem/14503)<br>
 <img src="https://lh3.googleusercontent.com/d/1ys6rhT8tMZkXG_Ymjss5WySu_7idebbD" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9e638e66e9e62f237ff95e169e753c16.js"></script>
 
 뭔가 BFS처럼 보이는 문제지만 현재 위치와 주변 상태를 가지고 1개의 위치만 컨트롤하기 때문에 단순한 구현 문제라고 볼 수 있겠다. 문제에서 제시한 대로 착실하게 구현하면 된다.
@@ -86,7 +90,8 @@ Link : [https://www.acmicpc.net/problem/14503](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/14890](https://www.acmicpc.net/problem/14890)<br>
 <img src="https://lh3.googleusercontent.com/d/1S_sP9IhN1y4vT0pJpKLuhqa5dn_8K2Zj" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/07e31c69d734d01c9237f8c95648901e.js"></script>
 
 지켜야 할 조건이 조금 많다. 구현의 묘미는 모든 조건을 빠뜨리지 않도록 꼼꼼히 체크해야하는 점인거 같다. 짜는 동안 구현해야하는 부분중 일부를 머릿속으로만 생각하다가 잊어버려서 나중에 애를 좀 먹었다. 한 행 혹은 한 열을 양쪽으로 스위핑하면서 모든 조건을 통과하면 **지나갈 수 있는 길**로 체크했는데 어렵진 않지만 행과 열을 드나들다보니 좀 헷갈린다. 인덱스를 잘못 적어놔서 이 부분에서도 많이 틀렸다. 전체적으로 구현이 어렵다는 느낌보다는 실수할 여지가 많다는게 더 짚이는 문제.
@@ -102,7 +107,8 @@ Link : [https://www.acmicpc.net/problem/14890](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/3190](https://www.acmicpc.net/problem/3190)<br>
 <img src="https://lh3.googleusercontent.com/d/1yUWJevgz1sa060mjgkTxXmNN6kSl6Al-" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d7a5146bf1a7bc8bd07c4442683e648b.js"></script>
 
 개인적으로 난이도에 비해 구현이 빡셌다. 코드가 길어져서 그런 생각이 들었나 싶기도 하다. `head`, `tail`을 제외한 부분을 `body`라고 하면 기본적으로 움직이는 방향은 선발대인 `head`의 기록을 따라간다. 꼬리가 없는 상태에서 사과를 1개 먹으면 `tail`이 생성되며, 그 다음부터는 `body`가 생성되는 식이다. `body`와 `tail`을 분리시킨 이유는 `head`가 특정 `time`이 돼서 방향을 바꿀 때 맵에 방향을 기록하도록 했는데, 나같은 경우 사과를 먹으면 기존의 `body`, `tail`은 값을 유지하도록 하고 이전 `head`의 위치를 `body`에 업데이트 하는 방식을 취했다.
@@ -122,7 +128,8 @@ Link : [https://www.acmicpc.net/problem/3190](https://www.acmicpc.net/problem/31
 Link : [https://www.acmicpc.net/problem/15685](https://www.acmicpc.net/problem/15685)<br>
 <img src="https://lh3.googleusercontent.com/d/144PlvmE8w3svWYIzQr88q_RKWJjxPxbv" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/5ee8f8a971098929017247f003bc256b.js"></script>
 
 직접 TC를 분석해보면 규칙을 금방 찾을 수 있다. 이전까지 그린 방향을 역순으로 탐색하면서 시계방향으로 1번씩 돌려가며 이동하고 이동할 때마다 현재 위치를 표시해준다. 마지막엔 현재 위치를 포함해 오른쪽, 밑, 오른쪽밑(대각선) 총 4칸이 차있으면 값을 갱신해주면 된다.
@@ -138,7 +145,8 @@ Link : [https://www.acmicpc.net/problem/15685](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/2933](https://www.acmicpc.net/problem/2933)<br>
 <img src="https://lh3.googleusercontent.com/d/1gTEUyXkRiMmYKlJMeUJ69O4v-VgHf1ya" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/572ea171a5bb59a9b64ef82b07a37f30.js"></script>
 
 클러스터를 통째로 컨트롤해야 하기때문에 각 점이 어느 클러스터에 속해있는지 표시하면서 진행했다. 각 턴이 돌아갈 때마다 어떤 클러스터가 밑으로 내려갈지 모르기 때문에 각 클러스터의 번호를 매번 부여해줘야 했다. 또한 각 클러스터가 얼마나 밑으로 내려가야 하는지를 체크하고 구현하는게 좀 까다로웠는데, 각 클러스터의 바닥에 해당되는 미네랄들이 밑으로 얼마나 내려가야하는지 모두 체크한 후 그 중 최솟값이 최종적으로 내려가야하는 거리라는걸 늦게 깨달아서 시간이 오래 걸렸다.
@@ -154,7 +162,8 @@ Link : [https://www.acmicpc.net/problem/2933](https://www.acmicpc.net/problem/29
 Link : [https://www.acmicpc.net/problem/3568](https://www.acmicpc.net/problem/3568)<br>
 <img src="https://lh3.googleusercontent.com/d/19iDbKhm6ReBT8pGO_oOoiHJhu4CbKXiv" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/356883356e924a3e321f5728462048ae.js"></script>
 
 변수명의 길이가 1보다 클 수 있다는걸 주의하면 어렵지 않은 문제.
@@ -170,7 +179,8 @@ Link : [https://www.acmicpc.net/problem/3568](https://www.acmicpc.net/problem/35
 Link : [https://www.acmicpc.net/problem/2290](https://www.acmicpc.net/problem/2290)<br>
 <img src="https://lh3.googleusercontent.com/d/1UY8uQZYRojzCN4Di2L9Q2-KhpqWT3V4t" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/90733284cb0e884f02f0230a1d486f09.js"></script>
 
 각 숫자가 그려지는 패턴만 파악하면 되는 문제다. 어디가 반복되고 어느 기호가 입력받는 `s`에 대해서 영향을 받는지 파악하면 된다. 세로로 출력하는게 아니고 가로로 출력함에 주의.
@@ -189,7 +199,8 @@ Link : [https://www.acmicpc.net/problem/2290](https://www.acmicpc.net/problem/22
 Link : [https://www.acmicpc.net/problem/15661](https://www.acmicpc.net/problem/15661)<br>
 <img src="https://lh3.googleusercontent.com/d/1gJCpnbh1XxTeli70UX2wkMZX-VEkdQd2" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4fb94fe9701339aedd8f47312eba775c.js"></script>
 
 [BOJ 14889: 스타트와 링크](https://www.acmicpc.net/problem/14889)와 사실상 같은 문제다. 위 문제에서는 N이 짝수로 주어지고 각 팀의 멤버 수가 동일하게 N/2로 나뉘게 된다. 하지만 이 문제에서는 각 팀 멤버 수가 1명 이상이고 짝수로 떨어진다는 보장이 없다.
@@ -209,7 +220,8 @@ Link : [https://www.acmicpc.net/problem/15661](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/14502](https://www.acmicpc.net/problem/14502)<br>
 <img src="https://lh3.googleusercontent.com/d/1zeOBt-spQZx1pEhv1EIJ5YpTB4fWW9Nz" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4465b734aea7e37854ffc7575a3d9ab5.js"></script>
 
 벽을 3개 세워 버이러스의 확산을 최대한 막아야한다. 단, 벽은 무조건 3개를 세워야 한다. 주목할 점은 세로, 가로의 상한선이 8이라는 점이다. 고려해야 할 케이스가 굉장히 적다. 모든 빈 칸(0)에 대해서 벽을 3개 세우기 위해 3중 for문을 이용해도 문제없다. 즉, 브루트 포스로 풀면 된다.
@@ -225,7 +237,8 @@ Link : [https://www.acmicpc.net/problem/14502](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/15683](https://www.acmicpc.net/problem/15683)<br>
 <img src="https://lh3.googleusercontent.com/d/1wCuZpjGdhOAtpEpJNF7juUMmyNgV-ar0" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7928442e54875e6d70b3518c6360298f.js"></script>
 
 세로, 가로의 상한선이 굉장히 적다. 효율성을 크게 따질 필요가 없는 구현 문제에 속한다고 보면 되겠다. 이 문제가 조금 까다로워질 수 있는건 같은 종류의 CCTV도 각각의 방향이 독립적으로 행동돼야 한다는 점이다. 그리고 다행히도 CCTV는 최대 8개까지만 설치된다. 때문에 맘놓고 재귀로 마지막 CCTV까지 넘어가도록 짤 수 있었다. `solve()`는 마지막 CCTV에 도달했을 때 답을 갱신하는데, 만약 맵에 CCTV가 없을 경우 예외처리를 해줘야 한다.
@@ -243,7 +256,8 @@ Link : [https://www.acmicpc.net/problem/15683](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/15684](https://www.acmicpc.net/problem/15684)<br>
 <img src="https://lh3.googleusercontent.com/d/1T5hYNWVq_Dv2UzPOOoRVQd4NlaCbsXmZ" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/20d56dd7d19b8c14a22fdf362a7fe7dc.js"></script>
 
 단순한 **브루트 포스** 문제다. 시간 제한에 거의 걸친 상태로 아슬아슬하게 풀었다. 해당되지 않는 조건은 깔끔하게 가지치기를 해주는게 기본인데 사실 그렇게까지 하지 않아도 풀리는 문제도 꽤 많다. 다만 이 문제의 경우 (내가 푼 것처럼 짰다면) 가지치기를 해주지 않으면 TLE를 면하기 힘들어 보인다.
@@ -261,7 +275,8 @@ Link : [https://www.acmicpc.net/problem/15684](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/2210](https://www.acmicpc.net/problem/2210)<br>
 <img src="https://lh3.googleusercontent.com/d/1HAF99nXel5SAFSKIMa8uLD0v80GqYFb0" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/80d13339ec9dce5f5eb10352e89708ea.js"></script>
 
 상하좌우를 돌면서 만들 수 있는 모든 경우의 수를 구하는 문제. 6자리만 채우면 돼서 BFS로 돌리고 중복 여부는 맵으로 처리했다.
@@ -277,7 +292,8 @@ Link : [https://www.acmicpc.net/problem/2210](https://www.acmicpc.net/problem/22
 Link : [https://www.acmicpc.net/problem/3019](https://www.acmicpc.net/problem/3019)<br>
 <img src="https://lh3.googleusercontent.com/d/1hhGyutIXOSCFuBcr7nTd6Qb-7nc9yzcr" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a6d3de21523874f1e8bab753f6b441a8.js"></script>
 
 각 블럭이 바닥에 닿는 면만 체크해주면 된다.
@@ -293,7 +309,8 @@ Link : [https://www.acmicpc.net/problem/3019](https://www.acmicpc.net/problem/30
 Link : [https://www.acmicpc.net/problem/4902](https://www.acmicpc.net/problem/4902)<br>
 <img src="https://lh3.googleusercontent.com/d/1lRaJoj6PpI_ec4DQFEmFtCgQUgLN8r5b" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/7ce7624fbb7fef72e5007c59718b7915.js"></script>
 
 구현하기가 생각보다 빡센 문제다. 크기별로, 위치별로 만들어질 수 있는 모든 삼각형을 고려하면서 그 합을 구해야 하는데 이 부분이 좀 까다로웠다. N의 범위가 명시돼있지 않은 상황에서 임의로 배열을 선언해서 시도하는건 무의미하다고 생각해서 결론적으로는 힙처럼 각 레벨에 인덱스들이 속하도록 하고 이를 수식으로 처리해줘야 했다. 놓치기 쉬운 부분이 있는데 **역삼각형**도 고려해줘야 한다. 이게 좀 까다롭다.
@@ -311,7 +328,8 @@ Link : [https://www.acmicpc.net/problem/4902](https://www.acmicpc.net/problem/49
 Link : [https://www.acmicpc.net/problem/2916](https://www.acmicpc.net/problem/2916)<br>
 <img src="https://lh3.googleusercontent.com/d/1pQsYQhAIQ1HO87GyDKGuOeq2NCLfaGru" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8138ce557879a33db926cd1760a7fe0f.js"></script>
 
 범위가 적기도 하고 만들어질 수 있는 값이 [0, 360)이어서 브루트 포스로 풀 수 있는 것 같다. 유의할 점은 같은 각을 **여러 번 이용할 수 있고**, 380의 경우 20으로, -20의 경우 340으로 만들어줘야 한다.
@@ -327,7 +345,8 @@ Link : [https://www.acmicpc.net/problem/2916](https://www.acmicpc.net/problem/29
 Link : [https://www.acmicpc.net/problem/2422](https://www.acmicpc.net/problem/2422)<br>
 <img src="https://lh3.googleusercontent.com/d/1tvBWIKu3iFnJYBsYM6hlxk0LezJlunbz" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9520f9ed19a7872b2ffa856510968737.js"></script>
 
 단순 DFS 문제.
@@ -343,7 +362,8 @@ Link : [https://www.acmicpc.net/problem/2422](https://www.acmicpc.net/problem/24
 Link : [https://www.acmicpc.net/problem/14225](https://www.acmicpc.net/problem/14225)<br>
 <img src="https://lh3.googleusercontent.com/d/1j0Q0yLIUKOAm_bBO3_wk-YMswFtQTchh" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9bba776fc04e9be958e548fed63cc350.js"></script>
 
 최대 20자리밖에 안돼서 **비트마스킹**으로 처리했다. 테마에 딱 맞는 브루트 포스 문제. DFS로 풀어도 되고 딱히 설명할게 없다.
@@ -359,7 +379,8 @@ Link : [https://www.acmicpc.net/problem/14225](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/16197](https://www.acmicpc.net/problem/16197)<br>
 <img src="https://lh3.googleusercontent.com/d/1Pln7dhxdmNV9hEOVTZYWdTYuBVcLeZ3L" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a5933a31dacd1bf8df163757595b0056.js"></script>
 
 위치가 서로 다른 동전 2개가 주어지고 단 1개만 빠지도록 하는 최소 이동 횟수를 구해야 한다. 두 동전이 같은 방향으로 동시에 이동한다는 점이 이 문제의 특징이며 각 동전이 이동됐을 때의 상황을 케이스별로 나눠서 처리해야 한다. 가짓수가 많지 않다! 최소 이동 횟수를 구하는 문제여서 BFS로 풀었고 생각보다 구현이 쉬운 편이었다.
@@ -375,7 +396,8 @@ Link : [https://www.acmicpc.net/problem/16197](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/16198](https://www.acmicpc.net/problem/16198)<br>
 <img src="https://lh3.googleusercontent.com/d/12FNGt_TqQ4FySfYbS3UPfkginfqCdNV9" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e154ea81c4933210490f6e742ad68b3b.js"></script>
 
 선택된 원소를 제거하면서 진행하는데 특화된 자료형과 메소드가 있었다면 더할 나위 없겠지만 나는 그런 자료형을 몰라서 N도 10까지밖에 안늘어나니 브루트 포스로 해결했다.
@@ -417,7 +439,8 @@ Link : [https://www.acmicpc.net/problem/15653](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/5213](https://www.acmicpc.net/problem/5213)<br>
 <img src="https://lh3.googleusercontent.com/d/1VpyBoaQIdekZnmefdIP8EtuZddkG1nHq" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/00029642f28a351d036bb62c7a2c0c8b.js"></script>
 
 문제 설명이 엄청 길다. 놀랍게도 절반 이상이 푸는데 필요없는 내용이다! 행 번호가 홀수인지 짝수인지에 따라서 놓을 수 있는 타일 수도 다르고 놓이는 블록의 바운더리도 다르다. 전형적인 BFS지만 생각보다 까다롭다. 마지막으로 도달한 타일 번호를 `END`번이라 하면 직전에 있었던 타일 번호를 `PREV[END]`에 저장하고 시작점까지 역으로 도달하면서 답을 만들면 된다. 다른 타일로 옮겨갈 때에는 인접한 블럭의 수가 서로 같아야 하고 같은 타일이면 상관없음에 유의하자.
@@ -435,7 +458,8 @@ Link : [https://www.acmicpc.net/problem/5213](https://www.acmicpc.net/problem/52
 Link : [https://www.acmicpc.net/problem/3184](https://www.acmicpc.net/problem/3184)<br>
 <img src="https://lh3.googleusercontent.com/d/1QatOAnb8LgmLv82vRFEpUBO1iYxBBNeT" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/39811ba9bf50f4b84afa0d6991fc3ffb.js"></script>
 
 영역별로 있는 양과 늑대의 수를 파악해 답을 갱신하는 문제. DFS 풀이. [BOJ 3187: 양치기 꿍](https://www.acmicpc.net/problem/3187)과 아예 같은 문제.
@@ -451,7 +475,8 @@ Link : [https://www.acmicpc.net/problem/3184](https://www.acmicpc.net/problem/31
 Link : [https://www.acmicpc.net/problem/5014](https://www.acmicpc.net/problem/5014)<br>
 <img src="https://lh3.googleusercontent.com/d/1nd5JO77FqY1h9mDIfIljfTRr7ByhJoZm" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/69ba8727b5b5390969263d46e7fdef30.js"></script>
 
 현재 위치에서 위로 U, 아래로 D만큼 움직일 수 있고 G층까지 도달할 수 있는 최소 횟수를 출력하는 BFS 문제다. 변수가 딱히 많지 않아서 구현하는데 어렵지 않다. 2번 TC를 검토해보면 알겠지만 이동하려는 층이 F층을 넘으면 안된다. 당연히 0층 이하로도 이동할 수 없다. 이 점만 유의한다면 쉽게 통과할 수 있다.
@@ -467,7 +492,8 @@ Link : [https://www.acmicpc.net/problem/5014](https://www.acmicpc.net/problem/50
 Link : [https://www.acmicpc.net/problem/12886](https://www.acmicpc.net/problem/12886)<br>
 <img src="https://lh3.googleusercontent.com/d/10GSl0z2nxenL5h-N7H7Lf-ATFr7gNiT5" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/49e0956b33ba844851e777500b904b97.js"></script>
 
 BFS라는 컨셉으로 풀긴 했으나 A, B, C가 갈 수록 값이 어떻게 변할지 가늠이 가지 않았었다. (생각이 짧았었다) 때문에 중복을 체크하는 chk를 정적인 배열로 선언해 O(1)만에 처리하는 일반적인 방법말고 map을 사용했다. map으로 중복을 체크해도 풀리긴 풀린다. 시간 제한이 2초여서 넉넉하게 돌아간다. (넘겨주는 자료형에 따라 달라질 수 있는데 640ms부터 1168ms까지 나왔었다. 정말 무식하게 풀었다)
@@ -495,7 +521,8 @@ BFS라는 컨셉으로 풀긴 했으나 A, B, C가 갈 수록 값이 어떻게 �
 Link : [https://www.acmicpc.net/problem/14442](https://www.acmicpc.net/problem/14442)<br>
 <img src="https://lh3.googleusercontent.com/d/1oLvSWM5nOMNRqeGLYN4ge-ibUoGiGEL6" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/79b7bb2bbd4db295a71993dd6c20f111.js"></script>
 
 벽을 k개 이하로 부수면서 도착 지점으로 가는 최단 경로를 구하는 문제다. 일반적인 길찾기 문제처럼 BFS 구조를 유지하되 조금 다른점이 있는데 정리하면 다음과 같다.
@@ -517,7 +544,8 @@ Link : [https://www.acmicpc.net/problem/14442](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/1600](https://www.acmicpc.net/problem/1600)<br>
 <img src="https://lh3.googleusercontent.com/d/1UGWvLWOq751BJ6dwUmvPRoTZc6jr3kVG" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/3c35b37a5f5550f504d14844164cf9f7.js"></script>
 
 바로 위에서 푼 [문제](https://www.acmicpc.net/problem/14442)에서 풀었던 방법으로 풀어본다고 막 제출했다가 다 틀렸다. 하지만 주목해야할 점은 비슷하다. 위에선 벽을 부순 횟수였다면 여기선 **말의 움직임 가능 횟수**가 포인트다. 중복을 체크하는 배열을 잘 설정해야 하는데, 위 코드에서는 `chk[x][y][k]`로 설정했고 말의 움직임으로 이동할 경우 `chk[nx][ny][k-1]`을, 걸어갈 때는 `chk[nx][ny][k]`를 체크해주면 된다. (`(nx, ny)`는 다음으로 이동할 좌표를 말한다)
@@ -533,7 +561,8 @@ Link : [https://www.acmicpc.net/problem/1600](https://www.acmicpc.net/problem/16
 Link : [https://www.acmicpc.net/problem/10026](https://www.acmicpc.net/problem/10026)<br>
 <img src="https://lh3.googleusercontent.com/d/1LhiqqINmzqxAx4xt1TZ3QlCXQ8ufoHNB" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/50546e435a16b9f23c8bcae65cac53b4.js"></script>
 
 [BOJ 1012: 유기농 배추](https://www.acmicpc.net/problem/1012)와 같은 문제. BFS로는 풀이가 떠오르지 않아서 DFS로 풀었다.
@@ -549,7 +578,8 @@ Link : [https://www.acmicpc.net/problem/10026](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/2234](https://www.acmicpc.net/problem/2234)<br>
 <img src="https://lh3.googleusercontent.com/d/1AL4Yw30pbK2eivHXGhXAOBkWVUB51hyI" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/79d1215107ea19df6e8ebbaff804bdd2.js"></script>
 
 DFS로 풀었다. 각 영역을 조사하면서 그 영역의 갯수 그리고 넓이(용량)의 정보를 얻는게 먼저다. 이를 위해서 DFS로 탐색하도록 했으며, 이 문제는 특이하게도 벽의 정보를 **비트마스킹**으로 처리해야 한다. 또한 벽을 1개만 제거했을 때 얻을 수 있는 가장 넓은 방의 크기를 얻기 위해 인접한 방의 정보가 있어야 한다!
@@ -569,7 +599,8 @@ DFS로 풀었다. 각 영역을 조사하면서 그 영역의 갯수 그리고 �
 Link : [https://www.acmicpc.net/problem/3197](https://www.acmicpc.net/problem/3197)<br>
 <img src="https://lh3.googleusercontent.com/d/151u3jBiXweLiUDsj39H5v5kNW0xbf0YF" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/cd32d17404709a7dba2e100d3563c909.js"></script>
 
 일단은 BFS 문제인데, BFS만 이용해서는 시간초과를 피하기 힘들다. Union-Find가 카테고리에 걸려있어서 이걸로 푸는게 가능한가 생각해보다 답이 안나와서 포기했고 계속 시간초과와 싸움을 하다가 결국엔 qna를 참고해서 이분 탐색으로 풀었다.
@@ -589,7 +620,8 @@ Link : [https://www.acmicpc.net/problem/3197](https://www.acmicpc.net/problem/31
 Link : [https://www.acmicpc.net/problem/12906](https://www.acmicpc.net/problem/12906)<br>
 <img src="https://lh3.googleusercontent.com/d/15bop6rvnpVPdt-2FfssbVAWZ8IYK7jbJ" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/76ffa0583f79a9f0c5da0992e4b0b7ff.js"></script>
 
 기본적인 BFS 접근과 똑같이 하면 된다. 현재 위치가 1번이라면 2, 3번에 블럭을 옮겨 담는 경우, 현재 위치가 2번이라면 1, 3번에 블럭을 옮겨 담는 경우, 현재 위치가 3번이라면 1, 2번에 블럭을 옮겨 담는 경우 매 케이스마다 총 6가지 경우의 수를 큐에 계속 넣어주면 된다. 다만 중복을 처리하는 부분이 다르므로 이 부분을 map으로 처리했다. (당연히 다른 방법도 존재함)
@@ -605,7 +637,8 @@ Link : [https://www.acmicpc.net/problem/12906](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/14395](https://www.acmicpc.net/problem/14395)<br>
 <img src="https://lh3.googleusercontent.com/d/15bop6rvnpVPdt-2FfssbVAWZ8IYK7jbJ" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://drive.google.com/uc?id=13QgJjxwyGRRJw9ywzfUHqh_P7LW6vh3Y"></script>
 
 아스키 코드 순서대로 큐에 담을 수 있도록 BFS를 짜주면 딱히 주의할게 없다.
@@ -621,7 +654,8 @@ Link : [https://www.acmicpc.net/problem/14395](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/2151](https://www.acmicpc.net/problem/2151)<br>
 <img src="https://lh3.googleusercontent.com/d/1vE1EuHyW2U8939h53xmJ-1dRN_IPvW2N" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/312425305c60c5d3ed8bee1f11d62c51.js"></script>
 
 qna 반례를 찾지 않았다면 풀 수 있었을까 싶은 문제. 주의해야할 점이 많다. 일단 이 문제는 이동하는 위치마다 카운트하지 않으므로 가장 먼저 도착했더라도 **최적 경로가 아닐 수 있다**. 때문에 도착하는 경우의 수들 중 거울 설치 갯수가 최소가 되는 값을 취해야 한다. 다 돌아야 한다는 말이다.
@@ -641,7 +675,8 @@ qna 반례를 찾지 않았다면 풀 수 있었을까 싶은 문제. 주의해�
 Link : [https://www.acmicpc.net/problem/16137](https://www.acmicpc.net/problem/16137)<br>
 <img src="https://lh3.googleusercontent.com/d/1ASsr9KZN8FcwTAGMMFhBxzOWgdr_iclQ" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ce26d6c5d977c249927853d9886fa6b1.js"></script>
 
 설명만으로는 이해가 안갔던 문제다. 처음에 쭉 읽고나서 몇 가지 의문인 것들도 있고 막막하기도 했었다. qna를 보면서 푸는데 도움이 됐던 (사실 문제를 잘 읽으면 다 있는) 추가 설명들은 다음과 같다.
@@ -670,7 +705,8 @@ N은 10까지 커질 수 있으므로 BFS를 여러번 돌려도 시간 초과�
 Link : [https://www.acmicpc.net/problem/14238](https://www.acmicpc.net/problem/14238)<br>
 <img src="https://lh3.googleusercontent.com/d/1OtATTkM63Bhm9GQMlJ475lT4itV8R7bD" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/79f3aa48c987c14347455d446c15edb7.js"></script>
 
 이 문제 덕분에 5차원 배열은 처음 선언해봤다. ㄷㄷ
@@ -692,7 +728,8 @@ Link : [https://www.acmicpc.net/problem/14238](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/12869](https://www.acmicpc.net/problem/12869)<br>
 <img src="https://lh3.googleusercontent.com/d/136q8RftMJOMhktfy2slNYzBtR-pvQ4lu" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e610d117e40d6a51ca13dfc74a6b751c.js"></script>
 
 데미지를 입는 SCV가 3개 뿐이어서 경우의 수가 많지 않다! 다만 브루트 포스로는 TLE를 피할 수 없으니 DP로 풀어야 한다.
@@ -710,7 +747,8 @@ Link : [https://www.acmicpc.net/problem/12869](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/12996](https://www.acmicpc.net/problem/12996)<br>
 <img src="https://lh3.googleusercontent.com/d/1hfSa9hnbFkCD6_i6Q0BWhAkPk8QRcw8C" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ebf55c28bc2f4a6edcb40f505b8174f6.js"></script>
 
 강사 3명을 A, B, C라 할 때 각 앨범에 참여하는 경우의 수를 구하는 문제다. DP로 풀어야 한다.<br>
@@ -728,7 +766,8 @@ f(앨범 수, A 기회, B 기회, C 기회) : A, B, C가 앨범을 고르는 경
 Link : [https://www.acmicpc.net/problem/2008](https://www.acmicpc.net/problem/2008)<br>
 <img src="https://lh3.googleusercontent.com/d/1vcBjkAHvo_ghM5Y__qDFMg2gn6cWzSY2" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9f527b98024ef4438cdc488829d4e1af.js"></script>
 
 DP 문제. 현재 위치를 `cur`이라 한다면 이동했을 때 사다리는 `cur-1`, `cur+1`밖에 없다. 따라서 주변을 제외한 사다리를 고려할 필요가 없다. (재귀가 해결해줄 것임) 일단 점화식을 다음과 같이 세워줬다.<br>
@@ -753,7 +792,8 @@ DP 문제. 현재 위치를 `cur`이라 한다면 이동했을 때 사다리는 
 Link : [https://www.acmicpc.net/problem/12871](https://www.acmicpc.net/problem/12871)<br>
 <img src="https://lh3.googleusercontent.com/d/1HqpEsvLlukRttMxjPgqfJpIiN8mGhA_3" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a160ad847eb1c9eb3b7eadc18c97f709.js"></script>
 
 문자열 `s`, `t`의 길이가 같을 때까지 각각 반복해서 문자열을 완성해준 후 하나씩 비교하면서 같은지 여부를 확인한다.
@@ -773,7 +813,8 @@ Link : [https://www.acmicpc.net/problem/12871](https://www.acmicpc.net/problem/1
 Link : [https://www.acmicpc.net/problem/9944](https://www.acmicpc.net/problem/9944)<br>
 <img src="https://lh3.googleusercontent.com/d/1atLPTDPGXXC7SShwTBdpfC-LbDLXlemD" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/60fd8872866ae81c75a74c7b3576ffe5.js"></script>
 
 DFS로 구현해주면 된다. 문제에서 요구하는 조건이 조금 특이해서 구현 문제지만 골드3으로 설정된 것 같다.
@@ -795,7 +836,8 @@ DFS로 구현해주면 된다. 문제에서 요구하는 조건이 조금 특이
 Link : [https://www.acmicpc.net/problem/8982](https://www.acmicpc.net/problem/8982)<br>
 <img src="https://lh3.googleusercontent.com/d/1U7em_38Dfkymo4YJ75081h6lsXDbE7sI" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/030e8d75a62d052378c5b5738c3b3773.js"></script>
 
 구현 문제. 문제 설명과 그림부터 풀기 싫게 생겼다. 😂
@@ -822,7 +864,8 @@ TC 1번을 예로 들어보자. 먼저 각 열에 물이 얼마나 차있는지�
 Link : [https://www.acmicpc.net/problem/4574](https://www.acmicpc.net/problem/4574)<br>
 <img src="https://lh3.googleusercontent.com/d/1SeOtSvwoXqdCHn9DGUnGtkjzG2NzSPwl" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/536377ef523a6622f9796f8522c91871.js"></script>
 
 문제에 그림이 들어갔는데 그 그림이 컬러면서 설명이 좀 긴거같으면 ~~구현 문제 특~~ 일단 머리가 아프다.
@@ -840,7 +883,8 @@ Link : [https://www.acmicpc.net/problem/4574](https://www.acmicpc.net/problem/45
 Link : [https://www.acmicpc.net/problem/3085](https://www.acmicpc.net/problem/3085)<br>
 <img src="https://lh3.googleusercontent.com/d/1M6KZf9_5c-HwG9M3e0H6Qyove3kWE4AX" width="100%" height="100%" title="13023.png" alt="?"/><br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/15f293922bc370f61ae776dbf2398d7a.js"></script>
 
 각 사탕에 대해서 인접한 사탕과 바꿔보고 가로, 세로로 각각 같은 색으로 연속된 개수들의 최댓값을 얻어야 한다. 좀 옛날 사람(..)이라면 애니팡 게임이랑 똑같다는걸 알 수 있다.

@@ -11,7 +11,8 @@ author:
 문제 바로가기 : [https://www.acmicpc.net/problem/15663](https://www.acmicpc.net/problem/15663)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1d7a15c3207b244a950950ebad1861da.js"></script>
 <br>
 
@@ -22,7 +23,8 @@ author:
 <summary>N과 M (10)</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/52dd4190ecd4a38fca31a50c1d42d2fd.js"></script>
 <br>
 
@@ -35,7 +37,8 @@ BOJ 15663: N과 M (9)에서 전역 변수 `cur`만 추가시켰다. 변수 이�
 <summary>N과 M (11)</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/408faf1600cf10bc85676c8791666072.js"></script>
 <br>
 
@@ -48,7 +51,8 @@ BOJ 15664: N과 M (10)에서 약간 수정했다. 일단 같은 숫자를 여러
 <summary>N과 M (12)</summary>
 <div>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/408faf1600cf10bc85676c8791666072.js"></script>
 <br>
 

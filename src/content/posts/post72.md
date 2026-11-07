@@ -12,7 +12,8 @@ author:
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 <br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/008a4cc76a7418d3ae45ff082c2a072b.js"></script><br>
 
 ### segment tree

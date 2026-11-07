@@ -13,7 +13,8 @@ author:
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 <br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/46c5be2add0651b7ec3f0aa39ec4fe03.js"></script><br>
 
 ### LCA(lowest common ancestor)

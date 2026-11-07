@@ -3,6 +3,7 @@ title: 핏터링(Fittering) 프로젝트 회고
 excerpt: ""
 category: Project
 date: 2023-12-01
+draft: true
 toc: true
 author:
   name: Yooniversal

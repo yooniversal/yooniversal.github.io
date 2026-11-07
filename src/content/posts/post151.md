@@ -11,7 +11,8 @@ author:
 문제 바로가기 : [https://www.acmicpc.net/problem/1486](https://www.acmicpc.net/problem/1486)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6417e370afd837f40b01e371ab591900.js"></script>
 <br>
 

@@ -10,7 +10,9 @@ author:
 ---
 문제 바로가기 : [https://www.acmicpc.net/problem/1005](https://www.acmicpc.net/problem/1005)<br>
 문제 설명은 위 링크에서 확인해주시길 바랍니다.
-## Solution
+
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/0d345d0695d78637bdcc6fdb28146386.js"></script><br>
 
 ### review

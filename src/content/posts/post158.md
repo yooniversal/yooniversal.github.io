@@ -19,7 +19,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/7570](https://www.acmicpc.net/problem/7570)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b3c3c80bea33b66920658ae89870d7b2.js"></script>
 
 DP 문제다. 처음엔 왠지 익숙한 느낌이 들어서 전체 길이(n) - LIS가 정답인줄 알고 제출했다가 시원하게 WA를 받았다. 이게 왜 틀렸는지 증명을 못하겠어서 찾아보다가 딱 맞는 [qna](https://www.acmicpc.net/board/view/14700)를 발견했다. 증가는 하되 연속된 값으로 증가를 해야한다는 말인데(2, 3, 4 처럼) 이 부분 역시 DP로 처리할 수 있다. 인풋이 들어올 때마다 처리해주면 되는데, 현재 값을 x라고 하자. 그럼 `dp[x]`는 **x까지 연속된 숫자로 증가하는 수열의 길이**라고 정의할 수 있다. 점화식이 굉장히 간단해진다.<br>
@@ -36,7 +37,8 @@ $dp[x] = dp[x-1] + 1$<br>
 
 Link : [https://www.acmicpc.net/problem/2465](https://www.acmicpc.net/problem/2465)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/54e44933f428558786cd154ec72d8eec.js"></script>
 
 ? 놀랍게도 방금 전에 풀었던 문제 이름과 같다. 하지만 요구하는 내용은 완전히 다르다. 인풋이 무작위로 들어오고 요구하는 순서와 조건에 맞도록 출력해야 한다. 세그먼트 트리를 가지고 조금 응용한 문제다.
@@ -55,7 +57,8 @@ Link : [https://www.acmicpc.net/problem/2465](https://www.acmicpc.net/problem/24
 
 Link : [https://www.acmicpc.net/problem/10090](https://www.acmicpc.net/problem/10090)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/05f81c252e293a2ae7d30d494d3af5a1.js"></script>
 
 입력받는 값의 상한이 $10^6$이므로 세그트리의 인덱스로 활용해 업데이트할 수 있다. 현재 값이 x라면 인덱스 x에 1을 업데이트하고 [x+1, n]의 구간합을 답에 매번 갱신해주자. 시간 복잡도는 $O(nlogn)$이 된다.
@@ -70,7 +73,8 @@ Link : [https://www.acmicpc.net/problem/10090](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1306](https://www.acmicpc.net/problem/1306)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/86d226a1b6a1f02426d666a76e01c1af.js"></script>
 
 일정한 길이의 구간별로 최댓값을 요하는 문제다. 최댓값 취하는 세그먼트 트리로 쿼리를 처리해주면 된다. 기본 유형.
@@ -85,7 +89,8 @@ Link : [https://www.acmicpc.net/problem/1306](https://www.acmicpc.net/problem/13
 
 Link : [https://www.acmicpc.net/problem/18436](https://www.acmicpc.net/problem/18436)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/3c85483a564979d75ad6b19c4ec7de95.js"></script>
 
 세그먼트 트리를 2개 쓰자!
@@ -100,7 +105,8 @@ Link : [https://www.acmicpc.net/problem/18436](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1777](https://www.acmicpc.net/problem/1777)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/74db9e3bde1223c9834d0774a85d0411.js"></script>
 
 위에서 푼 [BOJ 2465: 줄 세우기](https://www.acmicpc.net/problem/2465)와 푸는 방식이 비슷하다. 설명만 읽으면 i번 뒤의 값들만 고려해서 처리해야할 것 같지만 반대로 앞으로 기준을 뒤집어보자. TC에서 입출력이 왜 저렇게 나오는지 처음에 이해가 안가서 정말 답답했던 문제..
@@ -115,7 +121,8 @@ Link : [https://www.acmicpc.net/problem/1777](https://www.acmicpc.net/problem/17
 
 Link : [https://www.acmicpc.net/problem/16978](https://www.acmicpc.net/problem/16978)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/ae78231d6cf7bb400f94797293e7462a.js"></script>
 
 세그먼트 트리는 세그먼트 트린데 쿼리 순서를 연산하기 편하도록 임의로 바꿔서 계산하기 때문에 오프라인 쿼리 유형으로 분류된다.
@@ -132,7 +139,8 @@ Link : [https://www.acmicpc.net/problem/16978](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/12846](https://www.acmicpc.net/problem/12846)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6418323a6c1d03d02a5a2508e72fdca3.js"></script>
 
 [BOJ 6549: 히스토그램에서 가장 큰 직사각형](/ps/post100/)과 같은 문제.
@@ -147,7 +155,8 @@ Link : [https://www.acmicpc.net/problem/12846](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17952](https://www.acmicpc.net/problem/17952)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/20c302ff37979bff3915338886797331.js"></script>
 
 늦게 들어온 과제가 있으면 그 과제부터 다시 처리하도록 해야하므로 스택을 이용한다. 주의할 점은 이미 처리하고 있는 과제가 있다면 **어떤 쿼리든 상관없이** 카운트해줘야 한다.
@@ -162,7 +171,8 @@ Link : [https://www.acmicpc.net/problem/17952](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17949](https://www.acmicpc.net/problem/17949)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e96502a4767beb0c3fed55c1154ec752.js"></script>
 
 단순 구현 문제라고 생각하는데.. 범위가 커서 그런지 vector erase로는 TLE를 받았다. 편하게 하려고 요령있게 해보려다 컷당하고 현재 위치를 의미하는 변수 `now`를 선언해 위치를 갱신시켜줬다. 별도로 변수를 써도 생각보다 그렇게 까다롭진 않은 듯 하다. 안까다로워야 한다. 이거 브론즈 문제다.. ㅠㅠ
@@ -177,7 +187,8 @@ Link : [https://www.acmicpc.net/problem/17949](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17944](https://www.acmicpc.net/problem/17944)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/18add7ead2f9ae51153f1c4af35921f3.js"></script>
 
 단순 수학 문제다. T가 꽤 크므로 모듈러 연산을 통해 크게 감소시켜야 하는데 무턱대고 4N으로 나누지 말고 TC를 더 파보자. 언제 1번 자리로 초기화가 되는지를 체크해봤다면 알겠지만 (4N-2)로 모듈러를 걸어주면 된다. 문제가 뭔 소린지 모르겠어서 설명읽는게 더 힘들었다. 하하..
@@ -192,7 +203,8 @@ Link : [https://www.acmicpc.net/problem/17944](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1660](https://www.acmicpc.net/problem/1660)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e1c0b0e6910b2b39ff723233b7dc9763.js"></script>
 
 DP 문제다. 1, 1+2, 1+2+3, ... 을 sum()으로 만들면 점화식은 간단하게 sum(n-1)+n이 된다. 그리고 이 `sum()`을 위의 점화식처럼 하나 더 만들면 `ssum(n) = ssum(n-1)+sum(n)`이다. `ssum(n)`은 크기가 n일 때 한 더미에 필요한 대포알의 갯수이다. 이렇게 구한 `ssum()`을 최종적으로 `f()`에서 활용하는데, `f(n)`은 **대포알이 n개 있을 때 만드는 사면체의 최소 갯수**다. 현재 갖고있는 대포알의 갯수(`cur`)를 넘지않는 `ssum(i)`을 cur에서 빼주면서 답의 갯수를 1씩 카운트하도록 한다. 그렇게 구한 각 경우의 수에서 얻은 답중 최솟값을 출력하면 된다.
@@ -209,7 +221,8 @@ DP 문제다. 1, 1+2, 1+2+3, ... 을 sum()으로 만들면 점화식은 간단�
 
 Link : [https://www.acmicpc.net/problem/2665](https://www.acmicpc.net/problem/2665)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c76d514696eeac42aa5934af4f94f3ef.js"></script>
 
 **다익스트라**로 풀었다. 시작점부터 끝점까지 도달하는데 거치는 벽의 최소 개수를 구해야 하는데 문제만 딱 보면 전형적인 BFS가 떠오른다. 다익스트라도 BFS를 쓰긴 하지만.. 여기서 말하는 전형적인 BFS는 [이런 문제](https://www.acmicpc.net/problem/14442)들을 말한다. 생각을 좀 해보면 정말 깔끔하게 풀 수 있는데, 각 점에서 이웃한 점에 엣지를 놓으면서 용량은 벽이 있으면 1, 없으면 0으로 두자. 그리고 시작점에서 다익스트라를 돌리면 끝점까지 최단 경로로 도달하므로 거치는 벽의 갯수를 최소화할 수 있다.
@@ -224,7 +237,8 @@ Link : [https://www.acmicpc.net/problem/2665](https://www.acmicpc.net/problem/26
 
 Link : [https://www.acmicpc.net/problem/17946](https://www.acmicpc.net/problem/17946)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/74a1280a1e64af902309756c045e506f.js"></script>
 
 최대한 많은 공간을 가르도록 자른다고 가정하면 갈 수록 1칸씩 더 많이 가로지를 수 있다. 이해하기 쉽게 공간을 가르지른다고 생각하지 말고 칼질한 선과 마주치는 횟수라고 해보자. 그럼 처음 칼질할 땐 0번 마주치고, 그 다음엔 1, 2, ... k번만큼 마주치게 된다. 선을 마주친 횟수+1 만큼 새로운 공간(피자 조각)이 생기므로 조각의 갯수는 처음이 1이라 하면 1, 2, 4, 7, 11, ... 로 커지게 된다. 근데 칼질한 횟수를 계속 더해가면서 조각을 내놓으라고 하고 있으므로 갯수는 다음과 같아진다.
@@ -244,7 +258,8 @@ Link : [https://www.acmicpc.net/problem/17946](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17954](https://www.acmicpc.net/problem/17954)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/961792e59e470319209f77c53c60ab9a.js"></script>
 
 2개의 튜브 양끝의 구멍 총 4개중 제일 작은 값을 계속 빼내면서 누적되는 부패도를 갱신해야 한다. 부패도는 누적 시간과 남은 숫자들의 합을 서로 곱한걸 의미한다. 시간은 어차피 흘러갈거고 남은 숫자들의 합만 컨트롤할 수 있는데 그렇다면 **큰 숫자가 먼저 사라지는게** 이상적이다! 그러므로 2N, 2N-1, 2N-2, 2N-3은 바깥 구멍 4자리에 모두 위치하도록 하자. 그 다음엔 어차피 2N-3이 사라지면 그 행의 중간에 있던 수들은 뭐가 있던간에 모두 차례대로 사라지게 된다. 그럼 기왕 사라지는거 큰 수부터 사라지는게 좋으므로 큰 값부터 줄줄이 나열해주자. 아직 채워지지 않은 행도 위에서 한 방식대로 채워주자.
@@ -266,7 +281,8 @@ Link : [https://www.acmicpc.net/problem/17954](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17945](https://www.acmicpc.net/problem/17945)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/97a1fe75720bfa2a208307e401b370fa.js"></script>
 
 -1000부터 1000까지 다 조사해주면 된다.
@@ -281,7 +297,8 @@ Link : [https://www.acmicpc.net/problem/17945](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17950](https://www.acmicpc.net/problem/17950)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/54f41e077bc6cd32c4c8a073ee8028ed.js"></script>
 
 단순 수학 문제다. 오버플로우 및 모듈러 연산에 주의.
@@ -296,7 +313,8 @@ Link : [https://www.acmicpc.net/problem/17950](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17953](https://www.acmicpc.net/problem/17953)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/da00b0a56a4d8d9971e2c74a490e68fa.js"></script>
 
 DP로 풀었다. 현재 먹어야 하는 디저트의 번호를 `cur`, 이전에 먹은 디저트의 종류를 `prev`라 설정했다.
@@ -311,7 +329,8 @@ DP로 풀었다. 현재 먹어야 하는 디저트의 번호를 `cur`, 이전에
 
 Link : [https://www.acmicpc.net/problem/13699](https://www.acmicpc.net/problem/13699)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/68c0dfe10214cb9c21fdba937a8e459b.js"></script>
 
 DP 기본 문제. 설명에 점화식이 쓰여있으니 구현만 하면 된다.
@@ -326,7 +345,8 @@ DP 기본 문제. 설명에 점화식이 쓰여있으니 구현만 하면 된다
 
 Link : [https://www.acmicpc.net/problem/17626](https://www.acmicpc.net/problem/17626)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d59019c6f69696fed2919ba3d0646323.js"></script>
 
 DP 기본 문제. 현재보다 작은 제곱수를 빼주는 경우의 수를 메모이제이션으로 구하자.
@@ -341,7 +361,8 @@ DP 기본 문제. 현재보다 작은 제곱수를 빼주는 경우의 수를 �
 
 Link : [https://www.acmicpc.net/problem/17942](https://www.acmicpc.net/problem/17942)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8fbe992d3e4cd308e226f26fd9bd3677.js"></script>
 
 **BFS + 이분 탐색**으로 풀었다. $1\leq K_i \leq 10^8$이므로 이분 탐색 범위를 $[1, 10^8]$로 잡는다. **최소 M개의 알고리즘을 배울 수 있는 시간 x**를 이분 탐색으로 찾아주면 된다. BFS에서 1개가 업데이트 됐을 때 업데이트된 대상에 대해서만 단축된 시간이 조건에 맞는지만 체크해주면 된다. (업데이트 됐다고 모든 케이스를 돌아볼 필요가 없다는 뜻)
@@ -356,7 +377,8 @@ Link : [https://www.acmicpc.net/problem/17942](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17939](https://www.acmicpc.net/problem/17939)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9a6fc532342aa7d9171627b83048c65a.js"></script>
 
 우선순위 큐에 값과 인덱스를 같이 넣어 큰 값부터 꺼내도록 설정한다. 처음엔 현재 값의 인덱스보다 작은 위치에 있는 녀석들은 어차피 값이 작으므로 그 갯수만큼 큰 값에 곱해 답에 더해준다. 어디까지 처리됐는지 표시하기 위해 처리된 큰 값의 인덱스를 `prev`로 표시하도록 하자. 그 다음에 top에 있는 녀석은 2번째로 값이 크겠지만 인덱스가 `prev`보다 작을지 클지 모른다. 작다면 위 과정에서 처리되는 대상이므로 **코인을 산 상태**가 돼야 한다. 따라서 답에서 해당 값을 빼주자. 반대로 크다면 `prev`와 현재 위치(`cur.second`) 사이에 있는 갯수만큼 값에 곱해 답에 더해준다.
@@ -375,7 +397,8 @@ Link : [https://www.acmicpc.net/problem/17939](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17940](https://www.acmicpc.net/problem/17940)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/510db09b336876ef09a1ca4e46e2de22.js"></script>
 
 **다익스트라**로 풀 수 있다. 보통은 최단 거리를 구하는게 기준이지만, 이 문제에서는 기준이 조금 다르다. **최적의 출근 경로란 환승 횟수를 최소로 하는 경로 중 소요시간이 가장 짧은 경로이다.** 즉, 환승 횟수를 최소한하는게 우선 순위고 그 다음이 소요시간을 최소화하는 것이다. 때문에 `pair<pair<int, int>, int>`에서 first인 `pair<int, int>`는 환승 횟수, 소요시간을 의미한다. `second`는 인덱스를 의미한다.
@@ -392,7 +415,8 @@ Link : [https://www.acmicpc.net/problem/17940](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17943](https://www.acmicpc.net/problem/17943)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/82a5917dcea3738bfc338f323f267846.js"></script>
 
 DP로 구하는 부분합을 구하는 방법을 응용했다. 각 도미노 숫자를 a, b, c, d, e라 하고 인덱스가 1번부터 시작한다고 할 때(0번 도미노 숫자는 0) 인풋을 통해 a^b, b^c, c^d, d^e를 이미 알고 있는 상태다. 1, 3번을 XOR한 값을 구해야 한다면 a^c를 구해야 하는데 이는 (a^b)^(b^c)와 같다.
@@ -417,7 +441,8 @@ x~y의 XOR은 위의 과정을 통해 `v[x]^v[y]`로 구할 수 있다. 근데 x
 
 Link : [https://www.acmicpc.net/problem/17947](https://www.acmicpc.net/problem/17947)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f45374f99644a56bb6803831a4a6a75a.js"></script>
 
 **그리디** 유형이다. `cur`는 곽철용의 점수를, `card`는 (선택되지 않은 카드 % k)를 원소로 갖고 있는 배열을 의미한다. 이 때 비교를 하기 쉽도록 `card`를 내림차순으로 정렬한다. 그 뒤에는 **투 포인터**로 처리하는데, 왼쪽을 `lo`, 오른쪽을 `hi`라 하면 기본값은 각각 0, 1이다. 내림차순이므로 `card[lo]`는 가장 큰 값부터 시작한다. 이 숫자는 항상 `cur`보다 크거나 같아야 한다. 그렇지 않다면 뒤에 있는 모든 원소들과의 차이는 항상 `cur`보다 작고 이는 대상에 포함이 되지 않는다.
@@ -434,7 +459,8 @@ for문 안으로 들어오고 나서는 `lo`, `hi`가 움직이면서 두 카드
 
 Link : [https://www.acmicpc.net/problem/17951](https://www.acmicpc.net/problem/17951)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2449755c6a90bed2d7b9844fde10baa5.js"></script>
 
 최솟값을 $[0, 2 \times 10^5]$ 에서 이분 탐색하면 된다. 매번 임의로 정하는 최솟값을 x라 하면 값을 처음부터 계속 더해가면서 x를 넘으면 카운트한다. 그렇게 카운트 한 수가 `cnt`일 때 `cnt`가 k보다 크면 최솟값이 작다는 말이므로 l을 움직이고 그렇지 않다면 r을 움직이도록 한다.
@@ -449,7 +475,8 @@ Link : [https://www.acmicpc.net/problem/17951](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1072](https://www.acmicpc.net/problem/1072)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d0f790545fd5ad17f1f8d81214f3b74e.js"></script>
 
 승률이 바뀌게 되는 최소 승리 횟수를 구해야 한다. 이분 탐색으로 구할 수 있으며 초기 승률과 같다면 하한을, 다르다면 상한을 움직이면 된다.
@@ -464,7 +491,8 @@ Link : [https://www.acmicpc.net/problem/1072](https://www.acmicpc.net/problem/10
 
 Link : [https://www.acmicpc.net/problem/13306](https://www.acmicpc.net/problem/13306)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6e62010c579e93f3cc5ca9791b805b70.js"></script>
 
 **Union-Find + 오프라인 쿼리** 문제. 연결 돼있는지 여부는 두 노드의 부모가 같은지 여부로 체크할 수 있다. 쿼리를 들어오는대로 처리하게 되면 중간에 끊고 업데이트하고 ... 복잡해짐과 동시에 TLE라는 선물을 받을 수 있다. x=0일 때 노드의 직계 부모와의 엣지를 끊는다고 생각하지말고 뒤집어서 연결한다고 생각해보자. 쿼리를 역순으로 실행한다면 오히려 끊지 않고 연결하기만 하면 된다. 두 노드를 하나의 집합으로 묶으면 끝이다.
@@ -481,7 +509,8 @@ Link : [https://www.acmicpc.net/problem/13306](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17069](https://www.acmicpc.net/problem/17069)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/aefe8c9e550531a0d6e0bf40c79503e2.js"></script>
 
 DP 문제다. 현재 파이프의 상태(가로, 세로, 대각선)에 따라 조건을 달리해주면 된다. [BOJ 17070: 파이프 옮기기](https://www.acmicpc.net/problem/17070)에서 썼던 코드중 범위, 자료형만 수정했다.
@@ -496,7 +525,8 @@ DP 문제다. 현재 파이프의 상태(가로, 세로, 대각선)에 따라 �
 
 Link : [https://www.acmicpc.net/problem/14916](https://www.acmicpc.net/problem/14916)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/141e086cc5b1ea7406d06a485e3f4e8d.js"></script>
 
 DP로 풀었다. 현재 값(`cur`)에서 5, 2를 빼면서 1씩 카운팅하되 최종 `cur`이 0이 되지 않는다면 INF를 반환해 거슬러줄 수 없도록 하자. 최종적으로 거슬러줄 수 없는 경우의 수가 존재하므로 유의. ~~없는줄 알고 제출했다가 틀렸음~~
@@ -511,7 +541,8 @@ DP로 풀었다. 현재 값(`cur`)에서 5, 2를 빼면서 1씩 카운팅하되 
 
 Link : [https://www.acmicpc.net/problem/2410](https://www.acmicpc.net/problem/2410)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2087e4ac5766c34a21462183a2b3a781.js"></script>
 
 이전에 뺀 값을 $2^prev$이라 하면 그 다음부터 빼는 값이 $2^i$일 때 $i \leq prev$여야 한다. 이 부분때문에 `cache[1000001]`이 아닌 `cache[1000001][21]`로 설정했는데 이 부분이 메모리를 꽤 잡아먹는다. 오버플로우 때문에 WA받는걸 방지하려고 자료형을 long long으로 놓는게 습관이 됐는데 이 점때문에 메모리 초과를 계속 받았다..
@@ -526,7 +557,8 @@ Link : [https://www.acmicpc.net/problem/2410](https://www.acmicpc.net/problem/24
 
 Link : [https://www.acmicpc.net/problem/11409](https://www.acmicpc.net/problem/11409)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f305ea92333c6fd5a32e2b7f96f26d10.js"></script>
 
 **MCMF** 유형 문제다. 비용을 음수로 만들고 MCMF를 돌리면 최소 비용이 아닌 최대 비용을 구할 수 있다!
@@ -541,7 +573,8 @@ Link : [https://www.acmicpc.net/problem/11409](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/11493](https://www.acmicpc.net/problem/11493)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a4e0d7b72995a2a75b003d74ba8e296a.js"></script>
 
 **MCMF** 유형 문제. [kks227님의 글](https://m.blog.naver.com/kks227/220810623254)을 참고하면서 풀어보려고 했는데 열심히 구현하다 막혔다. 하지만 뛰어들기 까지 아이디어를 얻기가 어려웠는데 참고하고 한결 수월해졌다!
@@ -558,7 +591,8 @@ Link : [https://www.acmicpc.net/problem/11493](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/3980](https://www.acmicpc.net/problem/3980)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4afe2f6ea01f2a7c7bf83f366760cd3e.js"></script>
 
 범위가 작아서 브루트 포스로도 풀 수 있는 모양이지만 연습할겸 **MCMF**로 풀었다. START -> 포지션 -> 스텟 -> 사람 -> END로 모델링하고 각 간선의 용량은 1로 설정했다.
@@ -573,7 +607,8 @@ Link : [https://www.acmicpc.net/problem/3980](https://www.acmicpc.net/problem/39
 
 Link : [https://www.acmicpc.net/problem/2311](https://www.acmicpc.net/problem/2311)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/37fad498a280cb0b175773ba0183b580.js"></script>
 
 **MCMF**로 풀었다. 정점을 분할한걸 IN, OUT이라 하면 IN~OUT의 간선의 용량은 2로, 이외의 정점끼리 용량은 1로 설정하면 된다.
@@ -588,7 +623,8 @@ Link : [https://www.acmicpc.net/problem/2311](https://www.acmicpc.net/problem/23
 
 Link : [https://www.acmicpc.net/problem/10217](https://www.acmicpc.net/problem/10217)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/836d37950fa5e5cf8a2bbaee61a5238d.js"></script>
 
 **다익스트라**로 풀었다. DP로 분류돼있는 문제만 풀어보는 중이었는데 우연히 이 문제를 발견했다. 보통 다익스트라 문제라고 하면 최단 거리만 찾는데 집중돼있는데 이 문제도 최단 거리(시간)을 찾는건 맞지만 티켓을 이용했을 때 비용이 다 소진되는지 여부를 체크해줘야 한다. 때문에 배열을 2차원으로 늘려서 풀어야 한다. 전반적으로 코드는 다익스트라라는 틀에서 크게 벗어나지 않는다.
@@ -603,7 +639,8 @@ Link : [https://www.acmicpc.net/problem/10217](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/13698](https://www.acmicpc.net/problem/13698)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/30c325b1231cda517624973ba394ea3a.js"></script>
 
 단순 구현 문제.
@@ -618,7 +655,8 @@ Link : [https://www.acmicpc.net/problem/13698](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16118](https://www.acmicpc.net/problem/16118)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d63b3145375a40f998f4610fbed57889.js"></script>
 
 **다익스트라** 문제다. 여우의 최단 경로는 일반적인 다익스트라를 1번 돌려주면 되고, 늑대는 빠른 경로, 느린 경로를 2개 만들어서 현재 상태에 맞게 다익스트라를 돌려주면 된다.
@@ -633,7 +671,8 @@ Link : [https://www.acmicpc.net/problem/16118](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/10473](https://www.acmicpc.net/problem/10473)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/519d12edb778394180649f65d609d1d4.js"></script>
 
 **다익스트라** 문제. 시작점에서 다익스트라를 돌려 모든 대포로 이동할 수 있는 최단 거리를 계산하고 도착점까지의 거리(걸어서)도 계산한다. 그 다음엔 각 대포에서 도착점으로의 걸어서 가는 거리를 위에서 계산한 거리와 더해 그 값들의 최솟값을 취해 출력한다.
@@ -648,7 +687,8 @@ Link : [https://www.acmicpc.net/problem/10473](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17219](https://www.acmicpc.net/problem/17219)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/054fc60b191a84265ec29e97e08b4eac.js"></script>
 
 map으로 처리하는 기본 문제.
@@ -663,7 +703,8 @@ map으로 처리하는 기본 문제.
 
 Link : [https://www.acmicpc.net/problem/18870](https://www.acmicpc.net/problem/18870)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/43797ae63262d57492326e9855ef50e9.js"></script>
 
 **정렬**을 이용해 내림차순으로 순위를 매기고 출력하면 된다. 같은 값은 순위가 같음에 주의.
@@ -678,7 +719,8 @@ Link : [https://www.acmicpc.net/problem/18870](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1850](https://www.acmicpc.net/problem/1850)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/dd82c3e7fdf144d8f670eeba40c2f914.js"></script>
 
 인풋으로 들어오는 a, b값에 대한 최대공약수를 구하고 그 값만큼 1을 출력해주면 된다.
@@ -693,7 +735,8 @@ Link : [https://www.acmicpc.net/problem/1850](https://www.acmicpc.net/problem/18
 
 Link : [https://www.acmicpc.net/problem/2504](https://www.acmicpc.net/problem/2504)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4dc7172317a00e6533966129976d14f7.js"></script>
 
 각 괄호 종류에 대해서 쌍이 맞는지부터 체크하고 시작한다. 쌍으로 떨어지지 않으면 0을 출력하고 종료한다. 그 다음에는 재귀를 돌리면서 답을 갱신하는데, 이 때도 올바른 괄호열(설명 참고)이 아니면 0을 출력하고 종료한다. 괄호가 ()라면 `prev`를 0, []라면 1로 설정했다. 여는 괄호를 (, [이라 하고 그 반대를 닫는 괄호라 하자.
@@ -716,7 +759,8 @@ main에서는 이렇게 재귀로 돌린 값을 답에 갱신해주고 마지막
 
 Link : [https://www.acmicpc.net/problem/9184](https://www.acmicpc.net/problem/9184)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2f98b4464fa57f0817eaa9dcf4de5dae.js"></script>
 
 문제에 적힌 점화식을 따라서 적절하게 구현하면 된다.

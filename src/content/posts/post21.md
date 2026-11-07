@@ -10,7 +10,8 @@ author:
 ---
 문제 바로가기 : [https://www.acmicpc.net/problem/1197](https://www.acmicpc.net/problem/1197)<br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/cdea28cbec8b1b1f702f25175ad5b610.js"></script>
 <br>
 

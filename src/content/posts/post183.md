@@ -16,7 +16,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/20056](https://www.acmicpc.net/problem/20056)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/be2fe81a4b90df4207a525255e1862d2.js"></script>
 
 구현 문제. 구현 난이도는 시리즈에 비해 낮은 편이다. 근데 구현 문제가 그렇듯이 습관에 발목잡히면 참 답이 없다. continue를 곳곳에 걸어놔서 clear()가 안먹히는 케이스가 있어가지고 고치는데까지 정말 오래걸렸는데 실전에서 이런 실수 안하도록 정말 주의해야겠다. 🥺
@@ -31,7 +32,8 @@ Link : [https://www.acmicpc.net/problem/20056](https://www.acmicpc.net/problem/2
 
 Link : [https://www.acmicpc.net/problem/20057](https://www.acmicpc.net/problem/20057)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1c031e05237760b4e26a790d3dec7871.js"></script>
 
 구현 문제. 토네이도 이동 방향과 방향에 따라 토네이도의 영향에 닿는 부분을 설정해주는게 포인트다. 전자는 약간의 연산으로 좀 간단하게 구현이 가능한데 후자 또한 가능할걸로 보이지만 어떻게 해야할지 직관적으로 안떠올라서 그냥 하드코딩했다. 요구하는 내용이 그렇게 어렵진 않으니 잘 구현해주자.
@@ -46,7 +48,8 @@ Link : [https://www.acmicpc.net/problem/20057](https://www.acmicpc.net/problem/2
 
 Link : [https://www.acmicpc.net/problem/20058](https://www.acmicpc.net/problem/20058)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/59fbc529e80813f3ea8ccb268d6e592e.js"></script>
 
 구현 문제. 구역별로 돌린 후 모든 위치에서 녹는 얼음을 조사한 후 해당되면 녹이면 된다. 구역별로 나누는건 그렇다 치고 이걸 어떻게 돌릴까 하다가 그냥 테두리로 쪼개서 돌리기로 했다. 시간 제한에 구애받을 정도의 최적화가 필요없어 난이도가 낮다. 개인적으로 삼성 기출 문제 풀면서 깔끔하게 푼 느낌이라 뭔가.. 좋았다(?)
@@ -61,7 +64,8 @@ Link : [https://www.acmicpc.net/problem/20058](https://www.acmicpc.net/problem/2
 
 Link : [https://www.acmicpc.net/problem/2156](https://www.acmicpc.net/problem/2156)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d4d5439ecb59639e393c5db0d56ff645.js"></script>
 
 간단한 DP 문제.<br>
@@ -78,7 +82,8 @@ Link : [https://www.acmicpc.net/problem/2156](https://www.acmicpc.net/problem/21
 
 Link : [https://www.acmicpc.net/problem/13305](https://www.acmicpc.net/problem/13305)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/bdee1c59ab60072a64fc54aed2cf37f1.js"></script>
 
 간단한 그리디 문제. 특정 위치 A에 있고 A에서의 가격을 cur이라 했을 때, 뒤에 cur보다 작은 가격을 취급하는 위치 B가 있다고 하자. 그러면 B에 도착했을 때 그 전까지의 거리(`sumDist`)를 `cur`과 곱한 값을 결과값에 더해주면 된다. 이후엔 `cur`이 위치 B에서의 가격으로 재설정되도록 해주고, `sumDist` 역시 초기화해주자.
@@ -93,7 +98,8 @@ Link : [https://www.acmicpc.net/problem/13305](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/3273](https://www.acmicpc.net/problem/3273)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/eb834b748542f5e688b44a4dad27ae9f.js"></script>
 
 투 포인터 문제. 입력받은 값들을 정렬해준 후 처리한다. 두 수의 합이 `x`보다 크고 작은지에 따라 범위를 어디서 조여올지를 결정하는데, 정렬된 값이므로 합이 x보다 작거나 같으면 값이 커져야 하므로 `i`를 증가시키고 그렇지 않으면 `j`를 감소시킨다.
@@ -110,7 +116,8 @@ Link : [https://www.acmicpc.net/problem/3273](https://www.acmicpc.net/problem/32
 
 Link : [https://www.acmicpc.net/problem/17406](https://www.acmicpc.net/problem/17406)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e1d8693c13b08586eb87c8d8ea13631e.js"></script>
 
 구현 문제. 맵 전체 크기가 50*50이고 들어오는 순서 길이도 6이어서 최적화를 고민할 필요는 없다.
@@ -127,7 +134,8 @@ Link : [https://www.acmicpc.net/problem/17406](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17471](https://www.acmicpc.net/problem/17471)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/99dac30b2f25bb027262002fd82d4405.js"></script>
 
 구현 문제. 모든 구역에서 2가지 팀중 하나를 선택하는 경우의 수를 모두 고려한다. (총 $2^n$가지, `divide()`) n개의 구역에 대해서 나눠진 선거구에 대해 속한 구역들이 모두 연결됐는지 여부를 테스트한다. (`search_connected()`) 속한 2개의 팀(선거구)에 대해 테스트가 모두 끝났다면 답을 갱신해준다. 답이 갱신되지 못한 경우 `INF`로 값이 남아있기 때문에 이 때는 -1을 출력하도록 한다.
@@ -142,7 +150,8 @@ Link : [https://www.acmicpc.net/problem/17471](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17281](https://www.acmicpc.net/problem/17281)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/58ca3f126cabc0482d9b9a1c5c63f610.js"></script>
 
 구현 문제. 결정된 순서는 첫 이닝부터 끝 이닝까지 유지된다는 점을 주의하자. 당연히 그렇지 않을줄 알고 열심히 풀어보려고 하다가 시간복잡도가 $(8!)^N$이 나와서 포기했다가 결정된 순서가 끝까지 유지된다는걸 알게되고 다시 풀었다. (이 경우 시간복잡도는 $8! \times N$) 대부분의 구현 문제가 그렇듯이.. 함수별로 처리하는 영역을 잘 분리시켜서 잘 구현해주자. 나같은 경우 main에서 `next_permutation()`으로 순서가 되는 모든 경우의수를 고려해줬고, `perm()`에서 각 이닝마다 `matching()`을 호출해 정해진 순서해서 얻을 수 있는 점수를 얻어온다.
@@ -161,7 +170,8 @@ Link : [https://www.acmicpc.net/problem/17281](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/17472](https://www.acmicpc.net/problem/17472)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/9e0ec7531b2f68bd0b9cfdc722a4da77.js"></script>
 
 구현 + 섬 번호 결정(DFS or BFS) + **MST** 문제. 주어진 섬들의 번호를 결정해주는데 DFS나 BFS를 통해 결정해준 후, 각 섬 번호를 각 vertex처럼 생각했을 때 섬과 인접한 바다에서 정해진 방향으로 나아갔을 때 만나는 섬과의 거리들을 모두 `d[s][e]`에 저장해주자. (물론 여러 경우가 생길 수 있으므로 최솟값을 저장해야 한다) 그렇게 섬과 섬 사이의 최소 거리가 정해졌으므로 MST 알고리즘을 활용하면 된다.

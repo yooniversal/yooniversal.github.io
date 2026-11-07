@@ -17,7 +17,8 @@ author:
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/17676](https://programmers.co.kr/learn/courses/30/lessons/17676)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/463c1d1858849aee10bbe6e56597b5d0.js"></script>
 
 로그 문자열에서는 응답완료시각, 처리시간이 주어진다. 각 로그 문자열에서 응답시작시각과 응답완료시각을 구해서 조건에 맞춰 완전 탐색을 돌려주면 된다. 기준이 되는 로그의 응답완료시각을 $start$라 하면 $[start, start+999]$에 포함되는 구간을 카운트하면 된다. 1000이 아닌 999를 더하는 이유는 처리시간이 시작 시각과 끝 시각을 포함하기 때문이다. $1 <= N <= 2000$이므로 $O(n^2)$에도 통과할 수 있다.
@@ -33,7 +34,8 @@ ms가 포함되는 바람에 숫자가 좀 커져서 더러워 보이지만 시�
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/12900](https://programmers.co.kr/learn/courses/30/lessons/12900)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d810b7595dec92f27efa4b58de0ab06e.js"></script>
 
 DP 유형에서 기초 문제로 꼽힌다. 다음의 점화식을 만족한다.<br><br>
@@ -48,7 +50,8 @@ $f(n) = f(n-1) + f(n-2)$
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/43162](https://programmers.co.kr/learn/courses/30/lessons/43162)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/95db3750ac35373fc9b3a58f5d7a9611.js"></script>
 
 노드들을 DFS로 돌면서 집합의 개수를 세는 문제다. DFS를 수행하면 시작점과 연결된 노드들을 모두 체크할 수 있다. 즉, 한 집합을 모두 돌 수 있다는 말이므로 체크 되지않은 모든 노드들에 대해 DFS가 동작한 횟수가 집합의 개수가 된다.
@@ -63,7 +66,8 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/43162](https://progra
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/43163](https://programmers.co.kr/learn/courses/30/lessons/43163)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6a7e4f96bc9fbc70175257a8421acfa4.js"></script>
 
 시작 문자열로부터 최종적으로 변환할 문자열까지 정해진 규칙을 따라 변환해야한다. `words`에 있는 단어 중 철자가 1개만 다른 문자열로 1번씩 변환이 가능하며 이 때 최종 결과까지의 최소 변환 횟수를 출력한다. BFS는 미로 찾기 등의 문제에만 익숙해져 있어서 조금 당황스러웠지만 방식은 크게 다르지 않다.
@@ -95,7 +99,8 @@ int solution(string begin, string target, vector<string> words) {
 
 Link : [https://programmers.co.kr/learn/courses/30/lessons/49189](https://programmers.co.kr/learn/courses/30/lessons/49189)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/96ceacf351c8f1758c7eef3628343daf.js"></script>
 
 지나간 노드들을 `visited`로 체크하면서 BFS를 통해 가장 먼 노드까지 이동하면 된다. 처음엔 DFS로 풀어보려 했는데 돌려보니 이미 지나간 노드를 다시 거치는 경우가 발생했다. 최종적으로는 시간 초과를 받았다. DFS말고 BFS로 해보니 시간 문제없이 바로 통과할 수 있었다!

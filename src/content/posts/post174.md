@@ -17,7 +17,8 @@ author:
 
 Link : [https://www.acmicpc.net/problem/11576](https://www.acmicpc.net/problem/11576)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c076610c1c2199fc7e8f1b6a0678a4b4.js"></script>
 
 A진법으로 쓰인 값들을 모두 B진법으로 바꾸면 된다.
@@ -32,7 +33,8 @@ A진법으로 쓰인 값들을 모두 B진법으로 바꾸면 된다.
 
 Link : [https://www.acmicpc.net/problem/17103](https://www.acmicpc.net/problem/17103)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/b01de8d1af85f640724d7339afd4d6c1.js"></script>
 
 $10^6$까지 소수 여부를 전처리한 후(에라토스테네스의 체) a의 중간까지 매 케이스마다 탐색해서 값을 찾아주면 된다.
@@ -47,7 +49,8 @@ $10^6$까지 소수 여부를 전처리한 후(에라토스테네스의 체) a�
 
 Link : [https://www.acmicpc.net/problem/1309](https://www.acmicpc.net/problem/1309)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/6e70670a4bba3f1cb4a8835dfc2259b8.js"></script>
 
 DP 문제. 0층부터 시작해서 조건에 맞춰 채워가면서 n-1층에 도착하면 1을 반환하도록 설정했다. (0-based) 열은 2개뿐이므로 당연히 열 모두 채울 수는 없으며 사자를 1마리 배치하거나 또는 배치하지 않는 경우 2가지만 고려하자. 인자에서 `cur`을 현재 층, `col`을 사자가 들어있는 열의 정보라고 하자. 현재 층에 만약 사자가 존재한다면 다음 층에는 **같은 열에 사자가 오지 않도록** 하면 된다. 위의 경우를 제외한 모든 케이스를 세주자. 또 항상 9901로 나눈 나머지를 구해야 함에 주의하자.
@@ -62,7 +65,8 @@ DP 문제. 0층부터 시작해서 조건에 맞춰 채워가면서 n-1층에 �
 
 Link : [https://www.acmicpc.net/problem/1057](https://www.acmicpc.net/problem/1057)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/851aa480926c0221be70b278e46867ac.js"></script>
 
 브루트포스 문제. 라운드를 거칠 때마다 우승자의 번호가 규칙적으로 바뀌는 점에 유의하면 쉽게 풀 수 있다.
@@ -77,7 +81,8 @@ Link : [https://www.acmicpc.net/problem/1057](https://www.acmicpc.net/problem/10
 
 Link : [https://www.acmicpc.net/problem/1248](https://www.acmicpc.net/problem/1248)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f6f8aa48be81493bece57758f9c78a4a.js"></script>
 
 백트래킹 문제. 모든 케이스를 돌면서 모든 조건을 탐색하면 $21^{n} /times n(n+1)/2$이 걸리므로 TLE를 받는다. 때문에 이 문제의 난이도가 개인적인 생각으로는 백트래킹치고 높은데, 가지치기를 하는게 포인트다. 4달 전에 TLE를 받고 포기했다가 [코드 플러스](https://code.plus/course/42)에 실려있어서 다시 풀어보게 됐다.
@@ -96,7 +101,8 @@ Link : [https://www.acmicpc.net/problem/1248](https://www.acmicpc.net/problem/12
 
 Link : [https://www.acmicpc.net/problem/14391](https://www.acmicpc.net/problem/14391)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f8912b84c5aeb7db0d8c7a555b99666b.js"></script>
 
 브루트 포스 - **비트마스크** 문제. 모든 자리를 비트마스킹으로 처리하는게 포인트다. N의 상한이 4이므로 최대 16자리까지 컨트롤 해야하는데 $2^{16}$이라 해야봐야 $65536$밖에 안되므로 배열의 크기로 사용하는데 무리가 없다.
@@ -115,7 +121,8 @@ Link : [https://www.acmicpc.net/problem/14391](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/2146](https://www.acmicpc.net/problem/2146)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/e070ca905925c62e0bbbb08adb349dae.js"></script>
 
 DFS로 육지인 부분을 돌면서 섬마다 넘버링을 해준 후($O(n^2)$) 위치 두 곳을 $(x_1, y_1), (x_2, y_2)$라 하면 최단 거리는 $|x_1-x_2|+|y_1-y_2|-1$이므로 모든 쌍이 되는 섬들에 대해 조사해보면 된다.
@@ -130,7 +137,8 @@ DFS로 육지인 부분을 돌면서 섬마다 넘버링을 해준 후($O(n^2)$)
 
 Link : [https://www.acmicpc.net/problem/2250](https://www.acmicpc.net/problem/2250)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/79821bb94521a6c1d8728ee736ae8a34.js"></script>
 
 어떤 방법으로 풀어야 좋을지 한바퀴정도 헤메다가 아이디어가 떠올라서 구현해보니 코드량도 엄청 적게 수월하게 구현했다. 다만 루트 노드를 설정하는 과정에서 당연히 1번이라 생각하고 제출했다가 WA를 받았는데 이 문제는 루트 노드가 뭔지 알려주지 않았으므로 **찾아야 한다**. 리프 노드에서 부모로 끝까지 역추적해서 루트 노드를 구해주면 된다.
@@ -150,7 +158,8 @@ Link : [https://www.acmicpc.net/problem/2250](https://www.acmicpc.net/problem/22
 
 Link : [https://www.acmicpc.net/problem/16954](https://www.acmicpc.net/problem/16954)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/2c1c492c38a2a56dcd9344088e1eef9f.js"></script>
 
 BFS 문제. 일반적인 길찾기 컨셉에서 벽이 1초에 1칸씩 아래로 내려간다는 점이 추가된 버전이다. 예전에 풀다가 어떻게 예외 처리를 잘못했는지 계속 특정 케이스를 못넘어가서 포기했었다. 이번에 [알고리즘 중급 1/3 - BFS (연습)](https://code.plus/course/43)에 실려있어서 다시 도전해봤는데 생각보다 되게 쉽게 풀었다. 복잡하게 생각할 필요가 없었던 문제였다.
@@ -167,7 +176,8 @@ BFS 문제. 일반적인 길찾기 컨셉에서 벽이 1초에 1칸씩 아래로
 
 Link : [https://www.acmicpc.net/problem/16933](https://www.acmicpc.net/problem/16933)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f9789eb0acc836ab71fed877dc55e7a4.js"></script>
 
 BFS 문제. [BOJ 14442: 벽 부수고 이동하기 2](https://www.acmicpc.net/problem/14442)에서 한 단계 더 나아간 버전이다. 벽을 부술 수 있는 횟수가 정해져 있고, 낮에만 벽을 부술 수 있다고 쓰여 있다. `chk[x][y]`는 현재 위치가 `(x, y)`이고 지금까지 벽을 부순 횟수를 의미한다. **제자리에 있을 수 있는 케이스**가 뭔지 잘 생각해야 하는데,
@@ -185,7 +195,8 @@ BFS 문제. [BOJ 14442: 벽 부수고 이동하기 2](https://www.acmicpc.net/pr
 
 Link : [https://www.acmicpc.net/problem/2644](https://www.acmicpc.net/problem/2644)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8e596539e964f059e3908f41e642e6cb.js"></script>
 
 BFS 기본 문제. 인접 행렬로 만들어준 뒤 중복을 체크해가면서 답을 카운팅해주면 된다.
@@ -200,7 +211,8 @@ BFS 기본 문제. 인접 행렬로 만들어준 뒤 중복을 체크해가면�
 
 Link : [https://www.acmicpc.net/problem/1080](https://www.acmicpc.net/problem/1080)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/87497bd79de011a67d7cb2973d16dba7.js"></script>
 
 그리디 문제. 입력받은 행렬을 `a`, `b`라고 하면, 탐색하면서 `a[i][j]`와 `b[i][j]`가 같은지 여부를 확인한다. 다르다면 무조건 바꿔야 하는 상태이므로 해당 위치를 3*3의 좌측 상단이라고 생각하고<br>
@@ -216,7 +228,8 @@ Link : [https://www.acmicpc.net/problem/1080](https://www.acmicpc.net/problem/10
 
 Link : [https://www.acmicpc.net/problem/2138](https://www.acmicpc.net/problem/2138)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/fe1f80e99efcf9f195729002e39053a0.js"></script>
 
 그리디 문제. 현재 위치(인덱스)를 i라 하면 직전 위치인 i-1에서 a와 b가 다를 때 무조건 바꾸는 연산을 해줘야 한다. 그렇지 않으면 다음 위치로 넘어가면서 절대로 바꿀 수 없게 되기 때문이다. 첫 번째 인덱스(`a[0]`)에서는 `a[-1]`이 존재하지 않기때문에 바꾸는 연산을 적용할지 말지 모두 시도해봐야 한다.
@@ -231,7 +244,8 @@ Link : [https://www.acmicpc.net/problem/2138](https://www.acmicpc.net/problem/21
 
 Link : [https://www.acmicpc.net/problem/19584](https://www.acmicpc.net/problem/19584)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/d6def7763847d905cb0f02d70325ea90.js"></script>
 
 **스위핑** 문제. 어떤 정점을 지났을 때 해당 정점과 연결된 모든 엣지에 대한 가중치를 취할 수 있는 점에 주목해야 한다. 때문에 엣지의 양 끝 점들의 y값을 기준으로 점들을 정렬한 후 스위핑하면서 해당 점이 시작점인지 여부에 따라 값을 갱신하고 이 때 최댓값을 취해주면 된다.
@@ -246,7 +260,8 @@ Link : [https://www.acmicpc.net/problem/19584](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/16357](https://www.acmicpc.net/problem/16357)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a4d198a9a2b65e4bcb15451e4e562b2b.js"></script>
 
 **스위핑** + **Lazy Propagation** 문제. 여기서 Lazy Propagation의 쿼리는 구간합이 아닌 구간 최댓값을 구하도록 해주어야 한다. 점들을 정렬하고 스위핑을 하는데 기준이 되는 두 점을 정해야 하므로 매 순간 한 점을 지정한다고 하자. 그렇다면 해당 점의 y좌표와 만나는 모든 사각형을 제외한 나머지 중 모든 y값에 대해 최댓값이 되는 점을 Lazy Propagation으로 쿼리를 이용해 처리하면 된다.
@@ -267,7 +282,8 @@ Link : [https://www.acmicpc.net/problem/16357](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/1963)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/883441b89a75aec90e5dd4bd81081d3b.js"></script>
 
 에라토스테네스의 체 + BFS 문제. 각 자릿수를 0~9로 돌려주면서 소수인 수에 대해 카운팅을 하며 넘겨주자. 항상 4자릿수가 되어야 함에 유의.
@@ -282,7 +298,8 @@ Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/1963)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/31300f1691566f169fc92bef209d78ea.js"></script>
 
 간단한 그래프 문제. 구현하는데 크게 어렵진 않으나 루트 노드가 항상 0번이 아님에 유의.
@@ -297,7 +314,8 @@ Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/1963)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/31300f1691566f169fc92bef209d78ea.js"></script>
 
 간단한 그래프 문제. 구현하는데 크게 어렵진 않으나 루트 노드가 항상 0번이 아님에 유의.
@@ -312,7 +330,8 @@ Link : [https://www.acmicpc.net/problem/1963](https://www.acmicpc.net/problem/19
 
 Link : [https://www.acmicpc.net/problem/2636](https://www.acmicpc.net/problem/2636)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/328baff620945083f82292a987d87785.js"></script>
 
 BFS 문제. 다른 부분은 그렇다치고 가장자리를 체크하는게 포인트다. 쉽게 구현할 수 있을줄 알았는데 시간이 꽤 걸렸다. 어느 케이스에서 걸리는지 모르겠는데 deque로 0일때 우선으로 처리하는게 안돼서 시간을 더 쓰는 방법을 택했는데 최대 100x100이어서 통과하는데 무리는 없었다.
@@ -327,7 +346,8 @@ BFS 문제. 다른 부분은 그렇다치고 가장자리를 체크하는게 포
 
 Link : [https://www.acmicpc.net/problem/2638](https://www.acmicpc.net/problem/2638)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/a7694f8ea51757b0da9228d45c6e1368.js"></script>
 
 BFS 문제. [BOJ 2636: 치즈](https://www.acmicpc.net/problem/2636)와 거의 동일.
@@ -342,7 +362,8 @@ BFS 문제. [BOJ 2636: 치즈](https://www.acmicpc.net/problem/2636)와 거의 �
 
 Link : [https://www.acmicpc.net/problem/2109](https://www.acmicpc.net/problem/2109)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/fa3be3dbd8a8587725b7f7b298f54064.js"></script>
 
 그리디 문제. 나중에 할 수 있는 케이스들이 그렇지 않은 케이스보다 가격이 높은 경우 주의해야한다. 좀 더 자세히 말하면 위와같은 케이스가 많아서 기간이 짧고 강연료가 적은 케이스를 택하지 못하는 경우가 생길 수 있다는 말이다. 예시는 [여기](https://www.acmicpc.net/board/view/1885)에 있다.
@@ -357,7 +378,8 @@ Link : [https://www.acmicpc.net/problem/2109](https://www.acmicpc.net/problem/21
 
 Link : [https://www.acmicpc.net/problem/18407](https://www.acmicpc.net/problem/18407)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/1d067c6c9e43cdfb59521e7c0d1b700a.js"></script>
 
 **Lazy Propagation**을 이용한 Segment Tree 문제. 블럭이 쌓이면서 일부분이 허공에 놓이게 돼도 그렇지 않은 부분과 높이가 같아지게 되므로 구간 `[a, b]`에서 최댓값을 `h`라 하면 `[a, b]`의 모든 값을 `h+1`로 수정하면 된다.
@@ -372,7 +394,8 @@ Link : [https://www.acmicpc.net/problem/18407](https://www.acmicpc.net/problem/1
 
 Link : [https://www.acmicpc.net/problem/1744](https://www.acmicpc.net/problem/1744)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/4eecf744d9ebd4d186e0a4ed86d4c0f1.js"></script>
 
 그리디 문제. 음수는 제일 작은 값끼리, 양수는 제일 큰 값끼리 묶어주자. 이 때 0은 음수와 **무조건 묶고**, 양수와는 묶지 않아야 한다. 1은 대상이 음수, 0, 양수 중 **어떤 케이스든 간에** 묶지 않아야 한다. 즉, 0과 1에 대한 예외 처리가 필수.
@@ -387,7 +410,8 @@ Link : [https://www.acmicpc.net/problem/1744](https://www.acmicpc.net/problem/17
 
 Link : [https://www.acmicpc.net/problem/11559](https://www.acmicpc.net/problem/11559)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/f06d32c460a984b7c0522035d0443ca2.js"></script>
 
 구현 문제. 맵의 가로, 세로 길이가 고정돼 있고 크기도 꽤 작으므로 굳이 효율적인 방법을 떠올릴 필요는 없어 보였다. BFS로 각 블럭마다 그룹으로 묶어버리고, 그룹에 소속된 블럭이 4개 이상이면 '.'으로 바꿔준다. '.'으로 바꾸는 연산을 했을 경우 BFS()에서 true를 리턴하도록 함으로써 탐색을 더 할지 말지를 결정하도록 한다.
@@ -406,7 +430,8 @@ BFS가 true라면 허공에 떠있는 블럭을 아래로 내려줘야 한다. �
 
 Link : [https://www.acmicpc.net/problem/2662](https://www.acmicpc.net/problem/2662)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/8815f3f3f405f6a21282b6e4c7f84cd7.js"></script>
 
 DP 문제. 현재 기업의 번호를 `cur`, 남은 금액을 `remain`이라 하자. 그리고 `f(cur, remain)`을 **cur번째 기업에서 remain의 금액이 있을 때 투자해서 얻는 최대 금액**이라고 하자. $inv \in [0, remain]$이고 `profit[cur][money]`를 `cur`번째 기업에서 `moeny`만큼 투자해서 얻는 이윤이면,<br>
@@ -425,7 +450,8 @@ $f(cur, remain) = max(f(cur, remain), f(cur+1, remain-inv)+profit[cur][inv])$<br
 
 Link : [https://www.acmicpc.net/problem/2875](https://www.acmicpc.net/problem/2875)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/162d74b084d54f18c5e6ed756ddd7ccc.js"></script>
 
 수학 문제.
@@ -440,7 +466,8 @@ Link : [https://www.acmicpc.net/problem/2875](https://www.acmicpc.net/problem/28
 
 Link : [https://www.acmicpc.net/problem/10610](https://www.acmicpc.net/problem/10610)<br>
 
-### solution
+**solution**
+
 <script src="https://gist.github.com/yooniversal/c52016b41d44b04a23e1a66532c43e78.js"></script>
 
 수학 문제. 30의 배수임을 체크해야 하므로 모듈러 연산을 활용하자.

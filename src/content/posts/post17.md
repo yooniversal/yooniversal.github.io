@@ -10,7 +10,8 @@ author:
 ---
 문제 바로가기 : [https://codeforces.com/contest/1374/problem/B](https://codeforces.com/contest/1374/problem/B)<br>
 
-## Solution
+**Solution**
+
 <script src="https://gist.github.com/yooniversal/fc1098c3045c2263b3f22a0ebeb49543.js"></script>
 <br>
 
