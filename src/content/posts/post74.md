@@ -1,0 +1,68 @@
+---
+title: "[BOJ 2934]"
+excerpt: LRH 식물
+category: PS
+date: 2020-08-12
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2934](https://www.acmicpc.net/problem/2934)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/81221f961c747236a729443cdf3c2455.js"></script><br>
+
+### fenwick tree
+펜윅 트리는 [Crocus님의 글](https://www.crocus.co.kr/666), [proqk 님의 글](https://foxtrotin.tistory.com/140)에서 많은 도움을 받았습니다. 감사합니다. 자세히 설명돼있으니 참고하시길 권장합니다.
+
+펜윅 트리도 세그먼트 트리처럼 구간합 등을 O(logN)에 구할 수 있다. 세그먼트 트리에서 메모리를 많이 사용하게되는 단점을 보완한 버전이다. 계산하는 매커니즘은 조금 비슷하다. 혹시 세그먼트 트리를 모르는 상태에서 접했다면 세그먼트 트리를 선행하는걸 추천한다. 인덱스를 비트로 계산해서 접근한다는 점이 특징인데 개인적인 생각이지만 상대적으로 직관적이지 못해서 어려웠다.
+
+업데이트 하는 함수는 다음과 같다. i부터 마지막 크기까지 업데이트한다. 인덱스를 2진수로 표현했을 때 뒤에서 처음으로 1이 나타나는 자리에 1을 더해주면서 업데이트한다. 예) 101 -> 110 -> 1000
+```cpp
+void uplast_modified_at(int i, ll diff) {
+    //i~100000 업데이트
+    while (i < MAXSIZE) {
+        tree[i] += diff;
+        i += (i & -i);
+    }
+}
+```
+구간합을 반환하는 함수는 다음과 같다. 1부터 `i`까지의 합을 더해서 반환한다. 이건 위와 반대로 뒤에서 처음으로 1이 나타나는 자리에 1을 빼주면서 진행한다. 예) 111 -> 110 -> 100
+```cpp
+ll sum(int i) {
+    ll ans = 0;
+    //1~i 합
+    while (i > 0) {
+        ans += tree[i];
+        i -= (i & -i);
+    }
+    return ans;
+}
+```
+
+### review
+새로운 식물은 직전에 심은 식물보다 높이가 항상 1씩 높다. 서로의 높낮이를 깊게 고민할 필요는 없겠다. 식물을 심는 구간 양 끝(L, R)은 겹쳐도 카운트가 되지 않는다. 꽃이 폈다면 겹쳐있던 개수만큼 카운트하고 없애준다. 양 끝 구간에서만 카운트를 진행하고 나머지 부분은 위로 겹쳐지게 된다. 때문에 1씩 증가시켜주자.
+```cpp
+//L, R 위치에서 겹쳐지는 만큼 출력해야 한다
+cout << lh + rh << '\n';
+
+//양 끝 구간은 겹쳐지는 부분이 0이 된다
+uplast_modified_at(L, -lh); uplast_modified_at(L + 1, lh);
+uplast_modified_at(R, -rh); uplast_modified_at(R + 1, rh);
+
+//양 끝 구간을 제외한 나머지는 한 칸 더 겹쳐진다
+uplast_modified_at(L + 1, 1); uplast_modified_at(R, -1);
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

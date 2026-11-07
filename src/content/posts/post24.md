@@ -1,0 +1,46 @@
+---
+title: "[BOJ 1774]"
+excerpt: 우주신과의 교감
+category: PS
+date: 2020-07-18
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/1774](https://www.acmicpc.net/problem/1774)<br>
+유사 문제 1 : [https://www.acmicpc.net/problem/1197](https://www.acmicpc.net/problem/1197)<br>
+유사 문제 2 : [https://www.acmicpc.net/problem/4386](https://www.acmicpc.net/problem/4386)<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/2080b063c2c26064d9019263f9cd86f4.js"></script><br>
+
+### review
+
+[BOJ 4386](https://www.acmicpc.net/problem/4386)과 놀라울 정도로 거의 다를게 없다! 나름 다른 점이라고 하면 <strong>이미 연결된 노드들</strong>이 있다. 테스트 케이스를 보면 알겠지만 거리를 0으로 설정한다.
+```cpp
+//input 중 일부
+for (int i = 0; i < E; i++) {
+		int start, end;
+		scanf("%d %d", &start, &end);
+		mst.push_back({ 0.0, start, end });
+		make_union(start, end);
+	}
+```
+그리고 dist()는 점과 점 사이의 거리를 반환하는데, 계산 과정에서 int의 범위를 초과할 수 있다. 때문에 [BOJ 4386](https://www.acmicpc.net/problem/4386)에서는 int를 이용했지만 여기서는 long long을 이용했다.
+```cpp
+double getdist(pair<ll, ll> a, pair<ll, ll> b) {
+	ll dx = abs(a.first - b.first);
+	ll dy = abs(a.second - b.second);
+	return sqrt(dx * dx + dy * dy);
+}
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

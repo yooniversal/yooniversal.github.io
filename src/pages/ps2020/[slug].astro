@@ -1,0 +1,14 @@
+---
+import { getCollection } from "astro:content";
+import { getPostsByCategory, postHref, postSlug } from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const posts = getPostsByCategory(await getCollection("posts"), "PS");
+  return posts.map((post) => ({
+    params: { slug: postSlug(post) },
+    props: { destination: postHref(post) },
+  }));
+}
+
+return Astro.redirect(Astro.props.destination, 301);
+---

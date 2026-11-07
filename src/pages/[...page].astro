@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import PostPagination from "@/components/PostPagination.astro";
+import PostCard from "@/components/PostCard.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { postsPerPage, siteConfig } from "@/config/site";
+import { visiblePosts, type Post } from "@/lib/posts";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = visiblePosts(await getCollection("posts"));
+  return paginate(posts, { pageSize: postsPerPage });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<Post>;
+}
+
+const { page } = Astro.props;
+const allPosts = visiblePosts(await getCollection("posts"));
+const title = page.currentPage === 1 ? undefined : `Posts - Page ${page.currentPage}`;
+const description = `Every post published on ${siteConfig.name}.`;
+const withTrailingSlash = (url: string | undefined) => (url && !url.endsWith("/") ? `${url}/` : url);
+const prevUrl = withTrailingSlash(page.url.prev);
+const nextUrl = withTrailingSlash(page.url.next);
+---
+
+<BaseLayout title={title} description={description} prevUrl={prevUrl} nextUrl={nextUrl}>
+  <div class="flex min-h-dvh flex-col">
+    <SiteHeader posts={allPosts} />
+    <main id="content" class="outer flex-1 pt-10 md:pt-14">
+      <div class="canvas">
+        <h1 class="sr-only">All posts</h1>
+
+        <div class="feed">
+          {page.data.map((post) => <PostCard post={post} />)}
+        </div>
+
+        <PostPagination currentPage={page.currentPage} lastPage={page.lastPage} prevUrl={prevUrl} nextUrl={nextUrl} label="Archive pagination" />
+      </div>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+title: "[Codeforces] Round #656 (Div. 3)"
+excerpt: A~D
+category: PS
+date: 2020-07-20
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://codeforces.com/contest/1374](https://codeforces.com/contest/1374)<br>
+
+## A Solution
+<script src="https://gist.github.com/yooniversal/ba4f4dee06662a6fa3f7b2ac141fe75d.js"></script>
+<br>
+
+x, y, z가 주어질 때, x=max(a,b), y=max(a,c), z=max(b,c)를 만족하는 a, b, c를 구하는 문제이다. 존재하지 않을 수 있다. 처음엔 그냥 이렇게 저렇게 조작하다보면 나오겠거니 했는데 내 머리는 조작할 능력이 부족했다. 생각없이 두드리다 끝날뻔했다. 예제에서 3, 2, 3을 입력받았는데 output이 3, 2, 1이길래 역으로 가는건 납득이 되는데 나는 증명이 안되더라. 내가 찾은건 3, 2, 2인데 답이 안된다고 생각해서 멘붕에 빠졌다가 다음 글을 확인했다.<br>
+``` You can print a, b and c in any order. ```<br><br>
+<strong>in any order</strong>가 굵은 글씨로 표시 돼있어서 겨우 알았다. 뭐 아무튼 3 2 2도 답이 돼서 저렇게 짰다.
+
+<img src="/images/cf_656b.png" alt="cf_656b.png" style="width: 100%; height: auto;">
+
+## B Solution
+<script src="https://gist.github.com/yooniversal/3e0c038c8be8536caae1a643c20e99ec.js"></script>
+<br>
+
+이해는 가는데 답 힌트를 빨리 찾기에는 문제 설명은 도움이 되지 못했다. 테스트 케이스를 보자마자 감이 왔다.
+```
+input :
+5
+2
+1 1 2 2
+4
+1 3 1 4 3 4 2 2
+5
+1 2 1 2 3 4 3 5 4 5
+3
+1 2 3 1 2 3
+4
+2 3 2 4 1 3 4 1
+
+output :
+1 2
+1 3 4 2
+1 2 3 4 5
+1 2 3
+2 3 4 1
+```
+숫자는 중복해서 나타나지 않고, 제일 먼저 등장한 숫자부터 답에 적어주면 된다!
+
+<img src="/images/cf_656c.png" alt="cf_656c.png" style="width: 100%; height: auto;">
+
+## C Solution
+<script src="https://gist.github.com/yooniversal/0393222cadcc8599b6475b93fb06fd47.js"></script>
+<br>
+
+주어진 숫자들 중에서 맨 앞과 뒤를 기준으로 작은 것부터 빼내 나열했을 때 오름차순이면 good array라 한다. good array를 만족하지 못하면 맨 앞의 숫자를 하나씩 없애는 연산을 하는데 이 연산이 최소가 될 때 반환하면 된다. 처음에 오름차순 되는지 체크해주고, 하나 빼면 또 체크해주고 .. 이러면 시간초과에 걸려버린다. ```3 2 3```의 경우 문제의 방법대로 나열하면 ```3 3 2```가 되므로 오름차순을 만족하지 못한다. 가운데에 있는 수가 양쪽의 수보다 작으면 곤란하다. 그럼 특정 숫자를 기준으로 양쪽의 정렬이 반대면 되겠다.
+
+<img src="/images/cf_656d.png" alt="cf_656d.png" style="width: 100%; height: auto;">
+
+## D Solution
+<script src="https://gist.github.com/yooniversal/b278bac5ed94d083e4c72f4b45be797c.js"></script>
+<br>
+
+처음엔 greedy로 풀어보다가 안돼서 말았다. 답을 내는 변수를 1개로 지정해서 발생한 문제였다. 2개로 설정하면 양쪽의 케이스에 대해 계속 결과를 내면서 둘 중 최솟값을 반환하는 아름다운 풀이가 가능했다. 기본적으로 n = 2^k(k>=0)이므로 절반씩 나눠서 왼쪽 혹은 오른쪽으로 진행하면 된다. 왼쪽은 cntl, 오른쪽은 cntr이다. 왼쪽을 분해할 거라면 오른쪽은 통째로 같은 문자(초기에는 'a')이면 된다. 길이의 절반에서 해당 문자와 같은 횟수를 빼주자. 그리고 왼쪽은 재귀를 통해 문자를 올려가면서(c+1) 값을 가져오고 더해주면 left 진행시의 결과값이 반환된다.
+```cpp
+//오른쪽 절반에서 char와 다른 것 + 왼쪽 절반에서 solve
+int cntl = (r-l+1)/2 - cnt(mid+1, r, c) + process(l, mid, c + 1);
+```
+같은 방식으로 cntr을 구해주고 min(cntl, cntr)을 답으로 반환한다.
+
+### review
+
+생각보다 내가 너무 못한다는 생각이 팍 들었다. Div.2에 도전하기 겁나서 Div.3에 갔는데도 기가 죽었다ㅠ 비슷한 문제(유형)를 접하면 푸는 속도가 비약적으로 증가한다는 굇수분들의 후기를 접한적이 있는데 음.. 수학문제를 푸는 것과 비슷한 이치라고 생각은 들지만 풀어본 경험이 있어도 좀처럼 손에 익질 않아서 걱정이다. 제대하기 전까지는 꼭꼭 목표달성 했으면 좋겠다! 열심히 해보자!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

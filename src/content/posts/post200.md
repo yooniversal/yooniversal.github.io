@@ -1,0 +1,33 @@
+---
+title: Bump nokogiri from 1.13.10 to 1.14.3
+excerpt: ""
+category: Study
+date: 2023-05-27
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+깃허브 블로그 운영하다보면 너무너무 자주 뜨는 보안 이슈 PR이다. 보안 문제가 있는건 nokogiri 뿐만 아니라 때에 따라 다양하게 나타난다! 이런 이슈가 생각보다 많이 발생하고 매번 업데이트해줘야 하는데 명령어 찾기가 귀찮아서 포스팅하기로 했다😞 생각보다 순탄하게 해결되지 않았어서 발생했던 문제랑 해결방법을 나열해보려 한다.
+<br>
+
+### Could not locate Gemfile
+(추가) 아래에는 1.15, 1.15.2로 써있는데 **반드시 PR에 적힌 업데이트 버전을 참고해주세요!!** `bundle update`를 입력해서 해결됐다는 사람들이 제일 많았지만! 나는 **Could not locate Gemfile**라는 말만 뜨면서 끝까지 업데이트가 안됐다. *Gemfile*이 `bundle update` 입력하는 경로에 없으면 그렇다곤 하는데 나는 해당이 안됐고! [여기](https://rubygems.org/gems/nokogiri)에서 찾아보니 *Gemfile*에 다음 내용을 추가하라는 내용이 있었다. (아래 내용은 작성 당시에 적힌 내용이어서 링크에서 확인해보는걸 추천)
+```
+gem 'nokogiri', '~> 1.15', '>= 1.15.2'
+```
+<br>
+
+이후에 `gem install nokogiri`를 하던 `bundle update`를 하던 nokogiri는 정상적으로 업데이트 될 것이다.
+<br>
+
+### ruby version 이슈
+3년 전에 깃허브 블로그를 처음 개설했을 때 설치했던 ruby를 업데이트 하지않고 계속 써왔기 때문에.. `bundle update` 입력 후 nokogiri를 1.15.2로 업데이트하던 와중 ruby가 너무 구버전이라 안된다고 한다😳 macOS나 linux는 cli로 어떻게 금방 업데이트할 수 있던데 나는 windows여서 [공홈](https://rubyinstaller.org/)에서 받고 재설치했다!
+<br>
+
+ruby 설치 후 `bundle update`를 입력하니 nokogiri까지 업데이트가 정상적으로 됐고 깃허브에 push까지 해주니 결국 해결할 수 있었다!
+<br>
+
+### (추가) dependency 이슈
+이후에 포스팅하면서 확인했는데 dependency 문제때문에 localhost:4000에서 내 게시물을 확인할 수가 없었다😥 위에서 nokogiri만 업데이트해줄 때 이미 설치된 것들에 대해 dependency를 고려하지 않아서 그랬던걸로 보인다. 구글링해봐도 좀처럼 나아지지가 않아서 Gemfile.lock을 지우고 ruby 재설치 후 `gem install jekyll`, `bundle install`을 입력하고 테스트해보니 localhost:4000으로 접속할 수 있었다!

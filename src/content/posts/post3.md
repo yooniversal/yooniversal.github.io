@@ -1,0 +1,28 @@
+---
+title: "[BOJ 11725]"
+excerpt: 트리의 부모 찾기
+category: PS
+date: 2020-07-10
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/11725](https://www.acmicpc.net/problem/11725)
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/33e8e90ab0291a421896dd364e681982.js"></script>
+<br>
+
+입력을 받으면서 fir, sec 노드의 부모가 없으면 부모를 정할 수 없으므로 스택1에 push 한다. 입력이 끝나면 스택1로 돌아와서 같은 과정을 진행하고 부모가 없는건 스택2로 push 한다. 스택1 while loop이 끝나면 스택2 while loop에서 같은 과정을 진행하고 조건에 걸리면 반대쪽 스택으로 push 해준다.
+
+계속 시간초과가 걸렸고 배열 -> 큐 -> 스택으로 바꿔가면서 AC를 받았다. 루트 노드인 1부터 계속 부모를 채워가는 과정이기 때문에 DFS에서도 같은 조건을 걸어주면 풀 수 있다. 방문 체크하는 배열을 선언해주면 더 간단하게 풀 수 있다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

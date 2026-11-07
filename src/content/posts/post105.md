@@ -1,0 +1,29 @@
+---
+title: "[BOJ 9240]"
+excerpt: 로버트 후드
+category: PS
+date: 2020-08-28
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/9240](https://www.acmicpc.net/problem/9240)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/9d2c4f0cf35869af17cc9d557dc7eede.js"></script>
+
+### review
+**Convex Hull 알고리즘**을 통해서 볼록 껍질(테두리)에 해당되는 점들을 스택에 모은다. 그리고 스택에 모은 점들을 `some` 벡터에 넣어주고 이중 for문으로 점들 사이의 거리를 계산한다. 볼록 껍질에 해당되는 점들의 갯수가 많지 않기 때문에 O(n^2)에도 충분히 돌아간다!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

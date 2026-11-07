@@ -1,0 +1,68 @@
+---
+title: "[Programmers] 조이스틱"
+excerpt: 탐욕법(Greedy)
+category: PS
+date: 2020-08-01
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42860](https://programmers.co.kr/learn/courses/30/lessons/42860)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/27fab8ad93157d698fdcb414e35ac640.js"></script><br>
+
+### review
+굉장히 더럽게 풀었다는 생각이 든다. 처음에는 첫 위치에 한정해서 풀었다가 계속 WA를 받았었다. 더 생각을 해보니 최솟값은 인덱스가 0인 곳에서 시작할 때만 생기지는 않을거 같더라. 마침 문자열의 길이는 20 이하여서 좀 러프하게 풀었다. 매 위치에서 최솟값을 구해줬다. 그리고 start 위치를 계속 변경해주면 그만큼 이동해줘야 하기 때문에 `startdis()`에서 값을 반환해 더했다.
+```cpp
+int startdis(int start, int size) {
+    int mid = size / 2 + 1;
+    if (size % 2) {
+        if (start <= mid) return start - 1;
+        else return (mid - 1) - (start - mid) + 1;
+    }
+    else {
+        if (start <= mid) return start - 1;
+        else return (mid - 1) - (start - mid);
+    }
+}
+
+int solution(string name) {
+    int answer = MAXSIZE;
+    for (int i = 0; i < name.size(); i++) {
+        answer = min(answer, min(right(name, i), left(name, i)) + startdis(i + 1, name.size()));
+    }
+
+    return answer;
+}
+```
+매 위치에서 이동하는 방향은 정방향(right)과 역방향(left)뿐이다. greedy 유형이라고 써있어서 계속 right 혹은 계속 left로 갔을 때 구하는 값중 최솟값을 얻도록 해줬다. `right()`과 `left()` 내용이 정말 길어서 보기가 싫어지는데🙄 간단하게 써보면 다음과 같은 탐색을 진행하도록 해줬다.
+```
+right의 경우, start를 *, 다른 지점을 #, 탐색이 끝난 지점을 @로 표시하자.
+예를 들어 # # # # * # # # 가 있다고 해보자.
+
+첫 for문은 start의 오른쪽 부분을 탐색한다. 탐색이 끝나면 다음과 같다.
+# # # # * @ @ @
+
+두번째 for문은 start의 왼쪽 부분을 탐색하도록 해줬다.
+@ @ @ @ * @ @ @
+
+left도 방향만 다를뿐 같은 방법으로 진행한다.
+그리고 탐색 도중 A가 나타났다면 탐색이 안 된 문자들도 전부 A인지 체크한다.
+맞다면 종료하고 아니라면 끝날 때까지 탐색을 진행한다.
+```
+<br>
+간단한 문제같은데 생각보다 통과가 잘 안돼서 정말 단순 무식하게 풀었다.<br>
+나중에 보다 효율적으로 풀 수 있도록 다시 풀어보자..😣
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

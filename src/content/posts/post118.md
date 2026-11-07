@@ -1,0 +1,76 @@
+---
+title: "[BOJ 1017]"
+excerpt: 소수 쌍
+category: PS
+date: 2020-08-31
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/1017](https://www.acmicpc.net/problem/1017)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/88fca35e8efd149fd8d51b154485be51.js"></script>
+<br>
+
+### review
+이분 매칭 응용 문제다. 기본 유형은 멤버가 있으면 각 멤버에 처리 가능한 숫자가 할당되기 마련인데 이 문제는 멤버만 주어진다. 그러므로 각 숫자당 처리할 수 있는 숫자를 등록해줘야 한다. 여기서는 합했을 때 소수가 되는 숫자가 그 조건이 된다. 소수를 매번 체크하는건 느리기도 하고 비효율적이므로 에라토스테네스의 체로 전처리를 해준다.
+```cpp
+//소수 만들기
+void PRIME() {
+	for (int i = 1; i < MAX; i++)
+		prime[i] = i;
+
+	for (int i = 2; i <= sqrt(MAX); i++) {
+		if (prime[i] == 0) continue;
+		for (int j = i + i; j <= MAX; j += i) {
+			prime[j] = 0;
+		}
+	}
+}
+=> prime[n] != 0 이면 n은 소수이다.
+```
+그리고 합하는 대상은 같은 숫자가 들어가면 안된다. 따라서 조건을 다음과 같이 설정해줘야 한다.
+```cpp
+for (int i = 0; i < n; i++) {
+	for (int j = 0; j < n; j++) {
+    //같은 숫자가 아님 && 합했을 때 소수
+		if (i!=j && prime[arr[i] + arr[j]])
+			num[arr[i]].push_back(arr[j]);
+	}
+}
+```
+그럼 준비가 끝났다. 리스트(input)에서 만들어지는 쌍들이 모두 소수가 될 때, 첫 번째 원소의 쌍을 담아야 한다. 근데 첫 번째 원소를 대상으로 갖고 있는 녀석들이 `dfs()`에서 끌어와 계속 수정을 하게 되면 모든 경우를 보장할 수 없다. 따라서 첫 번째 원소의 쌍을 픽스해줄 필요가 있다. 이분 매칭이 진행되기 전에 픽스해주면 2개의 매칭이 완료된다. 픽스된 값들은 `dfs()`에서 방해받지 않도록 `chk[]`가 초기화될 때마다 true로 설정해주어야 한다. 최종적으로 `cnt`가 `n`과 같아지면 조건을 만족하므로 담아준다.
+```cpp
+for (int t = 0; t < num[arr[0]].size(); t++) {
+	fill(from, from + MAX, 0);
+	int first = num[arr[0]][t];
+	from[first] = arr[0];
+	from[arr[0]] = first;
+	int cnt = 2; //2개의 매칭이 완료된 상태
+
+  //이분 매칭
+	for (int i = 1; i < n; i++) {
+		fill(chk, chk + MAX, false);
+		if (arr[i] == first) continue;
+		chk[arr[0]] = true; //픽스된 값
+		chk[first] = true; //픽스된 값
+		if (dfs(arr[i])) cnt++;
+	}
+	if (cnt == n) ret.push_back(first);
+}
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

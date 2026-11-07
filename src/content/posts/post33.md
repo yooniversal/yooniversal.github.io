@@ -1,0 +1,29 @@
+---
+title: "[Programmers] 프린터"
+excerpt: ""
+category: PS
+date: 2020-07-22
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42587](https://programmers.co.kr/learn/courses/30/lessons/42587)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/d56ed7714e173cd7a592213a8140c0d0.js"></script>
+<br>
+
+### review
+
+아무 생각없이 읽으면서 '음 우선순위 큐로 풀면 되겠네!'했지만 중요한건 중요도가 낮은 값은 맨 뒤로 간다는 점이다. 때문에 최댓값을 뽑아내기 위해 우선순위 큐를 별도로 선언해서 front를 가져와도 되지만 나는 정렬로 처리했다. 각 값이 서로 다르다면 그 값을 key로 지정해주고 값이 같을 때 출력하면 되지만 문제에서 그런 조건이 없다. 큐는 인덱스로 읽어올 수도 없고 조건때문에 값으로 구분도 안되는데 어떡하나 하다가 pair로 해결할 수 있었다!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

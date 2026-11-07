@@ -1,0 +1,46 @@
+---
+title: "[BOJ 3648]"
+excerpt: 아이돌
+category: PS
+date: 2020-08-10
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/3648](https://www.acmicpc.net/problem/3648)<br>
+이 유형의 기본 문제, BOJ 11280 : [https://www.acmicpc.net/problem/11280](https://www.acmicpc.net/problem/11280)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/21d7e52b2b68836c140a0c096a76be7f.js"></script><br>
+
+### review
+이전에 풀었던 2-SAT 기본 문제인 [BOJ 11280](/ps/post69/)과 풀이가 거의 비슷하다. 심사위원이 각 참가자에게 투표를 하는데 참가자인 상근이는 이 투표를 해킹해서 조작하려고 한다. 이 때, 각 심사위원이 <strong>행사한 두 표중에 적어도 하나</strong>는 결과에 영향을 미쳐야 한다고 한다. 2-SAT의 냄새가 솔솔 난다. 두 표 모두 결과에 영향을 미치지 못하면 의심을 한다고 한다. 상근이는 의심을 사지 않는 선에서 조작을 해야 한다.
+
+두 표중에 적어도 하나는 결과에 영향을 미쳐야 한다? 2-SAT 기본 문제에서 봤던 논리식을 떠올려보자. 논리식 안에 있는 절은 (A||B) 이런 모양이었다. 모든 절이 true가 돼야 하므로 A 또는 B가 true여야 한다. 두 표는 A, B에 대응되겠고 적어도 하나가 true라면 이 절은 true가 된다. 주어진 조건을 만족한다. 최종적으로 논리식을 참으로 만들기 위한 조건을 만족해야한다. 만족하면 yes, 아니면 no를 출력한다. 방법은 [BOJ 11280](/ps/post69/)에서 쓴 방법과 같다.
+
+상근이는 다음 라운드에 진출하는 목록에 당연히 포함되어야 한다고 했으므로 이 조건도 추가해줘야 한다. 상근이는 1번이라고 정해져 있으니 1->1이라는 명제를 넣어주면 된다.
+```cpp
+while (M--) {
+    int a, b;
+    scanf("%d %d", &a, &b);
+    a = a < 0 ? (-2) * (a + 1) : 2 * a - 1;
+    b = b < 0 ? (-2) * (b + 1) : 2 * b - 1;
+    node[opp(a)].push_back(b);
+    node[opp(b)].push_back(a);
+    node[opp(1)].push_back(1); //상근이!
+}
+```
+
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

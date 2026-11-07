@@ -1,0 +1,85 @@
+---
+title: "[BOJ 3665]"
+excerpt: 최종 순위
+category: PS
+date: 2020-08-01
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/3665](https://www.acmicpc.net/problem/3665)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/a02ebf198179403cc53a56d1c7fb50dc.js"></script>
+<br>
+
+### review
+위상 정렬 응용 문제이다. 문제 설명에서도 등수가 바뀐 팀에 대한 정보만 주고 있고 일관성이 없을 수 있다고 해서 눈치채는데는 어렵지 않았다. 하지만 TC를 분석하면서 어떻게 계획을 세워야 할지 모르겠어서 시간이 좀 걸렸다. 몇 가지 깨달은 점은 다음과 같다.
+```
+1. 주어진 팀별 등수도 '위상 정렬'이다.
+   근데 정해진 순서가 (팀별 위치를 확정할 만큼) 많은 것 뿐이다.
+2. m줄만큼 역전된 횟수를 입력받는데, 기존 진입 차수에서 수정만 해주면 된다.
+3. 1번에서 언급한 것처럼 정해진 순서가 충분히 많다. 2번에서는 거기서 수정만 해줄 뿐이다.
+따라서 간선의 수는 유지가 되고 있는 상태이므로 확실한 순서를 찾을 수 없는 케이스는 없다.
+('?'를 출력하는 TC는 존재하지 않는다)
+```
+먼저 등수를 입력받을 때 각 노드별 간선과 진입 차수(`degree[]`)를 업데이트 해준다. `degree[] = i`인 이유는 `i=등수-1` 인데 이 값이 진입 차수와 같기 때문이다. 각 팀별 등수를 기록하기 위해 따로 배열을 선언해줬는데, map을 사용해도 된다. 메모리는 map이 더 낫겠다.
+```cpp
+vector<int> arr;
+for (int i = 0; i < n; i++) {
+    int team; cin >> team;
+    arr.push_back(team);
+    rate[team] = i; //등수 표시
+    degree[team] = i; //진입차수 업데이트
+}
+
+//간선 업데이트
+for (int i = 0; i < n-1; i++) {
+    for (int j = i + 1; j < n; j++) {
+        node[arr[i]].push_back(arr[j]);
+        node[arr[j]].push_back(arr[i]);
+    }
+}
+```
+다음은 위에서 2번에 적은 내용이다. 간선은 이미 추가가 됐으니 진입 차수만 변경해준다.
+```cpp
+cin >> m;
+while (m--) {
+    int s, e;
+    cin >> s >> e;
+    //s가 e보다 등수가 높았다면
+    if (rate[s] < rate[e]) {
+        degree[s]++;
+        degree[e]--;
+    }
+    //e가 s보다 등수가 높았다면
+    else {
+        degree[e]++;
+        degree[s]--;
+    }
+}
+```
+위상 정렬은 진입 차수가 0이 되는 노드를 큐에 계속 넣으면서 진행한다. 근데 진입 차수가 0이 되는게 없어서 모든 노드를 체크하지 못하고 큐가 먼저 비어버리는 상황이 생길 수 있다. 이런 경우에는 위의 방법대로 하면 `ans에` `n`만큼 값이 담기지 않는다. 따라서 `n`일 때만 답을 출력하도록 해줬다.
+```cpp
+//answer
+ if (ans.size() == n) {
+     for (auto& a : ans) {
+         cout << a << " ";
+     }
+     cout << '\n';
+ }
+ else {
+     cout << "IMPOSSIBLE" << '\n';
+ }
+ ```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,74 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import PostPagination from "@/components/PostPagination.astro";
+import { getCollection } from "astro:content";
+import PostCard from "@/components/PostCard.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { categoryDescriptions } from "@/config/categories";
+import { postsPerPage, siteConfig } from "@/config/site";
+import {
+  categories,
+  categorySlug,
+  getPostsByCategory,
+  visiblePosts,
+  type Category,
+  type Post,
+} from "@/lib/posts";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = visiblePosts(await getCollection("posts"));
+
+  return categories.flatMap((category) => {
+    const posts = getPostsByCategory(allPosts, category);
+    if (!posts.length) return [];
+
+    return paginate(posts, {
+      pageSize: postsPerPage,
+      params: { category: categorySlug(category) },
+      props: { category },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  category: Category;
+  page: Page<Post>;
+}
+
+const { category, page } = Astro.props;
+const allPosts = visiblePosts(await getCollection("posts"));
+const title = page.currentPage === 1 ? category : `${category} - Page ${page.currentPage}`;
+const withTrailingSlash = (url: string | undefined) => (url && !url.endsWith("/") ? `${url}/` : url);
+const prevUrl = withTrailingSlash(page.url.prev);
+const nextUrl = withTrailingSlash(page.url.next);
+const description = categoryDescriptions[category];
+---
+
+<BaseLayout title={title} prevUrl={prevUrl} nextUrl={nextUrl} description={`${description} ${siteConfig.name} posts in ${category}.`}>
+  <div class="flex min-h-dvh flex-col">
+    <SiteHeader posts={allPosts} />
+    <main id="content" class="outer flex-1">
+      <div class="canvas">
+        <header class="pagehead">
+          <p class="eyebrow">Category</p>
+          <h1 class="pagehead-title">{category}</h1>
+          <p class="pagehead-description">{description}</p>
+          <p class="meta mt-5">
+            <span>{page.total} {page.total === 1 ? "post" : "posts"}</span>
+          </p>
+        </header>
+
+        <div class="feed">
+          {page.data.map((post) => <PostCard post={post} />)}
+        </div>
+
+        {page.lastPage > 1 && (
+          <PostPagination currentPage={page.currentPage} lastPage={page.lastPage} prevUrl={prevUrl} nextUrl={nextUrl} label="Category pagination" />
+        )}
+      </div>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+title: "[BOJ 11375]"
+excerpt: 열혈강호
+category: PS
+date: 2020-08-31
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/11375](https://www.acmicpc.net/problem/11375)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/1b7e09f07b372801727e2d12429118a5.js"></script>
+<br>
+
+### review
+[나동빈님의 글](https://blog.naver.com/ndb796/221240613074)을 참고했습니다. 감사합니다.
+
+**이분 매칭 알고리즘**을 이용해서 매칭이 된 횟수만큼 답을 출력하면 된다. 전반적으로 DFS를 통해 동작하면서 코드가 굉장히 간결하다. 처음엔 if문 조건에 `dfs()`가 들어가면서 좀 충격을 먹었는데 예제를 가지고 시뮬레이션 해보면서 이해할 수 있었다.
+
+i번째 직원이 할 수 있는 일은 `person[i]`에 push 해주면서 input을 처리한다. 다음으로 직원의 수만큼 dfs()를 돌려주는데 dfs가 true를 반환하는 횟수만큼 카운트해줄 것이다. chk[]는 매번 초기화를 해줘야 한다! 어떻게 동작하는지 참고하다보면 왜 그래야 하는지 이해할 수 있다.
+```cpp
+int cnt = 0;
+for (int i = 1; i <= n; i++) {
+    fill(chk, chk + MAX, false);
+    if (dfs(i)) cnt++;
+}
+```
+bool 타입인 `dfs()`는 매칭이 완료되는 순간 true를, 실패하면 false를 반환한다. `from[next]`를 `cur`로 갱신할 때 매칭이 완료됐음을 의미한다. 현재 문제에서는 어떤 것이 어디로 매칭됐는지 요구하질 않아 코드에는 포함이 안돼있다. `from[]`의 용도는 다음과 같다.<br>
+**from[i]** : i번째 일을 받은 '사람' (`i`는 일의 순번을 의미한다)<br>
+사람 번호 -> 일 번호는 `from[i] -> i`로 나타낼 수 있겠다.
+
+다시 돌아오면, `from[next] = cur`이 수행된 다음 true를 반환하도록 되어있다. 이를 수행하기 위한 조건을 확인할 필요가 있다.
+```cpp
+bool dfs(int cur){
+  ...
+  if (from[next] == 0 || dfs(from[next])) {
+      from[next] = cur;
+      return true;
+  }
+  ...
+  return false;
+}
+```
+`from[next] == 0`이라는건 `next`번째 일을 수행하는 사람이 없다는 것을 의미한다. (사람은 1번부터 시작한다) dfs(`from[next]`)는 `from[next]`번째 사람이 맡은 일과 매칭이 됐는지를 의미한다. (글자만 보면 덜 직관적이어서 이해하기가 힘들다. 이해가 안간다면 예제를 천천히 따라가보기를 권한다)
+
+예를 들어서 1번 직원이 `a`, `b`를 수행할 수 있고 2번 직원이 `a`를 수행할 수 있다고 하자. 직원당 하나의 일만 수행이 가능하다. 그럼 `dfs(1)`을 시작한다.` from[a]=0` 이므로 `from[a]=1`이 된다. 즉, `a`를 1번 직원이 맡게 됐다. (인덱스에는 문자가 들어갈 수 없지만 편의상 이렇게 적도록 하겠다) 그 다음엔 `dfs(2)`를 시작한다. 2번 직원은 `a`만 수행할 수 있어서 `next`가 `a`뿐이다. main에서 `dfs(1)`에서 `dfs(2)`로 넘어가면서 `chk`가 초기화 됐으므로 현재 `chk[a]`는 false다. 그럼 `chk[a] = true`가 된다.
+```cpp
+bool dfs(int cur) {
+  for (auto& next : person[cur]) {
+    if (chk[next]) continue;
+    chk[next] = true;
+    ...
+```
+if문에서 `from[a]`는 0이 아니다. 1이다. 따라서 OR 뒤에 `dfs(from[a])` 즉, `dfs(1)`을 수행한다. 1은 멤버가 `a`, `b`가 있다. `a`는 이미 체크됐으므로 넘어가고 `next`는 `b`가 된다. `from[b]`는 0이기 때문에 `from[b]=1`이 되고 true를 반환한다. 다시 `dfs(2)`로 돌아오면, `dfs(from[a])`이 참이 됐으니 if문 안으로 들어가 최종적으로 `from[a]=2`이 된다. if문에 있는 dfs는 그 일을 맡은 사람한테 <strong>다른 일을 맡을 수 있는지</strong> 물어보는 것과 같다.
+
+main에서는 매칭이 성공할 때마다 `cnt`를 1씩 증가시키므로 최종 답은 `cnt`가 된다.
+
+추가로 [BOJ 11376: 열혈강호 2](https://www.acmicpc.net/problem/11376)는 직원이 2개의 일을 맡을 수 있는 설정을 가지고 있다. 이분 탐색을 2번 시켜주자. 단, chk(`vistied`) 배열은 이분 탐색을 할 때마다 초기화해줘야 한다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

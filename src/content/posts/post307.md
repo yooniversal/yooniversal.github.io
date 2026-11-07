@@ -1,0 +1,164 @@
+---
+title: BigDecimal 타입의 소수점 계산에 조심하자
+excerpt: 정확함의 기준을 설정하자
+category: Project
+date: 2025-01-17
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+Java, Kotlin을 사용한다면 `BigDecimal` 타입을 사용할 수 있다. 이는 자세한 값 계산이 필요할 때 유용하게 사용할 수 있다. BigDecimal이 갖는 필드에는 `intVal`, `intCompact`, `precision`, `scale`이 있다.
+- intVal(BigInteger) : 값 저장 (Long.MAX_VALUE 보다 클 때만 저장, 그렇지 않으면 null)
+- intCompact(Long) : 값 저장
+- precision(Int) : 총 자릿수
+- scale : 소수점 이하 자릿수
+
+예를 들면, 0.15는 intVal = null, intCompact = 15, precision = 3, scale = 2가 된다.
+
+Long 타입을 넘지 않는 소수만 다룰 예정이므로 intVal, intCompact는 그냥 **값을 저장하는 곳**이라고 생각하고, 소수니까 **scale**에 집중해보자.
+
+BigDecimal은 연산을 통해 새로운 BigDecimal로 표현이 될 때 가장 정확한 값이 나오게끔 처리한다. 정확한 값이 나온다는 건 scale이 작아지지 않음을 의미한다.
+
+## 일반적인 수
+BigDecimal 설명하기 앞서서, scale에 대한 이해를 위해 간단한 예시들을 확인해보자.
+
+### 덧셈, 뺄셈
+덧셈, 뺄셈에서 scale이 어떻게 변할까? scale 값이 2개 피연산자가 가진 가장 큰 scale 값으로 유지될 것이다. 덧셈을 예를 들면 아래와 같다. (뺄셈도 같다)
+```kotlin
+0.1 // scale = 1
+0.15 // scale = 2
+0.1 + 0.15 = 0.25 // scale = 2
+```
+
+### 곱셈
+곱셈의 결과를 정확하게 표현하려면 scale이 피연산자의 scale에 비례할 가능성이 높다. 최대 두 피연산자의 scale 합이 될 것이다.
+```kotlin
+0.1 // scale = 1
+0.15 // scale = 2
+0.1 * 0.15 = 0.015 // scale = 3
+```
+
+### 나눗셈
+무한 소수는 scale이 엄청 커질거고, 보통은 두 scale의 차이가 된다.
+```kotlin
+0.4 // scale = 1
+0.3 // scale = 1
+0.4 * 0.3 = 1.3333... // scale = ?
+
+0.15 // scale = 1
+0.3 // scale = 2
+0.15 * 0.3 = 0.5 // scale = 1
+```
+
+## BigDecimal
+
+### 값 0.1
+여기까지 읽었다면 BigDecimal은 어떻게 계산하는지 감을 잡았을 것이다. 그러면 아래 질문에 답을 해보자.
+
+BigDecimal(0.1)의 scale은 몇일까?
+
+실행해보면..
+```kotlin
+val num = BigDecimal(0.1)
+println(num.scale()) // 55
+```
+- 심지어는 num을 출력하면 `0.1000000000000000055511151231257827021181583404541015625`이 나온다.
+
+이유는 BigDecimal 생성자에 있는 [명세](https://github.com/openjdk-mirror/jdk7u-jdk/blob/master/src/share/classes/java/math/BigDecimal.java#L772)에 자세히 써있다. 요약하면 `0.1`은 Double 타입으로 정확히 표현할 수 없어서 그렇다. 부동소수점 방식으로는 `0.1`을 정확히 표현할 수 없다. 다시 말하면, 2진수로 표현될 수 없다.
+
+그래서 0.1을 BigDecimal에 담고싶다면 인자에 double이 아닌 **String**을 넣는걸 권장하고 있다.
+```kotlin
+val num = BigDecimal("0.1")
+println(num) // 0.1
+println(num.scale()) // 1
+```
+- 참고로 2진수로 표현 가능한 0.5는 BigDecimal(0.5)를 출력해도 0.5가 나온다.
+
+### 나눗셈
+나눗셈의 결과는 무한 소수가 발생할 수 있다. 그래서 정확한 값을 표현하는게 불가능할 수 있다. 그래서 `BigDecimal(1).divide(BigDecimal(3))`을 실행하면 `ArithmeticException`를 던진다.
+```
+java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
+	at java.base/java.math.BigDecimal.divide(BigDecimal.java:1780)
+```
+
+그래서 divide(BigDecimal)를 호출하는 경우 나누어 떨어지는 경우에만 사용해야 한다. 반드시 값을 내보내야 한다면 scale과 RoundingMode를 인자로 넣어 결과를 얻을 수 있다.
+```kotlin
+BigDecimal(1).divide(BigDecimal(3), 1, RoundingMode.DOWN) // 0.333... -> 0.3
+```
+- RoundingMode는 올림, 내림, 반올림 등을 지원하는 enum 타입이다.
+
+참고로 Kotlin에서는 `BigDecimal(1) / BigDecimal(3)`를 실행하면 Kotlin에 내장된 operator fun을 호출한다.
+```kotlin
+@kotlin.internal.InlineOnly
+public inline operator fun BigDecimal.div(other: BigDecimal): BigDecimal = this.divide(other, RoundingMode.HALF_EVEN)
+```
+- 결과값의 scale은 **앞쪽의 BigDecimal의 scale을 따라간다.**
+  - BigDecimal(1) / ... 를 하면 BigDecimal(1)의 scale은 1이므로 최종 scale도 1이 된다.
+
+### (Kotlin 편) 생성자
+다시 0.1 이라는 값을 가지고 초기화해보자.
+아까 BigDecimal(0.1)은 `0.1000000000000000055511151231257827021181583404541015625`이 나온다고 했다.
+
+근데 Kotlin에는 Double을 BigDecimal로 만드는 방법이 하나 더 있다. Double.`toBigDecimal()`을 사용하면 된다.
+```kotlin
+val num = (0.1).toBigDecimal()
+println(num) // 0.1
+println(num.scale()) // 1
+```
+- BigDecimals.kt 에서 지원하는 확장함수로, `BigDecimal(this.toString())`를 반환한다.
+- 그래서 위에서 살펴본 `BigDecimal(String)`과 같다.
+
+0.1 같이 Double으로 정확히 표현되지 않는 값을 처리하려면 `toBigDecimal()`을 사용하면 된다는 교훈을 얻었다. 그러면 앞으로 `toBigDecimal()`만 사용하면 될까?
+
+아래 결과는 어떻게 나올까?
+```kotlin
+val num1 = (0.1).toBigDecimal()
+val num2 = (3).toBigDecimal()
+println(num1 / num2) // 🤔
+```
+
+정답은.. **0.0**이 나온다.
+
+이유는 BigDecimal.div() 결과의 scale은 **BigDecimal의 scale을 따라가기 때문이다.** 즉, `num1`의 scale은 **1**이므로 `num1 / num2`의 scale 역시 **1**이 된다. 그래서 `0.03333`이 `0.0`으로 표현된 것이다.
+
+뭔가 정확한 값을 쫒으려고 노력했는데 결과가 정확하지 않다. `toBigDecimal()`만 사용하면 안될 것 같다. 일정 scale 까지 혀용하는 범위에서 근사치를 얻고싶다면, 2가지 방법이 있다.
+
+1. `toBigDecimal()`을 사용하고 싶다면 앞의 BigDecimal에는 scale 적용해주기
+
+`setScale(scale, roundingMode)` 함수를 사용하면 내가 원하는 범위에서 값을 얻을 수 있다.
+```kotlin
+val num1 = BigDecimal(0.1).setScale(5, RoundingMode.DOWN) // 0.1000
+val num2 = BigDecimal(3)
+println(num1 / num2) // 0.03333
+```
+
+2. BigDecimal#`divide()` 사용하기
+
+divide(bigDecimal, scale, roundingMode)를 사용하면 나누는 과정에서 scale, roundingMode를 적용할 수 있다.
+```kotlin
+val num1 = BigDecimal(0.1)
+val num2 = BigDecimal(3)
+println(num1.divide(num2, 5, RoundingMode.CEILING)) // 0.03334
+
+val num1 = (0.1).toBigDecimal()
+val num2 = (3).toBigDecimal()
+println(num1.divide(num2, 5, RoundingMode.CEILING)) // 0.03334
+```
+- 여기는 `toBigDecimal()`도 가능하다.
+
+<br>
+대신 이런건 안된다.
+```kotlin
+val num1 = (0.1).toBigDecimal()
+val num2 = (3).toBigDecimal()
+println((num1 / num2).setScale(5, RoundingMode.CEILING)) // 0.00000
+```
+- num1 / num2 에서 이미 결과가 `0.0`이다. `0.0`을 scale = 5로 맞춰봤자 `0.00000`일 뿐이다.
+
+
+## References
+- [github/openjdk-mirror: BigDecimal.java](https://github.com/openjdk-mirror/jdk7u-jdk/blob/master/src/share/classes/java/math/BigDecimal.java#L772)
+- [kingjakeu: BigDecimal 기본 정리, BigDecimal 활용 in Java](https://kingjakeu.github.io/java/2020/12/23/bigdecimal/)
+- [바코94: 소수점을 표현하는 방법](https://bako94.tistory.com/328)

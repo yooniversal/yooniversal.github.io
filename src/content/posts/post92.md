@@ -1,0 +1,54 @@
+---
+title: "[BOJ 2185]"
+excerpt: 직사각형의 합집합
+category: PS
+date: 2020-08-21
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/2185](https://www.acmicpc.net/problem/2185)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/47343b9b89a03383813a3142502f5a61.js"></script>
+<br>
+
+### review
+여태까지 스위핑 문제는 넓이를 구하거나 1차원의 길이만 구해본거 같은데 2차원에서 길이를 구하는건 처음이어서 신기했다. 스위핑을 염두에 두고 이것저것 시도하다보니 답을 구할 수 있었다!
+
+2차원에서 넓이를 구하든 길이를 구하든 한쪽에서 반대쪽으로 쭉 훑어가며 정보를 얻고 처리 해야한다. 때문에 정렬을 해줘야 하는데 둘레(길이)를 구하는 경우 직사각형이 서로 만날 수도 있다. 때문에 정렬에 신경써줘야 한다. x값으로 정렬했다고 했을 때 <strong>시작선이 끝선보다 먼저 와야 한다</strong>. 그려보면 이유를 금방 알 수 있다.
+```cpp
+//세로
+struct h {
+    ll x, lowy, highy, start;
+
+    h(ll x, ll lowy, ll highy, ll start) : x(x), lowy(lowy), highy(highy), start(start) {}
+    bool operator<(const h& l) const {
+        return x == l.x ? start > l.start : x < l.x; //이 부분!
+    }
+};
+
+//가로
+struct w {
+    ll y, lowx, highx, start;
+
+    w(ll y, ll lowx, ll highx, ll start) : y(y), lowx(lowx), highx(highx), start(start) {}
+    bool operator<(const w& l) const {
+        return y == l.y ? start > l.start : y < l.y; //이 부분!
+    }
+};
+```
+갱신 전후로 달라진 길이를 답에 넣어주는게 핵심이다. 왼쪽에서 오른쪽으로 쭉 훑으면서 세로는 구할 수 있을거 같은데 가로까지 한 번에 처리할 수 있을지는 모르겠다. 나는 방법이 떠오르질 않아서 그냥 가로를 세로구할 때 처럼 똑같이 2번 탐색해서 구하도록 해줬다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

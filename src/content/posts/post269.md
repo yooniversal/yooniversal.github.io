@@ -1,0 +1,42 @@
+---
+title: "[Spring] Querydsl에서 존재 여부 쿼리 작성하기"
+excerpt: ""
+category: Project
+date: 2023-09-29
+updatedDate: 2023-09-28
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+## Exists
+상품이 존재하는지 여부를 확인하기 위해 쿼리에 `COUNT`를 써도 되고, `EXISTS`를 써도 된다. 하지만 COUNT를 쓰면 테이블 내에 모든 데이터를 조회하면서 레코드 총 개수를 반환하므로, 존재 여부만 확인하기엔 비효율적이다. EXISTS는 테이블 내 데이터를 조회하되 조건에 맞는 레코드를 찾으면 바로 `TRUE`를 반환하므로 효율적이다!
+
+### Spring Data JPA
+Spring Data JPA에서는 `existsBy**()`로 정의하면 `EXISTS` 쿼리를 사용한다. 바로 존재 여부를 확인할 수 있다.
+```java
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    boolean existsByProductId(long productId);
+}
+```
+
+### Querydsl
+Querydsl에서 쿼리를 작성하는 경우 `fetchFirst()`를 활용하면 된다. `fetchFirst()`는 `EXISTS`처럼 조건에 맞는 레코드를 찾으면 바로 해당 레코드를 반환한다. `LIMIT 1`과 같다. 이를 `Boolean`으로 내보낼 수 있도록 `null` 체크를 해주면 된다! (조회되는 데이터가 없으면 `null` 반환)
+```java
+@Override
+public Boolean isSavedProduct(Long productId) {
+    return queryFactory
+            .select()
+            .from(product)
+            .where(
+                    product.id.eq(productId)
+            )
+            .fetchFirst() != null;
+}
+```
+
+
+## References
+- [hyunho058: [JPA] Exists](https://velog.io/@hyunho058/JPA-Exists)
+- [스뎅: [Querydsl] 존재여부 확인하기 (exists)](https://blog.leocat.kr/notes/2021/01/09/querydsl-improve-exists-query-performance)

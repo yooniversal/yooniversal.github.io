@@ -1,0 +1,55 @@
+---
+title: "[BOJ 2887]"
+excerpt: 행성 터널
+category: PS
+date: 2020-07-19
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2887](https://www.acmicpc.net/problem/2887)<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/4eccb80ff89ddb8e020590c3c9fe765f.js"></script>
+<br>
+
+### review
+
+지금까지 MST 문제들은 모두 Kruskal 알고리즘으로 풀었다. 이 문제 역시 그렇게 풀었으나 한가지 테크닉이 더 필요했다. 다른 문제들은 입력받는 케이스 개수가 최대 10,000까지 였으나 이번엔 100,000이다. 이전 까지는 모든 조합을 저장해도 됐지만 이번엔 메모리 초과가 일어나게 된다. -> **O(V^2)** 하지만 여기서는 distance가 점과 점 사이 거리가 아닌 각 좌표별 거리이다! 따라서 각 좌표별로 정렬 후 위치별로 값을 저장해주면 된다. -> **3\*(V-1) = O(V)**
+```cpp
+i와 i-1만 비교하는 이유는, 정렬된 상태라면 이웃한 것과 비교하는게 dist가 최소가 되기 때문이다.
+때문에 i를 기준으로 i-1을 제외한 케이스는 dist가 더 크므로 비교할 필요가 없다!
+
+bool cmp_x(xyz& a, xyz& b) { return a.x < b.x; }
+bool cmp_y(xyz& a, xyz& b) { return a.y < b.y; }
+bool cmp_z(xyz& a, xyz& b) { return a.z < b.z; }
+
+...
+
+sort(tmp.begin(), tmp.end(), cmp_x);
+for (int i = 1; i < V; i++) {
+  mst.push_back({ abs(tmp[i-1].x - tmp[i].x), tmp[i-1].idx, tmp[i].idx });
+}
+
+sort(tmp.begin(), tmp.end(), cmp_y);
+for (int i = 1; i < V; i++) {
+  mst.push_back({ abs(tmp[i - 1].y - tmp[i].y), tmp[i - 1].idx, tmp[i].idx });
+}
+
+sort(tmp.begin(), tmp.end(), cmp_z);
+for (int i = 1; i < V; i++) {
+  mst.push_back({ abs(tmp[i - 1].z - tmp[i].z), tmp[i - 1].idx, tmp[i].idx });
+}
+```
+다른 내용은 이전의 MST 풀이와 다르지 않다. 이 부분때문에 많이 애먹었다..<br><br>
+<img src="/images/2887_2.png" alt="2887_2.png" style="width: 100%; height: auto;">
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

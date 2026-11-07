@@ -1,0 +1,73 @@
+---
+title: "[BOJ 11280]"
+excerpt: 2-SAT - 3
+category: PS
+date: 2020-08-09
+updatedDate: 2020-08-10
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/11280](https://www.acmicpc.net/problem/11280)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/b557577b6d0614c4e11fcb2dba009968.js"></script><br>
+
+### 2-sat algorithm
+[여기](https://blog.qwaz.io/problem-solving/scc%EC%99%80-2-sat)에 설명이 잘 돼있으니 참고하시길 권합니다.
+
+이미지에 나와있듯이 AND, OR, NOT등의 연산이 들어가있고 절 안에는 2개끼리만 비교하고 있다. 주어진 논리식의 형태를 2-CNF라고 부른다고 한다. 이 때 이 논리식을 참으로 만드는 경우가 있는지 찾는 문제이다.
+
+일반적으로 명제 p->q가 있다고 할 때, 이 명제에 대해서는 2가지가 성립한다.
+```
+1. p가 참이면 q는 참이다.
+2. p가 거짓이면 q는 참이든 거짓이든 상관없다.
+```
+그리고 **p||q**는 **~p->q, ~q->p**로 쪼개질 수 있다. 주어진 논리식에서는 절마다 2개로 쪼개진다고 볼 수 있겠다. 변수가 있으면 음수, 양수 2번으로 쪼개진다. 간선 개수는 훨씬 많아질 수 있으므로 사이클도 생길 수 있다. 때문에 2-SAT 문제는 SCC 문제 유형으로 분류된다. 사이클이 발생하는 경우를 SCC로 묶어서 해결할 수 있어서 그렇다. 논리식이 거짓이 나오는 가장 간단한 예제 `(x||x)&&(~x||~x)` 를 생각해보자.
+```
+x||x 와 ~x||~x으로 나눠진다.
+왼쪽부터 처리해보면 ~x->x, x->~x 가 되고
+오른쪽은 x->~x, ~x->x 가 된다.
+이 식들을 결합하다보면 모순임을 알 수 있다.
+```
+이게 모순임을 알고 싶어서 알고리즘을 궁금해하는건 아닐 것이다. 화살표를 보고 순서가 있음을 알아야 한다. 그럼 그 순서를 따라서 노드를 연결해주면 `x`와 `~x`는 사이클이 생긴다. 이렇게 not이 붙은 변수와 그렇지 않은 것이 같은 SCC에 묶이게 되는 경우 논리식은 거짓이 된다.
+
+### review
+변수에 3이 들어왔을 때 -3과 3을 비교하기 위해서 이 숫자 그대로 사용할 수 있다면 좋겠지만 인덱스에 숫자를 넣어 넘겨야 하기 때문에 음수는 들어갈 수가 없다. 때문에 양수와 음수가 서로 충돌하지 않도록 값을 조금 조작해줘야 하는데 방법은 여러가지가 있다.
+```cpp
+int N, M; cin >> N >> M;
+while (M--) {
+    int a, b; cin >> a >> b;
+    a = a < 0 ? (-2) * (a + 1) : 2 * a - 1; //이 부분
+    b = b < 0 ? (-2) * (b + 1) : 2 * b - 1; //입니다
+    node[opp(a)].push_back(b);
+    node[opp(b)].push_back(a);
+}
+```
+SCC 내부에 not이 붙은 변수와 그렇지 않은 것이 같이 있으면 1을, 아니면 0을 출력하면 된다. 구현하는 방법은 여러가지가 있겠지만 나는 각 SCC를 돌면서 내부를 탐색하도록 했다.
+```cpp
+int ans = 1;
+for (int i = 0; i < sccnum; i++) {
+    for (int j = 0; j < SCC[i].size()-1; j++) {
+        //절댓값이 같은 숫자가 같은 SCC에 있을 경우
+        if (restore(SCC[i][j + 1]) == restore(SCC[i][j])) {
+            ans = 0;
+            i = sccnum;
+            break;
+        }
+    }
+}
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

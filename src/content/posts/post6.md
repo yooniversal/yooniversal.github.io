@@ -1,0 +1,41 @@
+---
+title: "[Programmers] 키패드 누르기"
+excerpt: 2020 카카오 인턴십
+category: PS
+date: 2020-07-11
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/67256](https://programmers.co.kr/learn/courses/30/lessons/67256)
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/b76fcbd7ca506b4e5c3c90326344a949.js"></script>
+
+<br/>
+
+### review
+
+별도의 알고리즘이랄게 없었고 설명따라서 잘 만들면 됐다. 다만 키패드별 위치를 어떻게 구별할까 하다가 시간이 조금 걸렸는데 생각에 따라 구현 방식은 조금 다를듯 하다. 나같은 경우 이렇게 만들었는데, 3으로 나누어 떨어지는 경우 0이 돼버려서 값을 3으로 다시 줄 수밖에 없었다. 왼손, 오른손의 위치를 계속 업데이트 해주면서 특정 위치까지의 거리를 비교해주면 된다.
+```cpp
+int dist(int s, int e){
+    int sy = s/3, sx = s%3;
+    int ey = e/3, ex = e%3;
+    if(sx == 0) sx = 3; sy--;
+    if(ex == 0) ex = 3; ey--;
+    if(s == 0) sy = 3; sx = 2; //숫자 0
+    if(e == 0) ey = 3; ex = 2; //숫자 0
+    return abs(sy-ey) + abs(sx-ex);
+}
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

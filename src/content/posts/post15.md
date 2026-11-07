@@ -1,0 +1,27 @@
+---
+title: "[Programmers] 체육복"
+excerpt: 탐욕법(Greedy)
+category: PS
+date: 2020-07-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42862](https://programmers.co.kr/learn/courses/30/lessons/42862)<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/ea2a2935cb547c9ff8fe9ffd898e092f.js"></script>
+
+
+### review
+lost, reserve의 상태를 계속 기록해줄 수 있는 bool 타입의 배열을 각각 선언해주고 조건에 맞춰 업데이트. erase를 쓰려다가 메모리 덤프로 진전이 없어서 방법을 바꿨다. 함부로 지우는 연산 하지 말자.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

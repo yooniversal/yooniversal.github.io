@@ -1,0 +1,31 @@
+---
+title: "[BOJ 7420]"
+excerpt: 맹독 방벽
+category: PS
+date: 2020-08-29
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/7420](https://www.acmicpc.net/problem/7420)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/3ebc2366cf1394fd613dc925a1cf7ecc.js"></script>
+
+### review
+기존에 썼던 [Convex Hull 알고리즘](/ps/post102/)을 가능한 건드리지 않으면서 추가했다. 또한 해당 알고리즘의 코드 주석은 이 문제에선 생략돼 있으니 이해가 안가면 위 링크를 참고!
+
+볼록 껍질로부터 `L`만큼 떨어진 영역의 길이를 구하는 문제. 생각보다 굉장히 간단한 문제다. `L`만큼 떨어졌어도 기존의 볼록 껍질의 길이는 그 영역에 고스란히 포함이 된다. 그리고 남은 길이들은 모두 합쳤을 때 길이가 `L`인 원의 둘레가 된다. 따라서 볼록 껍질의 길이에 이 길이만 더해주면 된다. 맨 처음에 원주율을 곱한다고 3.14만 곱했는데 오차가 있어서 더 자세한 값을 곱해줘야 한다!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,38 @@
+---
+title: "[BOJ 1005]"
+excerpt: ACM Craft
+category: PS
+date: 2020-08-01
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/1005](https://www.acmicpc.net/problem/1005)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/0d345d0695d78637bdcc6fdb28146386.js"></script><br>
+
+### review
+위상 정렬 + DP 문제인데 생각보다 쉬웠다. 규칙을 읽어보고나서 어떻게 해야할지 조금 정리해봤다.
+```
+특정 건물이 지어지려면 조건에 맞는 건물들이 먼저 모두 지어져야 한다.
+-> 지어져야 하는 건물 수는 degree[i]가 될 수 밖에 없다.
+0이 될 때 큐에 삽입이 되므로 위상 정렬의 로직을 따라 진행하면 된다.
+
+건물 건설 시간은 갈 수록 더해져야 한다.
+-> DP. 1차원 배열로 해결하면 된다.
+```
+DP로 동작하는 부분에서 업데이트해줄 때 약간 주의해야할 점이 있다. TC를 분석해보면 알겠지만 건물이 모두 지어져야 하므로 가장 늦게 건설되는 건물 시간이 더해지면 된다. 근데 큐 안에서는 여러 건물들의 시간을 모아서 max 때릴 수가 없다. 1개씩 처리되고 있기 때문이다. 그래서 `eachtime[]`으로 각 건물 시간을 기록해두고 `buildtime[next]`에 이전 건물 건설 시간인 `buildtime[cur]`을 넣어줬다. 대신 가장 큰 값이 들어가야 하므로 둘 중 큰 값이 들어가도록 했다. 그리고 진입 차수가 0이 돼서 큐에 들어갈 때 해당 건물 건설 시간인 `eachtime[next]`를 더해줬다.
+
+DP에 많이 약해서 겁먹었었는데 생각보다 어렵지 않아서 다행이었다!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

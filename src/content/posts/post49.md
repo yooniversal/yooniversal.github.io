@@ -1,0 +1,30 @@
+---
+title: "[BOJ 14725]"
+excerpt: 개미굴
+category: PS
+date: 2020-07-29
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/14725](https://www.acmicpc.net/problem/14725)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/69ebec860748fc856b1c6453dd0a2dab.js"></script>
+<br>
+
+### review
+~~코드가 너무 더럽다.~~ N의 범위가 적어서 통과할 수 있었지 좀만 컸어도 시간초과 당했을거 같다. 비효율의 완성.. 힌트에서 트라이 알고리즘으로 풀어보라는 말이 있었는데 풀기 전에 설명이라도 읽어볼걸 그랬다😥 풀면서도 이게 되나 하면서 짰다. 다음에는 트라이로 풀어보려고 해보자.
+
+트리 구조로 만들긴 해야 하는데 자식을 계속 담을 수 있어서 vector로 만들었다. 무슨 값이 들어있는지도 알아야 하기에 string도 멤버에 추가했다. 이를 Node로 묶고, tree가 root역할을 하도록 설정했다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

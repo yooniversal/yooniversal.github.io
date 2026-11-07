@@ -1,0 +1,56 @@
+---
+title: "[Programmers] 문자열 압축"
+excerpt: 2020 KAKAO BLIND RECRUITMENT
+category: PS
+date: 2020-07-27
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/60057](https://programmers.co.kr/learn/courses/30/lessons/60057)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/c9ab5cdb0e0ac77148b8bfc4c073a1eb.js"></script>
+<br>
+
+### review
+문자를 하나씩 비교하는 방법으로 시작했다가 계속 오류가 생겨서 문제를 다시 읽어보니 그럴 필요가 없었다.
+```
+입출력 예 #5
+string s = "xababcdcdababcdcd";
+
+문자열은 제일 앞부터 정해진 길이만큼 잘라야 합니다.
+따라서 주어진 문자열을 x / ababcdcd / ababcdcd 로 자르는 것은 불가능 합니다.
+이 경우 어떻게 문자열을 잘라도 압축되지 않으므로 가장 짧은 길이는 17이 됩니다.
+```
+<strong>정해진 길이만큼</strong> 자른다면 하나씩 비교할 필요가 없다. 길이만큼 동강낸 상태로 비교해도 된다. 물론 길이가 적당하다는 가정하에 시도해볼만한 방법이다. O(n^2)이 걸리는데 길이는 1000이하인 자연수이므로 가능하다! 길이가 정해지지 않은 상태라면 좀 더 까다로워질 수도 있겠다는 생각이 들었다. 사실 처음엔 이렇게 생각했다.. ㅡㅡ
+```cpp
+//길이
+for(int i=1; i<=len/2+1; i++){
+    vector<string> cmp;
+    string tmp;
+
+    for(int j=0; j<len; j++){
+        tmp += s[j];
+        if(tmp.size() == i){
+            cmp.push_back(tmp);
+            tmp = "";
+        }
+    }
+    if(tmp.size()) cmp.push_back(tmp);
+
+    ...
+}
+```
+이렇게 동강을 내 `cmp`에 담아준 후 `cmp` 내에서 탐색을 진행했다. 참고로 겹치는 횟수가 1회이면(cnt=1) 생략해야 한다. `cnt`가 한 자리수가 아닐 수도 있다는걸 뒤늦게 알아서 삽질을 너무 많이했다..
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

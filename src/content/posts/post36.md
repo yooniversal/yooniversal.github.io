@@ -1,0 +1,33 @@
+---
+title: "[BOJ 17386]"
+excerpt: 선분 교차 1
+category: PS
+date: 2020-07-24
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/17386](https://www.acmicpc.net/problem/17386)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/d7fc30cd8bb79a59e4caf1b373d3115d.js"></script>
+<br>
+
+### review
+
+일반적으로 두 선분이 만나는지 안만나는지는 직접 그려보면 직관적으로 알 수 있다. 근데 큰일났다. 컴퓨터는 직관이 없다..😮
+
+그래도 두 선분이 만나는지 여부는 어떻게든 수식으로 표현할 수 있지 않을까 싶어 여러 아이디어를 생각해봤는데 반례에 무너졌다. 어쩔 수 없구나 싶어 CCW 알고리즘을 다시 이용하게 됐다. 식은 [여기](https://www.acmicpc.net/blog/view/27)에서 참고했다. 참고로 질문에서 세 점이 일직선인 경우는 없다고 했으므로 CCW가 0이 되는 경우는 고려하지 않았다.
+
+한 선분을 기준으로 두 점에 각각 CCW를 걸어서 부호를 따져보면 서로 달라야 한다. (그려보면 알 수 있다) 참고로 2번째 테스트 케이스는 (1, 1)과 (5, 5)를 연결한 선분을 기준으로 각 정점에 CCW를 걸면 부호가 같아야 하는데 다르다. 그래서 반대쪽 선분((6, 10) ~ (10, 6))을 기준으로 해줬더니 해당 조건에 맞았다. 서로 교차하려면 모든 경우에서 부호가 달라야 한다!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

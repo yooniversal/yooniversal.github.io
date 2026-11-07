@@ -1,0 +1,120 @@
+---
+title: Virtual Thread vs Coroutine
+excerpt: 경량 스레드 Virtual Thread, 그리고 Coroutine 대비 어떤 장점이 있는지 간단히 알아보자
+category: Project
+date: 2026-01-18
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+Java 19 이전 버전에서 non-blocking을 달성하기 위해서는 reactive programming으로 작성해야 했고(RxJava 등) 기존의 동기식 로직을 모두 고쳐야했다. 이에 따라 코드 복잡도가 올라가면 가독성이 떨어지고 유지보수가 어려워진다.
+
+이를 해결하기 위해 Kotlin에서는 코루틴(Coroutine), Java에서는 Virtual Thread(이하 VT)를 지원한다. VT가 코루틴 대비 어떤 장점을 가지는지, 고려해야할 점은 무엇인지 간략하게 설명한다. 구체적인 동작 원리는 설명하지 않는다.
+
+## 코루틴(Coroutine)
+
+Kotlin 에서는 동기식으로 코드를 작성하면서도 non-blocking을 달성할 수 있도록 코루틴(Coroutine)을 지원한다. 중단이 발생할 수 있다는 뜻을 갖는 suspend가 추가되었고, suspend fun 호출부까지 suspend가 전파되는 이슈가 있다.
+```kotlin
+// 호출되는 함수가 "suspend" fun
+suspend fun childFoo() {
+    delay(1000)
+}
+
+// suspend fun을 호출하려면 "suspend"를 붙여야 함
+suspend fun parentFoo() {
+    childFoo()
+}
+```
+
+그리고 코루틴은 중단(suspend)되었다가 재개되었을 때 기존 ThreadLocal 정보가 유실될 수 있다. 때문에 ThreadLocal 기반으로 동작하는 기능을 사용할 때 신경을 써야한다. (MDC에서는 MDCContext()를 새 Dispatcher에 합쳐주는 작업 등) 즉, 기존 스레드 context에 관리하던 정보를 다음 스레드로 알아서 이관해주지 않는다.
+
+<div style="text-align: center;">
+<img src="https://lh3.googleusercontent.com/d/15YBv72Z9xpzBbU2wxv-mLn9wLq7XYYMH" style="width: 100%; height: auto;" title="2026-01-19-Coroutine-2.png" alt="?"/>
+</div>
+
+### 변경점이 많고, 러닝 커브가 높다
+RxJava도 그렇지만 코루틴을 도입하게 된다면 기존 로직 수정이 많이 필요하다. 코루틴을 몰랐다면 코루틴을 잘 쓰기위해 학습하는 과정도 필요하니 러닝 커브를 무시할 수 없다.
+
+## Virtual Thread
+Java 19부터 VT를 지원하고 있다. **코루틴 대비 VT에서는 ThreadLocal 유실을 걱정하지 않아도 된다.** (Java 19에서는 preview 였지만 [21부터 정식 기능으로 채택](https://openjdk.org/jeps/444)되었다)
+
+VT는 생성이 되면 일단 특정 Carrier Thread에서 실행되고 I/O가 발생했을 때 unmount된다. 이때 ThreadLocal은 VT 객체에서 관리한다. Carrier Thread에서 관리하지 않는다.
+- Carrier Thread는 실제로 동작하고 있는 워커 스레드를 말한다. (Platform Thread와 같음)
+- mount: VT가 동작할 Carrier Thread에 할당되는 것
+- unmount: VT가 동작하던 Carrier Thread에서 분리되는 것
+
+I/O가 종료되고 새 Carrier Thread에서 실행될 때 VT를 mount한다. 이때 VT 객체가 같이 이동한다. 그래서 ThreadLocal 유실이 되지 않는다.
+- VT는 Platform Thread 대비 훨씬 더 많이 생성될 수 있는 경량 스레드이기 때문에 사실 ThreadLocal에 많은 데이터를 저장하는건 위험하다.
+  - 때문에 [Scoped Value](https://openjdk.org/jeps/506)를 사용하는걸 권장한다.
+
+### 적용 방법
+Virtual Thread는 아래처럼 설정해주면 간단히 적용이 가능하다.
+```yaml
+spring:
+  threads:
+    virtual:
+      enabled: true
+```
+<br>
+
+하지만 이렇게 설정하면 들어오는 요청마다 VT로 동작한다고 선언하는 것이라, 서버 내 I/O 처리가 많으면 순간 많은 VT가 생성될 수 있다. 이때 외부 리소스가 제한된 리소스라면 주의해야한다. 외부 리소스에서는 많은 요청을 받아들일 준비가 안됐을 가능성이 높기 때문이다.
+- 이 경우 Semaphore를 활용한다면 일정량의 요청만 들어올 수 있도록 제어 가능하다.
+- 참고로 DB는 semaphore를 적용할 필요가 없다. hikariCP에서 커넥션 고갈되면 어차피 못쓴다.
+  - DB 요청 보내기 전에 앞단에서 제어할 필요가 있다면 semaphore를 적용해도 괜찮다.
+
+<br>
+
+I/O가 발생하는 로직에 적용하면 효과적이다. VT executor를 생성해서 적용해주면 끝이다.
+```kotlin
+Executors.newVirtualThreadPerTaskExecutor().use { executor -> 
+    val result = executor.sumbit<String> { 
+        // blockingMethod()에서 I/O가 발생하지만 다른 VT가 동작할 수 있도록 carrier thread(worker thread)를 놓아준다
+        // 즉, blockingMethod()가 끝날 때까지 carrier thread를 점유하지 않는다
+        blockingMethod()
+    }
+    result.get()
+}
+```
+- cf) CompletableFuture는 blocking으로 동작한다.
+
+### 변겅점이 적고, 러닝 커브가 적다
+VT를 사용했을 땐 적어도 코루틴처럼 suspend 전파같은 이슈가 없다. 그래서 기존 로직을 대부분 유지하고 사용할 수 있을 것이다. ThreadLocal 전파 여부를 신경쓰지 않아도 되기때문에 기존에 MDC나 AOP를 사용한 로직이 많았다면 VT를 적용하는게 신경쓸게 
+많이 적어지므로 효율적이라고 생각이 들었다.
+
+또한 코루틴은 Kotlin에서만 사용 가능하지만 VT는 Java에서 사용이 가능하다. 기존에 Java를 사용하고 있었다면, 언어 변경없이 non-blocking을 쉽게 달성할 수 있다는건 큰 장점이다.
+
+물론 VT를 안정적으로 사용하기 위해 Semaphore, Scoped Value 등을 사용하는 방법은 알아야 하겠지만, Semaphore는 VT만을 
+위해 사용하는 개념은 아니긴 하다.
+
+그래서 코루틴과 비교했을 때 상대적으로 러닝 커브가 적은 편이라고 느낀다. 언어를 Kotlin으로 전환하는데 부담이 있는 상황이고 학습에 신경쓰기 어려운 상태라면 코루틴보다 VT를 쉽게 선택할 수 있을 것 같다.
+
+### 고려 사항
+#### Semaphore
+다른 곳으로 많은 부하를 주지 않도록 Semaphore를 사용해서 제어하자.
+
+#### VT 풀링하지 않기
+풀링은 스레드풀로 만들어서 활용하는걸 말한다. 스레드풀을 사용해왔던 이유는 필요할 때마다 스레드를 생성하는 비용이 컸기 때문이다. 그래서 미리 스레드를 만들어서 풀에 넣어놓고 재활용했지만, VT는 생성 비용이 적으므로 스레드풀처럼 미리 생성해서 관리하는게 더 
+손해다. 그때그때 만들어서 사용하고 쓸모를 다하면 버리는 일회용으로 쓰면 된다.
+- 그래서 초기화 작업도 필요가 없다.
+
+#### synchronized pinning 이슈
+Java 24 미만 버전에서는 synchronized를 적용한 함수를 호출할 경우 VT가 I/O 작업을 시작했을 때 unmount 되지 않는 이슈가 
+있다. 이를 pinning 이라고 부르고, 개선이 필요하다면 ReentrantLock을 사용할 것을 권장하고 있다.
+
+synchronized 외에도 native 함수를 사용하는 경우 pinning 이슈가 발생할 수 있다. 참고로 JDBC driver에서 동기화를 위해 synchronized 함수를 호출하는 경우가 많으므로 개선된 버전을 사용중인지 참조하자. synchronized pinning 이슈가 개선된 Java 24 이상 버전을 사용하는 것도 방법이다.
+
+#### ThreadLocal에 너무 많은 데이터 보관하지 않기
+VT는 정말 많이 생성될 수 있다. 많이 생성되는 만큼 각자 가지는 데이터가 커지지 않도록 관리해야한다. VT는 JVM에서 객체로 생성해서 관리하는 대상이기 때문에 Heap에 보관한다. 한정된 자원이므로 낭비하지 않도록 주의해야한다.
+
+이런 메모리 낭비 이슈를 보완하기 위해 [Scoped Value](https://openjdk.org/jeps/506)가 릴리즈 되었다. (Java 25부터 정식 기능) 간단한 사용 예시로 여러 하위 VT를 생성하면서 부모 VT의 정보(가령 trace-id)를 같이 사용하고 싶다면 값을 공유해서 사용하면 된다.
+- 복사가 아닌 참조 방식이므로 메모리 낭비가 적다.
+- 기본적으로 immutable이다.
+
+## References
+- [알아두면 쓸만한 개발 잡학사전: java 21 처리량 향상을 위한 대안 - virtual thread 알아보자](https://devel-repository.tistory.com/67)
+- [오늘도 끄적끄적: Java Virtual Threads 훑어보기](https://perfectacle.github.io/2022/12/29/look-over-java-virtual-threads/#Virtual-Threads)
+- [우아한기술블로그: Java의 미래, Virtual Thread](https://techblog.woowahan.com/15398/)
+- [카카오페이 기술블로그: 코루틴과 Virtual Thread 비교와 사용](https://tech.kakaopay.com/post/coroutine_virtual_thread_wayne/)
+- [카카오페이 기술블로그: [Project Loom] Virtual Thread에 봄(Spring)은 왔는가](https://tech.kakaopay.com/post/ro-spring-virtual-thread/)

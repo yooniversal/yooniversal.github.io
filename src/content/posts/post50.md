@@ -1,0 +1,34 @@
+---
+title: "[BOJ 5052]"
+excerpt: 전화번호 목록
+category: PS
+date: 2020-07-29
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/5052](https://www.acmicpc.net/problem/5052)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+트라이 알고리즘 설명은 [여기](https://jason9319.tistory.com/129)에서 참고했습니다. 감사합니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/1542f95c24f04b0b86abac0b4305600e.js"></script>
+<br>
+
+### Trie algorithm
+앞서 언급했지만 저는 [여기](https://jason9319.tistory.com/129)에서 참고했습니다. 잘 정리돼있어서 트라이 알고리즘에 대해 처음 접하는 분들이라면 많은 도움이 될거라고 생각합니다.
+
+문자열을 빠르게 탐색한다는 장점이 있으나 공간복잡도가 문자열 길이에 따라 크게 커질 수 있습니다.
+### review
+번호의 길이는 각각 다를 수 있으며 모든 번호가 어디에 포함되지 않도록 모두 독립적이어야 한다. 문제에서는 <strong>일관성이 있다</strong>고 표현하고 있다. 답은 일관성 여부를 나타내면 된다. 문자열의 마지막은 `finish`가 true여야 하는데, 인자를 string으로 고치다보니 소스를 조금 수정했다. 새롭게 입력하는 경우는 문제가 없지만 겹치는 경우 `next[]`가 NULL이 아니다! 이 때는 true를 갱신하지 못하게 했다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

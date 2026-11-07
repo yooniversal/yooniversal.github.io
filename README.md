@@ -1,2 +1,2 @@
 ## Theme
-[Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) 테마 사용중입니다.<br>
+[Monograph](https://github.com/xocothemes/monograph) 테마 사용중입니다.

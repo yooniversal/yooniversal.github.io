@@ -1,0 +1,42 @@
+---
+title: "[BOJ 2533]"
+excerpt: 사회망 서비스(SNS)
+category: PS
+date: 2020-07-22
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2533](https://www.acmicpc.net/problem/2533)<br>
+사진은 문제 설명의 일부입니다. 설명 및 테스트 케이스 등의 자세한 내용은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/e1dd99915f25b5bb517272a5fb926f7f.js"></script>
+<br>
+
+### review
+
+어느 노드든 루트가 될 수 있는 그래프 형태로 주어졌다. 사이클이 존재하지 않고 서로 연결돼 있는 상태이다.
+
+어떤 노드의 번호가 N이라고 하면, N이 얼리어답터가 아닐 때 <strong>N의 이웃</strong>은 무조건 <strong>얼리어답터</strong>여야 한다. N이 얼리어답터가 맞다면 <strong>N의 이웃</strong>은 <strong>얼리어답터일 수도 있다.</strong>
+
+문제 조건을 보면 얼리어답터가 아닌 사람은 친구가 모두 얼리어답터여야 새로운 아이디어를 받아들인다고 써있기 때문이다! N이 얼리어답터일 때 이웃은 무조건 얼리어답터X 아닌가? 싶었는데(~~*틀렸습니다*~~) 생각해보니까 꼭 그럴 필요는 없었다. 이 조건을 가지고 DP로 풀어내면 된다.
+
+[BOJ 2213](https://www.acmicpc.net/problem/2213)을 풀려고 도전!해봤는데 어떻게 풀어야할지 모르겠어서 [여기](https://blog.naver.com/jqkt15/221886958775)서 도움을 얻었다! 😊 풀이 과정은 거의 비슷한 문제라고 봐도 된다. 다만 이 문제는 최소가 되는 값을 구하는 것이므로 이 부분을 잘 수정해주면 됐다.
+```cpp
+//cur이 얼리어답터 -> 이웃은 둘 중 하나
+if (selected) dp[cur][selected] += min(dfs(next, true), dfs(next, false));
+//cur이 얼리어답터X -> 이웃은 얼리어답터
+else dp[cur][selected] += dfs(next, true);
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,40 @@
+---
+title: "[BOJ 16940]"
+excerpt: BFS 스페셜 저지
+category: PS
+date: 2020-09-07
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/16940](https://www.acmicpc.net/problem/16940)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**solution**
+
+<script src="https://gist.github.com/yooniversal/0a5642a4c0561c5dcaa98270c57ab21a.js"></script>
+<br>
+
+### review
+그래프를 BFS로 탐색했을 때 같은 레벨의 노드들은 담겨있는 순서에 따라 탐색하게 된다. 이 순서가 무작위로 주어질 때 올바르게 탐색했는지 여부를 출력해야 한다.
+
+input에서는 입력되는 순서대로 벡터 `e`에 push 해주지만 마지막에 들어오는 순서에 맞춰서 정렬해줘야 한다. 때문에 들어오는 순서를 배열 `order`에 입력하고, 엣지들을 `order`에 맞춰 정렬해준다.
+```cpp
+bool cmp(int a, int b) {
+	return order[a] < order[b];
+}
+
+...
+for (int i = 1; i <= n; i++)
+		sort(e[i].begin(), e[i].end(), cmp);
+```
+이후 BFS를 통해 출력 결과를 얻고 input과 비교하면 된다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

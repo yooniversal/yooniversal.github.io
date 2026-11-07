@@ -1,0 +1,48 @@
+---
+title: "[Codeforces] A. Required Remainder"
+excerpt: "Round #653, Math"
+category: PS
+date: 2020-07-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://codeforces.com/contest/1374/problem/A](https://codeforces.com/contest/1374/problem/A)<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/ab787ffd7eff76b1a77b7fe07062bdb0.js"></script>
+<br/>
+
+### review
+k%x = y, 0<=k<=n 을 만족하는 k의 최댓값을 구하는 문제. 그럼 뭐 이렇게 하면 되지 않을까? 하면서 제출했는데 어림도 없었다. ^^
+```cpp
+  int ans = 0;
+  for(int i=n; i>=0; i--){
+    if(i%x == y){
+      ans = i;
+      break;
+    }
+  }
+  ... 시간초과!
+}
+```
+A여서 금방 풀고 바로바로 넘어갈줄 알았는데 그렇게 호락호락하지 않았다. ~~머리가 나쁜거 같다~~ 아무튼 위와 같이 최대 범위에서 시작해 1씩 카운트하면 오래 걸릴 수밖에 없다. 예제를 분석해보니 n%x가 y보다 작거나 커질 수 있었고(물론 같으면 바로 출력), 답까지 수식으로 유도해봤다.
+```cpp
+if(n%x < y)
+x = 7, y = 5, n = 12345, ans = 12339
+12345%7 = 4 (n%x)
+4(n%x)를 빼고 2를 더 빼야 12339가 되는데 2는 7-5(x-y)와 같음
+=> ans = n - ((n % x) + (x - y))
+...
+```
+생각보다 형식이 익숙치 않아서 그랬는지 쉽지 않았다. 객관적으로 꽤 쉬운 문젠데 답답해 하는 모습이 답답하다. ㅠㅠ
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

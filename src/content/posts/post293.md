@@ -1,0 +1,164 @@
+---
+title: "[Spring] H2, Mockito 안쓰고 테스트 하기 (3) - Spring Data JPA"
+excerpt: 정합성이 깨지지 않는 테스트용 JpaRepository 구현하기
+category: Study
+date: 2024-07-15
+updatedDate: 2024-08-03
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+[2편](/study/post292/)에서는 JpaRepository를 구현한 테스트용 Repository를 소개했다. 그치만 TestRepository별로 엔티티 1개의 DB만 지원한다.
+
+때문에 join 쿼리가 있는 Repository라면 필요한 엔티티들에 대한 TestRepository를 필드로 선언해야만 했다.
+
+## 정합성이 깨지는 문제
+그치만 해당 방식은 같은 엔티티 대상의 Repository임에도 정합성이 깨지는 문제가 발생한다. 이해를 돕기위해 그림과 함께 자세히 설명해보면,
+
+아래는 운영환경에서 여러 Repository가 같은 DB에 접근하는 모습이다. 실제로 DB 안에는 여러 테이블로 구성돼있기 때문에, 각 Repository는 필요한 테이블에 접근해서 데이터를 가져오게 된다.
+<div style="text-align: center;">
+<img src="https://lh3.googleusercontent.com/d/1ep4-xYEc1uXVF3HagG4V0aa_iTBAsIGL" style="width: 60%; height: auto;" title="$0715_real_status.png" alt="?"/>
+</div>
+<br>
+
+그런데 TestRepository는 다르다. 다른 엔티티들에도 접근이 필요해 여러 TestRepository를 필드로 선언했지만 모두 각자 엔티티에만 접근할 수 있는 DB를 품고 있는 모습이다. 여기까지는 설명했던 내용이다.
+<div style="text-align: center;">
+<img src="https://lh3.googleusercontent.com/d/1QXb2Mnew5VYI1d7s0xKXvOt6_u8awCoK" style="width: 45%; height: auto;" title="$0715_sub_repository.png" alt="?"/>
+</div>
+<br>
+
+Repository가 `ARepository`, `BRepository`를 필드로 갖고 있고, `ARepository`가 단독으로 쓰이는 경우도 있다고 해보자. (모두 다 TestJpaRepository를 상속받은 테스트용 repository라 가정한다.)
+
+Parent에 속하는 A의 value를 1 증가시켜서, ARepository에서 꺼낸 A의 value와 같은지 확인하는 테스트다.
+```kotlin
+class DatabaseTest {
+    private val repository = TestRepository()
+    private val aRepository = TestARepository()
+
+    @Test
+    fun `다른 Repository라면 데이터 정합성이 깨진다`() {
+        // given
+        val aEntity = aRepository.save(A(value = 1))
+        val bEntity = B()
+        val parentEntity = Parent(a = aEntity, b = bEntity)
+        repository.save(parentEntity)
+        
+        // when
+        val parent = repository.findById(1L)
+        parent.a.value = parent.a.value + 1 // Parent의 A.value를 1 증가
+        repository.save(parent) // 기존 A 엔티티에 대해 업데이트
+
+        // then
+        val target = repository.findById(1L).a
+        val savedAEntity = aRepository.findById(1L)
+        assertThat(target.value).isEqualTo(savedAEntity.value) // false
+    }
+}
+```
+- `target.value`와 `savedAEntity.value`는 **값이 일치하지 않아 테스트에 실패**
+  + `target.value` : **2**
+  + `savedAEntity.value` : 1
+<br>
+
+왜 이런 현상이 발생할까? Repository에서 필드로 갖는 ARepository를 **새 인스턴스**로 초기화해주기 때문이다.
+```kotlin
+class TestBeverageRepository : JpaRepository<Beverage, Long> {
+    private val aRepository: TestARepository<A, Long>()
+}
+```
+<br>
+
+그래서 같은 DB라고 생각했지만 **서로 다른 인스턴스에서 생성된 DB**(entityList)여서 정합성이 깨지는 것이다.
+<div style="text-align: center;">
+<img src="https://lh3.googleusercontent.com/d/14DLMltrJ_JD1A1mjgId6HYt0rUlQYL__" style="width: 60%; height: auto;" title="$0715_different_db.png" alt="?"/>
+</div>
+<br>
+
+## TestJpaRepository를 싱글톤으로 사용하기
+그러면 이 경우는 어떻게 극복해야 할까? TestRepository마다 DB를 갖고있으니까, **싱글톤**으로 선언해서 사용하면 된다! 코틀린을 쓰고 있었어서 `object`로 선언해 관리했다.
+
+```kotlin
+object TestRepository : TestJpaRepository<Parent, Long>("id") {
+    private val aRepository = TestARepository
+    private val bRepository = TestBRepository
+}
+
+object TestARepository : TestJpaRepository<A, Long>("id")
+object TestBRepository : TestJpaRepository<B, Long>("id")
+```
+- 전체 코드는 [여기](https://github.com/yooniversal/TestJpaRepository)에서 확인할 수 있다!
+<br>
+
+그러면 다른 Repository여도 같은 DB를 가진 Repository를 사용하기 때문에 더 이상 데이터 정합성이 깨지는 현상이 발생하지 않는다!
+<div style="text-align: center;">
+<img src="https://lh3.googleusercontent.com/d/1XMWdwh7HBeNSWTmvjtb1Z6mLP_ZuXyLY" style="width: 55%; height: auto;" title="$0715_initilaized_db.png" alt="?"/>
+</div>
+
+(선택) 여러 엔티티와 연관된 엔티티인 경우, JpaRepository에서 제공하는 함수도 같이 수정해줘야한다. *Parent가 A, B와 관계를 맺고있다면 Parent 엔티티를 `save()`로 저장할 때 A, B도 저장되게 해줘야한다.*
+```kotlin
+fun save(parent: Parent): Parent {
+    val a = aRepository.save(parent.a) // A도 저장
+    val b = bRepository.save(parent.b) // B도 저장
+    return super.save(parent.copy(a = a, b = b))
+}
+
+fun findById(id: Long): Parent {
+    return super.findById(id).let { parent ->
+        val a = aRepository.findById(parent.a.id) // (선택) ARepository에서 조회
+        val b = bRepository.findById(parent.b.id) // (선택) BRepository에서 조회
+        parent.copy(a = a, b = b)
+    }
+}
+...
+```
+- findById()에서는 A, B를 각 Repository에서 조회해서 찾도록 했으나, Parent에 저장한 그대로 내보내도 된다. (Optional)
+<br>
+
+## 단점
+### 테스트마다 Repository를 초기화해줘야 한다
+테스트마다 항상 초기화된 Repository를 사용할 수 있어야 하므로 이에 대해 작업이 필요하다. `@AfterEach`를 써서 매번 `deleteAll()`를 호출해주면 가능한데, 테스트 클래스마다 이를 추가해주는건 번거로울 수 있다. 그래서 아래처럼 상속해서 쓸 수 있도록 abstract class로 선언하고 적용하는 방법이 있다. Repository에서 save() 호출 시 채번되는 id도 초기화될 수 있도록 `TestJpaRepository.initalize()`를 호출해주자.
+```kotlin
+// TestJpaRepository.kt
+fun initalize() {
+    deleteAll()
+    index.set(0L)
+}
+
+// TestRepositorySupport.kt
+abstract class TestRepositorySupport {
+    @AfterEach
+    fun tearDown() {
+        TestParentRepository.deleteAll()
+        TestARepository.deleteAll()
+        TestBRepository.deleteAll()
+    }
+}
+
+// 테스트 클래스에 적용
+class ParentService : TestRepositorySupport() {
+    ...
+}
+```
+<br>
+
+### 추가해줘야 하는 코드가 많다
+> (선택) 여러 엔티티와 연관된 엔티티인 경우, JpaRepository에서 제공하는 함수도 같이 수정해줘야한다.
+
+간단한 CRUD 로직을 직접 안쓰려고 TestJpaRepository를 쓰는건데, 더 디테일하게 처리하기 위해서 재정의를 해줘야 하는 
+수고로움이 있다. 물론 이건 아래 예시처럼 엔티티가 다른 엔티티를 필드로 들고있을 때 해당된다.
+
+```kotlin
+@Entity
+class Parent(
+    ...
+    @OneToOne
+    val a: A,
+    @OneToOne
+    val b: B,
+)
+```
+
+## References
+- [Java/Spring 테스트를 추가하고 싶은 개발자들의 오답노트](https://www.inflearn.com/course/자바-스프링-테스트-개발자-오답노트)

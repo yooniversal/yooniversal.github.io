@@ -1,0 +1,32 @@
+---
+title: "[Programmers] 쇠막대기"
+excerpt: 스택/큐
+category: PS
+date: 2020-07-18
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42585](https://programmers.co.kr/learn/courses/30/lessons/42585)<br>
+<br>
+문제 설명은 위 링크에서 확인 해주시기 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/6a6dbb06f5107583e388bb34e80179d3.js"></script>
+<br>
+
+### review
+
+열고 닫는 괄호를 통해서 쇠막대기와 레이저를 표현한 string이 주어진다. 심지어 쇠막대기가 겹쳐진 것도 표현된다. 문제 조건에서 왜 쇠막대기 끝점은 레이저랑 겹치지 않을까 싶었는데 input을 보고 이해가 됐다. ~~심지어 겹쳐지면 골치아프다~~
+
+괄호가 열고 닫혔을 때 그 사이 범위를 괄호 범위라고 하면, 괄호 범위가 1이면 레이저고 아니면 쇠막대기다. 레이저든 쇠막대기든 무조건 열고 닫히는 괄호가 있기 때문에 당연하게도 모든 경우가 쌍으로 주어진다! 나는 처음에 input에서 쇠막대기와 레이저의 열고 닫히는 인덱스를 쌍으로 별도로 담아주고 레이저가 겹쳐지면 카운트했다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

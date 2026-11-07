@@ -1,0 +1,38 @@
+---
+title: "[Programmers] 기능개발"
+excerpt: ""
+category: PS
+date: 2020-07-21
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42586](https://programmers.co.kr/learn/courses/30/lessons/42586)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/12f9ed34782156bfaa3a4fc89e8979c3.js"></script>
+<br>
+
+### review
+
+스택/큐 문제로 분류가 돼있지만 그렇게 풀 필요가 없을거 같아서 벡터만 이용했다. 일단 progresses와 speeds를 이용해 각 기능이 얼마만에 끝나는지를 process에 담았다. 그리고 앞 기능이 배포될 때 뒷 기능도 같이 배포되므로 앞 기능이 늦으면 어차피 뒷 기능도 그 때 배포된다. 따라서 process에서 앞 인덱스값이 뒤에보다 크면 덮어 씌우고, 뒤가 더 크면 그 값을 기준으로 진행해준다.
+```cpp
+int submax = process[0];
+    for(int i=0; i<process.size(); i++){
+        if(submax < process[i]) submax = process[i];
+        else process[i] = submax;
+    }
+```
+이렇게 처리하면 process는 오름차순이 된다. 값은 값의 개수를 카운트해서 answer에 담아주면 된다.
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

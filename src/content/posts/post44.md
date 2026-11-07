@@ -1,0 +1,42 @@
+---
+title: "[Programmers] 카카오프렌즈 컬러링북"
+excerpt: 2017 카카오코드 예선
+category: PS
+date: 2020-07-27
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/1829](https://programmers.co.kr/learn/courses/30/lessons/1829)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/03332690aef58421fba43726ae8b9cdd.js"></script>
+<br>
+
+### review
+전형적인 DFS 문제다. 백준에서 비슷한 문제를 여러번 풀어봤어서 금방 풀어낼 수 있었다. 색칠된 영역(picture[][] != 0)이면서 탐색하지 않은(`chk[][] == false`) 곳이면 `dfs()`로 들어가 조건에 맞는 범위까지 탐색한다. 이 때 `dy[4]={-1,1,0,0}, dx[4]={0,0,1,-1}`를 만들어줌으로써 특정 위치에서 사방으로 탐색하게 해준다. 왕왕 쓰이는 방법이나 조건을 제대로 걸어주지 않으면 각 자리당 4회씩 탐색하므로 시간초과에 걸리기 쉽다. 주의하자.
+```cpp
+for(int i=0; i<4; i++){
+        int hy = y + dy[i], hx = x + dx[i];
+        //범위를 벗어나면
+        if(hy<0 || hy>=m || hx<0 || hx>=n) continue;
+        //이미 체크된 자리라면
+        if(chk[hy][hx]) continue;
+        //같은 영역이 아니라면
+        if(picture[hy][hx] != key) continue;
+
+        dfs(hy, hx, n, m, key, picture);
+}
+```
+그리고 컴파일러의 차이인지 이 문제에서는 전역 변수도 반드시 초기화해줘야 한다. 전역으로 선언된 `chk[][]`를 **false**로 바꿔주는 작업을 하지 않으면 통과할 수 없었다. 이거 때문에 시간이 날아갔다.. 요즘은 굳이 신경쓰지 않아도 0으로 초기화가 될텐데 아무래도 옛날에 출제돼서 그런건지 이유는 잘 모르겠다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

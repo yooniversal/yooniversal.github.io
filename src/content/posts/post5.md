@@ -1,0 +1,33 @@
+---
+title: "[Programmers] 비밀지도"
+excerpt: 2018 KAKAO BLIND RECRUITMENT - 1차
+category: PS
+date: 2020-07-11
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/17681](https://programmers.co.kr/learn/courses/30/lessons/17681)
+
+줄곧 [BOJ](https://www.acmicpc.net/)에서만 문제를 풀다가 처음으로 [프로그래머스](https://programmers.co.kr/)에 도전해봤다. [Codeforces](https://codeforces.com/)에서는 BOJ와 같은 방식으로 작성해서 제출하면 됐는데 프로그래머스는 조금 다르다!
+
+계속 문제를 풀어보면 또 다른 점이 나오겠지만, Level 1만 풀면서 느낀건 input 때문에 신경을 써야 할 필요가 없다는 점? 혹시 프로그래머스에서 풀어본 적이 없거나 풀어보려는데 코드가 조금 이상하다고 느끼면 이 점 감안해서 봐주셨으면 좋겠다!
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/f17f2e29fe4f7ba0c51d0eff87ffb493.js"></script>
+<br>
+
+### review
+
+문제가 쉬운 편이라서 그렇게 어렵지 않다. 푸는 아이디어는 보자마자 직관적으로 다가올 테지만, 나는 10진수를 2진수로 표현하는 것과 각 값 비교를 어떻게 해야할까 생각하면서 이리저리 짜보다가 길어졌다. ㅠㅠ 다른 풀이를 보니까 solution 함수 내에서 2진수 표현과 비교를 각 인덱스를 바로 꺼내 비트연산으로 해결하더라. 계속 간결하게 푸는 방식을 보면서 피드백해 나가야겠다. 쉬운 문젠데도 배울 점이 많았다.
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

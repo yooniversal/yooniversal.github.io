@@ -1,0 +1,25 @@
+---
+title: "[MySQL] 예약어와 같은 테이블명 사용 시 에러 발생"
+excerpt: ""
+category: Project
+date: 2023-07-05
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+### 문제 상황
+프로젝트를 빌드하면서 테이블을 등록하는 도중에 MySQL 예약어와 같은 이름인 엔티티가 있는 바람에 제대로 등록이 되질 않았다. 나같은 경우 `rank`라는 이름의 엔티티였고 다른 예약어도 확인하려면 [여기](https://zetawiki.com/wiki/MySQL_%EC%98%88%EC%95%BD%EC%96%B4)를 참고하자.
+<br>
+
+### 해결 방법
+`@Table` 애노테이션으로 해당 엔티티의 테이블명을 설정해주면 되는데, 다른 이름으로 변경해도 되지만 꼭 예약어와 같은 이름으로 등록하고 싶다면 다음처럼 예약어 양옆에 **백틱**을 붙여주면 된다.
+```java
+@Entity
+@Getter
+@Table(name = "`rank`")
+public class Rank {
+  ...
+}
+```

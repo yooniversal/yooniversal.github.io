@@ -1,0 +1,83 @@
+---
+title: "[BOJ 13511]"
+excerpt: 트리와 쿼리 2
+category: PS
+date: 2020-08-05
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/13511](https://www.acmicpc.net/problem/13511)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+**Solution**
+
+<script src="https://gist.github.com/yooniversal/4d241b366f67bde2e107e8e421309724.js"></script><br>
+
+### review
+2가지 쿼리가 있으므로 사실상 2문제를 푼다고 봐야할거 같다. LCA에 대해서 알고있고 [BOJ 3176](https://www.acmicpc.net/problem/3176)을 풀었다면 1번 쿼리는 (아마도) 어렵지 않다! 2번 쿼리도 어렵지 않게 해결할 수 있었다.
+
+1번 쿼리는 u에서 v로 갈 때 거치는 경로의 비용을 모두 더해서 출력해야한다. [BOJ 3176](https://www.acmicpc.net/problem/3176)에서는 경로별 최소, 최댓값을 저장하기 위해서 배열을 따로 선언해 관리했는데 마찬가지다! dfs()에서는 똑같이 부모로 이동할 때 비용을 저장해주고 `makeTree()`의 for문에서 나머지 부분도 완성해주게 된다. sparse table을 이용했으므로 부모까지 2^n만큼 이동할 수 있다. 한 번에 이동할 경우 그 구간의 비용의 합을 가져가야 한다. 때문에 for문에서는 `u`에서 2^k번 부모까지의 비용을 `u`에서 2^(k-1)까지의 비용과 `u`의 2^(k-1)번 부모에서 `u`의 2^k까지의 비용을 더한다.
+
+타이핑하니까 더 복잡해 보인다. 그냥 아래 식을 참고하는게 제일 빠르겠다.
+```cpp
+void makeTree() {
+    dfs(1, 0); //루트가 1
+
+    //노드 u(1~n)의 부모를 연결하기
+    for (int k = 1; k < COL; k++) {
+        for (int u = 1; u <= n; u++) {
+            w[u][k] = w[u][k-1] + w[parent[u][k - 1]][k - 1]; //이 부분!
+            parent[u][k] = parent[parent[u][k - 1]][k - 1];
+        }
+    }
+}
+```
+그럼 비용을 sparse table을 이용해서 저장했으니 이를 이용해서 값을 얻으면 된다. 나는 `LCA()`에서 값을 구할 수 있도록 해줬다. `u`, `v`에서 `LCA(u, v)`로 접근하면서 각각 거쳐가는 비용을 더해줬다.
+
+2번 쿼리는 각 노드의 `depth`를 이용하는게 제일 간편해보여서 적용해봤다. 일단 TC를 보면 알겠지만 출발점도 횟수에 포함된다. 계산할 때 헷갈릴거 같아서 입력받고 `k--`를 해줬다. u에서 부터 출발하고 v에서 끝나므로 `LCA(u, v)`를 건너갈 수도, 건너가지 않을 수도 있다. 건너가지 않는다면 아무리 멀리가도 `LCA(u, v)`에서 멈추게 된다. 그럼 `k`가 `LCA(u, v)`와 u의 깊이 차이보다 작거나 같아야 한다.
+```cpp
+//LCA를 건너가지 않아도 k번째 부모가 나올 경우
+if (k <= depth[u] - depth[lca]) {
+    //u의 k번째 부모 찾기
+    for (int i = COL - 1; i >= 0; i--) {
+        if (k >= (1<<i)) {
+            u = parent[u][i];
+            k -= (1<<i);
+        }
+    }
+
+    cout << u << '\n';
+}
+```
+LCA를 건너가게 되면 `depth[u] - depth[LCA]`보다 `k`가 크게 된다. 그래서 전자를 빼주면 남은 `k`만큼 LCA에서 내려와야 한다. 근데 sparse table 특성상 자식에서 부모로 접근은 가능한데 부모에서 자식으로는 어렵다. (정확히는 내가 할줄 모르겠다) 그럼 `LCA(u, v)`와 `v`의 깊이 차이에서 남은 `k`를 빼주면 그만큼 `v`에서 출발해 도달하면 답이 나오게 된다!
+```cpp
+//LCA를 건너서 찾아야 할 경우
+else {
+    k -= depth[u] - depth[lca]; //LCA에서 k번 내려오기
+    k = depth[v] - depth[lca] - k;  //하지만 v에서 찾을 수 있게 재설정
+    for (int i = COL - 1; i >= 0; i--) {
+        if (k >= (1<<i)) {
+            v = parent[v][i];
+            k -= (1<<i);
+        }
+    }
+
+    cout << v << '\n';
+}
+```
+<br>
+`k>=(1<<i)`에서 `1<<i`를 `i<<i`라고 적어서 4시간동안 삽질했다🥱<br>
+하루종일 컴퓨터 앞에 앉아있다 보니까 뭔가를 허비하면 손실이 더 큰 기분이 들고 막 음 뭐 그렇다.<br>
+<strong>틀렸습니다</strong>에 시달리는 원인은 여러가지가 있지만 이럴 때 제일 허무하다 ㅋㅋ
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
