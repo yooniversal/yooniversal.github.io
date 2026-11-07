@@ -83,6 +83,7 @@ DB 간 동기화 작업 시 여러 `cousumer`가 `topic`에 있는 `이벤트`�
 <img src="https://lh3.googleusercontent.com/d/1ag05Ownm8VW2QpVWg7YXExUreCumiVQb" style="width: 50%; height: auto;" title="fittering_test.png" alt="?"/><br>
 </div>
 <br>
+
 처음엔 Business layer에 대해서 해피 케이스만 체크해줬었는데, 이렇게 하다보니 에러를 사전에 좀 확인하기 어려웠다. 그래서 3-tier에서 모두 해피/예외 케이스를 검증하도록 로직을 추가했고, Representation/Persistence layer에서는 Business layer와 다르기 다른 layer에 정의된 메소드를 직접 호출하지 않도록 **Mockito**를 활용해 mocking을 적용했고, 구현한 함수가 주어진 input에 대해 기대하는 output을 반환하는지 확인하도록 했다😄
 
 이렇게 적용하고 나니 수정된 코드에서 발생하는 에러를 상당히 줄일 수 있었고, 테스트 환경 클래스를 정의하고 상속받도록 해 통합 테스트 환경을 설정하면서 테스트 시간도 줄일 수 있었다!

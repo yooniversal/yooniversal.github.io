@@ -46,6 +46,7 @@ em.persist(member);
 <blockquote>
 비영속
 </blockquote>
+
 생성 후 저장되지 않았을 때 상태를 의미한다.<br>
 즉, 영속성 컨텍스트, 데이터베이스와 관련이 없다.<br>
 ```java
@@ -57,6 +58,7 @@ member.setUsername("회원1");
 <blockquote>
 영속
 </blockquote>
+
 비영속 상태인 엔티티를 영속성 컨텍스트에 저장했을 때의 상태이다.<br>
 영속 상태라는 건 **영속성 컨텍스트에 의해 관리됨**을 의미한다.<br>
 또한 `em.find()`나 JPQL을 사용해 조회한 엔티티도 영속 상태이다.<br>
@@ -67,6 +69,7 @@ em.persist(member);
 <blockquote>
 준영속
 </blockquote>
+
 영속 상태의 엔티티를 영속성 컨텍스트가 관리하지 않으면 준영속 상태가 된다.<br>
 `em.detach()`를 호출하거나, `em.close()`로 영속성 컨텍스트를 닫거나<br>
 `em.clear()`로 영속성 컨텍스트를 초기화하면 엔티티는 준영속 상태가 된다.<br>
@@ -77,6 +80,7 @@ em.detach(Member);
 <blockquote>
 삭제
 </blockquote>
+
 엔티티를 영속성 컨텍스트와 데이터베이스에서 삭제하는 것을 의미한다.<br>
 ```java
 em.remove(Member);
@@ -91,6 +95,7 @@ em.remove(Member);
 <blockquote>
 3.4.1 엔티티 조회
 </blockquote>
+
 영속성 컨텍스트 내부에는 **1차 캐시**와 **데이터베이스**가 존재한다.<br>
 엔티티를 조회하면 1차 캐시를 먼저 조회하고 그 다음 데이터베이스를 조회한다.<br>
 또한 엔티티를 저장(`em.persist(Member)`)하면 1차 캐시에 저장한다.<br>
@@ -108,6 +113,7 @@ System.out.println(a == b); // 같은 엔티티 인스턴스를 반환해 1을 �
 <blockquote>
 3.4.2 엔티티 등록
 </blockquote>
+
 엔티티 매니저는 DB에 엔티티를 저장하지 않고 내부 쿼리 저장소(쓰기 지연 SQL 저장소)에<br>
 INSERT SQL를 모아둔 후 마지막에 트랜잭션 커밋으로 모아둔 쿼리를 DB로 보낸다.<br>
 이를 **트랜잭션을 지원하는 쓰기 지연**(transactional write-behind)라 한다.<br>
@@ -126,6 +132,7 @@ transaction.commit(); // 트랜잭션 커밋. DB에 INSERT SQL보냄 (플러시)
 <blockquote>
 3.4.3 엔티티 수정
 </blockquote>
+
 요구사항이 늘어나 기존 쿼리에서 수정해야 하는 내용이 많아지는 상황을 생각해보면,<br>
 필요한 정보 입력 여부에 따라 필요한 수정 쿼리가 점점 늘어나게 된다.<br>
 결국 **비즈니스 로직이 SQL에 의존하는 문제점**이 발생한다.<br>
@@ -150,6 +157,7 @@ null이 아닌, 데이터가 존재하는 필드만으로 INSERT SQL을 동적�
 <blockquote>
 3.4.4 엔티티 삭제
 </blockquote>
+
 삭제할 엔티티 조회 후 `em.remove()`의 인자로 넘겨주면 엔티티를 삭제한다.<br>
 ```java
 Member memberA = em.find(Member.class, "memberA"); // 삭제 대상 엔티티
@@ -167,6 +175,7 @@ em.remove(memberA); // 삭제
 <blockquote>
 3.5.1 플러시 모드 옵션
 </blockquote>
+
 플러시 모드를 직접 지정하려면 javax.persistence.FlushModeType을 사용한다.<br>
 * `FlushModeType.AUTO` : 커밋 or 쿼리 실행 시 플러시 (default)
 * `FlushModeType.COMMIT` : 커밋 시 플러시
@@ -179,6 +188,7 @@ em.remove(memberA); // 삭제
 <blockquote>
 3.6.1 준영속 상태 전환 : detach()
 </blockquote>
+
 앞에서 엔티티를 영속 상태로 만들 땐 `em.persist(member)`를 활용했는데,<br>
 비슷하게 준영속 상태로 만들 땐 `em.detach(member)`를 활용하면 된다.<br>
 호출 시 1차 캐시, 쓰기 지연 SQL 저장소에 해당 엔티티에 대한 정보가 제거된다.<br>
@@ -187,12 +197,14 @@ em.remove(memberA); // 삭제
 <blockquote>
 3.6.2 영속성 컨텍스트 초기화 : clear()
 </blockquote>
+
 `em.detach()`는 엔티티 하나를 적용하는 방법이라면 `em.clear()`는 영속성 컨텍스트의<br>
 모든 엔티티를 준영속 상태로 만들 때 적용하는 방법이다.<br>
 
 <blockquote>
 3.6.3 영속성 컨텍스트 종료 : close()
 </blockquote>
+
 말그대로 영속성 컨텍스트를 종료하는 것으로 관리하던 영속 상태 엔티티들을 모두 준영속 상태로 만든다.<br>
 ```java
 EmtityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
@@ -207,6 +219,7 @@ em.close(); // 영속성 컨텍스트 종료
 <blockquote>
 3.6.4 병합 : 준영속 → 영속
 </blockquote>
+
 `merge()` 메소드는 준영속 상태의 엔티티를 받아 영속 상태인 엔티티를 반환한다.<br>
 이 때, 준영속 엔티티뿐만 아니라 비영속 엔티티도 받아서 처리할 수 있다.<br>
 파라미터로 들어오는 엔티티를 영속성 컨텍스트에서 조회하고 없으면 DB에 가서 조회하게 되며<br>

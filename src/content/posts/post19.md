@@ -71,6 +71,7 @@ uni[1]=0인데 g_i=1이 들어오므로 close => ans:2
 */
 ```
 <br>
+
 항상 부모값을 참조할 땐 `uni[num]`말고 `find_parent(num)`을 사용하자! 삽질 좀 그만하자!<br>
 
 <script src="https://utteranc.es/client.js"

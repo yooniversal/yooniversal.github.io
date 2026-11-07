@@ -31,6 +31,7 @@ public List<User> getFollowings(Long userId) {
 }
 ```
 <br>
+
 owner가 `Follow`인데 `Follow.toUser`를 반환하고 있어서 발생한 문제였다. fetch join을 적용하기 전에는 join으로만 사용해서 문제가
 없었으나 적용 후에 발생했다. 어떤 유저의 팔로잉 목록을 한 번에 가져오기 위해서 정의해둔 함수였는데, User를 반환하더라도 fetch 
 join으로 엮여있는 경우엔 반드시 owner인 `Follow`를 select 대상으로 가져와야지 다른걸 가져오면 안된다. 그래서 이렇게 수정했다.
@@ -51,6 +52,7 @@ List<Follow> result = em.createQuery("select f from Follow f " +
 }
 ```
 <br>
+
 `Follow`를 가져오되 어차피 fetch join으로 가져온 `Follow`에는 `fromUser`든 `toUser`든 proxy가 아닌 실제 데이터가 담겨 있으므로
 바로 list로 뽑아서 반환해주면 된다.
 <br>

@@ -46,6 +46,7 @@ author:
 </details>
 
 <br>
+
 가이드를 따라 models.py에도 내용을 추가했었으나 로그인할 때 쓰이는 authenticate 함수가 변경된 모델에서는<br>
 정상적으로 적용이 되질 못했다. 정확히는 모델을 새로 정의한 후 이용하면 DB가 기존 것과 분리되는데<br>
 authenticate는 기존 DB에만 적용이 되고 새 모델과 연동되는 DB에는 연동이 되질 않았다.<br>

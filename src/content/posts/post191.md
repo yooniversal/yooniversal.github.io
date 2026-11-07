@@ -119,6 +119,7 @@ public class Team {
 <blockquote>
 저장
 </blockquote>
+
 연관관계를 매핑한 엔티티를 저장하는 예제는 다음과 같다.<br>
 ```java
 //팀1 저장
@@ -137,6 +138,7 @@ em.persist(member1);
 <blockquote>
 조회
 </blockquote>
+
 연관관계가 있는 엔티티 조회 방법은 크게 2가지다.<br>
 객체 연관관계는 객체 그래프 탐색을, 테이블은 객체지향 쿼리(JPQL)를 사용한다.<br>
 전자의 예시는 `member.getTeam()`가 있고, 후자 예시는 다음과 같다.<br>
@@ -155,6 +157,7 @@ List<Member> resultList = em.createQuery(jpql, Member.class)
 <blockquote>
 수정
 </blockquote>
+
 팀1 소속인 회원1을 팀2로 수정해보자.<br>
 ```java
 Team team2 = new Team("team2","팀2");

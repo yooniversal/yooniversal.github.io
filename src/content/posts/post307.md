@@ -149,6 +149,7 @@ println(num1.divide(num2, 5, RoundingMode.CEILING)) // 0.03334
 - 여기는 `toBigDecimal()`도 가능하다.
 
 <br>
+
 대신 이런건 안된다.
 ```kotlin
 val num1 = (0.1).toBigDecimal()

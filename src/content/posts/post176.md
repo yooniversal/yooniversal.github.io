@@ -14,6 +14,7 @@ cholol님이 올린 [서버 개발환경 세팅 글](https://cholol.tistory.com/
 No supported authentication methods available (server sent: publickey)
 ```
 <br>
+
 오류만 읽으면 PuTTY > Connection > SSH > Auth > Private Key file for authentication에<br>
 public key를 넣어서 그런 것 같은데 나는 public key를 넣은 적이 없다😇<br>
 도대체 뭐가 문젤까 하며 PuTTYgen에서 pem 파일을 갖고 다시 돌려보고 돌려보고 반복을 해보다가<br>

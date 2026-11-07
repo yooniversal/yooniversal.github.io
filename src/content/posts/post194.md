@@ -19,6 +19,7 @@ Execution failed for task ':bootJarMainClassName'.
          project :
 ```
 <br>
+
 `Could not find com.mysql:mysql-connector-j`를 검색해봐도 시원한 해결책을 찾지 못했는데, 일단 `com.mysql:mysql-connector-j`
 를 찾지 못해서 발생하는 오류라는건 알게 됐다. 별도로 버전을 명시하지 않아도 알아서 dependency를 고려해서 버전 세팅까지 해주
 는데, 이 오류가 나서 찾아보니까 `com.mysql:mysql-connector-j` 옆에만 버전이 없었다.<br>
@@ -74,5 +75,6 @@ test {
 }
 ```
 <br>
+
 당시 쓰던 버전이 8.0.29라 써져있었기 때문에 `com.mysql:mysql-connector-j` 뒤에 `:8.0.29`도 써보고 그랬지만<br>
 같은 에러의 반복이었고 정말 이상하다 싶어서 그냥 지워봤는데 말끔하게 해결됐다😞

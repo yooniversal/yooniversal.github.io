@@ -81,6 +81,7 @@ result type(`Person`)에 안맞으면 `DatabindException`을 던진다고 나와
 <div style="text-align: center;">
     <img src="https://lh3.googleusercontent.com/d/1xhJvoIBgkItnKMMFrSP5PLcJKoeXaA5x" style="width: 80%; height: auto;" title="$20241018_jackson.png" alt="?"/>
 </div>
+
 - 참고로 예외 연관관계는 아래와 같다.
 - **UnrecognizedPropertyException** → PropertyBindingException → MismatchedInputException → JsonMappingException → **DatabindException**
 

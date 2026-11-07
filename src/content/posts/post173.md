@@ -74,6 +74,7 @@ Activity에서는 다음 내용들을 추가해주면 됐었다.<br>
 클래스 초반부에 private lateinit var binding: MainAcitvityBinding,
 ```
 <br>
+
 근데 Fragment의 경우 **onCreate()이 없고 onCreateView()가 있었다**.<br>
 그냥 이게 이거겠거니 싶어서 2번째 줄에 있는 코드를 넣었는데 이 부분이 원인이었다.<br>
 `binding = FragmentHomeBinding.inflate(inflater), return binding.root`로 고쳐야 한다.<br>

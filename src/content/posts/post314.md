@@ -26,6 +26,7 @@ Elasticsearch든 MySQL이든 서버와 분리된 저장소에서 쿼리를 통�
 <div align=center>
 <img src="https://lh3.googleusercontent.com/d/1UtJWuzoBPss8mPMSyLN8Nv3gSGt7Y9dG" style="width: 65%; height: auto;" title="$2025-05-03-validate.png" alt="?"/>
 </div>
+
 - 스레드를 분리한 이유는 이벤트를 발행해서 검증 요청을 하기 때문이다. 검증하는 시간이 API 응답 시간에 큰 영향을 주지 않아야 한다.
 - 이벤트에는 검증에 필요한 값과 ES 쿼리, request 정보를 담아서 전달한다.
   - 검증 실패 시 메신저로 쿼리와 request 정보를 알람으로 보내 디버깅에 활용한다.
@@ -42,6 +43,7 @@ ES는 인덱싱 속도가 빨라서 실시간성을 보장한다고 하지만, �
 <div align=center>
 <img src="https://lh3.googleusercontent.com/d/1AktUr8ANoI5SuiMglPFYcdnHX-UyGACs" style="width: 75%; height: auto;" title="$2025-05-03-validate-fail.png" alt="?"/>
 </div>
+
 - 이런 알람을 줄이기 위해 요청값에 `오늘이 포함된 기간`으로 검색한 경우는 제외했다.
   - 경험상 오늘 생성된 데이터는 변동 가능성이 매우 높았다.
 
@@ -49,6 +51,7 @@ ES는 인덱싱 속도가 빨라서 실시간성을 보장한다고 하지만, �
 <div align=center>
 <img src="https://lh3.googleusercontent.com/d/1lKLt5XwoY9AoERatoUCuSgVt5kBjTfvS" style="width: 75%; height: auto;" title="$2025-05-03-validate-5s.png" alt="?"/>
 </div>
+
 - 계속 수정될 수 있는 동적 데이터이기 때문이다. 심지어 **언제 수정될지 예측할 수 없어서 바뀌는 타이밍을 모두 제어하기 어렵다.**
 - 사실 이 문제는 오늘을 제외해도 발생하는 문제다. 하지만 잘못된 알람을 많이 줄일 수 있었다.
 

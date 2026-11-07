@@ -21,6 +21,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 <br>
+
 결국 원하는 기능은 구현할 수 있었으나 또 문제가 생겼다.<br>
 화면을 A에서 B로 가게하고 싶어서 SubActivity.kt를 만들었는데 여기와 연결된 xml파일에서 id를 못꺼내 오더라.<br>
 영상을 참고도 해보고 구글링도 열심히 했는데 extension에 대한 답을 찾질 못했다!! 😇<br>
@@ -39,6 +40,7 @@ android{
 }
 ```
 <br>
+
 MainActivity.kt에서는 다음과 같이 설정해주면 된다.<br>
 ```kotlin
 override fun onStart() {
@@ -47,6 +49,7 @@ override fun onStart() {
 }
 ```
 <br>
+
 빨간 글씨가 뜬다면 Alt+Enter를 눌러서 자동으로 import가 되도록 해주면 문제 해결이다.<br>
 위에 써진 것처럼 xml에 id가 `textId`라면 다음과 같이 쓸 수 있다.
 ```kotlin

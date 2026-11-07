@@ -49,6 +49,7 @@ Resolved [org.springframework.web.bind.MissingServletRequestParameterException:
 Required request parameter 'name' for method parameter type String is not present]
 ```
 <br>
+
 다시 `http://localhost:8080/hello-mvc?name=spring!!!!!`를 입력하면 물음표 뒤에 name이 제시되고<br>
 key값으로 `spring!!!!!`이 들어왔으므로 Controller의 `helloMvc()`에서 이 정보를 model에 담은 후<br>
 `"hello-template"`를 리턴하고 viewResolver가 이 리턴값을 통해 `hello-template.html`로 이동한다.<br>

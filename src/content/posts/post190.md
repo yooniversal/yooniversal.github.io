@@ -78,6 +78,7 @@ ALTER TABLE MEMBER
 <blockquote>
 기본 키 직접 할당 전략
 </blockquote>
+
 기본 키를 직접 할당하려면 @Id로 매핑하면 된다.<br>
 ```java
 @Id
@@ -95,6 +96,7 @@ em.persist(board);
 <blockquote>
 IDENTITY 전략
 </blockquote>
+
 기본 키 생성을 DB에 위임하는 전략으로, 주로 MySQL, PostgreSQL, SQL Server, DB2<br>
 에서 사용한다. @GenerateValue의 stratgy 속성 값을 `GenerateType.IDENTITY`로 지정하자.<br>
 이 전략 사용 시 JPA는 기본 키 값을 얻기 위해 DB를 추가로 조회한다.<br>
@@ -118,6 +120,7 @@ em.persist(board);
 <blockquote>
 SEQUENCE 전략
 </blockquote>
+
 DB 시퀀스는 유일한 값을 순서대로 생성하는 특별한 DB 오브젝트로, 이를 통해 기본 키<br>
 를 생성한다. 이 전략은 PostgreSQL, DB2, H2에서 사용할 수 있다.<br>
 ```sql
@@ -158,6 +161,7 @@ SEQUENCE 전략은 `em.persist()`호출 시 먼저 DB 시퀀스를 통해 식별
 <blockquote>
 TABLE 전략
 </blockquote>
+
 키 생성 전용 테이블을 만들고 이름과 값으로 사용할 컬럼을 만들어 DB 시퀀스를 흉내내는 전략이다.<br>
 이 전략은 앞에서 살펴본 전략과 달리 모든 DB에서 사용 가능하다.<br>
 TABLE 전략을 사용하려면 키 생성 용도로 사용할 테이블을 만들어야 한다.<br>
@@ -202,6 +206,7 @@ TABLE 전략 매핑 사용 코드는 이전에 살펴본 매핑 사용 코드와
 <blockquote>
 AUTO 전략
 </blockquote>
+
 `GenerationType.AUTO`는 선택한 DB 방언에 따라 IDENTITY, SEQUENCE, TABLE 전략 중 하나를 자동으로 선택한다.<br>
 가령, 오라클은 SEQUENCE를, MySQL은 IDENTITY를 사용한다.<br>
 ```java

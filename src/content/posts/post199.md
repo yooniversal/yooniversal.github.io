@@ -22,6 +22,7 @@ item.price=가격
 item.quantity=수량
 ```
 <br>
+
 그리고 html 파일에서 처리는 `thymeleaf`로 다음과 같이 처리한다!<br>
 ```html
 <label for="itemName" th:text="#{item.itemName}"></label>
@@ -39,6 +40,7 @@ item.quantity=수량
 spring.messages.basename=messages,config.i18n.messages
 ```
 <br>
+
 기본값이 messages이므로 `messages.properties`, `messages_ko.properties`, `messages_en.properties`<br>
 를 만들면 알아서 처리한다.<br>
 <br>

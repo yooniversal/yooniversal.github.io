@@ -56,6 +56,7 @@ ll getKey(int start, int end, int node, int index, ll key) {
 }
 ```
 <br>
+
 검색해보니 **lazy propagation** 이라는 방법으로도 풀린다고 하는데 나중에 공부해봐야겠다.<br>
 세그먼트 트리도 좀 손에 익기 시작해서 응용 문제도 금방 풀줄 알았는데 시간이 너무 오래 걸렸다..😶<br>
 

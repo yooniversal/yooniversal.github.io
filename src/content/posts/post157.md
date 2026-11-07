@@ -219,6 +219,7 @@ Link : [https://www.acmicpc.net/problem/3080](https://www.acmicpc.net/problem/30
 2. 트라이 메모리를 동적 할당
 ```
 <br>
+
 1번으로는 솔직히 어떻게 하는지 모르겠어서 2번으로 처리했다.<br>
 쓰는 문자만 벡터 `next`에 `push`해주는데 `first`를 `char`, `second`를 포인터(`Trie*`)로 설정해주면 된다.<br>
 답은 자식들의 수를 팩토리얼로 나타내면 된다. 생각한 것보다 되게 어려웠던 문제..

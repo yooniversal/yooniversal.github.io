@@ -37,6 +37,7 @@ public ResponseEntity<?> uploadPost(@RequestParam("uploadText") String text,
 }
 ```
 <br>
+
 사실은 이번에 파일 업로드 기능 구현을 처음부터 막 시작하던 와중에 뜬 에러는 아니다. 이전에 여러 번의 삽질끝에 구현을 마치고 다른 내용을 고치던 찰나에 어쩌다 테스트 해봤는데, 갑자기 업로드한 파일 정보가 나오질 않는 거였다.
 위 javascript 코드에서 ajax request가 시작되기 전에 `formData.get("uploadImgUrl")`을 콘솔에 찍어서 확인했을 땐 정상적인 정보가 들어갔었고
 희한하게도 ajax request 코드로 넘어가자 마자 `fail()`로 넘어가서 *[post 업로드] 불러오기 오류*를 출력해댔다.<br>
@@ -44,6 +45,7 @@ public ResponseEntity<?> uploadPost(@RequestParam("uploadText") String text,
 Spring org.springframework.web.multipart.support.MissingServletRequestPartException, Required request part 'uploadImgUrl' is not present
 ```
 <br>
+
 출력된 오류 내용대로, `uploadImgUrl`로 넘어오는 파라미터가 계속 **null**인걸 확인할 수 있었고(`@RequestParam`에서 `required = false`로 체크했음)
 `text`, `tag`에는 정상적인 정보가 들어오는걸 확인할 수 있었다. 다 같은 `formData`를 타고 넘어오는 건데 저건 되고 왜 저건 안될까?<br>
 검색해보니 다양한 해결 방법들이 존재했는데, 나같은 경우 *application.yml*에서 다음 설정을 최근에 해둔 적이 있었다.<br>
@@ -56,6 +58,7 @@ spring:
         enabled: true
 ```
 <br>
+
 회원탈퇴 기능을 구현하면서 repository에 구현해뒀던 delete 쿼리를 날렸는데 계속 삭제가 되질 않아 찾았던 해결책이었다.<br>
 분명 DELETE 쿼리를 날렸는데 에러에는 POST 신호로 잡히는 모양이었고 그걸 해소해주는 코드였던 걸로 기억한다.<br>
 controller에 정의해둔 함수는 **@DeleteMapping**을 적용했는데 POST request만 계속 들어오니 오류를 뱉어냈었고<br>
@@ -83,6 +86,7 @@ function deleteUser(userId) {
 }
 ```
 <br>
+
 정확한 이유가 뭔지는 모르겠지만, 위에서 *application.yml*에 설정한 내용과 ajax request와 충돌이 있는 것 같다.<br>
 controller에서 @DeleteMapping(또는 @PutMapping)을 쓸 수 있다는건 확실히 좋게 다가올 수 있을 것 같은데 아쉽다.<br>
 `MultipartFile` 앞에 적은 `@RequestParam`을 **@RequestPart**로 바꾸면 해결된다는 답변도 본적이 있으니 이 에러때문에<br>

@@ -71,6 +71,7 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/72415](https://progra
 </details>
 
 <br>
+
 `매출 하락 최소화`는 못풀어서 쓰지 못했다😅<br>
 못 푼 문제도 걱정이지만 풀 수 있는 문제를 제 시간에 다 풀어낼 수 있는지 아는게 중요해 보인다.<br>
 평소에 문제 풀 때 실전처럼 파바박 풀어내려고 하는 스타일이 아니라 더 취약할 듯하다.<br>

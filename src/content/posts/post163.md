@@ -181,6 +181,7 @@ void make_union(ll a, ll b){
 }
 ```
 <br>
+
 위에서 말했듯이 집합(부모)이 설정되지 않았다면 `uni[n]=0`이고, `find(n)`는 n를 반환하게 된다.<br>
 고객이 n번 방을 원하는데 빈 방이라면(`if(find(n)==n)`) `find(n)`을 다음 칸(`n+1`)의 집합(부모)와 엮어줘야 한다.<br>
 따라서 다음과 같이 처리해주자.<br>
@@ -289,6 +290,7 @@ Link : [https://programmers.co.kr/learn/courses/30/lessons/42894](https://progra
 </div>
 </details>
 <br>
+
 하드코딩 하는 것 말고는 좋은 방법이 떠오르질 않아서 접어놨습니다.<br>
 <br>
 구현 문제. 생각보다 시간이 오래 걸렸고 허를 찌르는 반례를 만나서 시간도 좀 걸렸다.<br>

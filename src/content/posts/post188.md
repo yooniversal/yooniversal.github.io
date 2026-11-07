@@ -101,6 +101,7 @@ JPA는 다른 데이터베이스로 쉽게 교체할 수 있지만 데이터베�
 <blockquote>
 엔티티 매니저 팩토리 생성
 </blockquote>
+
 JPA를 시작하려면 엔티티 매니저 팩토리를 생성해야 한다. 이 때 *persistence.xml*를 사용한다.<br>
 위에서 영속성 유닛으로 `jpabook`을 설정했었는데 이 값을 인자로 활용한다.<br>
 엔티티 매니저 팩토리를 생성하는 비용은 아주 크므로 **한 번만 생성하고 공유해서 사용**해야 한다.<br>
@@ -112,6 +113,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
 <blockquote>
 엔티티 매니저 생성
 </blockquote>
+
 JPA 기능 대부분은 엔티티 매니저가 제공한다.<br>
 엔티티 매니저는 내부 데이터소스를 유지하면서 데이터베이스와 통신하기 때문에<br>
 개발자는 엔티티 매니저를 가상의 데이터베이스로 생각할 수 있다.<br>
@@ -129,6 +131,7 @@ JPA 사용 시 반드시 트랜잭션 안에서 데이터를 변경해야 한다
 <blockquote>
 비즈니스 로직
 </blockquote>
+
 회원 엔티티를 하나 생성 후 엔티티 매니저를 통해 등록/수정/삭제/조회하는 과정이다.<br>
 출력 결과는 다음과 같다.<br>
 ```
