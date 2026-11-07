@@ -762,17 +762,11 @@
     margin: 2rem 0;
     border-left: 2px solid var(--border-strong);
     padding: 0.25rem 0 0.25rem 1.4rem;
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
     font-style: italic;
-    line-height: 1.6;
-    color: var(--foreground);
   }
 
   .prose blockquote p {
     margin: 0.5rem 0;
-    font-size: inherit;
-    color: inherit;
   }
 
   .prose blockquote > :first-child {
