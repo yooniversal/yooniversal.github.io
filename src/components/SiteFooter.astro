@@ -1,0 +1,19 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="outer mt-[var(--space-section)] border-t border-border">
+  <div class="inner flex flex-col gap-2 py-8 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between sm:text-left">
+    <p>&copy; {currentYear}. All rights reserved.</p>
+    <div class="space-y-1 sm:text-right">
+      <p>
+        Built with{" "}
+        <a href="https://astro.build/" class="link-quiet underline underline-offset-2">Astro</a>
+      </p>
+      <p>
+        <a href="https://github.com/xocothemes/monograph" class="link-quiet underline underline-offset-2">Monograph</a>
+        {" Theme"}
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,321 @@
+---
+import { Image } from "astro:assets";
+import "katex/dist/katex.min.css";
+import { getCollection, render } from "astro:content";
+import PostCard from "@/components/PostCard.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { siteConfig } from "@/config/site";
+import {
+  categoryHref,
+  categorySlug,
+  formatDate,
+  getAdjacent,
+  getRelated,
+  postHref,
+  postSlug,
+  readingLabel,
+  visiblePosts,
+  type Post,
+} from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const allPosts = visiblePosts(await getCollection("posts"));
+  return allPosts.map((post) => ({
+    params: { category: categorySlug(post.data.category), slug: postSlug(post) },
+    props: { post, allPosts },
+  }));
+}
+
+interface Props {
+  post: Post;
+  allPosts: Post[];
+}
+
+const { post, allPosts } = Astro.props;
+const { Content, headings } = await render(post);
+const tocBaseDepth = Math.min(...headings.map(({ depth }) => depth));
+const data = post.data;
+const related = getRelated(allPosts, post);
+const { newer, older } = getAdjacent(allPosts, post);
+const articleUrl = new URL(postHref(post), siteConfig.siteUrl).toString();
+const socialImage = data.cover
+  ? new URL(data.cover.src.src, siteConfig.siteUrl).toString()
+  : new URL(siteConfig.socialImage, siteConfig.siteUrl).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  description: data.excerpt,
+  image: socialImage,
+  datePublished: data.date.toISOString(),
+  dateModified: (data.updatedDate ?? data.date).toISOString(),
+  author: { "@type": "Person", name: data.author.name },
+  publisher: { "@type": "Organization", name: siteConfig.authorName },
+  mainEntityOfPage: articleUrl,
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.excerpt}
+  image={socialImage}
+  type="article"
+  structuredData={structuredData}
+>
+  <SiteHeader posts={allPosts} />
+  <main id="content" class="outer">
+    <article>
+      <header class="canvas pt-10 md:pt-14">
+        <p class="meta">
+          <a href={categoryHref(data.category)} class="link-sweep text-foreground">{data.category}</a>
+          <span class="meta-accent"><time datetime={data.date.toISOString()}>{formatDate(data.date, "long")}</time></span>
+          <span>{readingLabel(post)}</span>
+        </p>
+
+        <h1 class="article-title">{data.title}</h1>
+        <p class="article-excerpt">{data.excerpt}</p>
+
+        {data.updatedDate && (
+          <p class="meta mt-5">
+            <span>Updated <time datetime={data.updatedDate.toISOString()}>{formatDate(data.updatedDate)}</time></span>
+          </p>
+        )}
+      </header>
+
+      {data.cover && (
+        <figure class="article-image inner">
+          <Image
+            src={data.cover.src}
+            alt={data.cover.alt}
+            widths={[640, 960, 1200, 1600, 2000]}
+            sizes="(min-width: 1200px) 1200px, 100vw"
+            loading="eager"
+            decoding="async"
+            class="w-full"
+          />
+          {data.cover.creditName && (
+            <figcaption>
+              {data.cover.creditUrl ? (
+                <a href={data.cover.creditUrl} rel="noreferrer" class="underline underline-offset-2">
+                  {data.cover.creditName}
+                </a>
+              ) : (
+                data.cover.creditName
+              )}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
+      <div class="article-reading mt-12">
+        {data.toc && headings.length > 0 && (
+          <nav class="article-toc canvas" aria-label="목차">
+            <strong>목차</strong>
+            <ul>
+              {headings.map(({ depth, slug, text }) => (
+                <li style={`--toc-indent: ${depth - tocBaseDepth}`}>
+                  <a href={`#${slug}`}>{text}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+        <div class="prose canvas">
+          <Content />
+        </div>
+      </div>
+
+      {(newer || older) && (
+        <footer class="canvas mt-16 border-t border-border pt-8">
+          <nav class="grid gap-8 sm:grid-cols-2" aria-label="Post navigation">
+            <div>
+              {older && (
+                <a href={postHref(older)} class="link-title link-nudge">
+                  <span class="eyebrow">
+                    <span class="link-nudge__arrow link-nudge__arrow--prev">&larr;</span> Previous
+                  </span>
+                  <span class="link-title__text mt-2 block font-semibold leading-snug">{older.data.title}</span>
+                </a>
+              )}
+            </div>
+            <div class="sm:text-right">
+              {newer && (
+                <a href={postHref(newer)} class="link-title link-nudge">
+                  <span class="eyebrow">
+                    Next <span class="link-nudge__arrow link-nudge__arrow--next">&rarr;</span>
+                  </span>
+                  <span class="link-title__text mt-2 block font-semibold leading-snug">{newer.data.title}</span>
+                </a>
+              )}
+            </div>
+          </nav>
+        </footer>
+      )}
+    </article>
+
+    {related.length > 0 && (
+      <section class="canvas mt-[var(--space-section)]" aria-labelledby="keep-reading">
+        <h2 id="keep-reading" class="section-title">Keep reading</h2>
+        <div class="grid gap-7">
+          {related.map((item) => <PostCard post={item} variant="compact" headingLevel="h3" />)}
+        </div>
+      </section>
+    )}
+  </main>
+  <SiteFooter />
+
+  <script is:inline>
+    /* Progressive enhancement: every code block in the article body gets a copy
+       button, added client-side so the rendered HTML stays plain. */
+    document.querySelectorAll(".prose pre").forEach((pre, index) => {
+      if (pre.closest(".code-copy-frame")) return;
+
+      const code = pre.querySelector("code");
+      const frame = document.createElement("div");
+      const button = document.createElement("button");
+      const liveRegion = document.createElement("span");
+      const labelId = `code-copy-${index}`;
+
+      frame.className = "code-copy-frame";
+      button.type = "button";
+      button.className = "code-copy-button";
+      button.setAttribute("aria-describedby", labelId);
+      button.textContent = "Copy";
+      liveRegion.id = labelId;
+      liveRegion.className = "sr-only";
+      liveRegion.setAttribute("aria-live", "polite");
+
+      pre.parentNode?.insertBefore(frame, pre);
+      frame.append(pre, button, liveRegion);
+
+      button.addEventListener("click", async () => {
+        try {
+          if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+          await navigator.clipboard.writeText(code?.textContent ?? pre.textContent ?? "");
+          button.textContent = "Copied";
+          liveRegion.textContent = "Code copied";
+        } catch {
+          button.textContent = "Failed";
+          liveRegion.textContent = "Copy failed";
+        }
+        window.setTimeout(() => {
+          button.textContent = "Copy";
+        }, 1800);
+      });
+    });
+  </script>
+
+  <style>
+    .article-toc {
+      border-block: 1px solid var(--border);
+      margin-bottom: 2rem;
+      padding-block: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .article-toc ul {
+      display: grid;
+      gap: 0.4rem;
+      margin-top: 0.65rem;
+    }
+
+    .article-toc li {
+      padding-inline-start: calc(var(--toc-indent) * 0.65rem);
+    }
+
+    .article-toc a {
+      color: var(--muted-foreground);
+      overflow-wrap: anywhere;
+    }
+
+    .article-toc a:hover,
+    .article-toc a:focus-visible {
+      color: var(--accent);
+    }
+
+    .article-toc a:focus-visible {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 80rem) {
+      .article-reading {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--layout-content) minmax(0, 1fr);
+      }
+
+      .article-reading > .prose {
+        grid-area: 1 / 2;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .article-toc {
+        grid-area: 1 / 3;
+        position: sticky;
+        top: 5rem;
+        align-self: start;
+        max-block-size: calc(100dvh - 6rem);
+        max-inline-size: 16rem;
+        overflow-y: auto;
+        margin: 0 0 0 2rem;
+        border-block: 0;
+        border-inline-start: 1px solid var(--border);
+        padding: 0.25rem 0.5rem 0.25rem 1rem;
+      }
+    }
+
+    :global(.prose .katex-display) {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    article .meta {
+      font-size: 0.6875rem;
+    }
+
+    .article-title {
+      margin: 1.25rem 0 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.625rem, 4vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .article-excerpt {
+      margin: 1.25rem 0 0;
+      color: color-mix(in srgb, var(--foreground) 82%, transparent);
+      font-size: clamp(1.0625rem, 2.2vw, 1.25rem);
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    /* Only the block margins are set here: the inline `auto` margins come from
+       `.inner` and must survive, or the wide feature image stops centering. */
+    .article-image {
+      margin-top: 3rem;
+      margin-bottom: 0;
+    }
+
+    /* Capped so an unusually tall cover cannot push the article's first
+       paragraph below the fold. */
+    .article-image :global(img) {
+      max-height: 32rem;
+      width: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    .article-image figcaption {
+      max-width: var(--layout-content);
+      margin: 0.75rem auto 0;
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+    }
+  </style>
+</BaseLayout>
