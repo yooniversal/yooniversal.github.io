@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Yooniversal",
   tagline: "Yooniversal의 개발 블로그",
-  title: "이해하기 쉽게😋",
+  title: "Yooniversal",
   description: "Yooniversal의 개발 기록",
   siteUrl: "https://yooniversal.github.io",
   authorName: "Yooniversal",
