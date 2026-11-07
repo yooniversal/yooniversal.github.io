@@ -114,6 +114,66 @@
 
 /* -------------------------------------------------------------------- base --- */
 
+/* Keep this outside the layers so it takes precedence over GitHub's embed CSS. */
+.prose .gist .blob-num {
+  display: none;
+}
+
+/* GitHub declares light theme colors on .gist-file inside the embed. */
+:root[data-theme="dark"] .prose .gist .gist-file {
+  --bgColor-default: var(--card);
+  --bgColor-muted: var(--muted);
+  --fgColor-default: var(--foreground);
+  --fgColor-muted: var(--muted-foreground);
+  --borderColor-default: var(--border);
+  --borderColor-muted: var(--border);
+}
+
+:root[data-theme="dark"] .prose .gist .gist-file,
+:root[data-theme="dark"] .prose .gist .gist-data {
+  border-color: var(--border);
+}
+
+:root[data-theme="dark"] .prose .gist .gist-meta {
+  background-color: var(--muted);
+}
+
+:root[data-theme="dark"] .prose .gist .gist-meta a {
+  color: var(--fgColor-muted);
+}
+
+:root[data-theme="dark"] .prose .gist :is(.highlight, .blob-code-inner, .pl-smi, .pl-s .pl-s1, .pl-mi, .pl-mb) {
+  color: var(--fgColor-default);
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-c, .pl-ba, .pl-sg) {
+  color: var(--fgColor-muted);
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-c1, .pl-s .pl-v, .pl-mh, .pl-mh .pl-en, .pl-ms) {
+  color: #79c0ff;
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-e, .pl-en, .pl-mdr) {
+  color: #d2a8ff;
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-ent, .pl-sr .pl-cce) {
+  color: #7ee787;
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-k, .pl-bu) {
+  color: #ff7b72;
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-s, .pl-pds, .pl-sr, .pl-sre, .pl-sra, .pl-corl) {
+  color: #a5d6ff;
+}
+
+:root[data-theme="dark"] .prose .gist :is(.pl-v, .pl-smw, .pl-ml) {
+  color: #ffa657;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
