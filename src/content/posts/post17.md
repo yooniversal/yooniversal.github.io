@@ -1,0 +1,26 @@
+---
+title: "[Codeforces] B. Multiply by 2, divide by 6"
+excerpt: "Round #653, Math"
+category: PS
+date: 2020-07-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://codeforces.com/contest/1374/problem/B](https://codeforces.com/contest/1374/problem/B)<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/fc1098c3045c2263b3f22a0ebeb49543.js"></script>
+<br>
+
+### review
+쉬운 문제다! 6으로 나눠지면 나누고 안나눠지면 2를 곱한다. 최종적으로 1을 만들면 되며 못만드는 경우 -1를 출력한다. 6은 2*3인데 다른 연산에서는 2를 곱하므로 주어진 숫자는 3을 인자로 갖고 있어야 6으로 나눠도 1을 만들 수 있다. 3을 인자로 못가지면 바로 -1을 출력하고 끝내면 된다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

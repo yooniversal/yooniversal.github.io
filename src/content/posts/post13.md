@@ -1,0 +1,24 @@
+---
+title: "[Programmers] K번째수"
+excerpt: 정렬 연습문제
+category: PS
+date: 2020-07-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42748](https://programmers.co.kr/learn/courses/30/lessons/42748)<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/0a96b97182f06659baf7ddc100b968d6.js"></script>
+
+<br>
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

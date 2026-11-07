@@ -793,6 +793,12 @@
     margin: 2rem 0;
   }
 
+  .prose img {
+    /* Let legacy text-align and align attributes position inline images. */
+    display: inline-block;
+    height: auto;
+  }
+
   .prose figcaption {
     margin-top: 0.6rem;
     font-size: 0.75rem;
@@ -879,7 +885,12 @@
 
   .code-copy-frame pre {
     margin: 0;
-    padding-top: 2.75rem;
+    padding-inline-end: 4rem;
+  }
+
+  .code-copy-frame pre code {
+    display: block;
+    overflow-x: auto;
   }
 
   .code-copy-button {

@@ -1,0 +1,93 @@
+---
+title: "[BOJ 4196]"
+excerpt: 도미노
+category: PS
+date: 2020-08-07
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/4196](https://www.acmicpc.net/problem/4196)<br>
+비슷한 유형 문제, BOJ 3977 : [https://www.acmicpc.net/problem/3977](https://www.acmicpc.net/problem/3977)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/96d843832c62a261229c84535c77bd5b.js"></script><br>
+
+### review
+SCC 응용 문제로 분류되고 있는 도미노 문제다. SCC 기본 문제랑 개념만 익히고 막 시작했을 땐 좀 당황스러웠다. TC에서는 1->2, 2->3 의 관계를 나타내고 있어서 사이클이 발생하지 않는다. 1을 톡 치면 모든게 우르르 무너져서 답은 1이다. 좀 난감했던 부분은 '사이클'이 발생하지 않는데 왜 SCC 문제로 분류되는지였다. 하지만 전에 참고했던 글에서 이런 내용이 있었다.
+>SCC 알고리즘은 그 자체로 의미가 있다기 보다는 <strong>위상 정렬과 같이 응용되는 경우가 많습니다.</strong><br>
+
+<br>
+위상 정렬은 노드들 간의 순서가 정해져 있을 때 이를 정해진 순서(규칙)대로 정렬하는걸 말한다. <strong>사이클이 발생하면 안된다.</strong><br>
+사이클이 발생한다면 이를 한 집단으로 묶고 또 발생하면 묶어서(SCC) 위상 정렬을 수행하면 되겠다는 생각이 들었다.<br>
+그리고 [BOJ 2150](/ps/post65/)의 TC를 참고하면 알겠지만 노드 단 1개도 SCC가 될 수 있다.<br>
+그럼 이 문제의 TC에서는 사이클이 발생하지 않으므로 1, 2, 3이 각각 SCC가 된다고 보면 되겠다. 그럼 위상 정렬을 적용할 수 있다.<br>
+<br>
+적용하기 전에 왜 적용하는지 이유를 잘 모른다면 충분히 생각해볼 필요가 있다. 왜 위상 정렬을 이용해야 할까?<br>
+도미노는 시작 지점에서 톡 치면 연결된 도미노가 우르르 쓰러진다. 그리고 연결되지 않은 부분에서 멈추게 된다.<br>
+여기서 연결되지 않은 부분을 또 다른 SCC라 착각하기 쉽다. 아래 예가 반례다.<br>
+```
+1 2
+2 3
+3 1
+1 4
+
+1, 2, 3은 사이클을 이룬다. 그럼 SCC는 [1, 2, 3], [4]가 된다.
+근데 1을 톡 치면 2와 4가 같이 무너진다. SCC가 다르다고 독립됐다고 보면 안된다.
+```
+그럼 어떻게 접근해야 맞는걸까? SCC가 구분되는게 의미가 없어 보이겠지만 그렇지 않다. 잘 생각해보자.<br>
+1을 치면 2는 물론이고 4도 무너지지만, 2와 3은 쳐도 4가 무너지지 않는다. <strong>1이 무너져야 한다.</strong><br>
+그래서 나는 1처럼 다른 SCC와 연결 돼있는 녀석이 parent가 돼야 한다고 생각했다. 근데 이놈을 정하는 기준이 쉽지 않다.<br>
+숫자가 제일 작은걸 하자니 노드의 번호가 다르면 그게 곧 반례가 된다.<br>
+그렇다고 인풋을 뒤져서 많이 연결된걸 찾을 수도 없다. 당연히 시간 초과 당한다.<br>
+<br>
+union-find처럼 부모 스스로가 집합의 대표가 되는 것도 좋겠지만, 집합의 번호를 할당해주는 것도 방법이다.<br>
+그래서 아래와 같이 `sccnum`으로 집합 번호를 지정해주고, 속한 노드들을 `uni[]`에 적어줬다.<br>
+```cpp
+int dfs(int cur){
+  ...
+  //부모일 때 하나의 SCC 생성
+   if (chk[cur] == parent) {
+       vector<int> subSCC;
+       sccnum++; //집합 번호는 1부터 시작
+       while (1) {
+           int node = s.top(); s.pop();
+           subSCC.push_back(node);
+           fin[node] = true;
+           uni[node] = sccnum; //어디 집합에 속했는지
+           if (chk[node] == parent) break;
+       }
+       SCC.push_back(subSCC);
+   }
+
+   return parent;
+}
+```
+그럼 다시 돌아와서 TC를 생각해보자. SCC는 [1, 2, 3], [4]로 구분된다. 간단하게 집합 번호로 구분하면 [1], [2]가 된다. SCC로 묶으니 훨씬 간단해졌다! 관계는 [1]->[2]이다. 위상 정렬에서는 `degree`가 0이 될 때 큐에 넣어서 진행했다. 0이 되는 녀석이 없으면 사이클이 발생한다는 말이 된다. 하지만 SCC로 묶어버렸으니 사이클은 존재하지 않고, 0이 되는 녀석이 반드시 존재한다! 그럼 0이 되는 얘들이 스타트를 끊는다는 말인데 그 횟수만큼 도미노를 건드려야 된다는걸 알 수 있다.
+```cpp
+//answer
+for (int i = 1; i <= V; i++) {
+    for (auto& next : node[i]) {
+        if (uni[i] == uni[next]) continue; //same union
+        degree[uni[next]]++;
+    }
+}
+
+int ans = 0;
+for (int i = 1; i <= sccnum; i++)
+    if (degree[i] == 0) ans++;
+
+cout << ans << '\n';
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

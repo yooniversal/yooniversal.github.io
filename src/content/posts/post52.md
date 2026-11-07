@@ -1,0 +1,57 @@
+---
+title: "[BOJ 5670]"
+excerpt: 휴대폰 자판
+category: PS
+date: 2020-07-30
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/5670](https://www.acmicpc.net/problem/5670)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+## Solution
+<script src="https://gist.github.com/yooniversal/223ebdf94cf6190e7d8ec78f607edbca.js"></script>
+<br>
+
+### review
+N<=10000 이므로 트라이 알고리즘을 이용해 탐색했고 예제를 그려보니 규칙을 찾을 수 있었다. 탐색해야하는 조건은 다음과 같다.
+1) 검색 가능한 종류가 2개 이상 존재한다.<br>
+2) 바로 앞의 위치에서 finish가 true이다.<br>
+<br>
+각 트라이에서 종류가 얼마나 있는지 체크하기 위해 kind를 멤버로 추가했다. 2번 조건 때문에 finish를 이용해야 했다. 이유는 다음 예를 참고하면 이해할 수 있다.
+```
+hello, hell는 트라이에서 다음과 같이 저장된다.
+: h - e - l - l - o
+
+처음에 h를 검색하면 hell까지 자동으로 입력된다. 근데 hello와 hell을 구별해야한다.
+hell은 hello의 일부이므로 kind로 구별할 수 없다.
+이 둘을 구별할 수 있는 방법은 멤버 함수 중에서 finish밖에 없다!
+
+hell이 이미 입력됐으므로 l에서 finish가 true이다.
+따라서 o에서는 바로 앞에 위치한 l의 finish가 true이므로 답에서 1을 추가해준다.
+```
+하지만 finish가 배열로 선언된 이유는 이 예제로는 부족하다. 다음 예를 보자.
+```
+ride, rider, ridiculous는 트라이에서 다음과 같이 저장된다.
+r - i - d - e - r
+          - i - c - u - l - o - i - s
+```
+ride, rider은 hell, hello와 다를게 없다. (finish가 배열이 아니라면) 문제는 ridiculous의 4번째 철자인 i에서 `finish가` true가 된다! 내가 '어떤 철자로 끝났는지' 표시할 수 없고 그냥 끝났다는 것만 보여주기 때문이다. 따라서 이전 철자가 뭐로 끝났는지 알 수 있도록 `finish를` `finish[26]`으로 수정했다. 참고로 26은 알파벳의 개수를 의미한다.
+
+문제에 설명돼있는 내용인데 첫번째 문자는 무조건 탐색을 진행해야 한다. 이 코드는 `kind가` 각각 저장이 돼있기 때문에 `root->kind`가 2보다 크거나 같으면 1번 조건에 의해 `ans++`가 되지만 h, hi, he처럼 첫 문자의 종류가 1가지일 경우 `root->kind`가 1이어서 `ans++`가 되질 않는다. 때문에 예외 처리했다.
+```cpp
+for (int i = 0; i < n; i++) {
+            prevfin = false;
+            root->find(tmp[i], 0);
+            if (root->kind == 1) ans++; //첫 탐색
+}
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

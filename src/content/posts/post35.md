@@ -1,0 +1,43 @@
+---
+title: "[BOJ 2166]"
+excerpt: 다각형의 면적
+category: PS
+date: 2020-07-23
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2166](https://www.acmicpc.net/problem/2166)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/548987b97016d1306a5193fbf82d1f08.js"></script>
+<br>
+
+### review
+
+N각형(N>=3)의 넓이는 N개의 점 중 3가지를 잡아서 생기는 넓이를 계속 더해가며 총 넓이를 구할 수 있다. 물론 마구잡이로 더해서는 안되고, 그림을 그려보고 정리를 해보니 규칙이 있었다. 다음 N각형을 예로 들어보자.<br>
+![2166_1.png](/images/2166_1.png)<br>
+삼각형으로 쪼개서 총 넓이를 구하려면 점 O를 기준으로 했을 때 다음과 같이 구할 수 있다.
+```
+(총 넓이) = (삼각형 OA1A2) + (삼각형 OA2A3) + ... (삼각형OAn-2An-1)
+각 삼각형마다 점 하나를 반드시 공유해야 한다.
+```
+점 3개를 가지고 외적을 통해서 넓이를 구할 수 있다. 자세한 내용은 [여기](https://www.acmicpc.net/blog/view/27)를 참고. 넓이를 반환하는 함수를 CCW라고 했으며 위 내용은 다음과 같이 짰다.
+```cpp
+ll ans = 0;
+for (int i = 1; i < n - 1; ++i) {
+	ans += CCW(xy[0], xy[i], xy[i+1]);
+}
+
+...
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

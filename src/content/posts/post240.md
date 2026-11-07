@@ -1,0 +1,60 @@
+---
+title: "[Spring] Github Actions로 EC2에 자동화 배포 적용"
+excerpt: ""
+category: Project
+date: 2023-07-28
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+## 원리
+Gtihub Actions를 사용해 Github에 올린 프로젝트를 EC2로 배포 및 빌드 후 실행까지 한번에 처리할 수 있다. EC2에 프로젝트 파일이 도착하기까지 **프로젝트 압축 파일을 AWS S3에 저장**하고, AWS CodeDeploy를 통해 방금 S3에 올린 **압축 파일을 EC2로 가져와서 빌드 및 실행하도록 EC2에 명령을 내릴 수 있다.**
+
+그 과정에서 **AWS 서비스에 접근할 수 있는 권한을 설정하기 위해 AWS IAM을 사용**하고 EC2, S3, CodeDeploy에서 적용하게 된다. Github에 push를 할 때마다 Github Actions에서 만든 파일(`deploy.yml`)을 동작시킴으로써 EC2까지 배포가 되고 있는지, 빌드 및 실행도 정상적으로 완료했는지 검증하고 완료 여부는 해당 commit에 표시된다.
+
+이에 대한 전반적인 설정 및 테스트는 [뱀귤님 글](https://bcp0109.tistory.com/363)에서 정말 잘 설명하고 있어서 천천히 따라서 해보는걸 추천한다!
+<br>
+
+## git에 관리되지 않는 파일 배포 (application.yml 등)
+`application.yml`, `application.properties` 등 DB 패스워드처럼 노출돼선 안되는 내용이 포함된 중요한 파일들은 반드시 git에 관리되지 않도록 해야한다. 하지만 빌드를 하려면 해당 파일이 꼭 필요하다. 어떻게 처리하면 좋을까?
+
+EC2 액세스 키를 Github 리포지토리 설정에서 `secrets`에 관리하는 것처럼, **노출돼선 안되는 중요한 파일들은 `secrets`에** **저장하고 참조할 수 있다.**
+
+> Names can only contain alphanumeric characters ([a-z], [A-Z], [0-9]) or underscores (_).
+Spaces are not allowed.
+
+이 때, **`secrets`에 저장될 내용은 공백이 포함되면 안된다.** 자세한 내용은 [Github Docs](https://docs.github.com/ko/actions/security-guides/encrypted-secrets#naming-your-secrets)를 참조하자. 때문에 `secrets` 들어갈 `yml` 내용은 **base64로 인코딩한 값**을 저장하고 **workflow가 돌아갈 때 디코딩**하도록 설정했다.
+
+다음은 workflow에서 활용할 `deploy.yml` 내용이다.
+```yml
+# application.yml
+- name:  make application.yml
+  run:
+    mkdir ./src/main/resources |
+    touch ./src/main/resources/application.yml
+- name: deliver application.yml
+  run: echo "${ secrets.APP_SECRET }" | base64 --decode > ./src/main/resources/application.yml
+
+# application-oauth.yml
+- name: make application-oauth.yml
+  run: touch ./src/main/resources/application-oauth.yml
+- name: deliver application-oauth.yml
+  run: echo "${ secrets.APP_OAUTH_SECRET }" | base64 --decode > ./src/main/resources/application-oauth.yml
+```
+- 이미 배포되는 프로젝트 파일에 `src/main/resources` 디렉토리가 존재한다면
+`mkdir ./src/main/resources`를 반드시 제거해야 함
+
+노출돼선 안되는 파일이 `application.yml`, `application-oauth.yml`이어서 위처럼 작성했다. 둘 다 같은 경로에서 관리되므로 처음에만 폴더 생성(`mkdir`)을 해줌에 주의하자.
+
+`deliver application.yml`, `deliver application-oauth.yml`을 보면 `{ secrets.APP_SECRET }`, `{ secrets.APP_OAUTH_SECRET }`로 `secrets`에서 참조해 파일 내용을 작성해주고 있는데, `application.yml` 내용은 `APP-SECRET`에, `application-oauth.yml`내용은 `APP_OAUTH_SECRET`에 저장했다.
+
+참고로 step은 위에서 아래로 차례대로 수행하므로 `yml`을 먼저 생성한 뒤 빌드해야한다. 그래야 생성한 `yml`을 갖고 빌드를 진행한다. 빌드 후 생성된 `jar` 파일을 배포할 수 있도록 AWS 인증, S3 업로드, CodeDeploy 실행을 순서대로 해줘야 한다.
+<br>
+
+## References
+- [뱀귤: Github Actions CD: AWS EC2 에 Spring Boot 배포하기](https://bcp0109.tistory.com/363)
+- Github: [ParkJiwoon: practice-github-action](https://github.com/ParkJiwoon/practice-github-action)
+- [vector13: Springboot-Github Action을 이용해서 배포 자동화 : ec2 정보 변경하기](https://velog.io/@vector13/Springboot-Github-Action을-이용해서-배포-자동화-ec2-정보-변경하기)
+- [Github Docs: Naming your secrets](https://docs.github.com/ko/actions/security-guides/encrypted-secrets#naming-your-secrets)

@@ -1,0 +1,27 @@
+---
+title: "[Programmers] 주식가격"
+excerpt: ""
+category: PS
+date: 2020-07-18
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42584](https://programmers.co.kr/learn/courses/30/lessons/42584)<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/9177e475ca2ce7ad0fa60f08f975b3de.js"></script>
+<br>
+
+### review
+
+스택/큐 문제로 분류가 돼있었지만 이중 for문이 제일 간단해보여서 작성해보고 통과했다. 누가봐도 O(n^2)여서 효율성 테스트에서 통과하지 못할거 같았는데 통과돼서 좀 놀랐다..
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

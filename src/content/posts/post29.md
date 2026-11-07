@@ -1,0 +1,96 @@
+---
+title: "[BOJ 15681]"
+excerpt: 트리와 쿼리
+category: PS
+date: 2020-07-21
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/15681](https://www.acmicpc.net/problem/15681)<br>
+문제 설명에 관련 개념이 자세하게 설명되어 있습니다. 필요한 분들은 링크를 참고해주세요.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/dd970e189400ca2af28c26638fffea7d.js"></script>
+<br>
+
+### review
+
+일단 주의할 조건은 2 ≤ N ≤ 10^5 이다. 시간 초과의 압박이 시작되는 범위이므로 시간복잡도를 잘 체크해줘야 한다. N, R, Q를 받은 후부터는 엣지를 입력받는데, 나는 처음에 입력받으면서 트리를 만들자는 생각에 이렇게 짰었다.
+```cpp
+bool hasparent[MAXSIZE]; //부모 노드 유무
+...
+
+hasparent[R] = true;
+
+queue<pair<int, int>> tmp;
+for (int i = 1; i <= N - 1; i++) {
+	int s, e;
+	cin >> s >> e;
+  //부모가 한 쪽에 있을 때 -> 연결
+	if (hasparent[s] && !hasparent[e]) {
+		hasparent[e] = true;
+		node[s].push_back(e);
+	}
+	else if (hasparent[e] && !hasparent[s]) {
+		hasparent[s] = true;
+		node[e].push_back(s);
+	}
+  //부모가 어느 쪽에도 없을 때
+	else tmp.push({ s, e });
+}
+//안 쓴 엣지 사용
+while (!tmp.empty()) {
+	int s = tmp.front().first;
+	int e = tmp.front().second;
+	tmp.pop();
+	if (hasparent[s] && !hasparent[e]) {
+		hasparent[e] = true;
+		node[s].push_back(e);
+	}
+	else if (hasparent[e] && !hasparent[s]) {
+		hasparent[s] = true;
+		node[e].push_back(s);
+	}
+	else tmp.push({ s, e });
+}
+```
+이렇게 짠 뒤에 나머지도 완성하고 제출했는데 시간 초과의 늪에 빠졌다. 서브트리 노드 개수를 반환하는 함수(countnodes())에서 문제가 있겠거니 하며 계속 수정해줬는데 해결되지 않았다..! 그래서 트리를 만드는 부분에서 문제가 있는 것 같아 다음과 같이 수정해줬다.
+```cpp
+for (int i = 1; i <= N - 1; i++) {
+  int s, e;
+  cin >> s >> e;
+  node[s].push_back(e);
+  node[e].push_back(s);
+}
+```
+이전 로직에서는 사실 countnodes()에서 리프 노드까지 돌지 않도록 `node[next].size()>0` 라는 조건을 걸어주고 `sum += node[next].size()`를 해줬었다. 하지만 위처럼 푸쉬를 해줬을 땐 부모 자식 관계없이 모두 들어가 문제가 생긴다. 따라서 countnodes()를 맞게 수정해줘야 한다고 생각했고 처음처럼 자식 수(`node[next].size()`x)를 반환하고 끊는 방식이 아닌 리프 노드까지 돌고 난 후 소멸되는 방식으로 만들어줬다.
+```cpp
+int countnodes(int r) {
+	if (dp[r]) return dp[r];
+	int sum = 0;
+	bool leaf = true;
+	for (int i = 0; i < node[r].size(); i++) {
+		int next = node[r][i];
+		if (!chk[next]) {
+			chk[next] = true;
+			sum += countnodes(next);
+			leaf = false;
+		}
+	}
+  //for loop에서 작업이 안될 시 리프 노드이므로
+	if (leaf) return 1;
+	dp[r] = sum;
+	return sum + 1;
+}
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

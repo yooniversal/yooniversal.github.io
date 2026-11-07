@@ -1,0 +1,64 @@
+---
+title: "[BOJ 1717]"
+excerpt: 집합의 표현
+category: PS
+date: 2020-07-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/1717](https://www.acmicpc.net/problem/1717)<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/2e252c0121924be98359bb0a8040aed3.js"></script>
+<br>
+
+## union-find algorithm
+합집합을 만드는 Union-Find 알고리즘. 부모값을 저장하고 호출하므로 DP 종류 중 하나라고 보면 될 것 같다.
+
+먼저 처음에는 모두 어떤 노드와도 연결 돼있지 않으므로 자기 자신을 부모 노드로 표시한다.
+```cpp
+//부모 노드를 가리키도록 초기화
+	for (int i = 0; i <= n; i++)
+		uni[i] = i;
+```
+
+그리고 입력을 받으면서 union을 만들어주는데 다음 2가지 함수로 진행된다.
+```cpp
+int find_parent(int a) {
+  if (uni[a] == a) return a;
+  return uni[a] = find_parent(uni[a]);
+}
+
+void make_union(int a, int b) {
+  int pa = find_parent(a);
+  int pb = find_parent(b);
+  if (pa != pb) {
+    if (pa < pb) uni[pb] = pa;
+    else uni[pa] = pb;
+  }
+}
+```
+
+find_parent에서 find_parent(uni[a])으로 반환해야하는 이유는 다음과 같다.
+```
+노드 1, 2, 3가 있다고 가정하고 서로 연결돼있지 않다. 연결을 -라고 표시하자.
+
+1-2, 2-3 이면 uni[2] = 1, uni[3] = 2 가 된다.
+하지만 1-2, 2-3을 연결하면 1-3 이므로 최종적인 결과는 uni[3]=1 이어야 한다.
+루트 노드는 uni[n]=n 이므로 루트 노드를 반환할 때까지 recursive를 걸어 값을 얻는다고 보면 된다.
+```
+
+참고로 make_union에서 부모 값이 차이가 있을 때 작은 값으로 업데이트 하도록 했지만, 정하는건 본인 마음이다.
+
+### review
+union-find 입문 문제이다. 동작하는 틀을 알고있다면 구현까지는 어렵지 않다고 생각한다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

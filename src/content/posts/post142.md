@@ -1,0 +1,27 @@
+---
+title: "[BOJ 2912]"
+excerpt: 백설공주와 난쟁이
+category: PS
+date: 2020-09-15
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2912](https://www.acmicpc.net/problem/2912)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/d169288e3674f5c86cd75a750254dab7.js"></script>
+<br>
+
+### review
+**Mo's Algorithm** 응용 문제. 요구하는게 조금 특이하다. 등장한 횟수가 구간 길이의 절반보다 크면 yes와 모자 번호를, 아니면 no를 출력해야 한다. 그리고 모자 번호 `c`의 범위가 상당히 작다. 매번 모든 `c`를 탐색해도 무리없이 통과할 수 있다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,46 @@
+---
+title: "[Spring] cannot deserialize from Object value"
+excerpt: ""
+category: Project
+date: 2023-07-11
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+스프링에서 Redis으로 캐시를 적용한 뒤 테스트하는 과정에서 발생했던 에러다. Redis에 데이터를 저장하는 것까지는 `redis-cli`를 통해 처리됐음을 확인할 수 있었으나 캐싱된 데이터를 스프링으로 가져오는 과정에서 발생한 문제다. 즉, 직렬화(serialize)는 잘됐으나 **역직렬화(deserialize)가 되질 않았다.**
+> cannot deserialize from object value (no delegate- or property-based creator)
+
+## 해결 방법
+
+### 생성자 설정
+직렬화 하면서 사용했던 jackson 라이브러리가 참조하려는 객체 생성 시 생성자가 필요한데 그 정보가 없는 경우이다. **비어있는 기본 생성자를 직접 만들어주거나** lombok을 사용한다면 `@NoArgsConstructor`를 등록해주면 된다.
+<br>
+
+### LocalDateTime
+위 에러와 조금 비슷한 에러가 발생했었다.
+> org.springframework.data.redis.serializer.SerializationException: Could not write JSON: Java 8 date/time type `java.time.LocalDateTime` not supported by default: add Module 
+
+`LocalDateTime` 타입에 대해서는 기본적으로 직렬화를 지원하지 않는다는 에러다. 처리하기 위해 `build.gradle`에서 의존성 추가를 해주자.
+```text
+implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+implementation 'com.fasterxml.jackson.core:jackson-databind'
+```
+
+LocalDateTime 필드에 `@JsonSerialize`, `@JsonDeserialize`을 설정해주자!
+```java
+@JsonSerialize(using = LocalDateTimeSerializer.class)    
+@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+private LocalDateTime date;
+```
+<br>
+
+### ResponseEntity 역직렬화
+나같은 경우 API 함수에 `@Cacheable`을 붙이려고 했는데 `ResponseEntity`를 반환하는 함수였고 `ResponseEntity`가 `Serializable`을 구현하는 클래스가 아니어서 Redis 설정 클래스에서 설정을 해도 직렬화 or 역직렬화할 때마다 문제가 발생했었다. 어쩔 수 없이 컨트롤러 함수에 캐시 애노테이션을 사용하지 않고 서비스 함수에 붙이면서 해결할 수 있었다.
+- [spring-boot #19401: ResponseEntity can't serialization](https://github.com/spring-projects/spring-boot/issues/19401)
+<br>
+
+## References
+- [슬로우 스타터: Spring cannot deserialize from object value 에러!](https://azurealstn.tistory.com/74)
+- [영지는 달리는중: cannot deserialize from Object value (no delegate- or property-based Creator) 에러 해결](https://0zii.tistory.com/23)

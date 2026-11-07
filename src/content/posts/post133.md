@@ -1,0 +1,66 @@
+---
+title: "[BOJ 15663]"
+excerpt: N과 M (9~12)
+category: PS
+date: 2020-09-08
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/15663](https://www.acmicpc.net/problem/15663)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/1d7a15c3207b244a950950ebad1861da.js"></script>
+<br>
+
+### review
+순열을 출력하되 같은 순열이 출력되지 않도록 해야한다. 즉, 중복을 허용하지 않는다. 기본적인 구조에서 현재 인덱스에서 이전 값이 무엇이었는지 체크하는 `prev`가 추가되었다. `dfs()`의 지역 변수이기 때문에 재귀로 호출되는 각 함수마다 `prev` 값은 독립적이다! 따라서 각 인덱스의 이전값에 대해 각각 제약을 걸어줄 수 있다.
+
+<details>
+<summary>N과 M (10)</summary>
+<div>
+
+### solution
+<script src="https://gist.github.com/yooniversal/52dd4190ecd4a38fca31a50c1d42d2fd.js"></script>
+<br>
+
+### review
+BOJ 15663: N과 M (9)에서 전역 변수 `cur`만 추가시켰다. 변수 이름만 `cur`이고 사실 *prev*에 가깝지만.. `cur`는 직전에 입력된 변수의 값을 저장한다. 그리고 다음에 입력되는 값이 `cur`보다 작으면 진행되지 않도록 한다. (조건) `dfs()`가 for loop에서 끝났다면 `cur`을 0으로 초기화 해줌으로서 다음 차례에 영향을 주지 않도록 하자.
+</div>
+</details>
+
+<details>
+<summary>N과 M (11)</summary>
+<div>
+
+### solution
+<script src="https://gist.github.com/yooniversal/408faf1600cf10bc85676c8791666072.js"></script>
+<br>
+
+### review
+BOJ 15664: N과 M (10)에서 약간 수정했다. 일단 같은 숫자를 여러번 선택할 수 있기 때문에 주어지는 숫자가 여러번 나오는건 의미가 없다. 그래서 중복을 제거해줬다. 이후 숫자는 최대 `m`번 나올 수 있으므로 새로운 배열 `arr`에 숫자를 `m`번 넣어주고 `dfs()`에 돌려줬다.
+</div>
+</details>
+
+<details>
+<summary>N과 M (12)</summary>
+<div>
+
+### solution
+<script src="https://gist.github.com/yooniversal/408faf1600cf10bc85676c8791666072.js"></script>
+<br>
+
+### review
+BOJ 15664: N과 M (10) + BOJ 15665: N과 M (11) N과 M 시리즈 끝!
+</div>
+</details>
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

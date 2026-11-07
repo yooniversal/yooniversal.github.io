@@ -1,0 +1,34 @@
+---
+title: "[Programmers] 크레인 인형뽑기 게임"
+excerpt: 2019 카카오 개발자 겨울 인턴십
+category: PS
+date: 2020-07-17
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/64061](https://programmers.co.kr/learn/courses/30/lessons/64061)<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/bb92ff608eb51ede35013365856aa124.js"></script>
+<br>
+
+### review
+
+2차원 배열인 board 안에서 포인터를 지정해 조작해도 됐지만 스택이 먼저 떠올라서 열마다 만들어줬다. 그리고 크레인으로 뽑은 인형을 별도의 스택(ans)에 담아주면서 방금 담은 것과 같은지 체크해주면서 처리했다. 원래는 스택말고 벡터로 만들어주고 erase로 처리하고 싶었는데 계속 오류가 떠서 스택으로 처리했다!
+<br>
+```cpp
+vector<int> v;
+v.push_back(1); v.push_back(2);
+v.erase(0, 1); // [0, 1)의 원소 삭제
+```
+저는 이렇게 iterator를 별도로 이용하지 않고 싶은데 프로그래머스에서 오류났습니다.. 방법 아시는 분은 도움좀 부탁드립니다..!!
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

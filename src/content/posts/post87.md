@@ -1,0 +1,72 @@
+---
+title: "[BOJ 17131]"
+excerpt: 여우가 정보섬에 올라온 이유
+category: PS
+date: 2020-08-19
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/17131](https://www.acmicpc.net/problem/17131)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## solution
+<script src="https://gist.github.com/yooniversal/1a1a3e79424c0766397ddd9e91e6e064.js"></script>
+<br>
+
+### review
+점들의 좌표가 주어졌을 때 v자를 만드는 케이스를 세는 문제다. [북서풍 문제](https://www.acmicpc.net/problem/5419)에서 썼던 방법을 응용해서 풀어보려고 했는데 증명을 잘못했는지도 모르고 계속 풀다 뇌절했다. 북서풍 문제는 어떤 노드와 같은 x혹은 같은 y도 세면서 노드에서 노드로 이동하며 조건을 만족하는 개수를 센다. 근데 이 문제는 같은 x, 같은 y를 허용하지 않는다. 노드에서 노드로 이동하며 값을 업데이트하는 방법을 택한다면 직전 혹은 바로 다음 노드의 값과 비교하여 값을 업데이트하게 된다. 중간에 업데이트가 안되면 값이 소실된다. 그래서 점을 세는 새로운 방법이 필요했다. [degurii님의 글](https://degurii.tistory.com/65)에서 도움을 받았다.
+
+기준점을 cur이라 하자. cur의 양 옆 노드들도 존재할 수 있지만 편의상 생략했다. cur의 왼쪽 위에 있는 노드를 n개, 오른쪽 위에 있는 노드를 m개라고 하자. 그럼 이 상황에서 v를 몇개 만들 수 있을까? 답은 n*m개이다. n개중에 1개를 뽑고 m개중에 1개를 뽑으면 v가 1개 만들어지기 때문이다.<br><br>
+<img src="/images/17131_1.png" style="width: 40%; height: auto;" title="17131_1.png" alt="?"/><br>
+<br>
+이 방법은 v중 가운데이 있는 노드에 집중해서 고르는 방법이다. 양쪽 노드보다 가운데 노드의 높이가 낮아야 한다. 때문에 y를 오름차순으로 정렬하고 높이가 제일 낮은 노드부터 탐색을 진행한다. x는 음수도 포함하므로 1부터 시작할 수 있도록 `addX(200001)`을 더해줬고, `x+addX`에 있는 노드 개수를 업데이트 하자.
+```cpp
+int n; cin >> n;
+for (int i = 0; i < n; i++) {
+    int x, y; cin >> x >> y;
+    nodes.push_back({x, y});
+    uplast_modified_at(x + addX, 1); //현재 x에 있는 노드의 개수 업데이트
+}
+sort(nodes.begin(), nodes.end()); //y 오름차순 정렬
+```
+현재 노드를 기준으로 왼쪽 위에 있는 노드, 오른쪽 위에 있는 노드의 개수가 몇 개인지 알아야 한다. 현재 노드 그리고 같은 행이 있는 노드들은 모두 없애줘야 한다. 안하면 있는 개수만큼 왼쪽 혹은 오른쪽에 포함되게 된다. 그럼 위쪽에 있는 노드들만 남게 된다. 그럼 현재 노드의 열을 제외하고 왼쪽, 오른쪽을 구해주자. 곱해서 값에 계속 더해주면 된다.
+```cpp
+int currentY = INF;
+for (int i = 0; i < n; i++) {
+    if (nodes[i].y != currentY) {
+        currentY = nodes[i].y;
+        //같은 높이의 노드들 모두 트리에서 제거
+        for (int j = i; nodes[j].y == currentY; j++) {
+            uplast_modified_at(nodes[j].x + addX, -1);
+            if (j == n - 1) break;
+        }
+    }
+    ll l = sum(nodes[i].x + addX - 1) % MOD;
+    ll r = (sum(MAX) - sum(nodes[i].x + addX)) % MOD;
+    ans += (l * r) % MOD;
+    ans %= MOD;
+}
+```
+이 문제는 `1e9+7`로 나눈 나머지를 출력해야 한다. 이거 안지키면 계속 틀린다ㅠㅠ 할만큼 했다고 생각했는데 계속 틀려서 보니 합을 구하는 과정에서도 모듈러 연산을 해줘야 했다. 주의!
+```cpp
+ll sum(int idx) {
+    ll ret = 0;
+    for (int i = idx; i > 0; i -= (i & -i)) {
+        ret += tree[i];
+        ret %= MOD;
+    }
+    return ret;
+}
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

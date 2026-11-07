@@ -1,0 +1,27 @@
+---
+title: "[BOJ 1759]"
+excerpt: 암호 만들기
+category: PS
+date: 2020-09-08
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/1759](https://www.acmicpc.net/problem/1759)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/2bb7cbb78019c825760539590667b612.js"></script>
+<br>
+
+### review
+주어진 문자를 가지고 모음 1개 이상, 자음 2개 이상이라는 조건에 맞춰 길이 `L`이 되는 문자열을 출력한다. 답은 사전식으로 출력해야 하기 때문에 먼저 입력받은 문자들을 모아 정렬을 해준다. 이후 `L`개의 인덱스에 1을 채우고 마지막 순열까지 돌려가면서 문자를 가져와 조건에 맞으면 출력하도록 한다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

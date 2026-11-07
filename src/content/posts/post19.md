@@ -1,0 +1,81 @@
+---
+title: "[BOJ 10775]"
+excerpt: 공항
+category: PS
+date: 2020-07-16
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/10775](https://www.acmicpc.net/problem/10775)<br>
+
+~~승원이는 좋겠다. 선물이 공항이라니~~
+
+## Solution
+<script src="https://gist.github.com/yooniversal/61af25b3f83d99111b011af3b29172d3.js"></script>
+<br>
+
+### review
+G개의 게이트, P개의 비행기가 있을 때 1번부터 g_i(1<=g_i<=G)번 게이트중 하나에 도킹한다고 설명이 돼있는데, 최대한 많은 비행기가 도킹되려면 g_i부터 내림차순으로 채워가야 한다. 1개씩 내려가며 체크하면 효율성이 떨어진다. 때문에 union-find를 통해서 parent에 바로 접근하면서 시간초과를 잡아야 한다! 여태까지는 임의로 집합을 만들어주고 부모를 찾아갔는데, 이 문제는 그렇지 않다는게 포인트다.
+
+먼저 기존의 union-find 방식처럼 기본값을 본인 위치로 지정해주자.
+```cpp
+for (int i = 0; i <= G; i++)
+		uni[i] = i;
+```
+도킹하려는 위치에 이미 비행기가 있다면 중단해야 하므로 close를 만들어줬고, 조건은 <strong>부모값이 0</strong>일 때다. (???) 부모값이라 표현해서 혼란스러울 수 있는데 편의상 uni[num]을 부모값이라 하자.
+```cpp
+int close = 0;
+while (P--) {
+  cin >> num;
+  if (close) continue;
+  if (find_parent(num) == 0) {
+    close = 1;
+    continue;
+  }
+  process(num);
+}
+```
+왜 부모값이 0일 때로 했을까? union-find 함수에서는 다음과 같이 uni[num]=num 일 때 num을 반환한다.
+```cpp
+//부모 노드 반환
+int find_parent(int a) {
+	if (uni[a] == a) {
+		return a;
+	}
+	return uni[a] = find_parent(uni[a]);
+}
+```
+때문에 최종적으로 반환하는 위치는 uni[num]=num 일 때인데, 이렇게 되면 초기값에서 벗어날 수가 없다. 그래서 process 함수 안에  bool chk[]와 make_union(num, num - 1)을 넣었다. 체크가 안됐으면 바로 앞 위치(num-1)의 부모값을 참조해 같은 union으로 만들어준다. 체크가 됐을땐 조건(find_parent(num) == 0)에 걸리면 중단, 아니면 재귀로 진행한다. 0번 게이트는 없으면서 마침 uni[0]=0이므로 0과 union이 되는 범위는 비행기가 들어갈 수 없다!
+```cpp
+void process(int num) {
+	if (!chk[num]) {
+		chk[num] = true;
+		make_union(num, num - 1);
+		ans++;
+	}
+	else {
+		if (find_parent(num) == 0) return;
+		process(find_parent(num));
+	}
+}
+
+/*
+첫 번째 예제) G:4 P:3 g_i:[4, 1, 1]
+index | 0 1 2 3 4
+uni[i]| 0 0 2 3 3
+
+uni[1]=0인데 g_i=1이 들어오므로 close => ans:2
+*/
+```
+<br>
+항상 부모값을 참조할 땐 `uni[num]`말고 `find_parent(num)`을 사용하자! 삽질 좀 그만하자!<br>
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

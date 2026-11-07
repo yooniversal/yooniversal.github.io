@@ -1,0 +1,71 @@
+---
+title: "[BOJ 11779]"
+excerpt: 최소비용 구하기 2
+category: PS
+date: 2020-07-09
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/11779](https://www.acmicpc.net/problem/11779)
+
+## Solution
+<script src="https://gist.github.com/yooniversal/715e93dbd50ac498c1365b6d947434da.js"></script>
+<br>
+
+### 다익스트라(Dijkstra) 알고리즘
+가중치가 없는 그래프의 경우 경로 탐색은 DFS, BFS 알고리즘으로 할 수 있으며 최단거리를 구하는 경우라면 BFS 알고리즘으로 해결되는 경우가 많다. 하지만 이 문제의 경우 간선마다 가중치가 적용되므로 다익스트라(Dijkstra) 알고리즘으로 풀었다.
+
+자료 구조를 수강하지 못해서 알고리즘을 접할 때마다 새롭다고 느끼는 경우가 많다. 가중치가 없다면 보통 greedy로 풀지 못했을텐데 이 문제의 경우는 적용이 되며 자주 쓰인다는게 신기했다. 개인적으로 greedy 문제를 잘 못풀어서 특이 케이스에만 적용된다고 속으로 일반화한건 아닌가 싶다.
+
+시작 노드에서 각 노드로 가는 최단 거리를 d[]에 계속 업데이트 해주는 방식이며 특정 단계에서 이전 단계까지 저장된 최단거리를 기준으로 업데이트되기 때문에 DP 유형이기도 하다.
+```cpp
+if (d[Next] > dist + Ndist) {
+				d[Next] = dist + Ndist;   //기존 거리보다 거쳐가는게 더 빠르면 업데이트
+				pq.push({ -d[Next], Next });	//최소 힙을 위해 가중치를 음수로 설정
+				ans[Next] = cur;     //경로 추적을 위해 이전 위치를 저장
+}
+```
+탐색이 안됐으면서 가중치가 작은 순으로 이동하므로 최소 힙(우선순위 큐)을 이용했다.
+```cpp
+void daik(int start) {
+	d[start] = 0;	//같은 자리는 거리 0
+	priority_queue<pair<int, int>> pq;
+	pq.push({ 0, start });
+	while (!pq.empty()) {
+		//최소 거리를 갖는 노드부터 탐색
+		int dist = -pq.top().first;	//start~cur 거리
+		int cur = pq.top().second;
+		pq.pop();
+    ...
+```
+경로를 출력하는 과정에서 다소 삽질이 있었다. 마지막까지 계속 업데이트가 되니깐 ans[]에 이전 경로를 저장하고 ansprt()에서 재귀 호출로 스택에 담은 후 출력했다. 별거 아닌데 자꾸 틀렸습니다가 나와서 조급한 맘에 지저분하게 쓰여진 감이 있다 :(
+```cpp
+int ans[1001];
+stack<int> answer;
+
+void ansprt(int n) {
+	if (d[n] != 0) {
+		answer.push(ans[n]);
+		ansprt(ans[n]);
+	}
+	else {
+		cout << answer.size() << '\n';
+		while (!answer.empty()) {
+			cout << answer.top() << " ";
+			answer.pop();
+		}
+	}
+}
+...
+ans[Next] = cur;	//경로 추적을 위해 이전 위치를 저장
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

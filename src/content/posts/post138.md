@@ -1,0 +1,27 @@
+---
+title: "[Programmers] [3차] 파일명 정렬"
+excerpt: 2018 KAKAO BLIND RECRUITMENT
+category: PS
+date: 2020-09-12
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/17686](https://programmers.co.kr/learn/courses/30/lessons/17686)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/8ca72706cb6d28fad9c13add069c3194.js"></script>
+<br>
+
+### review
+`HEAD`는 사전순, `NUMBER`는 숫자순, `HEAD`와 `NUMBER`가 같다면 입력순으로 정렬해야 한다. 구조체에 정렬 기준을 별도로 선언해주면 쉽게 풀 수 있다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

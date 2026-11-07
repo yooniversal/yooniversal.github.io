@@ -1,0 +1,88 @@
+---
+title: "[Programmers] [3차] 방금그곡"
+excerpt: 2018 KAKAO BLIND RECRUITMENT
+category: PS
+date: 2020-09-09
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/17683](https://programmers.co.kr/learn/courses/30/lessons/17683)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/9964d661d3d58853b4213e0396f79861.js"></script>
+<br>
+
+### review
+구현이 정말 빡세다. 아이디어랄건 없고 주어진 조건을 따라가면 된다. **getTime()**은 시작 시간, 끝나는 시간을 인자로 가져와서 총 시간을 계산하는 함수다. 서로 시간이 같을 때는 0이 리턴돼야 하고, 이외에 끝나는 시간이 00:00이면 24:00인걸 체크해야 한다. **chk()**는 멜로디가 일치하는지 체크하는 함수다.
+<br><br>
+solution()에서 일단 딱 봤을때 굉장히 더러워 보이는데 천천히 설명하면 다음과 같다. 주어진 문자열 중 멜로디는 #이 붙을 수 있고 #이 붙은 음(A#, C#..)은 통째로 1개로 친다. 따라서 이를 묶어서 관리해야 하는데 귀찮아서 string으로 퉁쳐서 담아버렸다. 그렇게 `m`은 `key`에, `musicinfos[i]`의 멜로디는 `tmp`에 담았다.
+```cpp
+for (int i = 0; i < m.size(); i++) {
+    if (i < m.size() - 1 && ('A' <= m[i] && m[i] <= 'Z') && m[i + 1] == '#') {
+        string s = ""; s += m[i]; s += m[i + 1];
+        key.push_back(s);
+        i++;
+    }
+    else {
+        string s = ""; s += m[i];
+        key.push_back(s);
+    }
+}
+
+...
+for (int i = 0; i < musicinfos.size(); i++) {
+  ...
+  vector<string> tmp;
+  for (int t = melodyStart + 1; t < musicinfos[i].size(); t++) {
+      if (i < musicinfos[i].size() - 1 && ('A' <= musicinfos[i][t] && musicinfos[i][t] <= 'Z') && musicinfos[i][t + 1] == '#') {
+          string s = ""; s += musicinfos[i][t]; s += musicinfos[i][t + 1];
+          tmp.push_back(s);
+          t++;
+      }
+      else {
+          string s = ""; s += musicinfos[i][t];
+          tmp.push_back(s);
+      }
+  }
+  ...
+}
+```
+총 시간을 `time`으로 받고, 방금 얻은 `tmp`는 최종적으로 길이가 `time`만큼 길어져야 한다. 따라서 다음과 같이 `original`에 다시 집어 넣는다.
+```cpp
+vector<string> original;
+int len = tmp.size();
+for (int j = 0; j < time / len; j++)
+    for (int k = 0; k < len; k++)
+        original.push_back(tmp[k]);
+for (int j = 0; j < time % len; j++)
+    original.push_back(tmp[j]);
+```
+그리고 멜로디가 일치하면 제목과 멜로디 시간을 `info`에 push해주자. 단, 문제 조건에 맞게 멜로디 시간이 이미 들어있는 것 보다 길다면 `info`를 비워버리고 새로 push한다. 같다면 그냥 push한다.
+```cpp
+if (chk(original, key)) {
+    if (info.size() == 0)
+        info.push_back({ title, original.size() });
+    else if (info[0].second < original.size()) {
+        info.clear();
+        info.push_back({ title, original.size() });
+    }
+    else if (info[0].second == original.size())
+        info.push_back({ title, original.size() });
+}
+```
+최종적으로 info에 값이 없다면 조건에 맞는 멜로디가 없단 뜻이므로 (None)을 리턴하고 값이 있다면 맨 앞이 우선순위이므로 0번째에 들은 제목을 리턴한다.
+```cpp
+if (info.size() == 0) return "(None)";
+else return info[0].first;
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

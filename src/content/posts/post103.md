@@ -1,0 +1,53 @@
+---
+title: "[BOJ 12858]"
+excerpt: Range GCD
+category: PS
+date: 2020-08-27
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+문제 바로가기 : [https://www.acmicpc.net/problem/12858](https://www.acmicpc.net/problem/12858)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## solution
+<script src="https://gist.github.com/yooniversal/85119f624870d382ef7774dd76903486.js"></script>
+
+### review
+구간에 값을 더하는 쿼리, 구간의 GCD를 구하는 쿼리로 이루어져 있다. 값을 더하는 쿼리는 lazy propagation으로 처리하면 된다. **근데 GCD는 그럴 필요가 없다**.<br>
+GCD(a, b) = GCD(a, b-a), GCD(a+m, b+m) = GCD(a, b-a)<br>
+GCD(a+m, b+m, c+m, ...) = GCD(a+m, b-a, c-a, ...)가 돼서 구간의 양 끝만 체크해주면 된다. 양 끝만 체크하면 되므로 GCD를 구하고 업데이트하는데 있어서는 lazy propagation을 쓸 필요가 없다.
+
+tree를 하나 더 만들어서 해도 되지만 나는 구조체 안에 실제값, GCD값을 만들어서 각자 컨트롤할 수 있도록 했다. `lazy[]`에서 업데이트가 다 이루어 지지 않은 노드를 가지고 GCD를 업데이트하는건 무의미하기 때문에 리프 노드까지 이동하면서 미뤄져 있던 `lazy[]`에 있는 값을 계속 반영해준다. 마침내 리프 노드에 도착했을 때 gcd값에 최종적으로 업데이트 된 값(`val`)을 반영해주고, 루트까지 올라가며 GCD를 해준다.
+
+마치 세그먼트 트리를 처음 초기화할 때 쓰는 함수와 비슷하게 생겼다.
+```cpp
+ll GCD_uplast_modified_at(int node, int ns, int ne, int idx) {
+    if (idx < ns || ne < idx) return tree[node].gcd;
+    lazy_uplast_modified_at(node, ns, ne);
+    if (ns == ne) return tree[node].gcd = tree[node].val; //리프 노드 도착
+    int m = (ns + ne) / 2;
+    return tree[node].gcd = GCD(GCD_uplast_modified_at(node * 2, ns, m, idx), GCD_uplast_modified_at(node * 2 + 1, m + 1, ne, idx));
+}
+```
+구간 [l, r]의 GCD를 구하는 것 또한 크게 다르지 않다. 최솟값, 최댓값을 찾는 세그먼트 트리의 쿼리처럼 만들어주자.
+```cpp
+ll _find(int node, int ns, int ne, int l, int r) {
+    lazy_uplast_modified_at(node, ns, ne);
+    if (r < ns || ne < l) return 0;
+    if (l <= ns && ne <= r) return tree[node].gcd;
+    int m = (ns + ne) / 2;
+    return GCD(_find(node * 2, ns, m, l, r), _find(node * 2 + 1, m + 1, ne, l, r));
+}
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -20,10 +20,14 @@ export default defineConfig({
   trailingSlash: "always",
   redirects: {
     "/posts": "/",
+    "/category/ps2020": "/category/ps/",
   },
   integrations: [
     sitemap({
-      filter: (page) => page !== new URL("/search/", siteConfig.siteUrl).toString(),
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return pathname !== "/search/" && !pathname.startsWith("/ps2020/");
+      },
     }),
   ],
   markdown: {

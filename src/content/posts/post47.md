@@ -1,0 +1,30 @@
+---
+title: "[BOJ 10266]"
+excerpt: 시계 사진들
+category: PS
+date: 2020-07-28
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/10266](https://www.acmicpc.net/problem/10266)<br>
+유사 문제 : [https://www.acmicpc.net/problem/11585](https://www.acmicpc.net/problem/11585)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/7ea5040fd463c61ef3e4b1be6f60a0d2.js"></script>
+<br>
+
+### review
+처음에 좀 고생했다. 값이 증가된걸 붙일 수도 없고 증가됐다쳐도 일일이 탐색할 수도 없는 노릇이니까. 입력받는 숫자를 인덱스라고 생각하면 해당 인덱스에는 모두 바늘이 있는 상태다. 있다는 표시를 위해 1이 되도록 설정해줬다. 길이가 360000이니까 [0, 360000)이 문자열이라고 생각하고 각각 `T`, `P`에 저장해준 후 `T`를 2배로 만들어준다. [BOJ 11585](https://www.acmicpc.net/problem/11585)에서 풀었던 방법과 같이 진행하면 된다.
+
+사실상 같은 문제라고 봐도 되겠다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

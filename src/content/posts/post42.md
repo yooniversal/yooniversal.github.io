@@ -1,0 +1,63 @@
+---
+title: "[BOJ 4354]"
+excerpt: 문자열 제곱
+category: PS
+date: 2020-07-27
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/4354](https://www.acmicpc.net/problem/4354)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/d50ec8a0745f6e7a5cc3961528152727.js"></script>
+<br>
+
+### review
+
+KMP 알고리즘에서 failure function을 활용하는 문제라고 설명이 돼있는데 [BOJ 1786](/ps/post40/)에서 `saveP[]`가 해당된다. 이전에는 문자열 T, P를 입력받아 T에서 P가 얼마나 반복되는지 알아보았다. 다만 여기서는 P를 입력받지 않고 알아서 찾아내야 한다.
+
+입력받은 문자열 T에서 반복되는 문자열을 P라고 하자. T에 대해서 failure function이 적용되므로 혼동을 방지하고자 `saveP[]`를 `saveT[]`로 바꿨다. `saveT[]` 값을 확인하면서 P의 정보를 얻는게 핵심이다. 그럼 예를 들어보자.
+```
+T :       a b c d a b
+saveT[] : 0 0 0 0 1 2
+=> 마지막 문자가 2번째에서 다시 반복된다.
+하지만 반복되어 만들어지는 문자열이 아니므로 output은 1이다.
+
+T :       a c a c a c
+saveT[] : 0 0 1 2 3 4
+=> 마지막 문자가 4번째에서 다시 반복된다.
+ac가 3번 반복되므로 output은 3이다.
+
+T :       a b a b a
+saveT[] : 0 0 1 2 3
+=> 마지막 문자가 3번째에서 다시 반복된다.
+하지만 반복되어 만들어지는 문자열이 아니므로 output은 1이다.
+```
+눈치를 못챘다면 failure function에 대해서 다시 생각해볼 필요가 있다. failure function이 갱신되는 전제는 <strong>이전 문자열까지 일치한다</strong>는 점이다. **saveP[마지막]**은 여기서 중요한 정보를 제공한다! T가 반복돼서 만들어진 문자열이라면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반드시 반복돼야 한다. T가 반복돼서 만들어지지 않았다면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반복될 수 없다.
+
+전자의 경우 반복되기 때문에 `T.size()`는 반복되는 문자열 길이로 나누어 떨어진다. 후자는 그렇지 않다! 나누어 떨어지지 않으면 반복되지 않는다는 말이므로 output은 언제나 1이다.
+```cpp
+//make saveT
+for (int i = 1; i < T.size(); i++) {
+	while (idxT > 0 && T[i] != T[idxT])
+		idxT = saveT[idxT - 1];
+	if (T[i] == T[idxT])
+		saveT[i] = ++idxT;
+}
+int P_len = T.size() - saveT[T.size()-1];
+
+//answer
+if (T.size() % P_len == 0) cout << T.size() / P_len << '\n';
+else cout << "1" << '\n';
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

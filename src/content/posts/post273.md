@@ -1,0 +1,292 @@
+---
+title: "[Spring] JUnit5 + Mockito를 활용해 테스트 코드 작성하기 (Java)"
+excerpt: ""
+category: Project
+date: 2023-11-13
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+테스트 코드를 작성하지 않은 프로젝트를 진행해봤다면 느끼겠지만 논리적으로 맞다고 생각하고 짰음에도 실행해보면 버그가 난무한다. 코드 길이가 길어질 수록 생각하지 못한 부분에서 에러가 발생하기도 하고, 처리하도록 짰어도 잘 동작한다고 보장하기가 어렵다. 프로젝트를 실행하고 함수 호출을 위해 API도 날려보는 등(다른 방법도 있겠지만) 긴 호흡으로 에러를 검증하면 **우리의 소중한 시간이** **너무너무! 부족하다**😭
+
+그래서 처음엔 JUnit으로 간단하게 정상적인 값이 input으로 들어왔을 때 output으로 정상적인 값을 내보내는 해피 케이스만 체크했는데, input이 정상적인 값이 들어오지 않을 때도 있고 제한 범위에 걸치는 케이스에 대해 검증도 필요하다고 느꼈다. 이번에 강의도 들으면서 프로젝트에 적용해봤는데 어떤 방식으로 작성했는지 위주로 간략하게 적어보려고 한다.
+
+## Mockito
+기본적으로 테스트하려는 함수가 **의도대로 충실하게 동작하는지 검증해야한다.** 다른 layer의 메소드를 가져와서 호출하는 로직도 포함될 수 있겠지만, 그러던 그렇지 않던 일단은 의도대로 동작하는지를 확인해야 한다. 하지만 이렇게 끌어와서 호출하는 메소드 하나하나가 최종적으로 반환하는 output에 영향을 주는 변수로서 작용할 수 있는데, 이에 대해 고민하지 않도록 **조건/결과를 설정**해줄 수 있는 방법이 있다. 이를 **Mocking**이라고 하고, JUnit에서는 **Mockito**를 통해 사용할 수 있다.
+
+### 활용하기
+`Mockito.when()`으로 조건을, `.thenReturn()`으로 결과를 설정한다. 예를 들어 Alpha 클래스의 `a()`를 테스트하는데 Beta 클래스의 `b()`를 호출해야 한다고 해보자. 그러면 `b()`에 대해 mocking 처리를 해줘서 `b()`를 그대로 호출하지 않고 **조건/결과대로 값을 반환하도록** 할 수 있다.
+```java
+//Alpha.a 메소드 구현 내용
+int a() {
+       int result = beta.b(); //Beta의 b 메소드 호출
+       return result + 1;
+}
+
+//Beta.b 메소드 구현 내용
+int b() {
+        return 100;
+}
+
+//Alpha.a 테스트
+class TestAlpha {
+
+        @Autowired
+        Alpha alpha;
+
+        @Autowired
+        Beta beta;
+
+        @Test
+        void testA() {
+                //given
+                Mockito.when(beta.b()).thenReturn(200); //beta.b()는 200을 리턴 (100 아님)
+                
+                //when
+                int result = alpha.a();
+
+                //then
+                assertThat(result).isEqualTo(201); //true
+                assertThat(result).isEqualTo(101); //false
+        }
+}
+```
+- 편의를 위해 `Alpha`와 `Beta`는 컴포넌트 스캔 대상이라고 가정
+
+Mockito를 적용하면 어떻게 활용할 수 있는지 보여주기 위해 위처럼 작성한 것이고, 실제로는 어떤 값이 들어왔을 때 예상되는 결과를 반환하도록 설정해주면 된다. 아렇게 함으로써 `b()`가 **항상 예상되는 결과값을 전달하는가에 대한 의문은 지울 수 있게 된다!** 이제는 `a()`의 input, output에 대해서만 집중할 수 있다😁
+
+## Layer 분리
+일반적으로 API 요청이 들어오는 함수를 `Controller`에, 비즈니스 로직을 `Service`에, DB에 접근하는 쿼리는 `Repository`에 관리할 것이다. 위에서 Mockito를 써서 다른 클래스의 메소드 간섭을 분리시킨 것처럼, layer도 분리하면 좋지 않을까? 일단 각 layer에서 체크해야 하는 부분부터 확인해보고 Mockito를 사용해서 분리해보자.
+
+### Controller
+`Controller`에서는 요청으로 들어오는 input에 대해 적절한 값이 들어오도록 `@NotNull`, `@Length` 등 validation 체크를 해줄 수 있는 애노테이션을 활용할 수 있다. 테스트 코드는 다음처럼 써줄 수 있다.
+
+`TestController`에 `testApi()`라는 함수가 있다고 해보자. 파라미터로 `TestDto`로 받고, 다음처럼 필드에 조건이 걸려있다.
+```java
+public class TestController {
+        @GetMapping("/test")
+        public void testApi(TestDto testDto) {}
+}
+
+public class TestDto {
+        @Length(max = 3, message = "이름은 3자 이하여야 합니다.")
+        private String name;
+}
+```
+
+이 경우 `testApi()`에 대해 정상적인 값이 들어올 때(**해피 케이스**), 경계값이 들어올 때(**엣지 케이스**)를 체크해줘야 한다. 예를 들면, `name`이 `000`이면 괜찮은데 `0000`이 들어오면 예외 처리를 해줘야 한다! 테스트 코드를 작성하기 이전에, `Controller`에 정의한 api를 호출하려면 아래 과정을 따라가야 한다.
+
+**@WebMvcTest**를 테스트 클래스에 적용해주자. 어떤 `Controller`에 대해 테스트할 건지 적어주면 된다.
+```java
+@WebMvcTest(controllers = TestController.class)
+class Test {
+}
+```
+
+`Controller`에 정의한 메소드를 호출해서 테스트하려면 **MockMvc**를 반드시 주입받아야 한다. **ObjectMapper**는 요청으로 들어오는 input을 직렬화해주는 역할을 한다. Dto를 input으로 받는다면 주입해주자!
+```java
+@WebMvcTest(controllers = TestController.class)
+class Test {
+        @Autowired
+        protected MockMvc mockMvc;
+
+        @Autowired
+        protected ObjectMapper objectMapper;
+}
+```
+
+그러면 테스트 코드는 아래처럼 작성해줄 수 있다. 정상 응답을 내보낼 때 예시이다.
+```java
+void isValidInputOnTestApi() throws Exception {
+        //given
+        TestDto request = TestDto.builder()
+                                .name("000")
+                                .build();
+
+        //when //then
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/test") //testApi() API URI
+                        .content(objectMapper.writeValueAsString(request)) //직렬화
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(MockMvcResultMatchers.status().isOk()); //HTTP 응답 코드
+}
+```
+- `content()` : input 담는 곳
+- `contentType()` : json 형태로 받는 input이므로 `MediaType.APPLICATION_JSON` 설정
+- `andExpect()` : 응답 결과 검증 부분
+
+만약 `name`이 `0000`이 들어와서 길이를 초과했다고 해보자. 그렇다면 입력이 잘못된거니 `BAD REQUEST` 응답을 내줘야 한다. 예외가 발생했을 때 나가는 메시지도 `@Length`에 설정해준 것과 같은지 체크해줄 수 있다.
+```java
+void isValidInputOnTestApi() throws Exception {
+        //given
+        TestDto request = TestDto.builder()
+                                .name("0000") //길이 초과
+                                .build();
+
+        //when //then
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/test")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(MockMvcResultMatchers.status().isBadRequest()) //400 응답 체크
+        .andExpect(content().string("이름은 3자 이하여야 합니다.")); //예외 메시지 체크
+}
+```
+
+참고로 testApi() 응답을 다음 json 형태로 내놓는다면, `andExpect()`에는 `jsonPath()`를 사용하면 된다.
+```json
+{
+        "code" : 400,
+        "status" : "BAD REQUEST",
+        "message" : "이름은 3자 이하여야 합니다."
+}
+```
+```java
+mockMvc.perform(
+        MockMvcRequestBuilders.get("/test")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON)
+)
+.andExpect(MockMvcResultMatchers.status().isBadRequest())
+.andExpect(jsonPath("$.code").value("400"))
+.andExpect(jsonPath("$.status").value("BAD REQUEST"))
+.andExpect(jsonPath("$.message").value("이름은 3자 이하여야 합니다."));
+```
+
+만약 `testApi()`에서 **TestService의 a()를 호출해줘야 한다면?** Mocking 처리를 해줘서 분리하자! 아래처럼 `@MockBean`를 설정해줘야 하고, `when().thenReturn()`으로 조건/결과를 설정해주면 된다.
+```java
+@WebMvcTest(controllers = TestController.class)
+class Test {
+        @Autowired
+        private MockMvc mockMvc;
+
+        @Autowired
+        private ObjectMapper objectMapper;
+
+        @MockBean
+        private TestService testService;
+}
+```
+
+참고로 아무 값도 반환하지 않는 `void` 메소드라면 **Mockito.doNothing()**을 사용히자.
+```java
+doNothing().when(testService).a();
+```
+
+### Service
+`Service` 내 정의한 메소드에 대해서는 `Repository`를 분리할 수도 있고, **통합 테스트**도 할 수 있다! 통합 테스트를 하는 이유는 `Repository` 메소드를 호출하면서 동작하는 비즈니스 로직을 담아놓은 건데, 모두 Mocking해주면 조건/결과 설정을 지나치게 반복하면서 적어줘야 하는 번거로움이 생긴다. 그리고 실제로 정상적으로 동작하는지도 확인할 수 있어야 한다. 물론 `Repository` 메소드를 호출하면서 복잡한 상호 작용을 통해 결과를 얻는 경우에 해당한다. Mocking도 가능하다!
+
+일단 Mocking하지 않았을 때 테스트 코드는 `assertThat`로 열심히 검증해주면 된다.
+`@Transactional`은 테스트 수행 후 롤백을 도와주고, `@SpringBootTest`는 서버를 띄워서 테스트할 수 있도록 해준다.
+```java
+@Transactional
+@SpringBootTest
+class Test2 {
+        @Autowired
+        private TestService testService;
+
+        @Autowired //Mocking 처리하지 않고, 주입받음
+        private TestRepository testRepository;
+
+        @Test
+        void serviceTest() {
+                int result = testService.a();
+                assertThat(result).isZero();
+        }
+        ...
+}
+```
+
+**Mocking을 해야하는 경우**도 있다. 메일을 발송하는 경우라면 호출할 때마다 메일이 날아가는데 그것대로 문제가 크다. 일단 메일 발송 메소드를 갖고 있는 `MailService`와 메소드 내에서 호출되는 메소드 주체 `MailSender`까지 Mocking을 해주자. `MailService`에는 **@InjectMocks**을 `MailSender`에는 **@Mock**를 설정해줘야 한다.
+
+`mailService.mailSend()`를 **3번** 호출했기 때문에 `mailSender.send()`를 **Mockito.verify()**에서 3번 호출했다는걸 **Mockito.times()**로 확인해줄 수 있다! 이러면 실제로 메일을 발송하지 않으면서 호출됐는지 체크가 가능하다😁
+```java
+//예시
+class MailService {
+        ...
+        public void mailSend() {
+                mailSender.doNotCall(); //테스트 시 실제로 호출되지 않아야 함
+                boolean result = mailSender.send();
+        }
+}
+
+@ExtendWith(MockitoExtension.class) //Mocking 할거라면 선언해줘야 함
+class MailServiceTest {
+
+        @InjectMocks
+        private MailService mailService;
+
+        @Mock
+        private MailSender mailSender;
+
+        @Test
+        void test() {
+                Mockito.when(mailSender.doNotCall).thenReturn(0); //동작하지 않도록 mocking
+
+                mailService.mailSend();
+                mailService.mailSend();
+                mailService.mailSend();
+
+                Mockito.verify(mailSender, Mockito.times(3)).send(); //3번 호출됐는지 확인
+        }
+```
+
+그리고 **@AfterEach**를 설정해서 각 함수에 대해 테스트가 끝날 때마다 초기화가 이뤄지도록 해주자. 초기화를 위해 **deleteAllInBatch()**를 사용하자. `deleteAll()`을 사용해도 결과는 같지만 내부적으로 엔티티를 하나씩 불러와 처리하기 때문에 느리다고 한다!
+```java
+@AfterEach
+void tearDown() {
+        testRepository.deleteAllInBatch();
+}
+```
+
+### Repository
+`Repository`에서는 `Repository`끼리 참조하는 경우만 있어서 mocking을 하지 않고 단위 테스트를 해주면 된다. `assertThat`으로 열심히 검증하는 것 외에는 별도로 해줘야하는게 없었어서 생략한다.
+
+`Service`에서 설정한 `@Transactional`, `@SpringBootTest`도 똑같이 사용하면 된다. `@SpringBootTest` 대신 `@DataJpaTest`를 사용할 수 있는데, `@Transactional`이 자동으로 포함됨에 주의하자. (테스트하는 함수에 @Transactional이 적용됐는지 여부를 확인할 수 없음)
+
+`@AfterEach`를 사용해 초기화하는 것도 잊지말자.
+
+## 테스트 설정 관리
+`Controller`, `Service`, `Repository` 모두 테스트용 설정을 하나의 클래스에 설정하면 **상속받아 사용할 수 있다.** `Controller`는 다음처럼 설정해주면 된다. 클래스는 **abstract**로, 필드 접근 제한자는 **protected**로 해주자. (공통)
+```java
+@WebMvcTest(controllers = {
+        TestController.class,
+        TestController2.class
+})
+public abstract class ControllerConfig {
+
+    @Autowired
+    protected MockMvc mockMvc;
+
+    @Autowired
+    protected ObjectMapper objectMapper;
+
+    @MockBean
+    protected TestService testService;
+}
+
+//활용
+class Test extends ControllerConfig {...}
+```
+
+`Service`, `Repository`는 다음처럼 설정해주면 된다. (`Repository`도 `@SpringBootTest`를 쓴다고 가정)
+```java
+@Transactional
+@SpringBootTest
+public abstract class IntegrationConfig {
+}
+
+//활용
+class Test2 extends IntegrationConfig {
+}
+```
+- `@Transactional`을 공통으로 사용한다면 선언해주고, 그렇지 않다면 별도로 설정해줘도 됨
+
+
+## References
+- [인프런: Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-%EC%8B%A4%EC%9A%A9%EC%A0%81%EC%9D%B8-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B0%80%EC%9D%B4%EB%93%9C/dashboard)
+- [cobbybb: @SpringBootTest / @DataJpaTest 차이점 과 JPA 영속성 컨텍스트](https://cobbybb.tistory.com/23)

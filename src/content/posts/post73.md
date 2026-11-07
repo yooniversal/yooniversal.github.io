@@ -1,0 +1,68 @@
+---
+title: "[BOJ 16975]"
+excerpt: 수열과 쿼리 21
+category: PS
+date: 2020-08-12
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/16975](https://www.acmicpc.net/problem/16975)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/de86ce02d31fe5143323ade214d639c1.js"></script><br>
+
+### review
+원래는 구간합을 계산하는 세그먼트 트리를 이용해서 해결하려고 했다. 특정 인덱스의 값을 업데이트하는 함수를 좀 고쳐서 특정 구간을 수정할 수 있도록 만들어봤는데 시간 초과에 걸렸다. 왜 그럴까 생각해보니까 리프 노드까지 내려가서 루트를 향해서 갱신해주는 방식인데 편의상 구간을 [l, r]이라 하면 [l, r]에 속하는 노드들에 먼저 업데이트해주고 부모를 타고 다시 업데이트 해주게 됐던 거였다. 한 개만 업데이트해도 O(logN)이 걸리는데 M개 업데이트한다고 치면 **O(MlogN)**이 걸리게 된다. 일일이 업데이트 해주는게 O(M)이 걸리는데 이것보다 비효율적이다. 그래서 다른 방법이 없는지 생각해봤다.
+
+여러 구간을 컨트롤하면서 업데이트를 O(logN)만에 끝내려면 당연하지만 그 범위의 노드를 모두 돌 필요가 없다. 리프 노드가 밑에 줄줄이 있고 부모 노드들을 모두 0으로 설정해놓은 후 더하는 값 `k`를 부모에 누적시킨다면 좋을거라 생각했다. 때문에 인자에는 `left`, `right을` 넣되 [start, end]가 [left, right] 안에 포함될 때 멈추고 해당 노드에 `k`를 더해줬다. 그리고 마지막에 특정 인덱스 값을 반환할 때는 리프 노드까지 타고 내려가면서 값들을 모두 더하고 반환해줬다.
+```cpp
+//리프 노드를 제외하고 0으로 만들어줍니다
+void init(int start, int end, int node) {
+    if (start == end) {
+        tree[node] = a[start];
+        return;
+    }
+    tree[node] = 0;
+    int mid = (start + end) / 2;
+    init(start, mid, 2 * node);
+    init(mid + 1, end, 2 * node + 1);
+}
+
+//[start, end]가 [left, end]에 포함되면 k를 반영해줍니다
+//누적된 값들은 이후에 리프 노드를 반환하는데 최종적으로 반영됩니다
+void uplast_modified_at(int start, int end, int node, int left, int right, ll k) {
+    if (right < start || end < left) return;
+    if (left <= start && end <= right) {
+        tree[node] += k;
+        return;
+    }
+    int mid = (start + end) / 2;
+    uplast_modified_at(start, mid, 2 * node, left, right, k);
+    uplast_modified_at(mid + 1, end, 2 * node + 1, left, right, k);
+}
+
+//리프 노드로 내려가면서 값을 가져오고 최종적으로 반영한 후 반환합니다
+ll getKey(int start, int end, int node, int index, ll key) {
+    if (index < start || end < index) return 0;
+    key += tree[node];
+    if (start == end) return key;
+    int mid = (start + end) / 2;
+    return getKey(start, mid, 2 * node, index, key) + getKey(mid+1, end, 2 * node + 1, index, key);
+}
+```
+<br>
+검색해보니 **lazy propagation** 이라는 방법으로도 풀린다고 하는데 나중에 공부해봐야겠다.<br>
+세그먼트 트리도 좀 손에 익기 시작해서 응용 문제도 금방 풀줄 알았는데 시간이 너무 오래 걸렸다..😶<br>
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

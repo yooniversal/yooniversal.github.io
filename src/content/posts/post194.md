@@ -1,0 +1,78 @@
+---
+title: Could not resolve all files for configuration ':runtimeClasspath' (com.mysql:mysql-connector-j)
+excerpt: ""
+category: Project
+date: 2023-02-06
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+계속 로컬에서 잘 돌리면서 테스트를 진행했기 때문에 빌드는 문제없이 진행될 거라고 생각했다. 근데 jar 파일을 만들기 위해 Build 버튼을 클릭했을 때 다음 오류가 발생했다.
+<br>
+```
+Execution failed for task ':bootJarMainClassName'.
+> Could not resolve all files for configuration ':runtimeClasspath'.
+   > Could not find com.mysql:mysql-connector-j:.
+     Required by:
+         project :
+```
+<br>
+`Could not find com.mysql:mysql-connector-j`를 검색해봐도 시원한 해결책을 찾지 못했는데, 일단 `com.mysql:mysql-connector-j`
+를 찾지 못해서 발생하는 오류라는건 알게 됐다. 별도로 버전을 명시하지 않아도 알아서 dependency를 고려해서 버전 세팅까지 해주
+는데, 이 오류가 나서 찾아보니까 `com.mysql:mysql-connector-j` 옆에만 버전이 없었다.<br>
+<br>
+
+```java
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+    implementation 'mysql:mysql-connector-java' // 여기는 버전도 제대로 뜨는데
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.mysql:mysql-connector-j' // 여기는 버전이 제대로 안떴다
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.7'
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+<br>
+당시 쓰던 버전이 8.0.29라 써져있었기 때문에 `com.mysql:mysql-connector-j` 뒤에 `:8.0.29`도 써보고 그랬지만<br>
+같은 에러의 반복이었고 정말 이상하다 싶어서 그냥 지워봤는데 말끔하게 해결됐다😞

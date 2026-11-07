@@ -1,0 +1,85 @@
+---
+title: "[BOJ 4013]"
+excerpt: ATM
+category: PS
+date: 2020-08-08
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/4013](https://www.acmicpc.net/problem/4013)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/12efe66561087db96831b90b1e968620.js"></script><br>
+
+### review
+교차로마다 ATM은 무조건 있으며 레스토랑은 있을 수도 없을 수도 있다. 교차로마다 있는 길은 일방통행이다. 일방통행이므로 주어진 그래프는 유향 그래프이며 거치는 곳마다 현금을 챙겨가 아무 레스토랑에 도착하면 된다. 이 때 챙겨갈 수 있는 현금의 최댓값을 구하면 된다.
+
+주어진 그래프는 유향 그래프이고 사이클이 발생할 수 있다. 사이클에 속한 모든 교차로의 현금을 합쳐야한다. 사이클 안에만 레스토랑이 있다면 모든 교차로의 현금을 모아서 가야하기 때문이다. 물론 사이클 안 말고 밖에 레스토랑이 있다면 사이클 내부 현금을 다 합치고 움직여야 최댓값을 만들 수 있겠다.
+```cpp
+int dfs(int cur) {
+  ...
+  //부모일 때 하나의 SCC 생성
+    if (chk[cur] == parent) {
+        vector<int> subSCC;
+        sccnum++;
+        while (1) {
+            int node = s.top(); s.pop();
+            subSCC.push_back(node);
+            fin[node] = true;
+            uni[node] = sccnum; //어느 집합에 있는지 체크
+            SCCcost[sccnum] += money[node]; //각 SCC 현금 합 **
+            if (noderest[node]) SCCrest[sccnum] = true;
+            if (chk[node] == parent) break;
+        }
+        SCC.push_back(subSCC);
+    }
+
+    return parent;
+}
+```
+<br>
+SCC들을 집합으로 묶어서 나타내면 **DAG(Directed Acyclic Graph)**가 된다. 그럼 그래프가 한결 간단해진다.<br>
+근데 교차로별 간선 정보는 갖고 있지만(`node[]`) SCC별 간선 정보는 가지고 있지 않다. 필요한 정보를 추출해야 한다.<br>
+노드의 집합 번호는 `uni[node]`로 나타내고 있기 때문에 이를 이용해서 집합이 서로 다를 때만 업데이트 해주면 된다.<br>
+```cpp
+//노드별 방향에서 집합별 방향으로 변환
+for (int i = 1; i <= V; i++) {
+    for (auto& next : node[i]) {
+        if (uni[i] == uni[next]) continue; //same union
+        setEdge[uni[i]].push_back(uni[next]);
+    }
+}
+```
+주어진 시작점으로부터 레스토랑이 있는 곳으로 이동해가면서 각 SCC의 cost를 더해가면 된다.<br>
+위상 정렬을 이용해서 더하든, DP를 이용해서 더하든 상관없음.<br>
+```cpp
+int ans(int cur) {
+    int tmp = 0;
+    int& ret = SCCSavecost[cur];
+    if (ret != -1) return ret;
+    for (auto& next : setEdge[cur]) {
+        tmp = max(tmp, ans(next));
+    }
+    if (tmp == 0) {
+        if (!SCCrest[cur]) return ret = 0;
+        return ret = SCCcost[cur];
+    }
+    else {
+        return ret = tmp + SCCcost[cur];
+    }
+}
+```
+<br>
+처음 제출한게 시간 초과에 걸리고 나서 뭐가 문젠지 생각해보고 건드리고 수정하다보니 반나절이나 걸렸다😂
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

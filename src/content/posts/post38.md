@@ -1,0 +1,83 @@
+---
+title: "[BOJ 2162]"
+excerpt: 선분 그룹
+category: PS
+date: 2020-07-25
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2162](https://www.acmicpc.net/problem/2162)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/27319d1751053a6f7ae854700a362bfb.js"></script>
+<br>
+
+### review
+
+선분들이 교차되는지 체크하기 위해 CCW 알고리즘을 사용했다. CCW 알고리즘은 [여기](https://www.acmicpc.net/blog/view/27)에서 참고했다. 선분 2개 중에 정점 3개가 일직선 상에 놓여있을 수 있으므로 이전에 풀었던 [선분 교차 1](https://www.acmicpc.net/problem/17386)에서 [선분 교차 2](https://www.acmicpc.net/problem/17387)를 풀면서 확장했다. 소스는 다음과 같다.
+```cpp
+ll CCW(xy a, xy b, xy c) {
+	ll tmp = a.first * b.second + b.first * c.second + c.first * a.second;
+	tmp -= a.second * b.first + b.second * c.first + c.second * a.first;
+	if (tmp > 0) return 1;
+	else if (tmp < 0) return -1;
+	else return 0;
+}
+
+ll process(line l1, line l2) {
+	xy a = l1.s, b = l1.e, c = l2.s, d = l2.e;
+	ll t1 = CCW(a, b, c) * CCW(a, b, d);
+	ll t2 = CCW(c, d, a) * CCW(c, d, b);
+	//일직선
+	if (t1 == 0 && t2 == 0) {
+		if (a > b)	swap(a, b);
+		if (c > d) swap(c, d);
+		if (a <= d && c <= b) return 1;
+		else return 0;
+	}
+	//교차
+	if (t1 <= 0 && t2 <= 0) return 1;
+	else return 0;
+}
+```
+한 줄에 점을 4개씩 입력 받는데 1개 선분에 2개의 정점이 속하도록 xy를 pair로, 선분을 struct로 선언했다.
+```cpp
+typedef long long ll;
+
+typedef pair<ll, ll> xy;
+struct line {
+	xy s;
+	xy e;
+
+	line(ll a, ll b, ll c, ll d) : s({ a, b }), e({ c, d }) {}
+};
+```
+선분들이 서로 교차하는지는 CCW 알고리즘을 이용하면 되고 그룹으로 묶는건 Union-Find 알고리즘을 사용하면 된다. 크게 2가지 알고리즘이 합쳐졌다고 볼 수 있다.
+```cpp
+//참고로 1<=n<=3000 이므로 O(n^2)임에도 통과할 수 있다!
+
+for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+      //선분이 교차할 때
+			if (process(node[i], node[j]))
+				make_union(i+1, j+1);
+		}
+}
+```
+이렇게 그룹별로 묶었다면 인덱스별 부모값(`find_parent(a)`)를 따라 `group[]`에 추가해주면 준비는 끝이다!
+```cpp
+for (int i = 1; i <= n; i++)
+		group[find_parent(i)]++;
+```
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,33 @@
+---
+title: "[Programmers] H-index"
+excerpt: 정렬
+category: PS
+date: 2020-08-03
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42747](https://programmers.co.kr/learn/courses/30/lessons/42747)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/670a1cdca58fe94efa215bf6647d373c.js"></script><br>
+
+### review
+한참을 시간들였는데도 안풀려서 낑낑대다가 설명을 잘못 이해했다는걸 깨달았다. 정말 안타까운 일이다.
+<br>
+h번 이상 인용된 논문 : `citations[i] >= h`<br>
+h번 이상 인용된 논문은 h편 이상 : 말 그대로<br>
+나머지 논문은 h편 이하 인용 : h보다 커지지만 않으면 됨. <strong>0이어도 상관없음.</strong><br>
+<br>
+이 문제 유형에서 말해주고 있듯이 주어진 벡터를 정렬해주면 문제를 보다 쉽게 해결할 수 있다. 내림차순으로 정렬해준 후 인덱스와 함께 수식을 만들어주면 답이 굉장히 간단해진다. [위키백과](https://en.wikipedia.org/wiki/H-index)에서 자세히 설명이 돼있으므로 참고하시길.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -1,0 +1,56 @@
+---
+title: "[Spring] java.lang.UnsupportedOperationException"
+excerpt: ""
+category: Project
+date: 2023-08-04
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+## 문제 상황
+`User` 엔티티 내에 권한 설정을 위해 만들어둔 필드 `roles`를 삭제하는 과정에서 문제가 발생했다. `roles`는 `List` 타입으로 설정했고, 초기화는 `builder`로 처리했다.
+```java
+public class User {
+  @ElementCollection(fetch = EAGER)
+  private List<String> roles = new ArrayList<>();
+  ...
+}
+
+User user = User.builder()
+                .email(signUpDto.getEmail())
+                .username(signUpDto.getUsername())
+                .gender(signUpDto.getGender())
+                .year(signUpDto.getYear())
+                .month(signUpDto.getMonth())
+                .day(signUpDto.getDay())
+                .ageRange(User.getAgeRange(signUpDto.getYear(), signUpDto.getMonth(), signUpDto.getDay()))
+                .password(passwordEncoder.encode(signUpDto.getPassword()))
+                .measurement(measurement)
+                .roles(List.of("USER")) //roles 초기화
+                .build();
+```
+
+회원탈퇴 메소드에서 `user.getRoles().clear()`를 호출하니 다음 에러가 발생했다.
+> java.lang.UnsupportedOperationException
+	at java.base/java.util.ImmutableCollections.uoe(ImmutableCollections.java:142)
+	at java.base/java.util.ImmutableCollections$AbstractImmutableCollection.clear(ImmutableCollections.java:149)
+  ...
+
+## 해결
+`roles`를 `List.of("USER")`로 초기화했으나 `List`가 **`clear()` 메소드를 지원하지 않아서** 발생한 문제였다. 그래서 다음처럼 수정해주니 해결할 수 있었다.
+```java
+user = userRepository.save(User.builder()
+                              .username(email.substring(0, email.indexOf('@')))
+                              .email(email)
+                              .provider(provider)
+                              .providerId(providerId)
+                              .providerLoginId(provider + "_" + providerId)
+                              .measurement(measurement)
+                              .roles(new ArrayList<>(List.of("USER"))) //수정
+                              .build());
+```
+
+## Reference
+- [연로그: [Java] java.lang.UnsupportedOperationException](https://yeonyeon.tistory.com/161)

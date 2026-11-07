@@ -1,0 +1,45 @@
+---
+title: "[BOJ 15782]"
+excerpt: Calculate! 2
+category: PS
+date: 2020-08-14
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/15782](https://www.acmicpc.net/problem/15782)<br>
+같은 유형, BOJ 12844 : [https://www.acmicpc.net/problem/12844](https://www.acmicpc.net/problem/12844)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/895ee5b650b749d82119c44e195f042b.js"></script>
+<br/>
+
+### review
+상사-부하 간에 관계를 정리하기 위해 pre-order로 순회했습니다. 설명은 [여기](https://degurii.tistory.com/43)를 참고해주세요. [degurii님의 글](https://degurii.tistory.com/26)을 참고했습니다. post-order로 구현하시고 싶으시면 참고하시길 권합니다.
+
+XOR 연산을 홀수번하면 1번 한 것과 같고, 짝수번하면 안한 것과 같기 때문에 다음과 같이 조건을 걸었다.
+```cpp
+void uplast_modified_at_lazy(int node, int start, int end) {
+    if (lazy[node] != 0) {
+        if ((end - start + 1) % 2) tree[node] ^= lazy[node]; //이 부분!
+        if (start != end) {
+            lazy[node * 2] ^= lazy[node];
+            lazy[node * 2 + 1] ^= lazy[node];
+        }
+        lazy[node] = 0;
+    }
+}
+```
+`uplast_modified_at_range`에서도 마찬가지이며, 기본적인 구조가 더하는 연산이라면 모두 XOR로 바꿔주면 된다.
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

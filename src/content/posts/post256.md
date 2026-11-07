@@ -1,0 +1,142 @@
+---
+title: "[Spring] JWT 예외 처리 필터 설정하기"
+excerpt: ""
+category: Project
+date: 2023-08-18
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+
+프로젝트에서 권한 체크할 때 JWT가 유효한지를 체크하기 위해 `JwtAuthenticationFilter`를 구현 후 설정했다. 당시 JWT 관련해 발생하는 가장 큰 이슈가 토큰이 `null`로 들어올 때, 유효 시간이 지나 만료됐을 때 2가지가 있었고 이에 대해 응답코드가 항상 `403 Forbidden`으로 도착했다. 이를 `401 UnAuthorized`로 수정하고 싶어서 구현 후 적용했다.
+
+## JWT 예외 처리 필터 : JwtExceptionFilter
+### 구현
+`JwtExceptionFilter`를 구현하기 앞서 JWT 예외 `JwtException`를 발생시키는 `JwtAuthenticationFilter`를 살펴보면, **토큰이 `null`일 때를 검증하는 로직을 추가했다.** `AcceptedUrl.ACCEPTED_URL_LIST`은 Spring Security 설정 클래스에서 허용해준 URL 경로를 `List<String>`으로 관리하고 있다.
+
+이유는 모르겠지만 허용 URL 경로들을 Spring Security 설정 클래스에서 `permitAll()`로 설정해 권한 체크를 해주지 않아도 이전에는 문제가 없었으나 `JwtAuthenticationFilter`에서 토큰이 `null`일 때 처리를 따로 해주면서 이중으로 체크해줘야 했다😂
+```java
+@Component
+@RequiredArgsConstructor
+public class JwtAuthenticationFilter extends GenericFilterBean {
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        //헤더에서 토큰 가져오기
+        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
+
+        //토큰이 null일 때 체크 (추가)
+        if (token == null) {
+            String requestURI = ((HttpServletRequest) request).getRequestURI();
+            List<String> acceptedUrls = AcceptedUrl.ACCEPTED_URL_LIST;
+
+            for (String acceptedUrl : acceptedUrls) {
+                if (requestURI.equals(acceptedUrl)) {
+                    chain.doFilter(request, response);
+                    return;
+                }
+            }
+
+            throw new JwtException("토큰이 빈 값입니다.");
+        }
+
+        if (jwtTokenProvider.validateToken(token)) {
+            Authentication authentication = jwtTokenProvider.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+
+        //다음 Filter 실행
+        chain.doFilter(request, response);
+    }
+}
+
+//허용 URL 정보
+public class AcceptedUrl {
+    public final static List<String> ACCEPTED_URL_LIST = List.of(
+            "/login", "/signup", "/error",
+            ...
+    );
+}
+```
+
+그리고 JWT 예외 `JwtException`를 처리하는 필터 `JwtExceptionFilter`를 구현해줬다. `JwtException`를 catch하면 `setResponse()`를 호출해 응답 정보를 생성하고, 그 과정 중에 응답코드를 `401`로 설정한다!
+```java
+@RequiredArgsConstructor
+@Component
+public class JwtExceptionFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
+        try {
+            chain.doFilter(request, response);
+        } catch (JwtException ex) {
+            //응답 정보 설정
+            setResponse(request.getRequestURI(), response, HttpStatus.UNAUTHORIZED, ex);
+        }
+    }
+
+    private void setResponse(String path, HttpServletResponse response, HttpStatus status, Throwable ex) throws RuntimeException, IOException {
+        JwtErrorResponse errorResponse = JwtErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(status.value())
+                .error(ex.getMessage())
+                .path(path)
+                .build();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        String jsonResponse = objectMapper.writeValueAsString(errorResponse);
+
+        response.setStatus(status.value());
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().print(jsonResponse);
+    }
+}
+
+//에러 응답 클래스
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class JwtErrorResponse {
+    private LocalDateTime timestamp;
+    private int status;
+    private String error;
+    private String path;
+}
+```
+
+### SecurityConfig
+위에서 구현한 내용을 Spring Security 설정 클래스 `SecurityConfig`에서 설정해주자. 아래처럼 설정해주면 요청 -> `JwtExceptionFilter` -> `JwtAuthenticationFilter`를 거치게 되며 `JwtAuthenticationFilter`에서 발생하는 예외 `JwtException`를 `JwtExceptionFilter`에서 처리하게 된다.
+```java
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
+
+    private final UserDetailsService userDetailsService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtExceptionFilter jwtExceptionFilter;
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        ...
+        http
+                .authorizeHttpRequests((authorizeHttpRequests) -> ...)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class); //추가
+        return http.build();
+    }
+    ...
+}
+```
+
+여기까지 설정하면 응답코드가 `401`로 나가게 된다!
+
+## References
+- [hellonayeon: [Spring Boot] JWT 토큰 만료에 대한 예외처리](https://velog.io/@hellonayeon/spring-boot-jwt-expire-exception)
+- [ailiartsua: Spring Security Jwt - 예외처리 커스터마이징](https://ailiartsua.tistory.com/25)

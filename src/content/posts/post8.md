@@ -1,0 +1,44 @@
+---
+title: "[BOJ 2263]"
+excerpt: 트리의 순회
+category: PS
+date: 2020-07-12
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/2263](https://www.acmicpc.net/problem/2263)
+
+## Solution
+<script src="https://gist.github.com/yooniversal/67daad9fa09c877e6f576ae2a5d4393e.js"></script>
+<br>
+
+### review
+inorder : &nbsp;&nbsp;&nbsp;&nbsp;1 2 3 4 5 6 7 8 9<br>
+postorder : 1 3 5 4 2 8 9 7 6 라고 해보자.<br>
+<br>
+트리 구조를 나타내면 다음과 같다. [여기](https://ko.wikipedia.org/wiki/%ED%8A%B8%EB%A6%AC_%EC%88%9C%ED%9A%8C)에 있는 사진을 조금 수정했다.<br>
+![2263_tree](/images/2263_tree.png)
+<br><br>
+postorder는 왼쪽 - 오른쪽 - 루트 순서여서 마지막 인덱스값은 루트 노드가 오게 돼있다. 그럼 inorder에서 루트 노드의 위치를 기준으로 왼쪽 서브트리, 오른쪽 서브트리가 나뉘게 된다.<br>
+![2263_2](/images/2263_2.png)
+<br><br>
+preorder는 루트 - 왼쪽 - 오른쪽 순서이기 때문에 루트 노드를 먼저 출력해준다. 그 이후는 왼쪽 서브트리 그리고 오른쪽 서브트리로 탐색하게 되므로 출력 역시 루트 - 왼쪽 - 오른쪽이다. in, post에서 다루는 왼쪽 서브트리는 같으므로 구성되는 값도 같을 수밖에 없다. (빨간 네모 참고) 아까 post 맨 뒤가 루트라고 했는데 역시 여기서도 빨간 네모 범위에서 적용된다.<br>
+![2263_3](/images/2263_3.png)
+<br><br>
+계속 진행하면서 왼쪽 서브트리를 처리하면 다음과 같다.<br>
+![2263_4](/images/2263_4.png)
+<br><br>
+매개변수는 inorder, postorder의 범위를 각각 컨트롤 해주면서 모든 노드를 거쳐야 하는게 포인트다. in, post에서 다루는 범위 크기는 같다는 점을 발견해서 (irp-1)-is를 더해줬다. 이전에 처리한 루트노드는 범위에서 제외해야 하므로 pe 자리에는 pe-1이 들어가야한다.
+
+어떻게 처리해야할지 감은 오는데 이상하게 코드로 잘 안옮겨졌다. 이진 트리를 처음 다루긴 했지만 속상했다.. 실전에서는 30분 이내에 못풀어내면 사실상 못푼거라고 봐야한다던데 나는 일단 슈퍼 실격인거 같다. 얼른 많이 풀어서 체화하자!
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

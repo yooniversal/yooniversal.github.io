@@ -1,0 +1,28 @@
+---
+title: "[Programmers] 탑"
+excerpt: ""
+category: PS
+date: 2020-07-25
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://programmers.co.kr/learn/courses/30/lessons/42588](https://programmers.co.kr/learn/courses/30/lessons/42588)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+## Solution
+<script src="https://gist.github.com/yooniversal/8c4c864ef08bd912f584703594ab4e54.js"></script>
+<br>
+
+### review
+
+현재 탑을 기준으로 왼쪽에 있는 탑중에 현재 탑보다 높이가 높은게 있다면 제일 가까운걸 출력해주면 된다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

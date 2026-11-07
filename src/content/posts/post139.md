@@ -1,0 +1,29 @@
+---
+title: "[BOJ 8462]"
+excerpt: 배열의 힘
+category: PS
+date: 2020-09-13
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/8462](https://www.acmicpc.net/problem/8462)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+
+### solution
+<script src="https://gist.github.com/yooniversal/8c20f0313a143c43cf52fbd6b1054480.js"></script>
+<br>
+
+### review
+**Mo's Algorithm** 응용 문제다. 먼저 `cnt[숫자]`를 숫자가 등장한 횟수라 정의하자. 그리고 값을 업데이트하기 전에 대상이 되는 숫자를 $s$, 그 숫자가 등장했던 횟수를 $n$이라 하자.
+
+부분 배열의 힘은 구간에 있는 모든 숫자에 대해서 $n^2s$를 합한 값이다. 구간을 1번 늘리거나 줄일 때에 대해서 그 때 그 때 업데이트해주면 된다. 구간을 늘릴 땐, 등장 횟수가 $n$에서 $n+1$이 되므로 $(n+1)^2s = n^2s+(2n+1)s$ 가 되고, 구간을 줄일 땐, 등장 횟수가 $n$에서 $n-1$이 되므로 $(n-1)^2s = n^2s+(-2n+1)s$ 가 된다. 변화하는 값 $(2n+1)s, (-2n+1)s$만 반영해주면 된다.
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

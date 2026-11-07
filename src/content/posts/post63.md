@@ -1,0 +1,123 @@
+---
+title: "[BOJ 3176]"
+excerpt: 도로 네트워크
+category: PS
+date: 2020-08-04
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/3176](https://www.acmicpc.net/problem/3176)<br>
+문제 설명은 위 링크에서 확인해주시길 바랍니다.
+<br>
+
+## Solution
+<script src="https://gist.github.com/yooniversal/2f6bdba368cd8d61faee00fd357ac599.js"></script><br>
+
+### review
+N개의 도시가 있고 이 도시들을 연결하는 도로가 N-1개다. 모든 도시의 쌍에는 그 도시를 연결하는 유일한 쌍이 있다고 하니 트리 구조로 보면 되겠다. 유일한 쌍이 존재하고 이에 접근하는 경로 중 도로의 길이를 체크하므로 LCA를 찾아 접근한다. '두 도시를 연결하는 경로 상에서 가장 짧은 도로의 길이와 가장 긴 도로의 길이를 구하라'라고 했는데 이 부분을 잘못 이해해서 한참 걸렸다. 두 노드에서 시작하고 LCA까지 가는데 있는 각 도로별 길이 중에 최솟값, 최댓값을 골라주면 된다. 간선 중에 답이 존재한다!
+
+처음에 트리라는건 생각했으나 TC에서 1, 2를 입력했는데 50, 100이 나오는걸 보고 당황했었다. 루트 노드를 어디로 잡아도 상관없지만 1이라고 가정하면 노드 1, 2의 LCA는 1이 된다. 그럼 1에서 1로 가는건 길이가 0이지만 여기서는 같은 노드로 이동하는건 카운트하지 않는걸로 판단된다. 2에서 1로 갈 때 거리를 나타내면 2->3이 100, 3->1이 50이므로 답은 50, 100이 된다. 혹시 이 글을 읽는 분들이라면 나처럼 헷갈려하지 않았으면 좋겠다.
+```
+TC :
+5
+2 3 100
+4 3 200
+1 5 150
+1 3 50
+...
+```
+각 노드에서 LCA로 달려가는데 높이를 한 칸씩 올리면서 접근하면 당연히 시간 초과에 걸리게 된다. 때문에 sparse table을 사용해 접근해서 로그 시간에 접근할 수 있도록 해야한다. 최솟값, 최댓값을 저장하는 테이블은 부모를 저장하는 `parent[][]`에 자료형을 달리해서 저장하는 것도 방법이다. 하지만 그렇게 할 경우 헷갈릴 것 같아서 `MINV[][]`, `MAXV[][]`를 따로 만들어서 저장해줬다. parent와 같은 구조다!
+
+처음에 도로별 길이를 저장하는데 나같은 경우 부모를 설정해주기 전에(`dfs()`에 들어가기 전에) 처리해서 문제가 됐다.
+```cpp
+//input
+cin >> n;
+for (int i = 0; i < n - 1; i++) {
+    int p, c, val;
+    cin >> p >> c >> val;
+    node[c].push_back(p);
+    node[p].push_back(c);
+    MAXV[b][0] = MINV[b][0] = val;  //이렇게 하지
+    MAXV[c][0] = MINV[c][0] = val;  //마세요
+}
+```
+나같은 경우 `dfs(root, 0)`에서 `root`를 인자에 넣어주고 재귀를 통해 부모를 연결하도록 해줬다. 근데 이렇게 루트 노드가 정해지지 않은 상태에서 막 넣어버리면 `MAXV[root][0]`, `MINV[root][0]`에 값이 들어간다. 그럼 `makeTree()`에서 for문을 돌면서 다른 노드의 `MAXV`, `MINV` 값에 영향을 미치게 된다. 이런 일이 있으면 안된다. 코드를 어떻게 짜느냐에 따라서 달라지므로 쓰지말라고 못박기는 그렇지만, 루트가 정해지기 전에 저장되면 안된다.
+```cpp
+//바로 위에 있는 부모와 연결
+void dfs(int cur, int d) {
+    chk[cur] = true;
+    depth[cur] = d; //깊이
+    for (int i = 0; i < node[cur].size(); i++) {
+        int next = node[cur][i].p;
+        if (chk[next]) continue;
+        parent[next][0] = cur; //next의 1(2^0)번째 부모는 cur
+        MAXV[next][0] = node[cur][i].v; //이렇게
+        MINV[next][0] = node[cur][i].v; //처리했습니다!
+        dfs(next, d + 1);
+    }
+}
+```
+그럼 `dfs()`를 나오고 `makeTree()`의 for문으로 들어간다. sparse table을 구현해봤다면 쉽게 이해할 수 있다. `parent[u][k]`는 `u`의 2^k번째 부모를 말한다. 설명은 [여기](http://blog.naver.com/PostView.nhn?blogId=kks227&logNo=220820773477)를 참고. `dfs()`에서 바로 윗 부모를 루트를 제외한 모든 노드에 연결시켜줬다. 처음엔 k=1일 때 모든 노드를 돌면서 `dfs()`에서 얻은 `@@@[u][0]`을 가지고 `@@@[u][1]`을 업데이트 해준다. 차례대로 `k`가 증가하면서 뒤에 있는 범위까지 업데이트 되는걸 알 수 있다.
+```cpp
+void makeTree() {
+    dfs(1, 0); //루트가 1
+
+    //노드 u(1~n)의 부모를 연결하기
+    for (int k = 1; k < COL; k++) {
+        for (int u = 1; u <= n; u++) {
+            MAXV[u][k] = max(MAXV[u][k - 1], MAXV[parent[u][k - 1]][k - 1]);
+            MINV[u][k] = min(MINV[u][k - 1], MINV[parent[u][k - 1]][k - 1]);
+            parent[u][k] = parent[parent[u][k - 1]][k - 1];
+        }
+    }
+}
+```
+여기까지 `MAXV`, `MINV`를 필요한 만큼 업데이트 해줬다. 이제 두 노드를 입력받고 LCA로 접근해가면 된다. `MAXV`, `MINV`가 sparse table이므로 LCA()에서도 부모까지 접근하는데 익숙한 방법을 사용한다. 대신 부모로 접근하면서 `ans_max`, `ans_min`을 계속 업데이트해줘야 답을 얻을 수 있다.
+```cpp
+//최소 공통 조상 찾기
+void LCA(int a, int b) {
+//깊은쪽을 b로 설정해주고 시작
+if (depth[a] > depth[b]) swap(a, b);
+
+//깊은쪽이 b이므로 b의 값을 기준으로 초기화 해줘야 합니다
+//a와 b의 깊이 차이가 1인 경우를 생각해보세요
+ans_max = MAXV[b][0]; ans_min = MINV[b][0];
+
+//깊이가 다른 만큼 맞춰주기
+for (int i = COL - 1; i >= 0; i--) {
+    if (depth[a] <= depth[parent[b][i]]) {
+        ans_max = max(ans_max, MAXV[b][i]); //언급한
+        ans_min = min(ans_min, MINV[b][i]); //부분입니다
+        b = parent[b][i];
+    }
+}
+...
+
+//첫 번째 for문을 지나면 a와 b가 같아질 수 있는데 b를 업데이트한 후 ans를 업데이트하면 잘못된 답을 반환합니다.
+//때문에 b를 업데이트하기 전에 ans를 업데이트해줘야 합니다.
+```
+두번째 for문에서는 LCA 바로 아래에서 `a`와 `b`가 멈추도록 설정했으므로 위와 다르게 설정해준다.
+```cpp
+//조상이 같아질 때까지 업데이트
+for (int i = COL - 1; i >= 0; i--) {
+    if (parent[a][i] != parent[b][i]) {
+        ans_max = max(ans_max, max(MAXV[a][i], MAXV[b][i]));
+        ans_min = min(ans_min, min(MINV[a][i], MINV[b][i]));
+        a = parent[a][i];
+        b = parent[b][i];
+    }
+}
+
+ans_max = max(ans_max, max(MAXV[a][0], MAXV[b][0]));
+ans_min = min(ans_min, min(MINV[a][0], MINV[b][0]));
+```
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

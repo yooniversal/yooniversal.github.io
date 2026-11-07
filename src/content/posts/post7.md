@@ -1,0 +1,28 @@
+---
+title: "[BOJ 1991]"
+excerpt: 트리 순회
+category: PS
+date: 2020-07-12
+toc: true
+author:
+  name: Yooniversal
+  role: 개발
+---
+문제 바로가기 : [https://www.acmicpc.net/problem/1991](https://www.acmicpc.net/problem/1991)
+
+## Solution
+<script src="https://gist.github.com/yooniversal/bc649b31b6021449c6cd6ba79e22364e.js"></script>
+<br>
+
+### review
+
+트리를 순회하는 방법은 문제에 나와있듯이 전위 순회(preorder), 중위 순회(inorder), 후위 순회(postorder)가 있다. 위 3가지 방법은 다음 [링크](https://ko.wikipedia.org/wiki/%ED%8A%B8%EB%A6%AC_%EC%88%9C%ED%9A%8C)에서 설명을 참고하면 되겠다. 노드를 할당해가면서 조작하기 귀찮아서 배열 공간을 넉넉히 잡고 힙으로 해결했다. 각 단계별 설명에 맞춰서 recursive를 걸어주면 어렵지 않은 문제였다.
+
+
+<script src="https://utteranc.es/client.js"
+        repo="yooniversal/blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
