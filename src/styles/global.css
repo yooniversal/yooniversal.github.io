@@ -918,21 +918,27 @@
   }
 
   /* Shiki dual theme: light tokens by default, dark ones under [data-theme]. */
+  pre.astro-code {
+    background-color: var(--shiki-light-bg);
+  }
+
   .astro-code,
   .astro-code span {
     color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
     font-style: var(--shiki-light-font-style);
     font-weight: var(--shiki-light-font-weight);
     text-decoration: var(--shiki-light-text-decoration);
   }
 
-  :root[data-theme="dark"] .astro-code,
-  :root[data-theme="dark"] .astro-code span {
-    color: var(--shiki-dark);
+  :root[data-theme="dark"] pre.astro-code {
     /* github-dark's own #24292e background reads too light against this
        theme's near-black surfaces, so blend into the page instead. */
     background-color: var(--muted);
+  }
+
+  :root[data-theme="dark"] .astro-code,
+  :root[data-theme="dark"] .astro-code span {
+    color: var(--shiki-dark);
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
     text-decoration: var(--shiki-dark-text-decoration);
