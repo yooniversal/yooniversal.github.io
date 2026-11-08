@@ -219,7 +219,7 @@ protected Object invokeWithinTransaction(Method method, @Nullable Class<?> targe
 - 파라미터로 `invocation`이 콜백이다! (비즈니스 로직)
 <br>
 
-`@Transactional`이 적용됐는지 확인하려면 **getTransactionAttribute()**를 확인해보면 된다.
+`@Transactional`이 적용됐는지 확인하려면 `getTransactionAttribute()`를 확인해보면 된다.
 > Return the transaction attribute for the given method, or null if the method is non-transactional.
 
 TransactionAttributeSource.getTransactionAttribute() 설명이다. 트랜잭션 적용됐으면 **transaction attribute**를 내려줄 거고, 

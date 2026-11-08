@@ -140,7 +140,7 @@ if (item.getPrice() != null && item.getQuantity() != null) {
 }
 ```
 
-하지만 여기서 `FieldError`, `ObjectError`를 모두 다루면 코드가 복잡해지므로 `BindingResult`의 함수 **rejectValue()**, **reject()**로 코드를 간단히 만들 수 있다. `"item"` 객체에 대해 처리한다는 정보를 넣지 않아도 되는 이유가 `BindingResult`는 그 대상(target)을 이미 알고 있어서이다!
+하지만 여기서 `FieldError`, `ObjectError`를 모두 다루면 코드가 복잡해지므로 `BindingResult`의 함수 `rejectValue()`, `reject()`로 코드를 간단히 만들 수 있다. `"item"` 객체에 대해 처리한다는 정보를 넣지 않아도 되는 이유가 `BindingResult`는 그 대상(target)을 이미 알고 있어서이다!
 ```java
 if (!StringUtils.hasText(item.getItemName())) {
   bindingResult.rejectValue("itemName", "required");

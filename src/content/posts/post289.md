@@ -189,7 +189,7 @@ testImplementation("io.mockk:mockk:1.12.0")
 단위 테스트의 주입받은 객체를 mocking하는 방법은 간단하다. 일단 JUnit에서는 2가지 방법으로 가능하다.
 - `@ExtendWith(MockKExtension::class)` → @MockK, @SpyK, @InjectMockKs
 
-**@ExtendWith(MockKExtension::class)**은 `@MockK`, `@SpyK`, `@InjectMockKs`를 사용할 수 있게 해준다. **@MockK**은 객체를 mocking하고 싶을때, **@InjectMockKs**은 mocking할 객체를 초기화할 때 mocking된 객체로 주입받고 싶을 때 
+**@ExtendWith(MockKExtension::class)** 은 `@MockK`, `@SpyK`, `@InjectMockKs`를 사용할 수 있게 해준다. **@MockK**은 객체를 mocking하고 싶을때, **@InjectMockKs**은 mocking할 객체를 초기화할 때 mocking된 객체로 주입받고 싶을 때
 사용한다. 참고로 `@MockK`을 적용한 객체의 경우 바로 초기화되는게 아니기 때문에 mocking할 녀석은 `lateinit var`로 설정해줘야 한다.
 
 mocking한 객체는 테스트 시 호출할 모든 메소드에 대해 어떤 결과를 반환할지 설정해줘야 하는데, stubbing할 녀석은 `every`로 
@@ -232,7 +232,7 @@ Kotest에서는 바로 초기화하는 방법을 사용하면 되겠다.
 every { a.test() } returns 1
 every { a.test() } answers { 1 }
 ```
-- 만약 `test()`가 파라미터를 받는데 모든 값에 대해 반환값을 설정해주고 싶다면 **any()**를 파라미터로 넣어주면 됨
+- 만약 `test()`가 파라미터를 받는데 모든 값에 대해 반환값을 설정해주고 싶다면 `any()`를 파라미터로 넣어주면 됨
 - 반환 타입이 **Unit**이라면 returns가 아니라 **just runs**를 적어주면 됨
 <br><br>
 
@@ -375,7 +375,7 @@ coVerifyAll {
 val testService = mockk<TestService>(relaxed = true)
 val testService = mockk<TestService>(relaxUnitFun = true)
 ```
-- 여기서 기본값은 primitive type의 기본값인 **0, false, ""**를 말함
+- 여기서 기본값은 primitive type의 기본값인 **0, false, ""** 를 말함
 - 만약 반환 타입이 클래스인 경우, 해당 클래스가 갖는 모든 필드를 기본값으로 설정함
 <br>
 

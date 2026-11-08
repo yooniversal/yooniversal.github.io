@@ -43,7 +43,7 @@ public class SimpleJpaRepository<T, ID> implements JpaRepositoryImplementation<T
 
 ### isNew()
 **어떻게 새 엔티티인지 판별하는가**는 case-by-case다! 아래 경우의 수를 참고하자.
-- 엔티티가 **Persistable\<ID>**를 구현한 경우
+- 엔티티가 **Persistable\<ID>** 를 구현한 경우
 
 `Persistable<ID>`를 구현한 엔티티라면 해당 엔티티 안에 구현한 `isNew()`를 기준을 따른다. 아래에서 나올 `@Id`, `@Version` 적용 여부는 기준으로 사용하지 않는다. (`Persistable<ID>`가 우선순위 더 높음) 아래 예시에서는 **name 길이가 0이면** `isNew()`가 **true**임을 보장한다.
 ```java

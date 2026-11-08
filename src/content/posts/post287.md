@@ -51,7 +51,7 @@ val semaphore = Semaphore(3)
 세마포어가 `여러 스레드`를 임계 영역에서 동작할 수 있도록 돕는다면, 뮤텍스는 **단 1개의 스레드**만 동작하게한다. 세마포어에서 `permits`를 **1**로 설정한 것이라 생각하면 된다.
 
 ## 적용하기
-세마포어에서 key를 얻을 땐 **acquire()**를, 원하는 동작을 다 마쳐서 key를 반환하고 싶을 땐 **release()**를 사용한다.
+세마포어에서 key를 얻을 땐 `acquire()`를, 원하는 동작을 다 마쳐서 key를 반환하고 싶을 땐 `release()`를 사용한다.
 ```kotlin
 fun semaphoreTest() {
     val semaphore = Semaphore(3)

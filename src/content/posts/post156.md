@@ -94,7 +94,7 @@ Link : [https://www.acmicpc.net/problem/9658](https://www.acmicpc.net/problem/96
 
 <script src="https://gist.github.com/yooniversal/382b6786cfe73ddfb74209fb04c098ae.js"></script>
 
-개인적으로 이런 종류의 문제가 좀 까다롭다고 생각한다. 설명에 **'두 사람이 완벽하게 게임을 했을 때'**라는 말 때문에 조건을 정하기가 매우 까다로웠다. 현재 남은 돌의 갯수를 `cur`, 누구 차례인지를 나타내는걸 `who`로 설정해놓고 DP로 풀었다.
+개인적으로 이런 종류의 문제가 좀 까다롭다고 생각한다. 설명에 **'두 사람이 완벽하게 게임을 했을 때'** 라는 말 때문에 조건을 정하기가 매우 까다로웠다. 현재 남은 돌의 갯수를 `cur`, 누구 차례인지를 나타내는걸 `who`로 설정해놓고 DP로 풀었다.
 
 </div>
 </details>

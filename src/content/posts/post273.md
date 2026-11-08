@@ -172,7 +172,7 @@ class Test {
 }
 ```
 
-참고로 아무 값도 반환하지 않는 `void` 메소드라면 **Mockito.doNothing()**을 사용히자.
+참고로 아무 값도 반환하지 않는 `void` 메소드라면 **Mockito.doNothing()** 을 사용히자.
 ```java
 doNothing().when(testService).a();
 ```
@@ -203,7 +203,7 @@ class Test2 {
 
 **Mocking을 해야하는 경우**도 있다. 메일을 발송하는 경우라면 호출할 때마다 메일이 날아가는데 그것대로 문제가 크다. 일단 메일 발송 메소드를 갖고 있는 `MailService`와 메소드 내에서 호출되는 메소드 주체 `MailSender`까지 Mocking을 해주자. `MailService`에는 **@InjectMocks**을 `MailSender`에는 **@Mock**를 설정해줘야 한다.
 
-`mailService.mailSend()`를 **3번** 호출했기 때문에 `mailSender.send()`를 **Mockito.verify()**에서 3번 호출했다는걸 **Mockito.times()**로 확인해줄 수 있다! 이러면 실제로 메일을 발송하지 않으면서 호출됐는지 체크가 가능하다😁
+`mailService.mailSend()`를 **3번** 호출했기 때문에 `mailSender.send()`를 **Mockito.verify()** 에서 3번 호출했다는걸 **Mockito.times()** 로 확인해줄 수 있다! 이러면 실제로 메일을 발송하지 않으면서 호출됐는지 체크가 가능하다😁
 ```java
 //예시
 class MailService {
@@ -235,7 +235,7 @@ class MailServiceTest {
         }
 ```
 
-그리고 **@AfterEach**를 설정해서 각 함수에 대해 테스트가 끝날 때마다 초기화가 이뤄지도록 해주자. 초기화를 위해 **deleteAllInBatch()**를 사용하자. `deleteAll()`을 사용해도 결과는 같지만 내부적으로 엔티티를 하나씩 불러와 처리하기 때문에 느리다고 한다!
+그리고 **@AfterEach**를 설정해서 각 함수에 대해 테스트가 끝날 때마다 초기화가 이뤄지도록 해주자. 초기화를 위해 **deleteAllInBatch()** 를 사용하자. `deleteAll()`을 사용해도 결과는 같지만 내부적으로 엔티티를 하나씩 불러와 처리하기 때문에 느리다고 한다!
 ```java
 @AfterEach
 void tearDown() {

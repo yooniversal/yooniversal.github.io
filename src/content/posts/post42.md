@@ -37,7 +37,7 @@ saveT[] : 0 0 1 2 3
 => 마지막 문자가 3번째에서 다시 반복된다.
 하지만 반복되어 만들어지는 문자열이 아니므로 output은 1이다.
 ```
-눈치를 못챘다면 failure function에 대해서 다시 생각해볼 필요가 있다. failure function이 갱신되는 전제는 <strong>이전 문자열까지 일치한다</strong>는 점이다. **saveP[마지막]**은 여기서 중요한 정보를 제공한다! T가 반복돼서 만들어진 문자열이라면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반드시 반복돼야 한다. T가 반복돼서 만들어지지 않았다면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반복될 수 없다.
+눈치를 못챘다면 failure function에 대해서 다시 생각해볼 필요가 있다. failure function이 갱신되는 전제는 <strong>이전 문자열까지 일치한다</strong>는 점이다. **saveP[마지막]** 은 여기서 중요한 정보를 제공한다! T가 반복돼서 만들어진 문자열이라면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반드시 반복돼야 한다. T가 반복돼서 만들어지지 않았다면, T[0~<strong>T.size()-saveT[마지막]</strong>]은 반복될 수 없다.
 
 전자의 경우 반복되기 때문에 `T.size()`는 반복되는 문자열 길이로 나누어 떨어진다. 후자는 그렇지 않다! 나누어 떨어지지 않으면 반복되지 않는다는 말이므로 output은 언제나 1이다.
 ```cpp

@@ -45,7 +45,7 @@ void loginWithValidEmailAndPassword() throws Exception {
 ## 해결 방법
 테스트 코드에서는 `LoginDto` 객체를 새로 생성해주고 있으므로 `UserController` 파라미터 객체와 값이 같아도 **주소가 달라** 설정해준 조건에 맞지 않는다고 판단하는게 문제였다. primitive type 및 String은 이에 해당되지 않아서 문제가 발생하지 않는다.
 
-`LoginDto` 타입의 파라미터가 들어오는 경우 통과시키고 싶은거니까 **any()**를 걸어주면 해결된다!
+`LoginDto` 타입의 파라미터가 들어오는 경우 통과시키고 싶은거니까 **any()** 를 걸어주면 해결된다!
 ```java
 when(userService.login(any(LoginDto.class))).thenReturn(user);
 ```

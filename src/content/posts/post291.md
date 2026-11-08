@@ -61,7 +61,7 @@ interface BeverageRepository {
 - 모든 함수를 구현하지 않아도 되도록 테스트용 JpaRepository를 만들어봤다! [2편](/study/post292/) 참조!
 <br>
 
-테스트 패키지에서는 `BeverageRepository`를 구현한 테스트용 클래스 `TestBeverageRepository`를 구현한다. 테스트에서는 이렇게 **테스트용 구현 클래스(=목 오브젝트)**를 구현해서 사용한다!
+테스트 패키지에서는 `BeverageRepository`를 구현한 테스트용 클래스 `TestBeverageRepository`를 구현한다. 테스트에서는 이렇게 **테스트용 구현 클래스(=목 오브젝트)** 를 구현해서 사용한다!
 ```kotlin
 class TestBeverageRepository : BeverageRepository {
 

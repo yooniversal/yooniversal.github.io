@@ -44,7 +44,7 @@ int dfs(int cur) {
 ```
 <br>
 
-SCC들을 집합으로 묶어서 나타내면 **DAG(Directed Acyclic Graph)**가 된다. 그럼 그래프가 한결 간단해진다.<br>
+SCC들을 집합으로 묶어서 나타내면 **DAG(Directed Acyclic Graph)** 가 된다. 그럼 그래프가 한결 간단해진다.<br>
 근데 교차로별 간선 정보는 갖고 있지만(`node[]`) SCC별 간선 정보는 가지고 있지 않다. 필요한 정보를 추출해야 한다.<br>
 노드의 집합 번호는 `uni[node]`로 나타내고 있기 때문에 이를 이용해서 집합이 서로 다를 때만 업데이트 해주면 된다.<br>
 ```cpp

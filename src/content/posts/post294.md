@@ -74,7 +74,7 @@ data class Member(
 <br>
 
 ### copy() 역할 메소드 새로 만들기
-backing field 까지 복사하는 **fullCopy()**를 정의해주자!
+backing field 까지 복사하는 **fullCopy()** 를 정의해주자!
 ```kotlin
 data class Member(
     val id: Long,

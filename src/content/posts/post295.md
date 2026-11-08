@@ -123,14 +123,14 @@ class AsyncConfig : AsyncConfigurer {
 }
 ```
 
-하지만 이 방법은 `delay()` 같은 중단점을 만나 다른 스레드로 전환되는 경우 MDC에 넣어둔 값을 유지하지 못한다. 아래에서 설명하는 *MDCContext()* 를 사용한다면 해결할 수 있다.
+하지만 이 방법은 `delay()` 같은 중단점을 만나 다른 스레드로 전환되는 경우 MDC에 넣어둔 값을 유지하지 못한다. 아래에서 설명하는 `MDCContext()` 를 사용한다면 해결할 수 있다.
 
 ### 다른 스레드에서 동작하는 코루틴
 부모의 context를 물려받는 코루틴이라면 MDC가 유지돼서 괜찮다. *예) 파라미터가 없는 runBlocking, launch 등*
 
 하지만 `withContext()`를 사용해서 다른 스레드풀을 사용한다면? `launch`로 코루틴은 생성할 건데 파라미터로 다른 스레드풀을 넣어준다면?
 
-이때는 **다른 스레드에서 동작하는거니까 MDC가 달라진다.** 여기는 위에처럼 decorator 설정을 추가해주지 않아도 된다. **MDCContext()**를 사용해서 간편하게 기존 MDC를 복사할 수 있다. `CoroutineContext`에 + 연산자 오버로딩이 된다!
+이때는 **다른 스레드에서 동작하는거니까 MDC가 달라진다.** 여기는 위에처럼 decorator 설정을 추가해주지 않아도 된다. `MDCContext()`를 사용해서 간편하게 기존 MDC를 복사할 수 있다. `CoroutineContext`에 + 연산자 오버로딩이 된다!
 
 
 이렇게 기존 context(=CoroutineContext)에 복사할 수 있는 건 MDCContext의 `updateThreadContext()`를 호출하기 

@@ -51,7 +51,7 @@ class TestRouter {
     <img src="https://lh3.googleusercontent.com/d/1eIzEGPT6f2zZroyUim8tHPUAkD87s8_S" style="width: 70%; height: auto;" title="$20241016_test_router.png" alt="?"/>
 </div>
 
-그러면 **/tutorial/[a-z]+**에서 요청을 읽어버리게 된다😅 `stage1`을 `[a-z]+`에서 읽어버린 상황이다..! router는 위에서 아래로 매칭되는지 확인한다.
+그러면 **/tutorial/[a-z]+** 에서 요청을 읽어버리게 된다😅 `stage1`을 `[a-z]+`에서 읽어버린 상황이다..! router는 위에서 아래로 매칭되는지 확인한다.
 
 ## 해결 방법
 `stage1`이 정규표현식 `[a-z]+`에 읽히지 않도록 핸들러 순서를 바꿔주면 해결된다.

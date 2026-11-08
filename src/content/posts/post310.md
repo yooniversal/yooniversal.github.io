@@ -19,7 +19,7 @@ interface UserRepository {
 ```
 <br>
 
-좀 더 단순화해서 repository에 함수 A(), B()가 있고 이 함수들을 활용한 새로운 함수 **C()**를 만들고 싶다고 하자. A(), B()는 호출 시 xml에 있는 쿼리를 날린다고 가정하고, C()는 **default method**로 구현해보자. 대충 이렇게 만들어볼 수 있을 것 같다.
+좀 더 단순화해서 repository에 함수 A(), B()가 있고 이 함수들을 활용한 새로운 함수 **C()** 를 만들고 싶다고 하자. A(), B()는 호출 시 xml에 있는 쿼리를 날린다고 가정하고, C()는 **default method**로 구현해보자. 대충 이렇게 만들어볼 수 있을 것 같다.
 ```kotlin
 @Mapper
 interface Repository {
