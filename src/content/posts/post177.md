@@ -9,20 +9,16 @@ author:
   role: 개발
 ---
 
-막연하게 백엔드 경험을 해보고 싶다는 생각으로 어떤걸 공부할지 결정도 못한 채로 멍하니 시간을 보내다가 학교 인턴쉽 프로그램이나 Programmers에서 우연히 백엔드 분야 공고를 봤는데 Spring 경험이 대부분 필요했다. 관련 프로젝트에 뛰어들어서 경험을 쌓을 수 있다면 정말 좋겠지만 겉핥기도 못해본 지금은 자신이 없었고 *Spring? Spring boot?* 들어보기만 했던 것들을 경험이라도 해보자는 취지로 도서관에서 빌린 책으로 시작했으나 모르는 용어가 남발하고 *이건 왜 이렇게 해야하지*라는 고민이 거듭되면서 200페이지 즈음에서 덮어버렸다..! 이해가 안가기 시작해서 흐름을 잃었다는 말이 맞는 것 같은데 노력이 부족한 것도 맞지만😔
-
-결정적으로 쓰여있는 코드를 쳐보면서 따라가려 했으나 버전이 다른 탓인지 오류때문에 실습이 불가능한 상태였다.
-
-결국 시작도 못해보고 관둔 느낌이어서 답답한 채로 하루종일 있다가 추천글을 우연히 알게 돼서 다시 시작하게 됐다😄 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8)
-이라는 강의인데, 확실히 나는 책보다 강의가 이해가 잘가는 것 같다😓
-<br>
+> 이 글은 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8) 커리큘럼에 맞춰서 작성된 글입니다😀
 
 ### 프로젝트 생성
 일단 수강하는데 있어서 IDE는 IntelliJ든, Eclipse든 상관없으나 실제로 주변에서 사용하는 비율도 그렇고 편리한 점이 많아 IntelliJ를 추천한다는 말씀을 하셔서 **IntelliJ**로 진행하기로 했다!
 
 과거에는 Spring 프로젝트는 밑바닥부터 만들었지만 요즘은 Spring Boot를 가지고 프로젝트를 만든다는 말과 함께 시작한다. 일일이 설정하면서 만들어가는 번거로움이 과거에는 존재했다면 그런 틀을 편리하게 만들 수 있도록 해주는 환경을 Spring Boot에서 제공하고 있다고 이해했다.
 
-[https://start.spring.io/](https://start.spring.io/)는 Spring Boot 기반으로 Spring 프로젝트를 만들어주는 사이트인데, 여기서 몇 가지 간단한 설정과 함께 프로젝트를 간편하게 생성할 수 있고 IDE에서는 열어서 시작하면 된다! 최신 경향을 따라 maven이 아닌 **gradle**로 설정하고, Dependencies에서 **Spring Web**, **Thymeleaf**를 추가했다.
+[https://start.spring.io/](https://start.spring.io/)는 Spring Boot 기반으로 Spring 프로젝트를 만들어주는 사이트인데, 여기서 몇 가지 간단한 설정과 함께 프로젝트를 간편하게 생성할 수 있고 IDE에서는 열어서 시작하면 된다!
+
+최신 경향을 따라 maven이 아닌 **gradle**로 설정하고, Dependencies에서 **Spring Web**, **Thymeleaf**를 추가했다.
 <br>
 <img src="https://lh3.googleusercontent.com/d/1I8pAoYpJoRnuMDJfmuU2VRe-e7QHTJPI" width="100%" height="100%" title="SpringBootInitializerSite.png" alt="?"/><br>
 <br>
@@ -36,12 +32,16 @@ author:
 - src/main/java : 패키지와 Java 코드 파일
 - src/main/resources : 실제 Java 코드 파일을 제외한 XML, HTML, 설정 파일(properties) 등
 <br>
-Run을 하면 정상적으로 처리가 되는데, [http://localhost:8080/](http://localhost:8080/)에서 다음과 같은 화면이 뜨면 성공이다. *환영합니다!* 등의 문구가 뜰거라 예상했지만 표시될 Welcome Page가 없어서 *Whitelabel Error Page*가 뜬다고 한다.<br>
+Run을 하면 정상적으로 처리가 되는데, [http://localhost:8080/](http://localhost:8080/)에서 다음과 같은 화면이 뜨면 성공이다.
+
+*환영합니다!* 등의 문구가 뜰거라 예상했지만 표시될 Welcome Page가 없어서 *Whitelabel Error Page*가 뜬다고 한다.<br>
 <img src="https://lh3.googleusercontent.com/d/1dLUx0QNCchmVmgrru_NXUxDRFWweO2m4" style="width: 80%; height: auto;" title="WhitelabelErrorPage.png" alt="?"/><br>
 <br>
 
 ### 라이브러리 살펴보기
-앞서 Dependencies에 추가했던 라이브러리는 2개밖에 되지 않지만 External Libaries에서는 굉장히 많은 라이브러리가 추가된다. 이는 추가한 2개의 라이브러리를 돌리는데 필요한 또 다른 라이브러리들을 끌어오기 때문에 그렇다고 한다. External Libaries 말고도 우측에 Gradle을 누르면 라이브러리 관계를 보다 쉽게 확인할 수 있다!
+앞서 Dependencies에 추가했던 라이브러리는 2개밖에 되지 않지만 External Libaries에서는 굉장히 많은 라이브러리가 추가된다. 이는 추가한 2개의 라이브러리를 돌리는데 필요한 또 다른 라이브러리들을 끌어오기 때문에 그렇다고 한다.
+
+External Libaries 말고도 우측에 Gradle을 누르면 라이브러리 관계를 보다 쉽게 확인할 수 있다!
 <br>
 **spring-boot-starter-web**
 - spring-boot-starter-tomcat : 웹서버
@@ -60,7 +60,9 @@ Run을 하면 정상적으로 처리가 되는데, [http://localhost:8080/](http
 <br>
 
 ### View 환경설정
-'resources/static'에 'index.html'을 넣어 놓으면 이 파일이 곧 Welcome Page가 된다고 한다. 즉, 위에서 봤던 *Whitelabel Error Page*를 대체하게 된다. 이미 서버가 Run되고 있었다면 끄고 다시 Run을 해주면 반영된다. 관련 내용은 [여기](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features)에서 확인할 수 있다. (7.1.6. Welcome Page)
+'resources/static'에 'index.html'을 넣어 놓으면 이 파일이 곧 Welcome Page가 된다고 한다. 즉, 위에서 봤던 *Whitelabel Error Page*를 대체하게 된다.
+
+이미 서버가 Run되고 있었다면 끄고 다시 Run을 해주면 반영된다. 관련 내용은 [여기](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features)에서 확인할 수 있다. (7.1.6. Welcome Page)
 <br>
 
 **Controller**<br>
@@ -73,7 +75,9 @@ src/main/java/hello/hellospring/controller에 HelloController.java를 추가하�
 <br>
 
 ### 빌드하고 실행하기
-**같은 포트를 사용하는 오류를 피하기 위해 서버를 끈 상태에서 진행하기!** 콘솔에서 IntelliJ에서 열었던 파일이 있는 경로로 가서 다음과 같이 입력하면 빌드 및 실행이 된다.
+**같은 포트를 사용하는 오류를 피하기 위해 서버를 끈 상태에서 진행하기!**
+
+콘솔에서 IntelliJ에서 열었던 파일이 있는 경로로 가서 다음과 같이 입력하면 빌드 및 실행이 된다.
 1. ./gradlew build (문제 발생시 ./gradlew clean build))
 2. cd build/libs
 3. java -jar hello-spring-0.0.1-SNAPSHOT.jar

@@ -9,7 +9,7 @@ author:
   role: 개발
 ---
 
-이 글은 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8) 커리큘럼에 맞춰서 작성된 글입니다😀
+> 이 글은 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8) 커리큘럼에 맞춰서 작성된 글입니다😀
 
 - 정적 컨텐츠 : 서버에서 별도의 동작없이 그대로 파일을 웹 브라우저에 내려주는 것
 - MVC와 템플릿 엔진 : html을 그냥 내리는게 아니라 서버에서 프로그래밍을 거친 후 동적으로
@@ -36,11 +36,17 @@ MVC : Model, View, Controller의 약자로, 프로젝트의 구성 요소를 3�
 Model은 애플리케이션의 정보, 데이터를 나타내고, View는 출력되는 부분을 말한다.<br>
 Controller는 애플리케이션의 메인 로직을 담당하는 부분으로 이벤트를 처리하는 부분을 말한다. (출처 : [큰돌님 블로그](https://m.blog.naver.com/jhc9639/220967034588))<br>
 <br>
-이번엔 `/hello-template`을 처리하도록 Controller를 수정해보자. 이전에 테스트한 `/hello`와 다른점은 파라미터와 `addAttribute()` 인자 부분인데, `"name"`은 `hello-template.html`에서 처리될 `${name}`를 말하고, key값은 `String name`을 말한다. `hello-template.html`은 `src/main/resources/templates`에 만들어주면 된다.
+이번엔 `/hello-template`을 처리하도록 Controller를 수정해보자.
+
+이전에 테스트한 `/hello`와 다른점은 파라미터와 `addAttribute()` 인자 부분인데, `"name"`은 `hello-template.html`에서 처리될 `${name}`를 말하고, key값은 `String name`을 말한다.
+
+`hello-template.html`은 `src/main/resources/templates`에 만들어주면 된다.
 <script src="https://gist.github.com/yooniversal/f7abcf18f670e9a66632603bcb28cbf9.js"></script>
 <script src="https://gist.github.com/yooniversal/5781a91cf53e9fa46973e73281a71657.js"></script><br>
 
-thymeleaf 템플릿의 장점은 html을 서버없이 바로 열어봐도 껍데기를 볼 수 있는 점이라고 한다. 실제로 `hello-template.html`을 저장된 경로를 따라 실행시키면 `hello! empty`가 출력이 되며 템플릿 엔진으로써 동작을 하게되면 `<p th:text="{표시될 내용}">`에서 치환이 된다고 한다. 즉, 서버없이 그냥 html을 볼 때 테스트 시 확인을 위해서 사용하는 것이며 실제 서버를 돌리게 되면 저장된 로직에 따라 덮어씌워져 처리가 된다고 한다.
+thymeleaf 템플릿의 장점은 html을 서버없이 바로 열어봐도 껍데기를 볼 수 있는 점이라고 한다.
+
+실제로 `hello-template.html`을 저장된 경로를 따라 실행시키면 `hello! empty`가 출력이 되며 템플릿 엔진으로써 동작을 하게되면 `<p th:text="{표시될 내용}">`에서 치환이 된다고 한다. 즉, 서버없이 그냥 html을 볼 때 테스트 시 확인을 위해서 사용하는 것이며 실제 서버를 돌리게 되면 저장된 로직에 따라 덮어씌워져 처리가 된다고 한다.
 <br>
 
 근데 `http://localhost:8080/hello-mvc`를 입력하면 에러 페이지가 뜨게 되면서 로그에 워닝이 뜬다. name이라는 파라미터가 필요하다는 내용으로 보인다.
@@ -60,19 +66,25 @@ key값으로 `spring!!!!!`이 들어왔으므로 Controller의 `helloMvc()`에�
 이전에 살펴본 MVC와 템플릿 엔진에서는 템플릿 엔진을 통해 렌더링한 내용을 HTML로 넘겨주는 방식이지만 API는 HTML로 내리는 방식이 아니다. json으로 내보내게 되는데 **객체**를 다루기 때문이라고 보면 된다. 일단 helloController에 추가된 내용은 다음과 같다.
 <script src="https://gist.github.com/yooniversal/44a4e411fd7f706e3e168b2a6132b64e.js"></script><br>
 
-이전과 다르게 `@ResponseBody`가 추가된 것을 확인할 수 있다! http의 body에 **해당 내용을 직접 넣어주겠다**는 의미를 가진다고 보면 된다. 이외 내용은 같고 리턴 형식도 `"hello " + name`이기 때문에 출력 내용도 기존 내용과 다르지 않다. 테스트는 `localhost:8080/hello-string?name=spring`를 입력해주면 된다.
+이전과 다르게 `@ResponseBody`가 추가된 것을 확인할 수 있다! http의 body에 **해당 내용을 직접 넣어주겠다**는 의미를 가진다고 보면 된다. 이외 내용은 같고 리턴 형식도 `"hello " + name`이기 때문에 출력 내용도 기존 내용과 다르지 않다.
+
+테스트는 `localhost:8080/hello-string?name=spring`를 입력해주면 된다.
 
 차이점은 빈공간에 우클릭해서 페이지 소스 보기를 했을 때 예전에는 HTML 코드가 나타났다면 이번에는 열고 닫는 그런 내용없이 출력되는 내용만 컴팩트하게 표시된다는걸 확인할 수 있다.
 
 그럼 다음 내용을 helloController에 추가해보자. (API 본격적인 내용)
 <script src="https://gist.github.com/yooniversal/6bce2aa1a87232d67b8aaf6b383fb275.js"></script><br>
 
-여태까지 helloController에 있던 메소드들은 모두 String을 리턴했지만 이번엔 **객체**를 리턴한다! 그러면 이 객체를 어떻게 출력할까? key와 value로 이루어진 **json** 형식을 따라 출력하게 된다. 때문에 `localhost:8080/hello-api?name=spring`을 입력하면 다음과 같은 화면이 나타나게 된다.<br>
+여태까지 helloController에 있던 메소드들은 모두 String을 리턴했지만 이번엔 **객체**를 리턴한다! 그러면 이 객체를 어떻게 출력할까? key와 value로 이루어진 **json** 형식을 따라 출력하게 된다.
+
+때문에 `localhost:8080/hello-api?name=spring`을 입력하면 다음과 같은 화면이 나타나게 된다.<br>
 <img src="https://lh3.googleusercontent.com/d/1hFUiUCOcLi3NbhI465IOfvNoWI8YaNyZ" style="width: 60%; height: auto;" title="helloApi.png" alt="?"/><br>
 
 MVC와 템플릿 엔진에서는 Controller에서 (`@ResponseBody`가 없을 때) 반환되는 String을 통해 viewResolver로 넘겨주고 이에 매칭되는 파일을 찾아 HTML을 내리는 방식이었지만, API에서는 Controller에서 `@ResponseBody`가 있고 반환값이 String이 아닌 객체기 때문에 viewResolver로 넘기지 않고 **HttpMessageConverter**로 넘기게 된다.
 
-이 때 HttpMessageConverter에서도 JsonConverter, StringConverter 등이 있는데 객체는 전자를 활용해 **json** 형식으로 넘겨주게 된다. 후자는 **문자 처리**를 할 때 활용된다. 정확히는 객체일 때 *MappingJackson2HttpMessageConverter*를 활용한다고 하는데 MappignJackson2는 객체를 json 형식으로 바꿔주는 유명한 라이브러리라고 한다.
+이 때 HttpMessageConverter에서도 JsonConverter, StringConverter 등이 있는데 객체는 전자를 활용해 **json** 형식으로 넘겨주게 된다. 후자는 **문자 처리**를 할 때 활용된다.
+
+정확히는 객체일 때 *MappingJackson2HttpMessageConverter*를 활용한다고 하는데 MappignJackson2는 객체를 json 형식으로 바꿔주는 유명한 라이브러리라고 한다.
 
 <script src="https://utteranc.es/client.js"
         repo="yooniversal/blog-comments"

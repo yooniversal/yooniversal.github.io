@@ -9,7 +9,7 @@ author:
   role: 개발
 ---
 
-**자바 ORM 표준 JPA 프로그래밍**에서 읽은 내용을 정리하는 글입니다😄
+> **자바 ORM 표준 JPA 프로그래밍**에서 읽은 내용을 정리하는 글입니다😄
 
 JPA에서 가장 중요한 일은 엔티티와 테이블을 정확히 매핑하는 것이다. 매핑하는데 필요한 어노테이션은 다음과 같다.
 * 객체 ~ 테이블 : @Entity, @Table
@@ -18,7 +18,9 @@ JPA에서 가장 중요한 일은 엔티티와 테이블을 정확히 매핑하�
 * 연관관계 : @ManyToOne, @JoinColumn
 
 ### 4.1 @Entity
-테이블과 매핑할 클래스에 반드시 @Entity 어노테이션을 붙여야 한다. @Entity가 붙은 클래스를 **엔티티**라 부르며, JPA가 관리하게 된다. 속성으로는 *name*이 있고 이는 JPA에서 사용할 엔티티 이름을 의미한다. 기본값은 클래스 이름이 된다.
+테이블과 매핑할 클래스에 반드시 @Entity 어노테이션을 붙여야 한다. @Entity가 붙은 클래스를 **엔티티**라 부르며, JPA가 관리하게 된다.
+
+속성으로는 *name*이 있고 이는 JPA에서 사용할 엔티티 이름을 의미한다. 기본값은 클래스 이름이 된다.
 
 @Entity 사용 시 주의사항은 다음과 같다.
 * 기본 생성자 반드시 사용
@@ -174,7 +176,9 @@ create table MY_SEQUENCES (
 )
 ```
 
-`@TableGenerator`를 사용해 테이블 키 생성기를 등록한다. 아래 예제에서는 BOARD_SEQ_GENERATOR라는 이름의 테이블 키 생성기를 등록하고, 위에서 생성한 MY_SEQUENCES 테이블을 키 생성용 테이블로 매핑한다. TABLE 전략을 사용하기 위해 `@GeneratedType.TABLE`을 선택하고, `@GeneratedValue.generator`에 방금 만든 테이블 키 생성기를 지정한다. 이제부터 id 식별자 값은 BOARD_SEQ_GENERATOR 테이블 키 생성기가 할당한다.
+`@TableGenerator`를 사용해 테이블 키 생성기를 등록한다. 아래 예제에서는 BOARD_SEQ_GENERATOR라는 이름의 테이블 키 생성기를 등록하고, 위에서 생성한 MY_SEQUENCES 테이블을 키 생성용 테이블로 매핑한다.
+
+TABLE 전략을 사용하기 위해 `@GeneratedType.TABLE`을 선택하고, `@GeneratedValue.generator`에 방금 만든 테이블 키 생성기를 지정한다. 이제부터 id 식별자 값은 BOARD_SEQ_GENERATOR 테이블 키 생성기가 할당한다.
 ```java
 //TABLE 전략 매핑 코드
 @Entity
@@ -220,7 +224,9 @@ public class Board {
 }
 ```
 
-`@GeneratedValue.strategy`의 기본값은 AUTO이므로 `@GeneratedValue`라 써도 결과가 같다. AUTO 전략의 장점은 DB 변경 시에도 코드를 수정할 필요가 없다는 점이다. 따라서 키 생성 전략이 확정되지 않은 개발 초기 단계 혹은 프로토타입 개발 시 유용하다.
+`@GeneratedValue.strategy`의 기본값은 AUTO이므로 `@GeneratedValue`라 써도 결과가 같다.
+
+AUTO 전략의 장점은 DB 변경 시에도 코드를 수정할 필요가 없다는 점이다. 따라서 키 생성 전략이 확정되지 않은 개발 초기 단계 혹은 프로토타입 개발 시 유용하다.
 
 <script src="https://utteranc.es/client.js"
         repo="yooniversal/blog-comments"

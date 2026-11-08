@@ -9,13 +9,15 @@ author:
   role: 개발
 ---
 
-**자바 ORM 표준 JPA 프로그래밍**에서 읽은 내용을 정리하는 글입니다😄
+> **자바 ORM 표준 JPA 프로그래밍**에서 읽은 내용을 정리하는 글입니다😄
 
 ### 2.1 ~ 2.2 IntelliJ 프로젝트 설정하기, H2 데이터베이스 설치
 책에서는 이클립스로 하지만 [이전 강의](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8)에서 이클립스보다 IntelliJ가 편하다고 언급하셔서 이미 설치돼 있는 IntelliJ로 진행하기로 했다. [김영한님의 글](https://medium.com/@oopchoi/jpa-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-fc443b647ec8) 참고.
 
 ### 2.3 라이브러리와 프로젝트 구조
-요즘은 필요한 라이브러리를 일일이 다운로드받아 적용시키지 않고 maven이나 gradle을 사용한다. 책에서는 maven으로 진행하는데, `pom.xml`에 사용할 라이브러리를 적어주면 자동으로 내려받아 관리한다. `<dependency>`에 사용할 라이브러리의 groupId, artifactId, version을 적어주면 된다.
+요즘은 필요한 라이브러리를 일일이 다운로드받아 적용시키지 않고 maven이나 gradle을 사용한다.
+
+책에서는 maven으로 진행하는데, `pom.xml`에 사용할 라이브러리를 적어주면 자동으로 내려받아 관리한다. `<dependency>`에 사용할 라이브러리의 groupId, artifactId, version을 적어주면 된다.
 
 JPA 구현체인 하이버네이트를 사용하기 위한 핵심 라이브러리는 다음과 같다.
 * hibernate-core : 하이버네이트 라이브러리
@@ -88,7 +90,9 @@ JPA는 영속성 유닛(persistence-unit) 등록부터 해야하는데 jpabook�
 데이터베이스 방언
 </blockquote>
 
-JPA는 다른 데이터베이스로 쉽게 교체할 수 있지만 데이터베이스마다 제공하는 SQL 문법과 함수가 조금씩 다르다는 문제점이 존재한다. 이 때 **SQL 표준을 지키지 않거나 고유한 기능**을 **방언**이라 한다. JPA 구현체들은 이런 문제를 해결하기 위해 데이터베이스 방언 클래스를 제공한다.
+JPA는 다른 데이터베이스로 쉽게 교체할 수 있지만 데이터베이스마다 제공하는 SQL 문법과 함수가 조금씩 다르다는 문제점이 존재한다. 이 때 **SQL 표준을 지키지 않거나 고유한 기능**을 **방언**이라 한다.
+
+JPA 구현체들은 이런 문제를 해결하기 위해 데이터베이스 방언 클래스를 제공한다.
 
 ### 2.6 애플리케이션 개발
 <script src="https://gist.github.com/yooniversal/594cdec4f30a1cea7dccb75d8ab63b47.js"></script>
@@ -139,7 +143,9 @@ findMember=지한, age=20
 members.size=1
 ```
 
-자세히 보면 등록 후 수정을 했는데 uplast_modified_at를 별도로 하지 않았음에도 출력 결과에 반영이 됐다. 어떻게 이럴 수 있을까? JPA는 어떤 엔티티가 변경됐는지 추적하는 기능을 갖고 있어서 가능하다. 따라서 위처럼 age를 변경했을 때 UPDATE SQL을 생성해서 데이터베이스에서 값을 변경한다고 한다. 실제로 엔티티 매니저에 uplast_modified_at 관련 메소드는 없다.
+자세히 보면 등록 후 수정을 했는데 uplast_modified_at를 별도로 하지 않았음에도 출력 결과에 반영이 됐다. 어떻게 이럴 수 있을까?
+
+JPA는 어떤 엔티티가 변경됐는지 추적하는 기능을 갖고 있어서 가능하다. 따라서 위처럼 age를 변경했을 때 UPDATE SQL을 생성해서 데이터베이스에서 값을 변경한다고 한다. 실제로 엔티티 매니저에 uplast_modified_at 관련 메소드는 없다.
 
 <blockquote>
 JPQL(Java Persistence Query Language)

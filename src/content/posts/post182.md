@@ -9,20 +9,24 @@ author:
   role: 개발
 ---
 
-이 글은 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8) 커리큘럼에 맞춰서 작성된 글입니다😀
+> 이 글은 [스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8) 커리큘럼에 맞춰서 작성된 글입니다😀
 
 ### 회원 웹 기능 - 홈 화면 추가
 `hello/hellospring/controller`에 `HomeContrller`라는 클래스를 만들어주자. [http://localhost:8080/](http://localhost:8080/)에 메인 화면이 바로 뜨도록 하기 위해 다음과 같이 코드를 작성한다.
 <script src="https://gist.github.com/yooniversal/7ff720f17ec4618f861c2d50b9bee53a.js"></script>
 
-예전에 쓴 글인 [스프링 입문 - 스프링 웹 개발 기초](/study/post178/)에서 정적 컨텐츠 부분의 내용을 보면 Controller가 가장 우선순위가 높기 때문에 Controller에서 해당되는 케이스(**@GetMapping**)가 있는지 확인한 후 없다면 `resources/static`에 `~~~.html`이 있는지 확인한다고 쓰여있다. 지금은 `HomeController`가 만들어져 있고 `@GetMapping("/")`이기 때문에 `localhost:8080`만 들어가도 페이지가 로드된다! 로드되는 `home.html`은 `resources/templates`에 만들어주자.
+예전에 쓴 글인 [스프링 입문 - 스프링 웹 개발 기초](/study/post178/)에서 정적 컨텐츠 부분의 내용을 보면 Controller가 가장 우선순위가 높기 때문에 Controller에서 해당되는 케이스(**@GetMapping**)가 있는지 확인한 후 없다면 `resources/static`에 `~~~.html`이 있는지 확인한다고 쓰여있다.
+
+지금은 `HomeController`가 만들어져 있고 `@GetMapping("/")`이기 때문에 `localhost:8080`만 들어가도 페이지가 로드된다! 로드되는 `home.html`은 `resources/templates`에 만들어주자.
 <script src="https://gist.github.com/yooniversal/b2033e454f504655e35f6085ba2e6958.js"></script>
 
 그러면 [http://localhost:8080/](http://localhost:8080/)에 접속 시 다음과 같은 화면이 뜨게 된다.<br>
 <img src="https://lh3.googleusercontent.com/d/1JB_cvYokSVfIKlo4WE507gFF7xcwCNzI" style="width: 60%; height: auto;" title="SpringMainScreen.png" alt="?"/><br>
 
 ### 회원 웹 기능 - 등록
-홈 화면이 추가됐으니 이제 회원을 등록하는 페이지를 만들고 등록 기능까지 추가해보자! 일단 회원 관련 서비스를 다루는 `MemberController`에서 다음의 코드를 추가한다. 굳이 `/members/new`로 설정하는 이유는 위의 `home.html`에서 회원가입 버튼을 눌렀을 때 `/members/new`로 이동하도록 설정을 했기 때문이다!
+홈 화면이 추가됐으니 이제 회원을 등록하는 페이지를 만들고 등록 기능까지 추가해보자! 일단 회원 관련 서비스를 다루는 `MemberController`에서 다음의 코드를 추가한다.
+
+굳이 `/members/new`로 설정하는 이유는 위의 `home.html`에서 회원가입 버튼을 눌렀을 때 `/members/new`로 이동하도록 설정을 했기 때문이다!
 ```java
 @GetMapping("/members/new")
 public String createForm() {
@@ -33,13 +37,19 @@ public String createForm() {
 위의 코드대로라면 `localhost:8080/members/new`를 주소창에 입력했을 때 `members/createMemberForm.html`에 적힌 내용이 화면에 뿌려져야 한다! 때문에 해당 경로에 `members`라는 리포지토리와 `createMemberForm`이라는 html 파일을 만들어주자!
 <script src="https://gist.github.com/yooniversal/f16a4527636122fb9445d758f003077f.js"></script>
 
-그리고 `hello/hellospring/controller`에 `MemberForm`이라는 클래스를 만들고 다음 코드를 작성한다. 이 때 필드의 name은 위의 `createMemberForm`에서 input 태그의 name=`"name"`과 같다. 즉, 입력받는 내용이 key값으로 들어오게 된다!
+그리고 `hello/hellospring/controller`에 `MemberForm`이라는 클래스를 만들고 다음 코드를 작성한다.
+
+이 때 필드의 name은 위의 `createMemberForm`에서 input 태그의 name=`"name"`과 같다. 즉, 입력받는 내용이 key값으로 들어오게 된다!
 <script src="https://gist.github.com/yooniversal/41c7ecf9e8e2c003c6a2650498b8566d.js"></script>
 
-이제 만든 `MemberForm`을 이용할 때가 됐다. `/members/new`에서 등록 버튼을 누를 때 반응하도록 만들어보자! `MemberController`로 돌아가서 다음의 내용을 추가해주자. 여기선 **@GetMapping**이 아니라 **@PostMapping**을 써줘야 하는데, GET과 POST의 차이점을 알아야 한다. 간단히 설명하면 GET은 단순히 조회하는 용도로서 활용되고 POST는 등록하는 용도로 활용된다. 지금은 **회원을 등록하는 과정**이기 때문에 POST 방식을 적용했다고 보면 되겠다. 자세한 내용은 HTTP 메소드를 검색하면 많이 나온다😀 리턴값이 `"redirect:/"`이기 때문에 등록 버튼을 누르면 홈 화면으로 돌아오게 된다.
+이제 만든 `MemberForm`을 이용할 때가 됐다. `/members/new`에서 등록 버튼을 누를 때 반응하도록 만들어보자! `MemberController`로 돌아가서 다음의 내용을 추가해주자.
+
+여기선 **@GetMapping**이 아니라 **@PostMapping**을 써줘야 하는데, GET과 POST의 차이점을 알아야 한다. 간단히 설명하면 GET은 단순히 조회하는 용도로서 활용되고 POST는 등록하는 용도로 활용된다. 지금은 **회원을 등록하는 과정**이기 때문에 POST 방식을 적용했다고 보면 되겠다. 자세한 내용은 HTTP 메소드를 검색하면 많이 나온다😀
+
+리턴값이 `"redirect:/"`이기 때문에 등록 버튼을 누르면 홈 화면으로 돌아오게 된다.
 <script src="https://gist.github.com/yooniversal/91c5c240d0f7a8ea418ca556b8162dcf.js"></script>
 
-**println()**이 들어가 있어서 다음과 같이 테스트를 통해 콘솔창에서 확인이 가능하다. log로 남기는게 적절하다고 말씀하셨지만 편의를 위해 이렇게 진행하신듯 하다!
+`println()`이 들어가 있어서 다음과 같이 테스트를 통해 콘솔창에서 확인이 가능하다. log로 남기는게 적절하다고 말씀하셨지만 편의를 위해 이렇게 진행하신듯 하다!
 <br>
 <img src="https://lh3.googleusercontent.com/d/1_o3P2dphBc9QX053lnNn_g3w_rF94IBz" style="width: 60%; height: auto;" title="SpringIdTest.png" alt="?"/>
 <img src="https://lh3.googleusercontent.com/d/1xLhVq_v8Mj0HZ69hd9xlcbDrcmpR1I_r" style="width: 60%; height: auto;" title="SpringIdTest2.png" alt="?"/><br>
@@ -47,7 +57,9 @@ public String createForm() {
 <script src="https://gist.github.com/yooniversal/233d052bb795a7eb015244a840139080.js"></script>
 
 ### 회원 웹 기능 - 조회
-멤버를 조회하는 기능을 만들어보자! `MemberController`에서 `localhost:8080/members`에서 조회할 수 있도록 `@GetMapping("/members")`를 추가해주자! 인자로 들어오는 변수의 자료형은 이전에 만들었던 Model로 설정하고, `MemberService`의 모든 멤버를 조회하는 **findMember()**를 활용해 다음과 같이 코드를 적으면 된다.
+멤버를 조회하는 기능을 만들어보자! `MemberController`에서 `localhost:8080/members`에서 조회할 수 있도록 `@GetMapping("/members")`를 추가해주자!
+
+인자로 들어오는 변수의 자료형은 이전에 만들었던 Model로 설정하고, `MemberService`의 모든 멤버를 조회하는 `findMember()`를 활용해 다음과 같이 코드를 적으면 된다.
 ```java
 @GetMapping("/members")
 public String list(Model model) {
@@ -60,7 +72,9 @@ public String list(Model model) {
 리턴값이 `members/memberList`이기 때문에 `memberList.html`에 다음의 내용을 추가한다.
 <script src="https://gist.github.com/yooniversal/233d052bb795a7eb015244a840139080.js"></script>
 
-tr 태그로 둘러싸인 다음 내용을 유심히 보면 thymeleaf 문법으로 적힌 내용이라 이해하기 어려운데 그냥 for each문으로 적힌거고 멤버를 하나씩 꺼내서 나열한다고 보면 된다! 실제로 Run을 하고 회원 가입에서 spring1, spring2을 등록 후 회원 목록으로 들어갔을 때 즉, `http://localhost:8080/members`로 들어갔을 때 다음과 같이 회원 목록을 확인할 수 있다!
+tr 태그로 둘러싸인 다음 내용을 유심히 보면 thymeleaf 문법으로 적힌 내용이라 이해하기 어려운데 그냥 for each문으로 적힌거고 멤버를 하나씩 꺼내서 나열한다고 보면 된다!
+
+실제로 Run을 하고 회원 가입에서 spring1, spring2을 등록 후 회원 목록으로 들어갔을 때 즉, `http://localhost:8080/members`로 들어갔을 때 다음과 같이 회원 목록을 확인할 수 있다!
 ```html
 <tr th:each="member : ${members}">
   <td th:text="${member.id}"></td>
